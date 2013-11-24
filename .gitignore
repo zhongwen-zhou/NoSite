@@ -17,3 +17,5 @@ pickle-email-*.html
 .project
 .ruby-version
 config/initializers/secret_token.rb
+public/photo
+public/user
