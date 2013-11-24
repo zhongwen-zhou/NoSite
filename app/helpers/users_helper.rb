@@ -68,6 +68,14 @@ module UsersHelper
     I18n.l(user.created_at.to_date, :format => :long)
   end
 
+  def render_user_coins(user)
+    user.coins
+  end
+
+  def render_user_scores(user)
+    user.scores
+  end
+
   def render_user_tagline(user)
     user.tagline
   end

@@ -2,12 +2,12 @@
   <%= render 'shared/error_messages', :target => @user %>
   <%= f.input :login %>
   <%= f.input :name %>
-  <%= f.input :email, :as => :email, :input_html => { :class => "xxlarge" } %>
+  <%#= f.input :email, :as => :email, :input_html => { :class => "xxlarge" } %>
   <%= f.input :location %>
-  <%= f.input :github %>
+  <%#= f.input :github %>
   <%= f.input :tagline, :input_html => { :class => "span8" } %>
   <%= f.input :bio, :as => :text, :input_html => { :class => "span8", :style => "height:60px;" } %>
-  <%= f.input :website, :as => :url, :input_html => { :class => "xxlarge" } %>
+  <%#= f.input :website, :as => :url, :input_html => { :class => "xxlarge" } %>
   <%= f.input :avatar %>
   <div class="control-group">
     <label class="control-label"><%= t("common.avatar")%></label>

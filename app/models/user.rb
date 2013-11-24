@@ -55,6 +55,11 @@ class User
   field :private_token
   field :favorite_topic_ids, :type => Array, :default => []
 
+
+  # =======Tony=======
+  field :coins, :type => Integer, :default => 0
+  field :scores, :type => Integer, :default => 0
+
   mount_uploader :avatar, AvatarUploader
 
   index :login => 1
@@ -347,5 +352,28 @@ class User
 
   def ensure_private_token!
     self.update_private_token if self.private_token.blank?
+  end
+
+  # =========Tony========
+  def add_coins(add_coins_type)
+    coins = case add_coins_type
+    when 'TOPIC_CREATE'
+      100
+    when 'REPLY_TOPIC'
+      50
+    end
+    
+    self.inc(:coins => coins)  
+  end
+
+  def add_scores(add_scores_type)
+    score = case add_scores_type
+    when 'TOPIC_CREATE'
+      20
+    when 'REPLY_TOPIC'
+      10
+    end
+
+    self.inc(:scores => score)
   end
 end

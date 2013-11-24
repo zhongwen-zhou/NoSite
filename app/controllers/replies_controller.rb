@@ -10,6 +10,9 @@ class RepliesController < ApplicationController
     @reply.topic_id = @topic.id
     @reply.user_id = current_user.id
 
+    current_user.add_coins('REPLY_TOPIC')
+    current_user.add_scores('REPLY_TOPIC')
+
     if @reply.save
       current_user.read_topic(@topic)
       @msg = t("topics.reply_success")

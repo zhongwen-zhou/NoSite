@@ -112,6 +112,9 @@ class TopicsController < ApplicationController
     @topic.user_id = current_user.id
     @topic.node_id = params[:node] || topic_params[:node_id]
 
+    current_user.add_coins('TOPIC_CREATE')
+    current_user.add_scores('TOPIC_CREATE')
+
     if @topic.save
       redirect_to(topic_path(@topic.id), :notice => t("topics.create_topic_success"))
     else
