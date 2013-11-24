@@ -12,14 +12,14 @@ class User
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
-  field :email,              :type => String, :default => ""
+  # field :email,              :type => String, :default => ""
   # Email 的 md5 值，用于 Gravatar 头像
-  field :email_md5
+  # field :email_md5
   # Email 是否公开
-  field :email_public, :type => Mongoid::Boolean
+  # field :email_public, :type => Mongoid::Boolean
   field :encrypted_password, :type => String, :default => ""
 
-  validates_presence_of :email
+  # validates_presence_of :email
 
   ## Recoverable
   field :reset_password_token,   :type => String
@@ -40,10 +40,10 @@ class User
   field :location
   field :location_id, :type => Integer
   field :bio
-  field :website
-  field :company
-  field :github
-  field :twitter
+  # field :website
+  # field :company
+  # field :github
+  # field :twitter
   # 是否信任用户
   field :verified, :type => Mongoid::Boolean, :default => false
   field :state, :type => Integer, :default => 1
@@ -69,6 +69,15 @@ class User
   has_many :notifications, :class_name => 'Notification::Base', :dependent => :delete
   has_many :photos
 
+  def email_required?
+    false
+  end
+
+  def email_changed?
+    false
+  end
+
+
   def read_notifications(notifications)
     unread_ids = notifications.find_all{|notification| !notification.read?}.map(&:_id)
     if unread_ids.any?
@@ -81,7 +90,8 @@ class User
   end
 
   attr_accessor :password_confirmation
-  ACCESSABLE_ATTRS = [:name, :email_public, :location, :company, :bio, :website, :github, :twitter, :tagline, :avatar, :by, :current_password, :password, :password_confirmation]
+  # ACCESSABLE_ATTRS = [:name, :email_public, :location, :company, :bio, :website, :github, :twitter, :tagline, :avatar, :by, :current_password, :password, :password_confirmation]
+  ACCESSABLE_ATTRS = [:name, :location, :bio, :tagline, :avatar, :by, :current_password, :password, :password_confirmation]
 
   validates :login, :format => {:with => /\A\w+\z/, :message => '只允许数字、大小写字母和下划线'}, :length => {:in => 3..20}, :presence => true, :uniqueness => {:case_sensitive => false}
 
@@ -92,8 +102,8 @@ class User
   scope :hot, desc(:replies_count, :topics_count)
 
   def email=(val)
-    self.email_md5 = Digest::MD5.hexdigest(val || "")
-    self[:email] = val
+    # self.email_md5 = Digest::MD5.hexdigest(val || "")
+    # self[:email] = val
   end
 
   def temp_access_token
@@ -112,24 +122,24 @@ class User
     (authorizations.empty? || !password.blank?) && super
   end
 
-  def github_url
-    return "" if self.github.blank?
-    "https://github.com/#{self.github.split('/').last}"
-  end
+  # def github_url
+  #   return "" if self.github.blank?
+  #   "https://github.com/#{self.github.split('/').last}"
+  # end
 
-  def twitter_url
-    return "" if self.twitter.blank?
-    "https://twitter.com/#{self.twitter}"
-  end
+  # def twitter_url
+  #   return "" if self.twitter.blank?
+  #   "https://twitter.com/#{self.twitter}"
+  # end
 
-  def google_profile_url
-    return "" if self.email.blank? or !self.email.match(/gmail\.com/)
-    return "http://www.google.com/profiles/#{self.email.split("@").first}"
-  end
+  # def google_profile_url
+  #   return "" if self.email.blank? or !self.email.match(/gmail\.com/)
+  #   return "http://www.google.com/profiles/#{self.email.split("@").first}"
+  # end
 
   # 是否是管理员
   def admin?
-    Setting.admin_emails.include?(self.email)
+    Setting.admin_accounts.include?(self.login)
   end
 
   # 是否有 Wiki 维护权限
@@ -144,8 +154,9 @@ class User
 
   # 是否能发帖
   def newbie?
-    return false if self.verified == true
-    self.created_at > 1.week.ago
+    return false
+    # return false if self.verified == true
+    # self.created_at > 1.week.ago
   end
 
   def blocked?
@@ -172,13 +183,13 @@ class User
   # end
 
   # 注册邮件提醒
-  after_create :send_welcome_mail
+  # after_create :send_welcome_mail
   def send_welcome_mail
     UserMailer.delay.welcome(self.id)
   end
 
   # 保存用户所在城市
-  before_save :store_location
+  # before_save :store_location
   def store_location
     if self.location_changed?
       if not self.location.blank?
@@ -288,8 +299,8 @@ class User
     self.email = "#{self.login}_#{self.id}@ruby-china.org"
     self.login = "Guest"
     self.bio = ""
-    self.website = ""
-    self.github = ""
+    # self.website = ""
+    # self.github = ""
     self.tagline = ""
     self.location = ""
     self.authorizations = []

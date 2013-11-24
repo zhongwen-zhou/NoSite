@@ -7,8 +7,8 @@
       page: Wiki
     attributes:
       user:
-        name: "名字"
-        login: "用户名"
+        name: "平台昵称"
+        login: "平台帐号"
         email: "Email"
         email_public: "公开 Email"
         avatar: "头像"
