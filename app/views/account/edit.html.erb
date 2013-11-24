@@ -6,6 +6,8 @@
         <legend><%= t("users.personal_information")%></legend>
         <%= f.input :name %>
         <%= f.input :avatar %>
+        
+        <% if false %>
         <%= f.input :email, :input_html => { :class => "span4", :disabled => (!resource.email.blank?) } %>
         <div class="control-group">
           <div class="controls">
@@ -13,6 +15,7 @@
           </div>
         </div>
         <%= f.input :location, :input_html => { :class => "span3" } %>
+
         <%= f.input :company, :input_html => { :class => "span3" } %>
         <div class="control-group">
           <%= f.label :github %>
@@ -33,6 +36,8 @@
           </div>
         </div>
         <%= f.input :website, :input_html => { :class => "xxlarge", :placeholder => "http://" } %>
+
+        <% end %>
         <%= f.input :tagline, :input_html => { :class => "xxlarge" } %>
         <%= f.input :bio, :as => :text, :input_html => { :class => "xxlarge", :rows => "6" } %>
         <div class="form-actions">

@@ -5,6 +5,8 @@ defaults: &defaults
   admin_emails:
     - "admin@admin.com"
     - "zhongwenzhou.wolf@gmail.com"
+  admin_accounts:
+    - "zhongwen"
   google_analytics_key: ""
   upload_url: "http://ruby-china-files-dev.b0.upaiyun.com"
   upyun_username: "test"
