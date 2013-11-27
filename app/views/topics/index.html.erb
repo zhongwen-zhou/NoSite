@@ -1,8 +1,13 @@
 <div class="content">
   <div class="box box_gray">
+  <% if action_name == "index" && !mobile? %>
+    <%= render_cell :topics, :index_sections %>
+    <%#= render_cell :topics, :index_locations %>
+  <% end %>
     <div id="node_info">
       <%= render "node_info", :node => @node %>
     </div>
+    
 
     <div class="topics">
       <%= render :partial => "topics/topic", :collection => @topics %>
@@ -11,10 +16,6 @@
 
   </div>
 
-  <% if action_name == "index" && !mobile? %>
-    <%= render_cell :topics, :index_sections %>
-    <%= render_cell :topics, :index_locations %>
-  <% end %>
 
   <% if !@node.blank? %>
     <% content_for :node_feed_link do %>

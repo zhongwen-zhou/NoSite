@@ -1,11 +1,13 @@
 <div class="editor_toolbar">
   <div class="icons pull-right">
+  <% if false %>
     <span class="dropdown dropdown-small" id="editor_toolbar_insert_code">
       <a href="#editor_toolbar_insert_code" data-toggle="dropdown" class="icon small_code" rel="twipsy" title="<%= t("topics.insert_codes") %>" href="#editor_toolbar_insert_code"></a>
       <ul class="dropdown-menu" role="menu">
         <%= insert_code_menu_items_tag %>
       </ul>
     </span>
+  <% end %>
     <%= link_to("", "#", :id => "topic_add_image", :rel => "twipsy", :title => t("topics.add_image"), :class => "icon small_image")%>
     <input type="file" id="topic_upload_images"/>
   </div>
