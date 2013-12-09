@@ -4,7 +4,7 @@ class Ability
   def initialize(user)
 
     if user.blank?
-      # not logged in
+      # no user logged in
       cannot :manage, :all
       basic_read_only
 
