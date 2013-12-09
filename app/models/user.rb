@@ -67,9 +67,9 @@ class User
   index :location => 1
   index({private_token: 1},{ sparse: true })
 
-  has_many :topics, :dependent => :destroy
+  has_many :topics, :dependent => :destroy, :class_name => 'Bbs::Topic'
   has_many :notes
-  has_many :replies, :dependent => :destroy
+  has_many :replies, :dependent => :destroy, :class_name => 'Bbs::Reply'
   embeds_many :authorizations
   has_many :notifications, :class_name => 'Notification::Base', :dependent => :delete
   has_many :photos
@@ -100,7 +100,7 @@ class User
 
   validates :login, :format => {:with => /\A\w+\z/, :message => '只允许数字、大小写字母和下划线'}, :length => {:in => 3..20}, :presence => true, :uniqueness => {:case_sensitive => false}
 
-  has_and_belongs_to_many :following_nodes, :class_name => 'Node', :inverse_of => :followers
+  has_and_belongs_to_many :following_nodes, :class_name => 'Bbs::Node', :inverse_of => :followers
   has_and_belongs_to_many :following, :class_name => 'User', :inverse_of => :followers
   has_and_belongs_to_many :followers, :class_name => 'User', :inverse_of => :following
 
