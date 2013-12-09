@@ -1,4 +1,3 @@
-<% if false %>
 <%= raw SiteConfig.index_html %>
 
 <div class="home_suggest_topics box box_gray">
@@ -12,6 +11,5 @@
 </div>
 <% if !mobile? %>
   <%= render_cell 'Bbs::Topics', :index_sections %>
-  <%= render_cell 'Bbs::Topics', :index_locations %>
-<% end %>
+  <%#= render_cell :topics, :index_locations %>
 <% end %>

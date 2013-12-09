@@ -1,5 +1,5 @@
 # coding: utf-8
-class Cpanel::SectionsController < Cpanel::ApplicationController
+class Cpanel::Bbs::SectionsController < Cpanel::ApplicationController
 
   def index
     @sections = ::Bbs::Section.all
@@ -20,7 +20,7 @@ class Cpanel::SectionsController < Cpanel::ApplicationController
   end
 
   def create
-    @section = ::Bbs::Section.new(params[:section].permit!)
+    @section = ::Bbs::Section.new(params[:bbs_section].permit!)
 
     if @section.save
       redirect_to(cpanel_bbs_sections_path, :notice => '::Bbs::Section was successfully created.')
@@ -32,8 +32,8 @@ class Cpanel::SectionsController < Cpanel::ApplicationController
   def update
     @section = ::Bbs::Section.find(params[:id])
 
-    if @section.update_attributes(params[:section].permit!)
-      redirect_to(cpanel_sections_path, :notice => '::Bbs::Section was successfully updated.')
+    if @section.update_attributes(params[:bbs_section].permit!)
+      redirect_to(cpanel_bbs_sections_path, :notice => '::Bbs::Section was successfully updated.')
     else
       render :action => "edit"
     end

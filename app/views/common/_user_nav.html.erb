@@ -14,7 +14,7 @@
       li << link_to(t("menu.my_home_page"), user_path(current_user.login) )
       unless params[:controller].match(/cpanel/)
         li << link_to(t("menu.edit_account_path"), edit_user_registration_path)
-        li << link_to(t("menu.notes"), notes_path )
+        li << link_to(t("menu.notes"), bbs_notes_path )
         li << link_to(t("menu.likes"), favorites_user_path(current_user.login))
         li << link_to(t("menu.cpanel"), "/cpanel") if admin?
       end
