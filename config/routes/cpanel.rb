@@ -3,8 +3,8 @@ RubyChina::Application.routes.draw do
     root :to => "home#index"
     resources :users
     resources :articles
+    resources :site_configs
     namespace :bbs do
-      resources :site_configs
       resources :replies
       resources :topics do
         member do

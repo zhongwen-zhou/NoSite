@@ -1,7 +1,7 @@
 <%= simple_form_for([:cpanel, @article]) do |f| %>
   <%= render "shared/error_messages", :target => @article %>
   <fieldset>
-    <legend>Wiki页面编辑</legend>
+    <legend>Article页面编辑</legend>
     <%= f.input :title, :input_html => { :class => "xxlarge" } %>
     <%= f.kindeditor :content, :width => 800, :height => 300 %>
     <div class="form-actions">

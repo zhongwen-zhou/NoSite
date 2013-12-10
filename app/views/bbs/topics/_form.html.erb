@@ -10,11 +10,12 @@
   </div>
   
   <div class="control-group edit_tools">
-    <%= render "editor_toolbar" %>
+    <%#= render "editor_toolbar" %>
   </div>
   
   <div class="control-group">
-    <%= f.text_area :body, :class => "topic_editor closewarning" %>
+    <%#= f.text_area :body, :class => "topic_editor closewarning" %>
+    <%= f.kindeditor :body, :width => 360, :height => 300, :class => "topic_editor closewarning" %>
   </div>
 
   <div class="control-group">

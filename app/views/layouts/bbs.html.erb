@@ -17,7 +17,7 @@
   <link rel="shortcut icon" href="<%= asset_path("big_logo.png") %>" />
   <%= raw SiteConfig.custom_head_html %>
   <%= csrf_meta_tag %>
-  <%= auto_discovery_link_tag(:rss, feed_bbs_topics_url,:title => '订阅最新帖') %>
+  <%#= auto_discovery_link_tag(:rss, feed_bbs_topics_url,:title => '订阅最新帖') %>
   <%= javascript_include_tag "app", "data-turbolinks-track" => true %>
   <%= yield :node_feed_link %>
 </head>
@@ -30,11 +30,8 @@
         </h3>
         <%= render_list :class => "nav" do |li|
            li << link_to(t("menu.topics"), bbs_topics_path)
-           li << link_to(t("menu.wiki"), bbs_pages_path )
-           li << link_to(t("menu.sites"), bbs_sites_path ) if !mobile?
-           # li << link_to(t("menu.users"), bbs_users_path) if !mobile?
         end %>
-        <form action="/search" class="navbar-search pull-left" method="get">
+        <form action="bbs/search" class="navbar-search pull-left" method="get">
           <input type="text" name="q" class="search-query span3" value="<%= params[:q] %>" placeholder="<%= t("common.search") %>" />
         </form>
         <%= render "common/user_nav" %>
@@ -49,7 +46,7 @@
       </div>
       <div class="feed_link hidden-phone">
         <% if not mobile? %>
-          <%= link_to(raw("<span class='icon icons_rss'></span> Feed"), feed_bbs_topics_url, :title => t("topics.subscribe_with_rss", :name => Setting.app_name), :class => "feed") %>
+          <%#= link_to(raw("<span class='icon icons_rss'></span> Feed"), feed_bbs_topics_url, :title => t("topics.subscribe_with_rss", :name => Setting.app_name), :class => "feed") %>
         <% end %>
       </div>
     <% end %>

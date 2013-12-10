@@ -24,7 +24,7 @@ class Cpanel::Bbs::TopicsController < Cpanel::ApplicationController
     @topic = ::Bbs::Topic.new(params[:topic].permit!)
 
     if @topic.save
-      redirect_to(cpanel_topics_path, :notice => '::Bbs::Topic was successfully created.')
+      redirect_to(cpanel_bbs_topics_path, :notice => '::Bbs::Topic was successfully created.')
     else
       render :action => "new"
     end
@@ -34,7 +34,7 @@ class Cpanel::Bbs::TopicsController < Cpanel::ApplicationController
     @topic = ::Bbs::Topic.unscoped.find(params[:id])
 
     if @topic.update_attributes(params[:topic].permit!)
-      redirect_to(cpanel_topics_path, :notice => '::Bbs::Topic was successfully updated.')
+      redirect_to(cpanel_bbs_topics_path, :notice => '::Bbs::Topic was successfully updated.')
     else
       render :action => "edit"
     end
@@ -44,26 +44,26 @@ class Cpanel::Bbs::TopicsController < Cpanel::ApplicationController
     @topic = ::Bbs::Topic.unscoped.find(params[:id])
     @topic.destroy_by(current_user)
 
-    redirect_to(cpanel_topics_path)
+    redirect_to(cpanel_bbs_topics_path)
   end
 
   def undestroy
     @topic = ::Bbs::Topic.unscoped.find(params[:id])
     @topic.update_attribute(:deleted_at, nil)
-    redirect_to(cpanel_topics_path)
+    redirect_to(cpanel_bbs_topics_path)
   end
 
   def suggest
     @topic = ::Bbs::Topic.unscoped.find(params[:id])
     @topic.update_attribute(:suggested_at, Time.now)
     CacheVersion.topic_last_suggested_at = Time.now
-    redirect_to(cpanel_topics_path, :notice => "::Bbs::Topic:#{params[:id]} suggested.")
+    redirect_to(cpanel_bbs_topics_path, :notice => "::Bbs::Topic:#{params[:id]} suggested.")
   end
 
   def unsuggest
     @topic = ::Bbs::Topic.unscoped.find(params[:id])
     @topic.update_attribute(:suggested_at, nil)
     CacheVersion.topic_last_suggested_at = Time.now
-    redirect_to(cpanel_topics_path, :notice => "::Bbs::Topic:#{params[:id]} unsuggested.")
+    redirect_to(cpanel_bbs_topics_path, :notice => "::Bbs::Topic:#{params[:id]} unsuggested.")
   end
 end

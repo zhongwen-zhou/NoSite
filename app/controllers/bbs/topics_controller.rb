@@ -57,7 +57,8 @@ class Bbs::TopicsController < Bbs::BaseController
   end
 
   def show
-    @topic = ::Bbs::Topic.without_body.find(params[:id])
+    # @topic = ::Bbs::Topic.without_body.find(params[:id])
+    @topic = ::Bbs::Topic.find(params[:id])
     @topic.hits.incr(1)
     @node = @topic.node
     @show_raw = params[:raw] == "1"

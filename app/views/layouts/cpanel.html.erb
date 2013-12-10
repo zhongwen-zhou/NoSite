@@ -39,9 +39,8 @@
           </ul>
           <%= render_list :class => "nav" do |li|
             li << link_to(t("cpanel.menu.root_path"), cpanel_root_path)
-            li << link_to(t("cpanel.menu.site_configs"), cpanel_bbs_site_configs_path )
+            li << link_to(t("cpanel.menu.site_configs"), cpanel_site_configs_path )
             li << link_to(t("cpanel.menu.users"),cpanel_users_path)
-            li << link_to(t("cpanel.menu.wiki"),cpanel_bbs_pages_path )
             li << link_to(t("cpanel.menu.articles"),cpanel_articles_path )
           end  %>
 
