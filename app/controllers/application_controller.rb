@@ -3,6 +3,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :unread_notify_count
 
+  before_filter do
+    @share_content = {}
+  end
+
   before_filter do    
     resource = controller_name.singularize.to_sym
     method = "#{resource}_params"

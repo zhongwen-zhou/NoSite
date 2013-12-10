@@ -20,6 +20,8 @@ RubyChina::Application.routes.draw do
   # end
   root :to => "home#index"
 
+  resources :articles
+
   devise_for :users, :path => "account", :controllers => {
       :registrations => :account,
       :sessions => :sessions,
@@ -100,9 +102,9 @@ RubyChina::Application.routes.draw do
 
   # # WARRING! 请保持 User 的 routes 在所有路由的最后，以便于可以让用户名在根目录下面使用，而又不影响到其他的 routes
   # # 比如 http://ruby-china.org/huacnlee
-  get "users/city/:id" => "users#city", as: 'location_users'
+  # get "users/city/:id" => "users#city", as: 'location_users'
   get "users" => "users#index", as: 'users'
-  resources :users, :except =>[:show], :path => "" do
+  resources :users do
     member do
       # get :topics
       get :favorites

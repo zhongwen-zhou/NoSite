@@ -1,5 +1,6 @@
 #= require jquery
 #= require jquery_ujs
+#= require kindeditor
 #= require jquery.turbolinks
 #= require bootstrap-transition
 #= require bootstrap-alert

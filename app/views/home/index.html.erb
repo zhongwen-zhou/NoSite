@@ -1,17 +1,286 @@
-<% if false %>
-<%= raw SiteConfig.index_html %>
+    <div class="section">
 
-<div class="home_suggest_topics box box_gray">
-  <h2>社区精华贴</h2>
-  <div class="topics">
-    <%= render partial: "bbs/topics/topic", collection: @excellent_topics %>
-  </div>
-  <div class="more">
-    <%= link_to "查看更多精华贴...", excellent_bbs_topics_path %>
-  </div>
-</div>
-<% if !mobile? %>
-  <%= render_cell 'Bbs::Topics', :index_sections %>
-  <%= render_cell 'Bbs::Topics', :index_locations %>
-<% end %>
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-4 col-md-4">
+            <h3>
+              滚动游戏广告
+            </h3>
+              <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                  <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                  <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                  <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                  <div class="item active">
+                    <img src="uploads/image/201312/f11cdc54749e.jpg"/>
+                    <div class="carousel-caption">
+                      AAA
+                    </div>
+                  </div>
+                  <div class="item">
+                    <img src="uploads/image/201312/f11cdc54749e.jpg"/>
+                    <div class="carousel-caption">
+                      BBB
+                    </div>
+                  </div>
+                  <div class="item">
+                    <img src="uploads/image/201312/f11cdc54749e.jpg"/>
+                    <div class="carousel-caption">
+                      CCC
+                    </div>
+                  </div>                                    
+                </div>
+              </div>
+          </div>
+          <div class="col-lg-4 col-md-4">
+            <h3>
+              游戏资讯
+            </h3>
+            <p>
+              <% Article.all.each do |article| %>
+                <%= link_to article.title, article_path(article) %><br/>
+              <% end %>
+            </p>
+          </div>
+          <div class="col-lg-4 col-md-4">
+            <h3>
+              网站公告！
+            </h3>
+            <p>
+              中新网9月23日电 据财政部网站消息，财政部、国家机关事务管理局、中共中央直属机关事务管理局近日联合印发了《中央和国家机关会议费管理办法》(以下简称《办法》)。《办法》提出，明年起中央和国家机关会议费标准较以往略有提高，一、二、三类会议每人每天标准分别提至660、550和450元。
+            </p>
+          </div>
+        </div><!-- /.row -->
+
+      </div><!-- /.container -->
+
+    </div><!-- /.section -->
+
+    <div class="section-colored text-center">
+
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-12">
+            <h2>
+              巨大的横幅广告！
+            </h2>
+            <p>
+            A complete website design featuring various single page templates from Start Bootstraps library of free HTML starter templates.
+            </p>
+            <hr>
+          </div>
+        </div><!-- /.row -->
+
+      </div><!-- /.container -->
+
+    </div><!-- /.section-colored -->
+
+    <div class="section">
+
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2>
+              工会排名
+            </h2>
+            <hr>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-6">
+            <!-- <a href="portfolio-item.html"><img class="img-responsive img-home-portfolio" src="http://placehold.it/700x450"></a> -->
+            <div>
+              <span>
+                <h3>
+                王者战族
+                <img src="uploads/image/zd/lz.jpg" width="60" height="60" />
+                </h3>
+              </span>
+              <p>
+                <li>等级：<span>32</span></li>
+                <li>人数：<span>35</span></li>
+                <li>战斗力：<span>235</span></li>
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-6">
+            <a href="portfolio-item.html"><img class="img-responsive img-home-portfolio" src="http://placehold.it/700x450"></a>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-6">
+            <a href="portfolio-item.html"><img class="img-responsive img-home-portfolio" src="http://placehold.it/700x450"></a>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-6">
+            <a href="portfolio-item.html"><img class="img-responsive img-home-portfolio" src="http://placehold.it/700x450"></a>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-6">
+            <a href="portfolio-item.html"><img class="img-responsive img-home-portfolio" src="http://placehold.it/700x450"></a>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-6">
+            <a href="portfolio-item.html"><img class="img-responsive img-home-portfolio" src="http://placehold.it/700x450"></a>
+          </div>
+        </div><!-- /.row -->
+
+      </div><!-- /.container -->
+
+    </div><!-- /.section -->
+
+    <div class="section">
+
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2>
+              开服列表
+            </h2>
+            <hr>
+          </div>
+          <div class="col-lg-6 col-md-4 col-sm-6">
+            <!-- <a href="portfolio-item.html"><img class="img-responsive img-home-portfolio" src="http://placehold.it/700x450"></a> -->
+            <div>
+              <span>
+                <h3>
+                攻城掠地2
+                <img src="uploads/image/kfb/sgs.jpg" width="60" height="60" />
+                </h3>
+              </span>              
+              <p>
+                <li>开服时间：<span>15:00</span> &nbsp;&nbsp;服务器名：<span>双线11区</span> &nbsp;&nbsp;游戏类型：<span>角色扮演</span> &nbsp;&nbsp;运营商：<span>九天国际</span> <a>Go</a></li>
+                <li>开服时间：<span>15:00</span> &nbsp;&nbsp;服务器名：<span>双线11区</span> &nbsp;&nbsp;游戏类型：<span>角色扮演</span> &nbsp;&nbsp;运营商：<span>九天国际</span> <a>Go</a></li>
+                <li>开服时间：<span>15:00</span> &nbsp;&nbsp;服务器名：<span>双线11区</span> &nbsp;&nbsp;游戏类型：<span>角色扮演</span> &nbsp;&nbsp;运营商：<span>九天国际</span> <a>Go</a></li>
+                <li>开服时间：<span>15:00</span> &nbsp;&nbsp;服务器名：<span>双线11区</span> &nbsp;&nbsp;游戏类型：<span>角色扮演</span> &nbsp;&nbsp;运营商：<span>九天国际</span> <a>Go</a></li>
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-4 col-sm-6">
+            <!-- <a href="portfolio-item.html"><img class="img-responsive img-home-portfolio" src="http://placehold.it/700x450"></a> -->
+            <div>
+              <span>
+                <h3>
+                攻城掠地2
+                <img src="uploads/image/kfb/sgs.jpg" width="60" height="60" />
+                </h3>
+              </span>
+              <p>
+                <li>开服时间：<span>15:00</span> &nbsp;&nbsp;服务器名：<span>双线11区</span> &nbsp;&nbsp;游戏类型：<span>策略战争</span> &nbsp;&nbsp;运营商：<span>九天国际</span> <a>Go</a></li>
+                <li>开服时间：<span>15:00</span> &nbsp;&nbsp;服务器名：<span>双线11区</span> &nbsp;&nbsp;游戏类型：<span>策略战争</span> &nbsp;&nbsp;运营商：<span>九天国际</span> <a>Go</a></li>
+                <li>开服时间：<span>15:00</span> &nbsp;&nbsp;服务器名：<span>双线11区</span> &nbsp;&nbsp;游戏类型：<span>策略战争</span> &nbsp;&nbsp;运营商：<span>九天国际</span> <a>Go</a></li>
+                <li>开服时间：<span>15:00</span> &nbsp;&nbsp;服务器名：<span>双线11区</span> &nbsp;&nbsp;游戏类型：<span>策略战争</span> &nbsp;&nbsp;运营商：<span>九天国际</span> <a>Go</a></li>
+              </p>
+            </div>            
+          </div>
+          <div class="col-lg-6 col-md-4 col-sm-6">
+            <!-- <a href="portfolio-item.html"><img class="img-responsive img-home-portfolio" src="http://placehold.it/700x450"></a> -->
+            <div>
+              <span>
+                <h3>
+                攻城掠地2
+                <img src="uploads/image/kfb/sgs.jpg" width="60" height="60" />
+                </h3>
+              </span>
+              <p>
+                <li>开服时间：<span>15:00</span> &nbsp;&nbsp;服务器名：<span>双线11区</span> &nbsp;&nbsp;游戏类型：<span>策略战争</span> &nbsp;&nbsp;运营商：<span>九天国际</span> <a>Go</a></li>
+                <li>开服时间：<span>15:00</span> &nbsp;&nbsp;服务器名：<span>双线11区</span> &nbsp;&nbsp;游戏类型：<span>策略战争</span> &nbsp;&nbsp;运营商：<span>九天国际</span> <a>Go</a></li>
+                <li>开服时间：<span>15:00</span> &nbsp;&nbsp;服务器名：<span>双线11区</span> &nbsp;&nbsp;游戏类型：<span>策略战争</span> &nbsp;&nbsp;运营商：<span>九天国际</span> <a>Go</a></li>
+                <li>开服时间：<span>15:00</span> &nbsp;&nbsp;服务器名：<span>双线11区</span> &nbsp;&nbsp;游戏类型：<span>策略战争</span> &nbsp;&nbsp;运营商：<span>九天国际</span> <a>Go</a></li>
+              </p>
+            </div>            
+          </div>
+          <div class="col-lg-6 col-md-4 col-sm-6">
+            <!-- <a href="portfolio-item.html"><img class="img-responsive img-home-portfolio" src="http://placehold.it/700x450"></a> -->
+            <div>
+              <span>
+                <h3>
+                攻城掠地2
+                <img src="uploads/image/kfb/sgs.jpg" width="60" height="60" />
+                </h3>
+              </span>
+              <p>
+                <li>开服时间：<span>15:00</span> &nbsp;&nbsp;服务器名：<span>双线11区</span> &nbsp;&nbsp;游戏类型：<span>策略战争</span> &nbsp;&nbsp;运营商：<span>九天国际</span> <a>Go</a></li>
+                <li>开服时间：<span>15:00</span> &nbsp;&nbsp;服务器名：<span>双线11区</span> &nbsp;&nbsp;游戏类型：<span>策略战争</span> &nbsp;&nbsp;运营商：<span>九天国际</span> <a>Go</a></li>
+                <li>开服时间：<span>15:00</span> &nbsp;&nbsp;服务器名：<span>双线11区</span> &nbsp;&nbsp;游戏类型：<span>策略战争</span> &nbsp;&nbsp;运营商：<span>九天国际</span> <a>Go</a></li>
+                <li>开服时间：<span>15:00</span> &nbsp;&nbsp;服务器名：<span>双线11区</span> &nbsp;&nbsp;游戏类型：<span>策略战争</span> &nbsp;&nbsp;运营商：<span>九天国际</span> <a>Go</a></li>
+              </p>
+            </div>            
+          </div>
+      <!--     <div class="col-lg-4 col-md-4 col-sm-6">
+            <a href="portfolio-item.html"><img class="img-responsive img-home-portfolio" src="http://placehold.it/700x450"></a>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-6">
+            <a href="portfolio-item.html"><img class="img-responsive img-home-portfolio" src="http://placehold.it/700x450"></a>
+          </div> -->
+        </div><!-- /.row -->
+
+      </div><!-- /.container -->
+
+    </div><!-- /.section -->
+
+    <div class="section-colored">
+
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <h2>自主研发的第一款游戏推荐</h2>
+            <ul>
+              <li>Bootstrap 3 Framework</li>
+              <li>Mobile Responsive Design</li>
+              <li>Predefined File Paths</li>
+              <li>Working PHP Contact Page</li>
+              <li>Minimal Custom CSS Styles</li>
+              <li>Unstyled: Add Your Own Style and Content!</li>
+              <li>Font-Awesome fonts come pre-installed!</li>
+              <li>100% <strong>Free</strong> to Use</li>
+              <li>Open Source: Use for any project, private or commercial!</li>
+            </ul>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <img class="img-responsive" src="http://placehold.it/700x450/ffffff/cccccc">
+          </div>
+        </div><!-- /.row -->
+
+      </div><!-- /.container -->
+
+    </div><!-- /.section-colored -->
+
+    <div class="section">
+
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <img class="img-responsive" src="http://placehold.it/700x450">
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <h2>自主研发的第一款游戏推荐</h2>
+            <ul>
+              <li>Bootstrap 3 Framework</li>
+              <li>Mobile Responsive Design</li>
+              <li>Predefined File Paths</li>
+              <li>Working PHP Contact Page</li>
+              <li>Minimal Custom CSS Styles</li>
+              <li>Unstyled: Add Your Own Style and Content!</li>
+              <li>Font-Awesome fonts come pre-installed!</li>
+              <li>100% <strong>Free</strong> to Use</li>
+              <li>Open Source: Use for any project, private or commercial!</li>
+            </ul>
+          </div>
+        </div><!-- /.row -->
+
+      </div><!-- /.container -->
+
+    </div><!-- /.section -->
+
+<% content_for :scripts do %>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('#carousel-example-generic').carousel()
+    });
+  </script>
 <% end %>

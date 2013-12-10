@@ -2,6 +2,7 @@ RubyChina::Application.routes.draw do
   namespace :cpanel do
     root :to => "home#index"
     resources :users
+    resources :articles
     namespace :bbs do
       resources :site_configs
       resources :replies
