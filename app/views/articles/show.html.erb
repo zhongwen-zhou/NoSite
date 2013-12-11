@@ -21,24 +21,17 @@
             <%= @article.created_at %>
           </p>
           <hr>
-          <img src="http://placehold.it/900x300" class="img-responsive">
+            <%= image_tag(@article.illustration_url) if @article.illustration %>
+          <!-- <img src="http://placehold.it/900x300" class="img-responsive"> -->
           <hr>
           <p class="lead">
-            Science cuts two ways, of course; its products can be used for both good and evil. But there's no turning back from science. The early warnings about technological dangers also come from science.
+            <%= @article.review %>
           </p>
 
           <p>
             <%= raw(@article.content) %>
           </p>
           
-          <p>Tilefish electric knifefish salmon shark southern Dolly Varden. Pacific argentine tope golden shiner ilisha barreleye loosejaw catla, dogteeth tetra catfish tenpounder nase scup Ragfish brotula." Codlet brook lamprey pleco, Japanese eel convict cichlid titan triggerfish, plownose chimaera topminnow Black scalyfin. Walleye pollock, blue shark Sacramento blackfish prickleback airbreathing catfish yellowfin cutthroat trout, goby southern sandfish. North Pacific daggertooth dorab cepalin weever flying gurnard.</p>
-          <p><strong>Placeholder text by:</strong></p>
-          <ul>
-            <li><a href="http://spaceipsum.com/">Space Ipsum</a></li>
-            <li><a href="http://cupcakeipsum.com/">Cupcake Ipsum</a></li>
-            <li><a href="http://tunaipsum.com/">Tuna Ipsum</a></li>
-          </ul>
-
           <!-- the comment box -->
           <% if false %>
           <div class="well">

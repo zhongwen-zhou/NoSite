@@ -10,6 +10,8 @@ class Article
 
   # 页面地址
   field :title
+
+  field :review
   # 原始 Markdown 内容
   field :content
   # Markdown 格式化后的 html
@@ -17,6 +19,8 @@ class Article
   field :editor_names, :type => Array, :default => []
   field :locked, :type => Mongoid::Boolean, :default => false
   field :comments_count, :type => Integer, :default => 0
+
+  mount_uploader :illustration, IllustrationUploader
 
   attr_accessor :user_id, :change_desc, :version_enable
 
