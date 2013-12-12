@@ -18,7 +18,7 @@
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner">
                   <div class="item active">
-                    <img src="uploads/image/201312/f11cdc54749e.jpg"/>
+                    <img src="uploads/image/201312/0123.jpg" width="360" height="200" />
                     <div class="carousel-caption">
                       AAA
                     </div>
@@ -43,17 +43,22 @@
               游戏资讯
             </h3>
             <p>
-              <% Article.all.each do |article| %>
+              <% Article.all.limit(5).each do |article| %>
                 <%= link_to article.title, article_path(article) %><br/>
               <% end %>
             </p>
           </div>
           <div class="col-lg-4 col-md-4">
             <h3>
-              网站公告！
+              精华贴
             </h3>
             <p>
-              中新网9月23日电 据财政部网站消息，财政部、国家机关事务管理局、中共中央直属机关事务管理局近日联合印发了《中央和国家机关会议费管理办法》(以下简称《办法》)。《办法》提出，明年起中央和国家机关会议费标准较以往略有提高，一、二、三类会议每人每天标准分别提至660、550和450元。
+            <% ::Bbs::Topic.excellent.limit(6).each do |topic| %>
+              <li>
+                [<%= link_to topic.node_name, bbs_node_topics_path(topic.node_id), :target => '_blank' %>]
+                <%= link_to topic.title, bbs_topic_path(topic), :target => '_blank' %>
+              </li>
+            <% end %>
             </p>
           </div>
         </div><!-- /.row -->
