@@ -46,6 +46,7 @@ class User
   # field :twitter
   # 是否信任用户
   field :verified, :type => Mongoid::Boolean, :default => false
+  field :is_admin, :type => Mongoid::Boolean, :default => false
   field :state, :type => Integer, :default => 1
   field :guest, :type => Mongoid::Boolean, :default => false
   field :tagline
@@ -144,7 +145,8 @@ class User
 
   # 是否是管理员
   def admin?
-    Setting.admin_accounts.include?(self.login)
+    # Setting.admin_accounts.include?(self.login)
+    self.is_admin
   end
 
   # 是否有 Wiki 维护权限
