@@ -60,6 +60,7 @@ class User
   # =======Tony=======
   field :coins, :type => Integer, :default => 0
   field :scores, :type => Integer, :default => 0
+  field :join_league_status, :type => Integer, :default => 0
 
   mount_uploader :avatar, AvatarUploader
 
@@ -377,5 +378,10 @@ class User
     end
 
     self.inc(:scores => score)
+  end
+
+
+  def can_join_league?(league)
+    join_league_status == 0
   end
 end

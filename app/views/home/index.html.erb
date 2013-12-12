@@ -98,22 +98,29 @@
             </h2>
             <hr>
           </div>
+
+          <% @leagues.each do |league| %>
           <div class="col-lg-4 col-md-4 col-sm-6">
-            <!-- <a href="portfolio-item.html"><img class="img-responsive img-home-portfolio" src="http://placehold.it/700x450"></a> -->
             <div>
               <span>
                 <h3>
-                王者战族
-                <img src="uploads/image/zd/lz.jpg" width="60" height="60" />
+                <%= league.name %>
+                <img src="<%= league.logo_url %>" width="60" height="60" />
+                <%= button_to '加入工会', ask_for_join_league_league_path(league), :method => :put, :remote => true if current_user.can_join_league?(league) %>
                 </h3>
+                &nbsp;
+                <span>帮主：<%= league.president_name %></span>
               </span>
               <p>
-                <li>等级：<span>32</span></li>
-                <li>人数：<span>35</span></li>
-                <li>战斗力：<span>235</span></li>
+                <li>等级：<span><%= league.level %></span></li>
+                <li>人数：<span><%= league.members_count %></span></li>
+              </p>
+              <p>
+                宣言： &nbsp;<%= league.declaration %>
               </p>
             </div>
           </div>
+          <% end %>
           <div class="col-lg-4 col-md-4 col-sm-6">
             <a href="portfolio-item.html"><img class="img-responsive img-home-portfolio" src="http://placehold.it/700x450"></a>
           </div>

@@ -41,7 +41,7 @@ class Bbs::Topic
   counter_cache :name => :node, :inverse_of => :topics
   belongs_to :last_reply_user, :class_name => 'User'
   belongs_to :last_reply, :class_name => 'Bbs::Reply'
-  has_many :replies, :dependent => :destroy, :class_name => 'Bbs::Reply'
+  has_many :replies, :dependent => :destroy, :class_name => 'Bbs::Reply', :autosave => true
 
   validates_presence_of :user_id, :title, :body, :node_id
 
