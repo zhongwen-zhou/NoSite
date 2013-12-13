@@ -2,6 +2,7 @@
 class League::LeaguesController < ApplicationController
   # layout :false
 
+
   def new
   	@league = League::League.new
   end

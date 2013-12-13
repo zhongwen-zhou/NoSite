@@ -39,14 +39,46 @@
               </div>
           </div>
           <div class="col-lg-4 col-md-4">
+
+          <% if true %>
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">业界资讯</h3>
+            </div>
+            <div class="panel-body">
+              <% article = @articles.shift %>
+              <strong>
+                <%= link_to article.title, article_path(article) %>
+              </strong>
+            </div>
+            <ul class="list-group">
+              <% @articles.each do |article| %>
+                <li class="list-group-item">
+                  <%= link_to article.title, article_path(article) %>  
+                </li>
+              <% end %>
+            </ul>
+            <div class="panel-footer">
+              <%= link_to '更多', articles_path %>
+            </div>
+          </div> 
+
+          <% end %>
+
+          <% if false %>
             <h3>
               游戏资讯
+              <small><%= link_to '更多', articles_path %></small>
             </h3>
             <p>
               <% Article.all.limit(5).each do |article| %>
                 <%= link_to article.title, article_path(article) %><br/>
               <% end %>
             </p>
+          <% end %>
+
+
           </div>
           <div class="col-lg-4 col-md-4">
             <h3>
@@ -79,7 +111,6 @@
             <p>
             A complete website design featuring various single page templates from Start Bootstraps library of free HTML starter templates.
             </p>
-            <hr>
           </div>
         </div><!-- /.row -->
 
@@ -106,7 +137,7 @@
                 <h3>
                 <%= league.name %>
                 <img src="<%= league.logo_url %>" width="60" height="60" />
-                <%= button_to '加入工会', ask_for_join_league_league_path(league), :method => :put, :remote => true if current_user.can_join_league?(league) %>
+                <%= button_to '加入工会', ask_for_join_league_league_path(league), :method => :put, :remote => true if current_user && current_user.can_join_league?(league) %>
                 </h3>
                 &nbsp;
                 <span>帮主：<%= league.president_name %></span>

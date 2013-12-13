@@ -25,34 +25,58 @@
                 <a href="<%= messages_path %>">站内信 <span class="badge">42</span></a>
               </li>
               <li>
-                <a href="<%= rewards_path %>">奖励中心</a>
+                <a href="<%= rewards_path %>">奖励中心 <span class="badge">42</span></a>
               </li>
-              <li>
               <% if current_user.league %>
                 <li>
+                  <div class="thumbnail">
+                    <div class="row">
+                      <div class="col-md-5">
+                        <%= image_tag(current_user.league.logo_url, :class => 'img-circle', :width => 50, :height => 50) %>
+                      </div>
+                      <div class="col-md-7">
+                        <h5>
+                          <%= current_user.league.name %>
+                        </h5>
+                        <span>等级：<%= current_user.league.level %></span>
+                      </div>
+                    </div>
+                    <div class="row">
+                        <span>今日签到 </span>
+                        <input type="checkbox" id="inlineCheckbox3" value="option3">
+                    </div>
+                  </div>
+                </li>
+              <% else %>
+                <li>
+                  <%= link_to '工会联盟', league_root_path %>
                 </li>
               <% end %>
               <% if true %>
-                <div class="row">
-                  <div class="col-md-10">
+                <li>
                     <div class="thumbnail">
-                      <span>
-                        <%= image_tag(current_user.avatar_url, :class => 'img-circle') %>
-                        <h6><%= current_user.name %></h6>
+                      <div class="row">
                         
-                      </span>
-                        <p>
+                        <div class="col-md-5">
+                          <%= image_tag('/photo/tx.jpg', :class => 'img-circle', :width => 50, :height => 50) %>
+                        </div>
+                        <div class="col-md-7">
+                          <h6><%= current_user.name %></h6>
+                          
+                        </div>
+
+                      </div>
+
+                      <div class="row">
+                        
+                      </div>
                         <!-- <a href="#" class="btn btn-primary" role="button">Button</a> -->
                           <a href='#'>个人设置</a>
                           <%= link_to(t("common.logout"), destroy_user_session_path, method: "delete" ) %>
                         </p>
-                      <div class="caption">
-                      </div>
                     </div>
-                  </div>
-                </div>
+                </li>
               <% end %>
-              </li>
             <% else %>
               <li>
                 <%= link_to '工会联盟', league_root_path %>

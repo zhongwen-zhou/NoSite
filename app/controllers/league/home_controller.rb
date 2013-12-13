@@ -5,5 +5,7 @@ class League::HomeController < ApplicationController
     # drop_breadcrumb("首页", root_path)
     # @leagues = League::League.all.limit(6)
     # @share_content = {:web_spread => true}
+
+    @league = League::League.new
   end
 end
