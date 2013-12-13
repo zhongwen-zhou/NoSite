@@ -106,6 +106,8 @@ class User
   has_and_belongs_to_many :following, :class_name => 'User', :inverse_of => :followers
   has_and_belongs_to_many :followers, :class_name => 'User', :inverse_of => :following
 
+  belongs_to :league, :class_name => 'League::League'
+
   scope :hot, desc(:replies_count, :topics_count)
 
   def email=(val)

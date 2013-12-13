@@ -13,10 +13,86 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="about.html">关于我们</a></li>
+            <li>
+              <%= link_to '开服时间表', servertimes_path %>
+            </li>
             <li>
               <%= link_to '论坛', bbs_root_path, :target => "_blank" %>
             </li>
+
+            <% if current_user %>
+              <li>
+                <a href="<%= messages_path %>">站内信 <span class="badge">42</span></a>
+              </li>
+              <li>
+                <a href="<%= rewards_path %>">奖励中心</a>
+              </li>
+              <li>
+              <% if current_user.league %>
+                <li>
+                </li>
+              <% end %>
+              <% if true %>
+                <div class="row">
+                  <div class="col-md-10">
+                    <div class="thumbnail">
+                      <span>
+                        <%= image_tag(current_user.avatar_url, :class => 'img-circle') %>
+                        <h6><%= current_user.name %></h6>
+                        
+                      </span>
+                        <p>
+                        <!-- <a href="#" class="btn btn-primary" role="button">Button</a> -->
+                          <a href='#'>个人设置</a>
+                          <%= link_to(t("common.logout"), destroy_user_session_path, method: "delete" ) %>
+                        </p>
+                      <div class="caption">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+              </li>
+            <% else %>
+              <li>
+                <%= link_to '工会联盟', league_root_path %>
+              </li>
+              <li>
+
+<%= form_tag(user_session_path, :class => "navbar-form navbar-left form-inline", :role => "form") do |f| %>
+
+                  <div class="form-group">
+                    <label class="sr-only" for="login_email"></label>
+                    <input type="text" class="form-control" id="login_email" placeholder="请输入帐号" name="user[login]">
+                  </div>
+                  <div class="form-group">
+                    <label class="sr-only" for="login_password"></label>
+                    <input type="password" class="form-control" id="login_password" placeholder="请输入密码" name="user[password]">
+                  </div>
+                  <button type="submit" class="btn btn-default"><%= t("common.login") %></button>
+
+<% end %>
+
+              <% if false %>
+                <form class="navbar-form navbar-left form-inline" role="form">
+                  <div class="form-group">
+                    <label class="sr-only" for="exampleInputEmail2">帐号</label>
+                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter email">
+                  </div>
+                  <div class="form-group">
+                    <label class="sr-only" for="exampleInputPassword2">密码</label>
+                    <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
+                  </div>
+                  <button type="submit" class="btn btn-default"><%= t("common.login") %></button>
+                </form> 
+              <% end %>               
+              </li>
+              <li>
+                <%= link_to( t("common.register"), new_user_registration_path) %>
+              </li>
+            <% end %>
+
+            <% if false %>
             <li>
               <%= link_to 'New League', new_league_league_path %>
             </li>
@@ -50,6 +126,7 @@
               <li>
               <%= link_to( t("common.login"), new_user_session_path) %>
               </li>
+            <% end %>
             <% end %>
           </ul>
         </div><!-- /.navbar-collapse -->

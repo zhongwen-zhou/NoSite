@@ -1,6 +1,19 @@
-<% content_for :sitemap do %><span class="current">加入社区</span><% end %>
-<div class="content">
-    <div class="box">
+<div class="row">
+  <h1>广告</h1>
+</div>
+<div class="row">
+  <div class="col-md-3">
+    
+    <div class="jumbotron">
+      <h2>我们的网站宣言</h2>
+      <p>
+        游戏公会联盟的宗旨：为配合游戏公会的良性发展，促进游戏公会的发展壮大，为游戏内的玩家创建一个更加文明、和谐、健康的网络游戏环境。
+      </p>
+    </div>    
+
+  </div>
+  <div class="col-md-4">
+    
     <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
       <%= render "shared/error_messages", :target => resource %>
       <fieldset>
@@ -21,15 +34,12 @@
           <%= f.submit "提交注册信息", :class => "btn btn-primary", 'data-disable-with' => t("common.submitting") %>
         </div>
       </fieldset>
-    <% end %>
+    <% end %>    
+
+  </div>
+  <div class="col-md-3 col-md-offset-2">
+    <%= render :partial => "devise/shared/links" %>
   </div>
 </div>
 
-<div class="sidebar">
-  <div class="box">
-    <h2><%= t("users.already_have_account")%></h2>
-    <p style="line-height:20px;">
-      <%= render :partial => "devise/shared/links" %>
-    </p>
-  </div>
-</div>
+

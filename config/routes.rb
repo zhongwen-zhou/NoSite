@@ -20,7 +20,15 @@ RubyChina::Application.routes.draw do
   # end
   root :to => "home#index"
 
-  resources :articles
+  resources :servertimes, :only => [:index]
+  resources :rewards
+  resources :messages do
+    collection do
+      get :communicate
+    end
+  end
+
+  resources :articles, :only => [:index, :show]
 
   devise_for :users, :path => "account", :controllers => {
       :registrations => :account,
