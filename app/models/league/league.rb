@@ -40,6 +40,7 @@ class League::League
   end
 
   def add_member(user, is_admin = false)
-    self.members.build(:league => self, :user => user, :is_admin => is_admin)
+    self.members.build(:league => self, :user => user, :is_admin => is_admin, :status => is_admin ? 2 : 1)
   end
+
 end

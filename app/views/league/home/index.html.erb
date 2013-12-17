@@ -21,26 +21,57 @@
 <div class="row">
   <div class="col-md-2 col-md-offset-1">
     <ul id="leagueTab" class="nav nav-stacked nav-pills">
-      <li><a href="#home" data-toggle="tab">联盟简介</a></li>
-      <li><a href="#profile" data-toggle="tab">创建条件</a></li>
+      <li><a href="#info" data-toggle="tab">联盟简介</a></li>
+      <li><a href="#desc" data-toggle="tab">创建条件</a></li>
       <li><a href="#messages" data-toggle="tab">奖励机制</a></li>
-      <li><a href="#settings" data-toggle="tab">我的联盟</a></li>
+      <li><a href="#my_league" data-toggle="tab">我的联盟</a></li>
     </ul>
   </div>
   <div class="col-md-5 col-md-offset-1">
     <!-- Tab panes -->
     <div class="tab-content">
-      <div class="tab-pane active" id="home">
+      <div class="tab-pane active" id="info">
         我们将通过免费定期为公会做新闻及媒体宣传，建立公会专区，提供免费空间，举办线下活动等方式促进公会的发展及壮大。同时开展同其他各游戏公会、各游戏组织之间的友谊与合作，争取玩家利益最大化，保护弱势群体,支持普通游戏玩家为自身利益的维权行动。联盟也将组织会员广泛开展各种健康有益的活动，互相学习、互相沟通，不断提高联盟内部各会员之间的团结。 
       </div>
-      <div class="tab-pane" id="profile">
+      <div class="tab-pane" id="desc">
         公会联盟的原则为：信任、团结、平等、发展、友爱、公正。
       </div>
       <div class="tab-pane" id="messages">
         公会门户，由一群热爱网络游戏和游戏公会的游戏人、行业人和公会人共同建立，是致力于服务公会类网游、游戏公 会和游戏玩家的门户网站。在众多公会玩家及游戏厂商的支持下，拥有众多合作公会，同大量游戏厂商展开广泛合作，努力成为国内最专业 的骨灰玩家聚散地。
       </div>
-      <div class="tab-pane" id="settings">
-        网游资讯，大陆资讯、海外资讯、活动资讯、游戏八卦、人物专访、游戏产业
+      <div class="tab-pane" id="my_league">
+        <% if @league.new_record? %>
+          网游资讯，大陆资讯、海外资讯、活动资讯、游戏八卦、人物专访、游戏产业
+        <% else %>
+
+          <!-- Nav tabs -->
+          <ul id="my_league" class="nav nav-tabs">
+            <% if @league.president == current_user %>
+              <li><a href="#news" data-toggle="tab">消息</a></li>
+            <% end %>
+            <li><a href="#home" data-toggle="tab">Home</a></li>
+            <li><a href="#profile" data-toggle="tab">Profile</a></li>
+            <li><a href="#messages" data-toggle="tab">Messages</a></li>
+            <li><a href="#settings" data-toggle="tab">Settings</a></li>
+          </ul>
+
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <% if @league.president == current_user %>
+              <div class="tab-pane active" id="news">
+                <% @league.members.asking.each do |member| %>
+                  <%= member.user.login %> &nbsp;&nbsp;申请加入工会！
+                  <%= button_to '同意', agree_join_league_league_path(@league), :method => :put, :remote => :ture %>
+                <% end %>
+              </div>
+            <% end %>
+            <div class="tab-pane active" id="home">...</div>
+            <div class="tab-pane" id="profile">...</div>
+            <div class="tab-pane" id="messages">...</div>
+            <div class="tab-pane" id="settings">...</div>
+          </div>
+
+        <% end %>
       </div>
     </div>
   </div>
@@ -52,36 +83,7 @@
   <h1>来创建你自己的工会联盟吧！</h1>
   <p>
   <div >
-    <% if false %>
-    <form class="form-horizontal" role="form">
-      <div class="form-group">
-        <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-        <div class="col-sm-10">
-          <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-        <div class="col-sm-10">
-          <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-          <div class="checkbox">
-            <label>
-              <input type="checkbox"> Remember me
-            </label>
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-          <button type="submit" class="btn btn-default">Sign in</button>
-        </div>
-      </div>
-    </form>
-    <% end %>
+
 
     <%= simple_form_for(@league) do |f| %>
       <%= render "shared/error_messages", :target => @league %>
@@ -151,6 +153,7 @@
 	    	// $('#loginModal').modal();
     	<% end %>
       $('#leagueTab').tab();
+      $('#my_league').tab();
     });
   </script>
 <% end %>

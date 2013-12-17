@@ -48,4 +48,8 @@ class League::Member
     end
     location
   end
+
+  def positive!
+    self.set(:status => 2)
+  end
 end

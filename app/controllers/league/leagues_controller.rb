@@ -2,6 +2,9 @@
 class League::LeaguesController < ApplicationController
   # layout :false
 
+  before_filter do
+    @league = League::League.find(params[:id])
+  end
 
   def new
   	@league = League::League.new
@@ -24,6 +27,12 @@ class League::LeaguesController < ApplicationController
   end
 
   def ask_for_join
+    @league.add_member(current_user, false)
+    @league.save!
+  end
+
+  def agree_join
+    @league.members.where(:user => current_user).positive!
   end
 
   private

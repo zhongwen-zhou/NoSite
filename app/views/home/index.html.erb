@@ -40,16 +40,16 @@
           </div>
           <div class="col-lg-4 col-md-4">
 
-          <% if true %>
 
           <div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title">业界资讯</h3>
+              <%= link_to '更多', articles_path %>
             </div>
             <div class="panel-body">
               <% article = @articles.shift %>
               <strong>
-                <%= link_to article.title, article_path(article) %>
+                <%= link_to article.title, article_path(article) if article %>
               </strong>
             </div>
             <ul class="list-group">
@@ -59,12 +59,8 @@
                 </li>
               <% end %>
             </ul>
-            <div class="panel-footer">
-              <%= link_to '更多', articles_path %>
-            </div>
           </div> 
 
-          <% end %>
 
           <% if false %>
             <h3>
