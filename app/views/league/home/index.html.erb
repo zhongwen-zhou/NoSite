@@ -78,30 +78,28 @@
 </div>
 
 <div class="row">
-<div class="col-md-7 col-md-offset-2">
+<div class="col-md-6 col-md-offset-3">
 <div class="jumbotron">
-  <h1>来创建你自己的工会联盟吧！</h1>
+  <h1>创建你的联盟吧！</h1>
   <p>
   <div >
-
 
     <%= simple_form_for(@league) do |f| %>
       <%= render "shared/error_messages", :target => @league %>
       <fieldset>
-        <legend><%= t("users.register_user")%></legend>
         
         <%= f.input :name %>
 
         <%= f.input :declaration %>
-        <div class="form-actions">
-          <%= f.submit "提交注册信息", :class => "btn btn-primary", 'data-disable-with' => t("common.submitting") %>
-        </div>
 
         <p>
           <label>logo</label>
           <%= f.file_field :logo %>
-            <%= f.hidden_field :logo_cache %>
+          <%= f.hidden_field :logo_cache %>
         </p>
+        <div class="form-actions">
+          <%= f.submit "创建工会", :class => "btn btn-primary", 'data-disable-with' => t("common.submitting") %>
+        </div>
       </fieldset>
     <% end %>
 
@@ -139,7 +137,7 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">继续访问</button>
         <button type="submit" class="btn btn-primary">登录</button>
       </div>
     </div><!-- /.modal-content -->
@@ -150,7 +148,7 @@
   <script type="text/javascript">
     $(document).ready(function(){
     	<% unless current_user %>
-	    	// $('#loginModal').modal();
+	    	$('#loginModal').modal();
     	<% end %>
       $('#leagueTab').tab();
       $('#my_league').tab();

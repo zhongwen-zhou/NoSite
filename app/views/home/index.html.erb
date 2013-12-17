@@ -5,7 +5,6 @@
         <div class="row">
           <div class="col-lg-4 col-md-4">
             <h3>
-              滚动游戏广告
             </h3>
               <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
@@ -40,7 +39,6 @@
           </div>
           <div class="col-lg-4 col-md-4">
 
-
           <div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title">业界资讯</h3>
@@ -74,12 +72,8 @@
             </p>
           <% end %>
 
-
           </div>
           <div class="col-lg-4 col-md-4">
-            <h3>
-              精华贴
-            </h3>
             <p>
             <% ::Bbs::Topic.excellent.limit(6).each do |topic| %>
               <li>
@@ -119,12 +113,11 @@
       <div class="container">
 
         <div class="row">
-          <div class="col-lg-12 text-center">
-            <h2>
-              工会排名
-            </h2>
-            <hr>
+          <div class="col-lg-4">
+            <img src="uploads/image/201312/0123.jpg" width="360" height="200" />
+            每日博彩游戏
           </div>
+          <div class="col-lg-8 text-center">
 
           <% @leagues.each do |league| %>
           <div class="col-lg-4 col-md-4 col-sm-6">
@@ -157,11 +150,6 @@
           <div class="col-lg-4 col-md-4 col-sm-6">
             <a href="portfolio-item.html"><img class="img-responsive img-home-portfolio" src="http://placehold.it/700x450"></a>
           </div>
-          <div class="col-lg-4 col-md-4 col-sm-6">
-            <a href="portfolio-item.html"><img class="img-responsive img-home-portfolio" src="http://placehold.it/700x450"></a>
-          </div>
-          <div class="col-lg-4 col-md-4 col-sm-6">
-            <a href="portfolio-item.html"><img class="img-responsive img-home-portfolio" src="http://placehold.it/700x450"></a>
           </div>
         </div><!-- /.row -->
 
