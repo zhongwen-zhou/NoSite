@@ -61,11 +61,15 @@
               <div class="tab-pane active" id="news">
                 <% @league.members.asking.each do |member| %>
                   <%= member.user.login %> &nbsp;&nbsp;申请加入工会！
-                  <%= button_to '同意', agree_join_league_league_path(@league), :method => :put, :remote => :ture %>
+                  <%= button_to '同意', agree_join_league_league_path(@league, :member_id => member), :method => :put, :remote => :ture %>
                 <% end %>
               </div>
             <% end %>
-            <div class="tab-pane active" id="home">...</div>
+            <div class="tab-pane active" id="home">
+              <% @league.members.official.each do |member| %>
+                <%= member.user.login %>
+              <% end %>
+            </div>
             <div class="tab-pane" id="profile">...</div>
             <div class="tab-pane" id="messages">...</div>
             <div class="tab-pane" id="settings">...</div>

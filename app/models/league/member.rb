@@ -53,5 +53,7 @@ class League::Member
 
   def positive!
     self.set(:status => 2)
+    self.user.league = self.league
+    self.user.save!
   end
 end

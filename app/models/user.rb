@@ -413,4 +413,12 @@ class User
                   :receiver => user)
   end
 
+  def sign_today!
+    Reward.create(:title => "每日签到有奖",
+                  :content => "感谢你每日签到有奖，我们奉上100金币，请笑纳！",
+                  :personal_experience => 100,
+                  :personal_coins => 100,
+                  :receiver => self)    
+  end
+
 end

@@ -33,7 +33,11 @@ class League::LeaguesController < ApplicationController
   end
 
   def agree_join
-    @league.members.where(:user => current_user).positive!
+    @league.members.find(params[:member_id]).positive!
+  end
+
+  def sign_today
+    current_user.sign_today!
   end
 
   private

@@ -5,6 +5,7 @@ RubyChina::Application.routes.draw do
 	  	member do
 	  		put :ask_for_join
 	  		put :agree_join
+	  		put :sign_today
 	  	end
 	  end
 	end

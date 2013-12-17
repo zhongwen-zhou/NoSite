@@ -36,7 +36,7 @@
                       </div>
                       <div class="col-md-7">
                         <h5>
-                          <%= current_user.league.name %>
+                          <%= link_to current_user.league.name, league_root_path %>
                         </h5>
                         <span>等级：<%= current_user.league.level %></span>
                       </div>
@@ -44,6 +44,7 @@
                     <div class="row">
                         <span>今日签到 </span>
                         <input type="checkbox" id="inlineCheckbox3" value="option3">
+                        <%= button_to '签到', sign_today_league_league_path(current_user.league), :method => :put, :remote => :true %>
                     </div>
                   </div>
                 </li>
