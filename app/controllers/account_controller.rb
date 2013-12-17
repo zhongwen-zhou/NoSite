@@ -16,6 +16,16 @@ class AccountController < Devise::RegistrationsController
     resource.login = params[resource_name][:login]
     # resource.email = params[resource_name][:email]
     if resource.save
+      resource.recommend_by(params[:recommendation_code]) if params[:recommendation_code]
+
+
+    Reward.create(:title => "注册有奖",
+                  :content => "感谢你来到享乐创意，我们奉上300金币，请笑纳！",
+                  :personal_experience => 20,
+                  :personal_coins => 300,
+                  :receiver => resource)
+
+
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_navigational_format?
         sign_in(resource_name, resource)

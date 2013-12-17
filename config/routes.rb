@@ -21,7 +21,11 @@ RubyChina::Application.routes.draw do
   root :to => "home#index"
 
   resources :servertimes, :only => [:index]
-  resources :rewards
+  resources :rewards do
+    member do
+      put :receive
+    end
+  end
   resources :messages do
     collection do
       get :communicate

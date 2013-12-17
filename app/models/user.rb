@@ -60,6 +60,7 @@ class User
   # =======Tony=======
   field :coins, :type => Integer, :default => 0
   field :scores, :type => Integer, :default => 0
+  field :level, :type => Integer, :default => 0
   field :join_league_status, :type => Integer, :default => 0
 
   mount_uploader :avatar, AvatarUploader
@@ -386,4 +387,30 @@ class User
   def can_join_league?(league)
     join_league_status == 0
   end
+
+  def create_league(league_params)
+    return 'no coins' if self.coins < 100
+    league = League::League.new(league_params)
+    league.add_member(self, true)
+    league.president_name = self.name
+    league.president = self
+    if league.save
+      self.inc(:coins => -100)
+    else
+
+    end
+    return league
+  end
+
+  def recommend_by(recommendation_code)
+    user = User.where(:private_token => recommendation_code).first
+    return false unless user
+
+    Reward.create(:title => "推荐好友奖励",
+                  :content => "感谢你推荐好友来到享乐创意，我们奉上500金币，请笑纳！",
+                  :personal_experience => 50,
+                  :personal_coins => 500,
+                  :receiver => user)
+  end
+
 end

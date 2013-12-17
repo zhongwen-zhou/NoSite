@@ -33,6 +33,8 @@ class League::Member
   after_save do |member|
     status = member.is_admin ? 2 : 1
     member.user.set(:join_league_status => status)
+    member.user.league = member.league
+    member.user.save!
   end
 
   def self.find_by_name(name)
