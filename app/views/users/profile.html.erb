@@ -1,0 +1,116 @@
+    <div class="section-colored text-center">
+
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-12">
+            <h2>
+              巨大的横幅广告！
+            </h2>
+            <p>
+            A complete website design featuring various single page templates from Start Bootstraps library of free HTML starter templates.
+            </p>
+          </div>
+        </div><!-- /.row -->
+
+      </div><!-- /.container -->
+
+    </div><!-- /.section-colored -->
+
+<!-- Nav tabs -->
+<div class="row">
+  <div class="col-md-2 col-md-offset-1">
+    <ul id="leagueTab" class="nav nav-stacked nav-pills">
+      <li><a href="#info" data-toggle="tab">基本信息</a></li>
+      <li><a href="#update" data-toggle="tab">资料修改</a></li>
+      <li><a href="#messages" data-toggle="tab">我的工会</a></li>
+    </ul>
+  </div>
+  <div class="col-md-5 col-md-offset-1">
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div class="tab-pane active" id="info">
+        <%= image_tag(current_user.avatar_url) %>
+        <%= current_user.login %>
+      </div>
+      <div class="tab-pane" id="update">
+        <%= form_for(current_user) do |form| %>
+        
+        <% end %>
+      </div>
+      <div class="tab-pane" id="messages">
+        公会门户，由一群热爱网络游戏和游戏公会的游戏人、行业人和公会人共同建立，是致力于服务公会类网游、游戏公 会和游戏玩家的门户网站。在众多公会玩家及游戏厂商的支持下，拥有众多合作公会，同大量游戏厂商展开广泛合作，努力成为国内最专业 的骨灰玩家聚散地。
+      </div>
+      <div class="tab-pane" id="my_league">
+        <% if current_user.new_record? %>
+          网游资讯，大陆资讯、海外资讯、活动资讯、游戏八卦、人物专访、游戏产业
+        <% else %>
+
+          <!-- Nav tabs -->
+          <ul id="my_league" class="nav nav-tabs">
+            <li><a href="#members" data-toggle="tab">成员</a></li>
+            <li><a href="#profile" data-toggle="tab">Profile</a></li>
+            <li><a href="#messages" data-toggle="tab">Messages</a></li>
+            <li><a href="#settings" data-toggle="tab">Settings</a></li>
+          </ul>
+
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div class="tab-pane active" id="members">
+            </div>
+            <div class="tab-pane" id="profile">...</div>
+            <div class="tab-pane" id="messages">...</div>
+            <div class="tab-pane" id="settings">...</div>
+          </div>
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="loginModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">您没有登录！请登录</h4>
+      </div>
+      <div class="modal-body">
+        
+		<form class="form-horizontal" role="form">
+		  <div class="form-group">
+		    <label for="loginEmail" class="col-sm-2 control-label">平台帐号</label>
+		    <div class="col-sm-10">
+		      <input type="email" class="form-control" id="loginEmail" placeholder="请输入帐号">
+		    </div>
+		  </div>
+		  <br/>
+		  <div class="form-group">
+		    <label for="loginPassword" class="col-sm-2 control-label">登录密码</label>
+		    <div class="col-sm-10">
+		      <input type="password" class="form-control" id="loginPassword" placeholder="请输入密码">
+		    </div>
+		  </div>
+		</form>        
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">继续访问</button>
+        <button type="submit" class="btn btn-primary">登录</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<% content_for :scripts do %>
+  <script type="text/javascript">
+    $(document).ready(function(){
+    	<% unless current_user %>
+	    	$('#loginModal').modal();
+    	<% end %>
+      $('#leagueTab').tab();
+      $('#my_league').tab();
+    });
+  </script>
+<% end %>

@@ -5,6 +5,10 @@ class UsersController < ApplicationController
   before_filter :find_user, :only => [:show, :topics, :favorites,:notes]
   caches_action :index, :expires_in => 2.hours, :layout => false
 
+
+  def profile
+  end
+
   def index
     @total_user_count = User.count
     @active_users = User.hot.limit(100)

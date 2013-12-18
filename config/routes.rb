@@ -20,6 +20,12 @@ RubyChina::Application.routes.draw do
   # end
   root :to => "home#index"
 
+  resources :users, :only => [:show] do
+    collection do
+      get :profile
+    end
+  end
+
   resources :servertimes, :only => [:index]
   resources :rewards do
     collection do

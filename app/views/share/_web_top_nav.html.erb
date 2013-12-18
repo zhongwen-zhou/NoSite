@@ -73,7 +73,7 @@
                         
                       </div>
                         <!-- <a href="#" class="btn btn-primary" role="button">Button</a> -->
-                          <a href='#'>个人设置</a>
+                        <%= link_to '个人设置', profile_users_path %>
                           <%= link_to(t("common.logout"), destroy_user_session_path, method: "delete" ) %>
                         </p>
                     </div>
