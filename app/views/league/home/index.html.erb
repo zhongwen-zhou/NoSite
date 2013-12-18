@@ -49,7 +49,10 @@
             <% if @league.president == current_user %>
               <li><a href="#news" data-toggle="tab">消息</a></li>
             <% end %>
-            <li><a href="#home" data-toggle="tab">Home</a></li>
+            <% if @league.president == current_user %>
+              <li><a href="#welfares" data-toggle="tab">福利</a></li>
+            <% end %>
+            <li><a href="#members" data-toggle="tab">成员</a></li>
             <li><a href="#profile" data-toggle="tab">Profile</a></li>
             <li><a href="#messages" data-toggle="tab">Messages</a></li>
             <li><a href="#settings" data-toggle="tab">Settings</a></li>
@@ -65,7 +68,20 @@
                 <% end %>
               </div>
             <% end %>
-            <div class="tab-pane active" id="home">
+            <% if @league.president == current_user %>
+              <div class="tab-pane active" id="welfares">
+                <%= form_tag( welfare_league_league_path(@league), :remote => :true, :class => "form-inline") do |f| %>
+                  <div class="form-group">
+                    <label class="sr-only" for="exampleInputEmail2">
+                      金币福利
+                    </label>
+                    <input type="text" class="form-control" id="exampleInputEmail2" name="coins" placeholder="输入发放的金币">
+                  </div>
+                  <button type="submit" class="btn btn-default">确定</button>
+                <% end %>
+              </div>
+            <% end %>
+            <div class="tab-pane active" id="members">
               <% @league.members.official.each do |member| %>
                 <%= member.user.login %>
               <% end %>

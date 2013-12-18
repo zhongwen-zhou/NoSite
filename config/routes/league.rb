@@ -3,6 +3,7 @@ RubyChina::Application.routes.draw do
 	  root :to => "home#index"
 	  resources :leagues do
 	  	member do
+	  		post :welfare
 	  		put :ask_for_join
 	  		put :agree_join
 	  		put :sign_today

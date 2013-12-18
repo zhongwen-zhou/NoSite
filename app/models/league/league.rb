@@ -25,22 +25,22 @@ class League::League
 
   index :name => 1
 
-  def self.find_by_name(name)
-    return nil if name.blank?
-    name = name.downcase.strip
-    query = name.match(/\p{Han}/) != nil ? name : /#{name}/i
-    self.where(:name => query).first
-  end
-
-  def self.find_or_create_by_name(name)
-    if not location = self.find_by_name(name)
-      location = self.create(:name => name.strip)
-    end
-    location
-  end
 
   def add_member(user, is_admin = false)
-    self.members.build(:league => self, :user => user, :is_admin => is_admin, :status => is_admin ? 2 : 1)
+    member = self.members.build(:league => self, :user => user, :is_admin => is_admin, :status => is_admin ? 2 : 1)
+  end
+
+  def gift_welfare(gift_options)
+    self.members.each do |member|
+
+      Reward.create(:title => "工会福利",
+                  :content => "工会有奖啊！我们奉上300金币，请笑纳！",
+                  :classification => Reward::CLASSIFICATIONS['league'] ,
+                  :personal_experience => 20,
+                  :personal_coins => gift_options[:coins],
+                  :receiver => member.user)
+
+    end
   end
 
 end

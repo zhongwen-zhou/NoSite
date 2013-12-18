@@ -385,19 +385,29 @@ class User
 
 
   def can_join_league?(league)
-    join_league_status == 0
+    # result = false
+    count = League::Member.where(:league => league, :user => self, :status => 1).count
+    # join_league_status == 0
+    if join_league_status == 0 && count ==0
+      true
+    else
+      false
+    end
   end
 
   def create_league(league_params)
     return 'no coins' if self.coins < 100
     league = League::League.new(league_params)
-    league.add_member(self, true)
     league.president_name = self.name
     league.president = self
     if league.save
       self.inc(:coins => -100)
+      member = league.add_member(self, true)
+      member.positive!
+      member.save
     else
-
+      Rails.logger.info("-=-=-=-=-=-=-!!!!!!")
+      Rails.logger.info("Error:#{league.errors.inspect}")
     end
     return league
   end

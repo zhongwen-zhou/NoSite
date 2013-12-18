@@ -2,7 +2,7 @@
 class League::LeaguesController < ApplicationController
   # layout :false
 
-  before_filter do
+  before_filter :except => [:create] do
     @league = League::League.find(params[:id])
   end
 
@@ -12,14 +12,15 @@ class League::LeaguesController < ApplicationController
 
   def create
     @league = current_user.create_league(league_params)
-  	# @league = League::League.new(league_params)
-  	# @league.add_member(current_user, true)
-  	# @league.president_name = current_user.login
-  	# @league.president = current_user
-  	if @league.president?
+    # @league = League::League.new(league_params)
+    # @league.add_member(current_user, true)
+    # @league.president_name = current_user.login
+    # @league.president = current_user
+    if @league.president?
   		return redirect_to root_path
   	else
-      
+      Rails.logger.info("-=-=-=-=-=-=-!!!!!!")
+      Rails.logger.info("Error:#{@league.errors}")
   	end
   end
 
@@ -38,6 +39,10 @@ class League::LeaguesController < ApplicationController
 
   def sign_today
     current_user.sign_today!
+  end
+
+  def welfare
+    @league.gift_welfare(:coins => params[:coins])
   end
 
   private

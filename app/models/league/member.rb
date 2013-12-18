@@ -30,30 +30,10 @@ class League::Member
 
   # validates_uniqueness_of :name, :case_sensitive => false
 
-  after_save do |member|
-    status = member.is_admin ? 2 : 1
-    member.user.set(:join_league_status => status)
-    member.user.league = member.league
-    member.user.save!
-  end
-
-  def self.find_by_name(name)
-    return nil if name.blank?
-    name = name.downcase.strip
-    query = name.match(/\p{Han}/) != nil ? name : /#{name}/i
-    self.where(:name => query).first
-  end
-
-  def self.find_or_create_by_name(name)
-    if not location = self.find_by_name(name)
-      location = self.create(:name => name.strip)
-    end
-    location
-  end
-
   def positive!
     self.set(:status => 2)
     self.user.league = self.league
+    self.user.set(:join_league_status => is_admin ? 2 : 1)
     self.user.save!
   end
 end
