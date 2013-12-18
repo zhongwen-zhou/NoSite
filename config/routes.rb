@@ -22,6 +22,9 @@ RubyChina::Application.routes.draw do
 
   resources :servertimes, :only => [:index]
   resources :rewards do
+    collection do
+      get :count
+    end
     member do
       put :receive
     end

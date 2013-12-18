@@ -116,4 +116,11 @@ module ApplicationHelper
     end
     raw lang_list.join("")
   end
+
+
+  #============Tony
+
+  def render_active_class(current_type)
+    "class = active" if current_type.to_sym == @current_type.to_sym
+  end
 end

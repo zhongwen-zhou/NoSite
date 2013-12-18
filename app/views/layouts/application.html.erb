@@ -162,14 +162,15 @@
     <%= javascript_include_tag "web", "data-turbolinks-track" => true %>
 
     <%= yield :scripts %>
-
-    <!-- Bootstrap core JavaScript -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <!--
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/modern-business.js"></script>
-    -->
+    <script type="text/javascript">
+      <% if current_user %>
+        $(function(){
+          $.get('<%= count_rewards_path %>', {}, function(count){
+            $('#rewards_count_span').text(count);
+          });
+        });
+      <% end %>
+    </script>
   </body>
 </html>
 

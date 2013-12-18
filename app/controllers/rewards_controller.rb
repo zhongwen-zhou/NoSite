@@ -2,13 +2,18 @@
 class RewardsController < ApplicationController
   # layout :false
   def index
-    # @article = Article.find(params[:id])
-    @personal_rewards = Reward.where(:receiver => current_user)
+    @type = params[:type] || 'game'
+    @current_type = @type
+    @rewards = Reward.where(:receiver => current_user, :classification => Reward::CLASSIFICATIONS[@type])
   end
 
   def receive
   	reward = Reward.find(params[:id])
   	reward.work!
   	return redirect_to rewards_path, :notice => "您已成功领取奖励！"
+  end
+
+  def count
+    render :json => Reward.where(:receiver => current_user, :status => 0).count
   end
 end

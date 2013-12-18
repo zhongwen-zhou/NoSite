@@ -25,7 +25,7 @@
                 <a href="<%= messages_path %>">站内信 <span class="badge">42</span></a>
               </li>
               <li>
-                <a href="<%= rewards_path %>">奖励中心 <span class="badge">42</span></a>
+                <a href="<%= rewards_path %>">奖励中心 <span id="rewards_count_span" class="badge"></span></a>
               </li>
               <% if current_user.league %>
                 <li>
