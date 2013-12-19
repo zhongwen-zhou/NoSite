@@ -1,0 +1,103 @@
+@charset "utf-8";
+/* CSS Document */
+
+.line_break{white-space: pre-wrap;word-wrap: break-word;}
+#process {
+    margin: 0 auto;
+    padding: 25px 30px 80px 0;
+}
+#process li{ text-decoration:none; list-style:none}
+#process .node {
+    width: 13px;
+}
+#process .node, #process .proce {
+    background-image: url("../images/bg_state.jpg");
+    background-repeat: no-repeat;
+    float: left;
+    height: 13px;
+    position: relative;
+}
+
+.node.ready {
+    background-position: -150px 0;
+}
+#process .proce {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #FFFFFF;
+    border-image: none;
+    border-style: solid;
+    border-width: 0 5px;
+    width: 150px;
+}
+#process .tx1 {
+    height: 36px;
+    margin-bottom: 16px;
+}
+#process .tx3 {
+    color: #999999;
+    line-height: 15px;
+}
+.node.wait {
+    background-position: -150px -40px;
+}
+.node.singular {
+    background-position: -150px -60px;
+}
+.proce.wait {
+    background-position: 0 -40px;
+}
+.proce.doing {
+    background-position: 0 -20px;
+    color: #336600;
+}
+.proce.ready {
+    background-position: 0 0;
+}
+#process .wait .tx2 {
+    color: #999999;
+}
+#process ul {
+    margin-top: -38px;
+    position: absolute;
+    text-align: center;
+}
+#process .proce ul {
+    width: 150px;
+    z-index: 5;
+}
+#process .node ul {
+    margin-left: -120px;
+    width: 318px;
+    z-index: 1;
+}
+.top_pin{position: absolute; width:220px; right: 0px;background-color:#fff; font-weight: 100; color: #2c2c2c; font-size: 12px;
+        z-index: 100;
+}
+/**聊天页面**/
+.msg_window{background-color: #fff;}
+.msg_window .msg_left{ float: left; width: 30%;}
+.msg_window .msg_right{float: left;width: 70%; position:relative}
+.msg_window .well{ padding: 0;border-radius: 0;}
+.msg_window .msg_left .well{ padding: 10px; height: 650px; overflow: scroll;overflow-x: hidden}
+.msg_left .link_man{cursor: pointer; background-color: #fff; font-size: 10px}
+.msg_right .well{ border-left: 0;background-color: #fff; height: 670px}
+.msg_right_top .table{ margin-bottom: 0}
+.msg_right_top .table td{ border: 0px}
+.msg_right_top i{ cursor: pointer; padding: 2px}
+.msg_right_top .opration{ vertical-align: middle}
+.msg_right_top{ border-bottom: 1px solid #E3E3E3;background-color: #F5F5F5;}
+.msg_chat{  height: 400px;overflow: scroll;overflow-x: hidden;}
+.chat_ul{list-style: none outside none; margin: 10px}
+.chat_ul li{ margin: 10px 5px}
+.chat_ul .chat_time{ font-size:8px; color:gray; margin-bottom: 0px}
+.chat_left{ float: left;}
+.chat_left .chat_content{ background-color: #DAEAF9;border-radius: 4px; padding: 5px}
+.chat_right{ float: right}
+.chat_right .chat_content{background-color: #E7E7E9;border-radius: 4px;padding: 5px;}
+.chat_content{font-size:12px;}
+.send_msg .dropdown{ float: right; margin-right: 10px }
+.chat_send{ border-left: 0; border-right: 0; border-radius: 0;}
+
