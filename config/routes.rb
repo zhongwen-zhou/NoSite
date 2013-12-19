@@ -35,11 +35,6 @@ RubyChina::Application.routes.draw do
       put :receive
     end
   end
-  resources :messages do
-    collection do
-      get :communicate
-    end
-  end
 
   resources :articles, :only => [:index, :show]
 

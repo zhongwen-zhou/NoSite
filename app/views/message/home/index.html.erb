@@ -1,0 +1,9 @@
+<br/>
+<br/>
+<br/>
+<br/>
+<% @communications.each do |communication| %>
+	<%= communication.another_person(current_user).login %>
+	<%= communication.last_message.content %>
+	<%= link_to '继续交流', message_messages_path(communication) %>
+<% end %>

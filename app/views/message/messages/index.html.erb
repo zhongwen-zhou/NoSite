@@ -1,0 +1,13 @@
+<br/>
+<br/>
+<br/>
+<br/>
+<% @messages.each do |message| %>
+	<%= message.created_at %>
+	<%= message.content %>
+<% end %>
+
+<%= form_for(@message) do |form| %>
+	<%= form.text_field :content %>
+	<%= form.submit %>
+<% end %>
