@@ -125,7 +125,7 @@ module ApplicationHelper
   end
 
   def sign_today?
-    current_user && current_user.league && current_user.signed.get >= Date.current.to_s
+    current_user.league && current_user.signed.get && current_user.signed.get >= Date.current.to_s
   end
 
 end

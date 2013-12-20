@@ -83,7 +83,10 @@
             <% end %>
             <div class="tab-pane active" id="members">
               <% @league.members.official.each do |member| %>
-                <%= member.user.login %>
+                <span>
+                  <%= member.user.name %>
+                  <%= link_to '交流', start_message_communications_path(:user_id => member.user_id) %>
+                </span>
               <% end %>
             </div>
             <div class="tab-pane" id="profile">...</div>
