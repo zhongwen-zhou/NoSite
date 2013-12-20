@@ -165,8 +165,9 @@
     <script type="text/javascript">
       <% if current_user %>
         $(function(){
-          $.get('<%= count_rewards_path %>', {}, function(count){
-            $('#rewards_count_span').text(count);
+          $.get('<%= notice_path %>', {}, function(data){
+            $('#rewards_count_span').text(data.rewards_count);
+            $('#messages_count_span').text(data.messages_count);
           });
         });
       <% end %>

@@ -12,8 +12,4 @@ class RewardsController < ApplicationController
   	reward.work!
   	return redirect_to rewards_path, :notice => "您已成功领取奖励！"
   end
-
-  def count
-    render :json => Reward.where(:receiver => current_user, :status => 0).count
-  end
 end

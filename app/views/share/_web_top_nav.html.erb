@@ -22,10 +22,10 @@
 
             <% if current_user %>
               <li>
-                <a href="<%= message_root_path %>">站内信 <span class="badge">42</span></a>
+                <a href="<%= message_root_path %>">站内信 <span id="messages_count_span" class="badge">0</span></a>
               </li>
               <li>
-                <a href="<%= rewards_path %>">奖励中心 <span id="rewards_count_span" class="badge"></span></a>
+                <a href="<%= rewards_path %>">奖励中心 <span id="rewards_count_span" class="badge">0</span></a>
               </li>
               <% if current_user.league %>
                 <li>
@@ -42,9 +42,11 @@
                       </div>
                     </div>
                     <div class="row">
-                        <span>今日签到 </span>
-                        <input type="checkbox" id="inlineCheckbox3" value="option3">
-                        <%= button_to '签到', sign_today_league_league_path(current_user.league), :method => :put, :remote => :true %>
+                      <% if sign_today? %>
+                        您已签到！
+                      <% else %>
+                        <%= button_to '今日签到', sign_today_league_league_path(current_user.league), :method => :put, :remote => :true %>
+                      <% end %>
                     </div>
                   </div>
                 </li>

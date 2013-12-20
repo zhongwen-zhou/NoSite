@@ -77,6 +77,9 @@ class User
   has_many :notifications, :class_name => 'Notification::Base', :dependent => :delete
   has_many :photos
 
+  #======Redis Value====
+  value :signed
+
   def email_required?
     false
   end
@@ -429,6 +432,7 @@ class User
                   :personal_experience => 100,
                   :personal_coins => 100,
                   :receiver => self)    
+    self.signed = Date.current.to_s
   end
 
 end

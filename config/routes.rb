@@ -20,6 +20,10 @@ RubyChina::Application.routes.draw do
   # end
   root :to => "home#index"
 
+  # get :notice => "home#notice"
+
+  get "notice" => "home#notice"
+
   resources :users, :only => [:show] do
     collection do
       get :profile
@@ -28,9 +32,6 @@ RubyChina::Application.routes.draw do
 
   resources :servertimes, :only => [:index]
   resources :rewards do
-    collection do
-      get :count
-    end
     member do
       put :receive
     end

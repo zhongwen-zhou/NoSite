@@ -123,4 +123,9 @@ module ApplicationHelper
   def render_active_class(current_type)
     "class = active" if current_type.to_sym == @current_type.to_sym
   end
+
+  def sign_today?
+    current_user && current_user.league && current_user.signed.get >= Date.current.to_s
+  end
+
 end
