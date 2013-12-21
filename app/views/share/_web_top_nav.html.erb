@@ -59,12 +59,12 @@
 
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <%= image_tag(current_user.avatar_url) %>
                 <%= current_user.name %>
                 <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
                 <li>
+                <%= image_tag('http://localhost:3000/uploads/image/201312/010.png', :class => "img-circle") %>
                   金币：<%= current_user.coins %>
                   <br/>
                   等级：<%= current_user.level %>

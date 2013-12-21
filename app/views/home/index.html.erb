@@ -4,8 +4,6 @@
 
         <div class="row">
           <div class="col-lg-4 col-md-4">
-            <h3>
-            </h3>
               <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
                 <ol class="carousel-indicators">
@@ -17,22 +15,13 @@
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner">
                   <div class="item active">
-                    <img src="uploads/image/201312/0123.jpg" width="360" height="200" />
-                    <div class="carousel-caption">
-                      AAA
-                    </div>
+                    <img src="uploads/image/201312/001.png" />
                   </div>
                   <div class="item">
-                    <img src="uploads/image/201312/f11cdc54749e.jpg"/>
-                    <div class="carousel-caption">
-                      BBB
-                    </div>
+                    <img src="uploads/image/201312/002.png" />
                   </div>
                   <div class="item">
-                    <img src="uploads/image/201312/f11cdc54749e.jpg"/>
-                    <div class="carousel-caption">
-                      CCC
-                    </div>
+                    <img src="uploads/image/201312/003.png"/>
                   </div>                                    
                 </div>
               </div>
@@ -41,8 +30,9 @@
 
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">业界资讯</h3>
-              <%= link_to '更多', articles_path %>
+              <h3 class="panel-title">
+                <%= link_to '业界资讯', articles_path %>
+              </h3>
             </div>
             <div class="panel-body">
               <% article = @articles.shift %>
@@ -58,20 +48,6 @@
               <% end %>
             </ul>
           </div> 
-
-
-          <% if false %>
-            <h3>
-              游戏资讯
-              <small><%= link_to '更多', articles_path %></small>
-            </h3>
-            <p>
-              <% Article.all.limit(5).each do |article| %>
-                <%= link_to article.title, article_path(article) %><br/>
-              <% end %>
-            </p>
-          <% end %>
-
           </div>
           <div class="col-lg-4 col-md-4">
             <p>
@@ -125,15 +101,15 @@
               <span>
                 <h3>
                 <%= league.name %>
-                <img src="<%= league.logo_url %>" width="60" height="60" />
+                <img src="<%= league.logo_url %>" width="60" height="60" class="img-circle" />
                 <%= button_to '加入工会', ask_for_join_league_league_path(league), :method => :put, :remote => true if current_user && current_user.can_join_league?(league) %>
                 </h3>
                 &nbsp;
                 <span>帮主：<%= league.president_name %></span>
               </span>
               <p>
-                <li>等级：<span><%= league.level %></span></li>
-                <li>人数：<span><%= league.members_count %></span></li>
+                等级：<span><%= league.level %></span>
+                人数：<span><%= league.members_count %></span>
               </p>
               <p>
                 宣言： &nbsp;<%= league.declaration %>
@@ -141,15 +117,11 @@
             </div>
           </div>
           <% end %>
+          <% (6-@leagues.count).times do %>
           <div class="col-lg-4 col-md-4 col-sm-6">
-            <a href="portfolio-item.html"><img class="img-responsive img-home-portfolio" src="http://placehold.it/700x450"></a>
+            <a href="portfolio-item.html"><img class="img-responsive img-home-portfolio" src="http://localhost:3000/uploads/image/201312/700_450.gif"></a>
           </div>
-          <div class="col-lg-4 col-md-4 col-sm-6">
-            <a href="portfolio-item.html"><img class="img-responsive img-home-portfolio" src="http://placehold.it/700x450"></a>
-          </div>
-          <div class="col-lg-4 col-md-4 col-sm-6">
-            <a href="portfolio-item.html"><img class="img-responsive img-home-portfolio" src="http://placehold.it/700x450"></a>
-          </div>
+          <% end %>
           </div>
         </div><!-- /.row -->
 
@@ -178,7 +150,7 @@
             </ul>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-6">
-            <img class="img-responsive" src="http://placehold.it/700x450/ffffff/cccccc">
+            <img class="img-responsive" src="http://localhost:3000/uploads/image/201312/w700b.gif">
           </div>
         </div><!-- /.row -->
 
@@ -192,10 +164,10 @@
 
         <div class="row">
           <div class="col-lg-6 col-md-6 col-sm-6">
-            <img class="img-responsive" src="http://placehold.it/700x450">
+            <img class="img-responsive" src="http://localhost:3000/uploads/image/201312/b700b.gif">
           </div>
           <div class="col-lg-6 col-md-6 col-sm-6">
-            <h2>自主研发的第一款游戏推荐</h2>
+            <h2>自主研发的第二款游戏推荐</h2>
             <ul>
               <li>Bootstrap 3 Framework</li>
               <li>Mobile Responsive Design</li>
