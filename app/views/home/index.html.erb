@@ -1,3 +1,23 @@
+    <div class="section-colored text-center">
+
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-12">
+            <h2>
+              巨大的横幅广告！
+            </h2>
+            <p>
+            A complete website design featuring various single page templates from Start Bootstraps library of free HTML starter templates.
+            </p>
+          </div>
+        </div><!-- /.row -->
+
+      </div><!-- /.container -->
+
+    </div><!-- /.section-colored -->
+
+
     <div class="section">
 
       <div class="container">
@@ -90,8 +110,7 @@
 
         <div class="row">
           <div class="col-lg-4">
-            <img src="uploads/image/201312/0123.jpg" width="360" height="200" />
-            每日博彩游戏
+            <img src="uploads/image/201312/dm.gif" />
           </div>
           <div class="col-lg-8 text-center">
 
@@ -99,12 +118,11 @@
           <div class="col-lg-4 col-md-4 col-sm-6">
             <div>
               <span>
-                <h3>
-                <%= league.name %>
+                <strong><%= league.name %></strong>
                 <img src="<%= league.logo_url %>" width="60" height="60" class="img-circle" />
                 <%= button_to '加入工会', ask_for_join_league_league_path(league), :method => :put, :remote => true if current_user && current_user.can_join_league?(league) %>
-                </h3>
                 &nbsp;
+                <br/>
                 <span>帮主：<%= league.president_name %></span>
               </span>
               <p>
@@ -129,6 +147,25 @@
 
     </div><!-- /.section -->
 
+
+    <div class="section-colored text-center">
+
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-12">
+            <h2>
+              巨大的横幅广告！
+            </h2>
+            <p>
+            A complete website design featuring various single page templates from Start Bootstraps library of free HTML starter templates.
+            </p>
+          </div>
+        </div><!-- /.row -->
+
+      </div><!-- /.container -->
+
+    </div><!-- /.section-colored -->
 
     <div class="section-colored">
 

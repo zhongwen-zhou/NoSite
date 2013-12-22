@@ -60,7 +60,7 @@ class User
   # =======Tony=======
   field :coins, :type => Integer, :default => 0
   field :scores, :type => Integer, :default => 0
-  field :level, :type => Integer, :default => 0
+  field :level, :type => Integer, :default => 1
   field :join_league_status, :type => Integer, :default => 0
 
   mount_uploader :avatar, AvatarUploader
