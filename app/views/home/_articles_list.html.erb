@@ -1,0 +1,21 @@
+<div class="col-lg-4 col-md-4">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="row">
+        <h3 class="panel-title col-md-9">
+          <%= link_to '业界资讯', articles_path %>
+        </h3>
+        <h5 class="panel-title col-md-3">
+          <%= link_to 'more', articles_path %>
+        </h5>
+      </div>   
+    </div>  
+    <div class="panel-body">
+      <% @articles.each do |article| %>
+        <div class="row margin_5">
+          <%= link_to article.title, article_path(article), :class => "col-md-12" %>
+        </div>
+      <% end %>
+    </div>
+  </div> 
+</div>

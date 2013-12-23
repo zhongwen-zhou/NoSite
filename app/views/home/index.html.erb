@@ -46,29 +46,7 @@
                 </div>
               </div>
           </div>
-          <div class="col-lg-4 col-md-4">
-
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">
-                <%= link_to '业界资讯', articles_path %>
-              </h3>
-            </div>
-            <div class="panel-body">
-              <% article = @articles.shift %>
-              <strong>
-                <%= link_to article.title, article_path(article) if article %>
-              </strong>
-            </div>
-            <ul class="list-group">
-              <% @articles.each do |article| %>
-                <li class="list-group-item">
-                  <%= link_to article.title, article_path(article) %>  
-                </li>
-              <% end %>
-            </ul>
-          </div> 
-          </div>
+          <%= render('articles_list') %>
           <div class="col-lg-4 col-md-4">
             <p>
             <% ::Bbs::Topic.excellent.limit(6).each do |topic| %>
