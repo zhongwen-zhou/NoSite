@@ -7,16 +7,9 @@
     <meta name="author" content="">
 
     <title>Modern Business - Start Bootstrap Template</title>
-
-    <!-- Bootstrap core CSS -->
-
+    <%#= stylesheet_link_tag "web", "data-turbolinks-track" => true %>
     <%= stylesheet_link_tag "web", "data-turbolinks-track" => true %>
     <%= csrf_meta_tag %>
-    <!-- <link href="css/bootstrap.css" rel="stylesheet"> -->
-
-    <!-- Add custom CSS here -->
-    <!-- <link href="css/modern-business.css" rel="stylesheet"> -->
-    <!-- <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet"> -->
   </head>
 
   <body>
@@ -25,24 +18,18 @@
   <%= render('share/web_spread') if @share_content[:web_spread] %>
 
   <%= yield %>
-
-
-
-    <div class="container">
-
-      <hr>
-
-      <footer>
-        <div class="row">
-          <div class="col-lg-12">
-            <p>Copyright &copy; Company 2013</p>
-          </div>
+  <div class="container">
+    <hr>
+    <footer>
+      <div class="row">
+        <div class="col-lg-12">
+          <p>Copyright &copy; Company 2013</p>
         </div>
-      </footer>
+      </div>
+    </footer>
+  </div><!-- /.container -->
 
-    </div><!-- /.container -->
-
-    <%= javascript_include_tag "web", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "web", "data-turbolinks-track" => true %>
 
     <%= yield :scripts %>
     <script type="text/javascript">
