@@ -9,7 +9,7 @@
 <!-- 	      <div class="controls">
 	      	<input type="text" placeholder="输入昵称或姓名 可按回车搜索" id="keyword" class="span4 input-mini" value=""> <a href="javascript:search_list()" class="btn btn-primary" style="padding: 3px 5px; vertical-align:super">搜索联系人</a>
 				</div> -->
-				<hr>
+<!-- 				<hr>
 	      <ul class="nav nav-tabs">
 	        <li class="active">
 		        <a href="#">已建立联系列表(未评价：12人)</a>
@@ -20,13 +20,13 @@
 	        <li>
 		        <a href="http://www.ycpai.com/active/no_reply_users">发出请求未回复列表</a>
 	        </li>
-	      </ul>  
+	      </ul> -->  
 	      <table class="table">
 	        <thead>
 	          <tr>
 	            <th class="span2">发信人</th>
 	            <th class="span6">内容</th>
-	            <th class="span2">沟通状态</th>
+	            <th class="span2">聊天时间</th>
 	            <th class="span2">操作</th>
 	          </tr>
 	        </thead>
@@ -44,16 +44,11 @@
 										<%= communication.last_message.content %>
 		            		<!-- <span class="badge badge-info">有新消息</span> -->
 		          		</a>
-		              <br>
-		              <small>
-		              	<%= communication.last_message.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
-		              </small>
 		            </td>
 		            <td>
-			            <small><font color="green">站内建立联系</font></small>
-						      <br>
-			            <span id="have_judge_30359" class="label label-success hide">已评价</span>
-						      <a id="need_judge_30359" data-toggle="modal" href="#" class="btn btn-small " onclick="javascript:set_comments(30359,&#39;向北&#39;,1)">评价</a>
+			            <small>
+		              	<%= communication.last_message.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+		              </small>
 		            </td>
 		            <td>
 									<%= link_to '继续交流', message_messages_path(communication) %>

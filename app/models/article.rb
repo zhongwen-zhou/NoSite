@@ -18,7 +18,7 @@ class Article
   field :content_html
   field :editor_names, :type => Array, :default => []
   field :locked, :type => Mongoid::Boolean, :default => false
-  field :comments_count, :type => Integer, :default => 0
+  field :clicks, :type => Integer, :default => 0
 
   mount_uploader :illustration, IllustrationUploader
 
