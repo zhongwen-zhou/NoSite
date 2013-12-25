@@ -24,7 +24,11 @@
       <li><a href="#info" data-toggle="tab">联盟简介</a></li>
       <li><a href="#desc" data-toggle="tab">创建条件</a></li>
       <li><a href="#messages" data-toggle="tab">奖励机制</a></li>
-      <li><a href="#my_league" data-toggle="tab">我的联盟</a></li>
+      <% if current_user.try(:league) %>
+        <li>
+          <a href="#my_league" data-toggle="tab">我的联盟</a>
+        </li>
+      <% end %>
     </ul>
   </div>
   <div class="col-md-5 col-md-offset-1">
@@ -39,6 +43,7 @@
       <div class="tab-pane" id="messages">
         公会门户，由一群热爱网络游戏和游戏公会的游戏人、行业人和公会人共同建立，是致力于服务公会类网游、游戏公 会和游戏玩家的门户网站。在众多公会玩家及游戏厂商的支持下，拥有众多合作公会，同大量游戏厂商展开广泛合作，努力成为国内最专业 的骨灰玩家聚散地。
       </div>
+      <% if current_user.try(:league) %>
       <div class="tab-pane" id="my_league">
         <% if @league.new_record? %>
           网游资讯，大陆资讯、海外资讯、活动资讯、游戏八卦、人物专访、游戏产业
@@ -96,11 +101,12 @@
 
         <% end %>
       </div>
+      <% end %>
     </div>
   </div>
 </div>
 
-<% unless current_user.league %>
+<% unless current_user.try(:league) %>
 <div class="row">
 <div class="col-md-6 col-md-offset-3">
 <div class="jumbotron">
@@ -112,12 +118,16 @@
       <%= render "shared/error_messages", :target => @league %>
       <fieldset>
         
-        <%= f.input :name %>
+        <label for="name">工会名</label>
+        <input type="text" name="league_league[name]" %>
 
-        <%= f.input :declaration %>
+        <br/>
+
+        <label for="declaration">工会宣言</label>
+        <textarea name="league_league[declaration]"></textarea>
 
         <p>
-          <label>logo</label>
+          <label>Logo</label>
           <%= f.file_field :logo %>
           <%= f.hidden_field :logo_cache %>
         </p>
