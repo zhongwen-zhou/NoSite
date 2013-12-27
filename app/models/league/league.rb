@@ -43,4 +43,18 @@ class League::League
     end
   end
 
+  def send_group_message(content)
+    communication = Message::Communication.create(:league => self)
+    self.members.each do |member|
+      Message::Message.create(:content => content,
+                              :receiver => member,
+                              :communication => communication)
+    end
+  end
+
+  def league_messages
+    communication = Message::Communication.where(:league => self).first
+    communication.messages
+  end
+
 end

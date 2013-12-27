@@ -1,6 +1,19 @@
-<% content_for :sitemap do %><span class="current">加入社区</span><% end %>
-<div class="content">
-    <div class="box">
+<div class="row">
+  <h1>广告</h1>
+</div>
+<div class="row">
+  <div class="col-md-3">
+    
+    <div class="jumbotron">
+      <h2>我们的网站宣言</h2>
+      <p>
+        游戏公会联盟的宗旨：为配合游戏公会的良性发展
+      </p>
+    </div>    
+
+  </div>
+  <div class="col-md-4">
+    
     <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
       <fieldset>
         <legend><%= t("common.login") %></legend>
@@ -18,18 +31,10 @@
           <%= f.submit t("common.login"), :class => "btn btn-primary", 'data-disable-with' => t("common.logining") %>
         </div>
       </fieldset>
-    <% end %>
+    <% end %> 
+
   </div>
-</div>
-<div class="sidebar">
-  <div class="box">
-    <h2>还没有帐号？</h2>
+  <div class="col-md-3 col-md-offset-2">
     <%= render :partial => "devise/shared/links" %>
   </div>
-  <div class="box">
-        <h2>用其他平台的帐号登录</h2>
-        <ul>
-          <li><%= link_to "Github", user_omniauth_authorize_path(:github) %> </li>
-        </ul>
-    </div>
 </div>

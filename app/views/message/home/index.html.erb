@@ -9,18 +9,16 @@
 <!-- 	      <div class="controls">
 	      	<input type="text" placeholder="输入昵称或姓名 可按回车搜索" id="keyword" class="span4 input-mini" value=""> <a href="javascript:search_list()" class="btn btn-primary" style="padding: 3px 5px; vertical-align:super">搜索联系人</a>
 				</div> -->
-<!-- 				<hr>
+ 				<hr>
 	      <ul class="nav nav-tabs">
 	        <li class="active">
-		        <a href="#">已建立联系列表(未评价：12人)</a>
+		        <a href="#">私信</a>
 	        </li>
 	        <li>
-		        <a href="http://www.ycpai.com/active/cancel_message">取消联系列表</a>
+		        <%= link_to '工会群聊天', league_league_messages_path(current_user.league) if current_user.league %>
+
 	        </li>
-	        <li>
-		        <a href="http://www.ycpai.com/active/no_reply_users">发出请求未回复列表</a>
-	        </li>
-	      </ul> -->  
+	      </ul>  
 	      <table class="table">
 	        <thead>
 	          <tr>

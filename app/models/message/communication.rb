@@ -9,6 +9,7 @@ class Message::Communication
 
   field :status, :type => Integer, :default => 0
   belongs_to :sender, :class_name => 'User'
+  belongs_to :league, :class_name => 'League::League'
   belongs_to :receiver, :class_name => 'User'
   has_many :messages, :class_name => 'Message::Message'
 

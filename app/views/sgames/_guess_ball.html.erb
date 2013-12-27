@@ -1,0 +1,30 @@
+<!-- <img src="uploads/image/201312/dm.gif" height="100px;" /> -->
+<%= form_tag(game_guess_path, :remote => true) do |form| %> 
+  <input type="hidden" id="game_value" name="game_value"/>
+  <% @guess_groups.each_with_index do |group, g_index| %>
+    <div class="row">
+      <div class="row">
+        <% group.each do |team| %>
+          <div class="col-md-6">
+            <span><%= team %></span>
+          </div>
+        <% end %>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <input type="radio" name="<%= "group_#{g_index}" %>" value="<%= "#{g_index}-1" %>" >胜
+        </div>
+        <div class="col-md-4">
+          <input type="radio" name="<%= "group_#{g_index}" %>" value="<%= "#{g_index}-2" %>" >负
+        </div>
+        <div class="col-md-4">
+          <input type="radio" name="<%= "group_#{g_index}" %>" value="<%= "#{g_index}-3" %>" >平
+        </div>
+      </div>
+    </div>
+    <hr/>
+  <% end %>
+  <% if current_user && can_guess_ball? %>
+    <input type="submit" value="go"></input> 
+  <% end %>
+<% end %>

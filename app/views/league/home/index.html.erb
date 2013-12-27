@@ -1,21 +1,5 @@
-    <div class="section-colored text-center">
 
-      <div class="container">
-
-        <div class="row">
-          <div class="col-lg-12">
-            <h2>
-              巨大的横幅广告！
-            </h2>
-            <p>
-            A complete website design featuring various single page templates from Start Bootstraps library of free HTML starter templates.
-            </p>
-          </div>
-        </div><!-- /.row -->
-
-      </div><!-- /.container -->
-
-    </div><!-- /.section-colored -->
+<%= render('ads/ad_hf_01') %>
 
 <!-- Nav tabs -->
 <div class="row">
@@ -59,8 +43,7 @@
             <% end %>
             <li><a href="#members" data-toggle="tab">成员</a></li>
             <li><a href="#profile" data-toggle="tab">Profile</a></li>
-            <li><a href="#messages" data-toggle="tab">Messages</a></li>
-            <li><a href="#settings" data-toggle="tab">Settings</a></li>
+            <li><a href="#settings" data-toggle="tab">工会群消息</a></li>
           </ul>
 
           <!-- Tab panes -->
@@ -95,8 +78,12 @@
               <% end %>
             </div>
             <div class="tab-pane" id="profile">...</div>
-            <div class="tab-pane" id="messages">...</div>
-            <div class="tab-pane" id="settings">...</div>
+            <div class="tab-pane" id="settings">
+              <%= form_tag(league_league_messages_path(@league), :remote => true) do |form| %>
+                <textarea name="content"></textarea>
+                <input type="submit" value="send"/>
+              <% end %>
+            </div>
           </div>
 
         <% end %>
@@ -108,76 +95,44 @@
 
 <% unless current_user.try(:league) %>
 <div class="row">
-<div class="col-md-6 col-md-offset-3">
-<div class="jumbotron">
-  <h1>创建你的联盟吧！</h1>
-  <p>
-  <div >
+  <div class="col-md-6 col-md-offset-3">
+    <div class="jumbotron">
+      <h1>创建你的联盟吧！</h1>
+      <p>
+      <div >
 
-    <%= simple_form_for(@league) do |f| %>
-      <%= render "shared/error_messages", :target => @league %>
-      <fieldset>
-        
-        <label for="name">工会名</label>
-        <input type="text" name="league_league[name]" %>
+        <%= simple_form_for(@league) do |f| %>
+          <%= render "shared/error_messages", :target => @league %>
+          <fieldset>
+            
+            <label for="name">工会名</label>
+            <input type="text" name="league_league[name]" %>
 
-        <br/>
+            <br/>
 
-        <label for="declaration">工会宣言</label>
-        <textarea name="league_league[declaration]"></textarea>
+            <label for="declaration">工会宣言</label>
+            <textarea name="league_league[declaration]"></textarea>
 
-        <p>
-          <label>Logo</label>
-          <%= f.file_field :logo %>
-          <%= f.hidden_field :logo_cache %>
-        </p>
-        <div class="form-actions">
-          <%= f.submit "创建工会", :class => "btn btn-primary", 'data-disable-with' => t("common.submitting") %>
-        </div>
-      </fieldset>
-    <% end %>
+            <p>
+              <label>Logo</label>
+              <%= f.file_field :logo %>
+              <%= f.hidden_field :logo_cache %>
+            </p>
+            <div class="form-actions">
+              <%= f.submit "创建工会", :class => "btn btn-primary", 'data-disable-with' => t("common.submitting") %>
+            </div>
+          </fieldset>
+        <% end %>
 
+      </div>
+      </p>
+    </div>
   </div>
-  </p>
-</div>
-</div>
 </div>
 <% end %>
 
 
-<div id="loginModal" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">您没有登录！请登录</h4>
-      </div>
-      <div class="modal-body">
-        
-		<form class="form-horizontal" role="form">
-		  <div class="form-group">
-		    <label for="loginEmail" class="col-sm-2 control-label">平台帐号</label>
-		    <div class="col-sm-10">
-		      <input type="email" class="form-control" id="loginEmail" placeholder="请输入帐号">
-		    </div>
-		  </div>
-		  <br/>
-		  <div class="form-group">
-		    <label for="loginPassword" class="col-sm-2 control-label">登录密码</label>
-		    <div class="col-sm-10">
-		      <input type="password" class="form-control" id="loginPassword" placeholder="请输入密码">
-		    </div>
-		  </div>
-		</form>        
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">继续访问</button>
-        <button type="submit" class="btn btn-primary">登录</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+<%= render('share/login_modal') unless current_user %>
 
 <% content_for :scripts do %>
   <script type="text/javascript">

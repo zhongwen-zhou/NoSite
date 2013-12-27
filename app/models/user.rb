@@ -79,6 +79,7 @@ class User
 
   #======Redis Value====
   value :signed
+  value :guess_balls
 
   def email_required?
     false
@@ -433,6 +434,10 @@ class User
                   :personal_coins => 100,
                   :receiver => self)    
     self.signed = Date.current.to_s
+  end
+
+  def guess_ball(value)
+    self.guess_balls = "#{Date.current.to_s}@#{value}"
   end
 
 end
