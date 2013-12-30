@@ -1,7 +1,7 @@
 # coding: utf-8
 class Bbs::RepliesController < ApplicationController
 
-  load_and_authorize_resource :reply
+  load_and_authorize_resource :reply, :class => "::Bbs::Reply"
 
   before_filter :find_topic
   def create
@@ -53,7 +53,7 @@ class Bbs::RepliesController < ApplicationController
   end
   
   def reply_params
-    params.require(:reply).permit(:body)
+    params.require(:bbs_reply).permit(:body)
   end
 
 end

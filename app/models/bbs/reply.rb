@@ -54,9 +54,9 @@ class Bbs::Reply
   
   
 
-  after_create do
-    Reply.delay.send_topic_reply_notification(self.id)
-  end
+  # after_create do
+  #   Reply.delay.send_topic_reply_notification(self.id)
+  # end
 
   def self.per_page
     50

@@ -9,10 +9,28 @@
     <%= link_to "查看更多精华贴...", excellent_bbs_topics_path %>
   </div>
 </div>
-<% if !mobile? %>
-  <%= render_cell 'Bbs::Topics', :index_sections %>
+<div id="sections" class="box">
+  <ul>
+      <li>
+      <!-- 灌水
+      攻略
+      宣战 -->
+          <span class="nodes">
+                  <a href="/bbs/topics/node3" title="游戏情感">游戏情感</a>
+          </span>
+          <span class="nodes">
+                  <a href="/bbs/topics/node3" title="游戏情感">游戏情感</a>
+          </span>
+          <span class="nodes">
+                  <a href="/bbs/topics/node3" title="游戏情感">游戏情感</a>
+          </span>
+      </li>
+  </ul>
+</div>
+<%# if !mobile? %>
+  <%#= render_cell 'Bbs::Topics', :index_sections %>
   <%#= render_cell :topics, :index_locations %>
-<% end %>
+<%# end %>
 
 <%= render('share/login_modal') unless current_user %>
 

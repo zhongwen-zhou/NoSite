@@ -73,7 +73,7 @@
       </div>
       <div class="items">
         <%= cache([@topic,params[:page],"raw:#{@show_raw}"]) do %>
-          <%= render :partial => "replies/reply", :collection => @replies %>
+          <%= render :partial => "bbs/replies/reply", :collection => @replies %>
         <% end %>
       </div>
       <%= will_paginate @replies, :inner_window => 2, :params => { :anchor => 'replies' } %>
