@@ -77,6 +77,10 @@ class User
   has_many :notifications, :class_name => 'Notification::Base', :dependent => :delete
   has_many :photos
 
+  has_many :issued
+
+  has_many :badge_winners, :class_name => 'BadgeWinner'
+
   #======Redis Value====
   value :signed
   value :guess_balls

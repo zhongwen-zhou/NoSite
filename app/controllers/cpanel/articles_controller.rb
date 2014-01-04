@@ -1,4 +1,3 @@
-# coding: utf-8
 class Cpanel::ArticlesController < Cpanel::ApplicationController
 
   def index

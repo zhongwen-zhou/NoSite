@@ -3,6 +3,7 @@ RubyChina::Application.routes.draw do
     root :to => "home#index"
     resources :users
     resources :articles
+    resources :badges
     resources :site_configs
     namespace :bbs do
       resources :replies

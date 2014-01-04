@@ -35,6 +35,7 @@
 
           <!-- Nav tabs -->
           <ul id="my_league" class="nav nav-tabs">
+            <li><a href="#profile" data-toggle="tab">Profile</a></li>
             <% if @league.president == current_user %>
               <li><a href="#news" data-toggle="tab">消息</a></li>
             <% end %>
@@ -42,12 +43,19 @@
               <li><a href="#welfares" data-toggle="tab">福利</a></li>
             <% end %>
             <li><a href="#members" data-toggle="tab">成员</a></li>
-            <li><a href="#profile" data-toggle="tab">Profile</a></li>
             <li><a href="#settings" data-toggle="tab">工会群消息</a></li>
           </ul>
 
           <!-- Tab panes -->
           <div class="tab-content">
+            <div class="tab-pane" id="profile">
+              <span>工会名：<strong><%= @league.name %></strong></span><br/>
+              <span>帮主：<strong><%= @league.president.name %></strong></span><br/>
+              <span>等级：<strong><%= @league.level %></strong></span><br/>
+              <span>旗帜：<%= image_tag(@league.logo_url) %></span><br/>
+              <span>成员数：<strong><%= @league.members_count %></strong></span><br/>
+              <span>宣言：<strong><%= @league.declaration %></strong></span>
+            </div>
             <% if @league.president == current_user %>
               <div class="tab-pane active" id="news">
                 <% @league.members.asking.each do |member| %>
@@ -77,7 +85,6 @@
                 </span>
               <% end %>
             </div>
-            <div class="tab-pane" id="profile">...</div>
             <div class="tab-pane" id="settings">
               <%= form_tag(league_league_messages_path(@league), :remote => true) do |form| %>
                 <textarea name="content"></textarea>

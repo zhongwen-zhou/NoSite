@@ -1,0 +1,30 @@
+<% content_for :sitemap do %>
+  <span class="current">Badge</span>
+<% end %>
+<h1>Badge 列表</h1>
+
+<table class="table table-bordered table-striped table-condensed">
+  <tr class="head">
+    <td class="first">ID</td>
+    <td>Title</td>
+    <td>at</td>
+    <td>lock</td>
+    <td style="width:80px;"></td>
+  </tr>
+
+<% @badges.each do |badge| %>
+  <tr class="">
+    <td class="first"><%= badge.id %></td>
+    <td><%= truncate(badge.name,:length => 30) %></td>
+    <td><%= l badge.created_at,:format => :short %></td>
+    <td><%= badge.desc %></td>
+    <td>
+    <%= link_to '', edit_cpanel_badge_path(badge), :class => "icon small_edit" %>
+    <%= link_to '', cpanel_badge_path(badge), 'data-confirm' => 'Are you sure?', :method => :delete, :class => "icon small_delete" %></td>
+  </tr>
+<% end %>
+</table>
+<%= will_paginate @badges %>
+<br/>
+
+<%= link_to 'New Badge', new_cpanel_badge_path %>
