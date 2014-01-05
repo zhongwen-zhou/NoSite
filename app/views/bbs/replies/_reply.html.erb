@@ -6,7 +6,13 @@
   <% if reply.deleted? and !@show_raw %>
     <div class="deleted"><%= floor %><%= t("common.floor")%> 已删除.</div>
   <% else %>
-    <div class="pull-left face"><%= user_avatar_tag(reply.user, :normal) %></div>
+    <div class="pull-left face">
+      <% if reply.user.league %>
+        <%= image_tag(reply.user.league.logo_url) %>
+      <% else %>
+        <%= user_avatar_tag(reply.user, :normal) %>
+      <% end %>
+    </div>
     <div class="infos">
       <div class="info">
         <span class="name">
@@ -34,6 +40,11 @@
       </div>
       <span class="opts">
       </span>
+      <div>
+          <% reply.user.badge_winners.each do |badge_winner| %>
+            <%= image_tag(badge_winner.badge.photo_url, :width => 50, :height => 50) %>
+          <% end %>
+      </div>
     </div>
   <% end %>
 </div>

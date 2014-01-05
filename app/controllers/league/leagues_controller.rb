@@ -21,6 +21,7 @@ class League::LeaguesController < ApplicationController
   	else
       Rails.logger.info("-=-=-=-=-=-=-!!!!!!")
       Rails.logger.info("Error:#{@league.errors}")
+      return redirect_to league_root_path
   	end
   end
 

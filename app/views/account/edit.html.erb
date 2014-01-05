@@ -96,7 +96,7 @@
     <p><%= t("users.dont_like_it")%> <%= link_to(t("users.delete_this_account"), registration_path(resource_name), 'data-confirm' => "删除后无法恢复，你确定吗?", :class => "btn btn-danger", :method => :delete )%></p>
   </div>
 </div>
-
+<% if false %>
 <% content_for :scripts do %>
   <script type="text/javascript">
     $(document).ready(function(){
@@ -108,4 +108,5 @@
       })
     });
   </script>
+<% end %>
 <% end %>
