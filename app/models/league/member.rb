@@ -6,6 +6,7 @@ class League::Member
 
   field :is_admin, :type => Boolean, :default => false
   field :status, :type => Integer, :default => 0
+  field :role, :type => Integer, :default => 0
 
   belongs_to :league, :class_name => 'League::League'
   counter_cache :name => :league, :inverse_of => :members

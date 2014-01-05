@@ -12,10 +12,6 @@ class League::LeaguesController < ApplicationController
 
   def create
     @league = current_user.create_league(league_params)
-    # @league = League::League.new(league_params)
-    # @league.add_member(current_user, true)
-    # @league.president_name = current_user.login
-    # @league.president = current_user
     if @league.president?
   		return redirect_to root_path
   	else

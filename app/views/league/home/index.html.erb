@@ -78,12 +78,31 @@
               </div>
             <% end %>
             <div class="tab-pane active" id="members">
-              <% @league.members.official.each do |member| %>
-                <span>
-                  <%= member.user.name %>
-                  <%= link_to '交流', start_message_communications_path(:user_id => member.user_id) %>
-                </span>
-              <% end %>
+              <ul class="nav nav-pills">
+                <% @league.members.official.each do |member| %>
+                <li class="dropdown">
+                  <a id="drop4" role="button" data-toggle="dropdown" href="#">
+                    <%= member.user.name %><b class="caret"></b>
+                  </a>
+                  <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
+                    <li role="presentation">
+                      <%= link_to '交流', start_message_communications_path(:user_id => member.user_id) %>
+                    </li>
+                    <li role="presentation" class="divider"></li>
+                    <li role="presentation">
+                      <%= link_to '设为副会长', league_league_member_set_vice_president_path(@league, member), :remote => true if member.role == 0 %>
+                      <%= link_to '取消副会长', league_league_member_canel_vice_president_path(@league, member), :remote => true if member.role == 1 %>
+                    </li>
+                    <li role="presentation">
+                      <%= link_to '设为指挥', league_league_member_set_conductor_path(@league, member), :remote => true if member.role == 0 %>
+                      <%= link_to '取消指挥', league_league_member_canel_conductor_path(@league, member, :remote => true) if member.role == 2 %>
+                    </li>
+                    </li>
+                  </ul>
+                </li>
+
+                <% end %>
+              </ul>
             </div>
             <div class="tab-pane" id="settings">
               <%= form_tag(league_league_messages_path(@league), :remote => true) do |form| %>

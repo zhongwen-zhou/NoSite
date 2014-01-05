@@ -3,6 +3,13 @@ RubyChina::Application.routes.draw do
 	  root :to => "home#index"
 	  resources :leagues do
 
+	  	resources :members, :only => [] do
+	  		get :set_vice_president
+	  		get :canel_vice_president
+	  		get :set_conductor
+	  		get :canel_conductor
+	  	end
+
 	  	resources :messages, :only => [:index, :create]
 
 	  	member do

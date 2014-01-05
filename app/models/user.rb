@@ -1,3 +1,4 @@
+# coding: utf-8
 require "securerandom"
 require "digest/md5"
 require "open-uri"
@@ -75,8 +76,6 @@ class User
   embeds_many :authorizations
   has_many :notifications, :class_name => 'Notification::Base', :dependent => :delete
   has_many :photos
-
-  has_many :issued
 
   has_many :badge_winners, :class_name => 'BadgeWinner'
 
@@ -202,9 +201,25 @@ class User
 
   # 注册邮件提醒
   # after_create :send_welcome_mail
-  # def send_welcome_mail
-    # UserMailer.delay.welcome(self.id)
-  # end
+  def send_welcome_mail
+    UserMailer.delay.welcome(self.id)
+  end
+
+  # 保存用户所在城市
+  # before_save :store_location
+  def store_location
+    if self.location_changed?
+      if not self.location.blank?
+        old_location = Location.find_by_name(self.location_was)
+        old_location.inc(users_count: -1) if not old_location.blank?
+        location = Location.find_or_create_by_name(self.location)
+        location.inc(users_count: 1)
+        self.location_id = (location.blank? ? nil : location.id)
+      else
+        self.location_id = nil
+      end
+    end
+  end
 
   STATE = {
     # 软删除
@@ -310,6 +325,36 @@ class User
     self.save(:validate => false)
   end
 
+  # Github 项目
+  def github_repositories
+    return [] if self.github.blank?
+    count = 14
+    cache_key = "github_repositories:#{self.github}+#{count}+v2"
+    items = Rails.cache.read(cache_key)
+    if items == nil
+      begin
+        json = open("https://api.github.com/users/#{self.github}/repos?type=owner&sort=pushed").read
+      rescue => e
+        Rails.logger.error("Github Repositiory fetch Error: #{e}")
+        items = []
+        Rails.cache.write(cache_key, items, :expires_in => 15.days)
+        return items
+      end
+
+      items = JSON.parse(json)
+      items = items.collect do |a1|
+        {
+          :name => a1["name"],
+          :url => a1["html_url"],
+          :watchers => a1["watchers"],
+          :description => a1["description"]
+        }
+      end
+      items = items.sort { |a1,a2| a2[:watchers] <=> a1[:watchers] }.take(count)
+      Rails.cache.write(cache_key, items, :expires_in => 7.days)
+    end
+    items
+  end
 
   # 重新生成 Private Token
   def update_private_token
