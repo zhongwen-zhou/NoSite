@@ -61,33 +61,12 @@ RubyChina::Application.routes.draw do
 
 #   get "/search" => "search#index", as: 'search'
 
-#   namespace :cpanel do
-#     root :to => "home#index"
-#     resources :site_configs
-#     resources :replies
-#     resources :topics do
-#       member do
-#         post :suggest
-#         post :unsuggest
-#         post :undestroy
-#       end
-#     end
-#     resources :nodes
-#     resources :sections
-#     resources :users
-#     resources :photos
-#     resources :pages do
-#       resources :versions, :controller => :page_versions do
-#         member do
-#           post :revert
-#         end
-#       end
-#     end
-#     resources :comments
-#     resources :site_nodes
-#     resources :sites
-#     resources :locations
-#   end
+  namespace :admin do
+    root :to => "home#index"
+    resources :sys_heros
+    resources :sys_enemys
+    resources :sys_game_levels
+  end
 
 #   # WARRING! 请保持 User 的 routes 在所有路由的最后，以便于可以让用户名在根目录下面使用，而又不影响到其他的 routes
 #   # 比如 http://ruby-china.org/huacnlee
