@@ -1,11 +1,8 @@
 class UserHerosController < ApplicationController
-  before_filter do
-    @current_user = User.find(session[:current_user_id]) if session[:current_user_id]
-  end
-
   def create
     @sys_hero = SysHero.find(params[:id])
     @hero = @current_user.heros.new(:sys_hero => @sys_hero)
+    @hero.copy_attr_from_hero(@sys_hero)
     if @hero.save
       redirect_to root_path, :notice => '购买成功'
     else
@@ -24,7 +21,7 @@ class UserHerosController < ApplicationController
 
   def star_upgrade
     @hero = @current_user.heros.find(params[:user_hero_id])
-    if @hero.level_upgrade
+    if @hero.star_upgrade
       redirect_to root_path, :notice => '升级成功'
     else
       redirect_to root_path, :notice => '升级失败'

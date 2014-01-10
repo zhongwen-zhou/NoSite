@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-  
   def new
     session["user_return_to"] = request.referrer
   end

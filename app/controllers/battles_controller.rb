@@ -1,7 +1,4 @@
 class BattlesController < ApplicationController
-  before_filter do
-    @current_user = User.find(session[:current_user_id]) if session[:current_user_id]
-  end  
   def new
     sys_game_level = SysGameLevel.find(params[:level_id])
     @battle = Battle.new(:user => @current_user, :sys_game_level => sys_game_level)

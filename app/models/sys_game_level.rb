@@ -6,7 +6,10 @@ class SysGameLevel
   field :name
   field :index, :type => Integer, :default => 0  
   field :vitality, :type => Integer, :default => 0
-  field :is_top, :type => Boolean, :default => false
+  field :is_top, :type => Integer, :default => 0
+
+  field :gold, :type => Integer, :default => 0
+  field :experience, :type => Integer, :default => 0
 
   belongs_to :parent, class_name: 'SysGameLevel'
   has_many :children, class_name: 'SysGameLevel', foreign_key: 'parent_id'
@@ -14,5 +17,5 @@ class SysGameLevel
 
   validates_presence_of :name
 
-  scope :top, where(:is_top => true)
+  scope :top, where(:is_top => 1)
 end

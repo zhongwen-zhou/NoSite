@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <%= render_page_title %>
   <%= stylesheet_link_tag "front", "data-turbolinks-track" => true %>
   <%= yield :styles %>
   <meta charset='utf-8' />
@@ -10,19 +9,6 @@
   <%= javascript_include_tag "app", "data-turbolinks-track" => true %>
 </head>
 <body>
-  <div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container">
-        <%#= render_list :class => "nav" do |li|
-           li << link_to(t("menu.topics"), topics_path)
-           li << link_to(t("menu.wiki"), pages_path )
-           li << link_to(t("menu.sites"), sites_path ) if !mobile?
-           li << link_to(t("menu.users"), users_path) if !mobile?
-        end %>
-      </div>
-    </div>
-  </div>
-
   <div class="container">
     <%= notice_message %>
     <div id="main" class="container-fluid">

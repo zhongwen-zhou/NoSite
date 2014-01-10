@@ -5,6 +5,8 @@
     <td class="first">ID</td>
     <td>Name</td>
     <td>Index</td>
+    <td>Gold</td>
+    <td>Experience</td>
     <td>Parent</td>
     <td></td>
   </tr>
@@ -14,6 +16,8 @@
     <td class="first"><%= sys_game_level.id %></td>
     <td><%= sys_game_level.name %></td>
     <td><%= sys_game_level.index %></td>
+    <td><%= sys_game_level.gold %></td>
+    <td><%= sys_game_level.experience %></td>
     <td><%= sys_game_level.parent.try(:name) %></td>
     <td>
     <%= link_to '', edit_admin_sys_game_level_path(sys_game_level), :class => "icon small_edit" %>

@@ -1,6 +1,11 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
- 
+
+  before_filter :current_user
+  def current_user
+    @current_user = User.where(:id => session[:current_user_id]).first if session[:current_user_id]
+  end
+
   def render_404
     render_optional_error_file(404)
   end

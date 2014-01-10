@@ -4,7 +4,11 @@
     <legend></legend>
     <%= f.input :name %>
     <%= f.input :index %>
-    <%= f.input :is_top %>
+    <%= f.input :gold %>
+    <%= f.input :experience %>
+    是否是顶层关卡:
+    <%#= f.check_box :is_top, {}, true, false %><br/>
+    <%= f.check_box :is_top %><br/>
     <%= f.select :parent_id, SysGameLevel.top.collect {|p| [ p.name, p.id ] }, { include_blank: true } %>
     <div class="form-actions">
       <%= f.submit %>

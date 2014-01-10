@@ -1,0 +1,36 @@
+basic_settings:
+  max_selected_heros_count: 2
+
+user_level:
+  level_1: 1000
+  level_2: 1500
+  level_3: 2300
+
+hero_level:
+  level_1: 
+    talent_intelligence:
+      hp: 100
+      mp: 200
+      atk: 150
+    talent_power:
+      hp: 300
+      mp: 50
+      atk: 150
+    talent_agile:
+      hp: 200
+      mp: 100
+      atk: 150
+  level_2: 
+    talent_intelligence:
+      hp: 150
+      mp: 300
+      atk: 200
+    talent_power:
+      hp: 400
+      mp: 100
+      atk: 250
+    talent_agile:
+      hp: 100
+      mp: 100
+      atk: 250
+

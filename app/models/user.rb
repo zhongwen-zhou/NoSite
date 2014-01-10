@@ -26,4 +26,17 @@ class User
       return user
     end
   end
+
+  def win_battle(battle)
+    gold, experience = battle.calculate
+    user.inc(:gold => gold)
+    add_experience(experience)
+    user.game_levels.create(:sys_game_level => sys_game_level, :stars => stars)
+  end
+
+  def add_experience(experience)
+    inc(:experience => experience)
+    level_experience = GameSetting.user_level["level_#{level+1}"]
+    inc(:level => 1) if experience >= level_experience
+  end
 end
