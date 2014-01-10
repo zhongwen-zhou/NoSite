@@ -17,4 +17,13 @@ class User
 
   has_many :heros, class_name: 'UserHero'
   has_many :game_levels, class_name: 'UserGameLevel'
+
+  class << self
+    def authorize!(params)
+      user = User.where(:account => params[:account]).first
+      return false unless user
+      return false if user.password != params[:password]
+      return user
+    end
+  end
 end

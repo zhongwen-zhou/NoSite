@@ -1,0 +1,15 @@
+<%= simple_form_for([:admin, @sys_enemy]) do |f| %>
+  <%= render 'shared/error_messages', :target => @sys_enemy %>
+  <fieldset>
+    <legend></legend>
+    <%= f.input :name %>
+    <%= f.input :hp %>
+    <%= f.input :mp %>
+    <%= f.input :atk %>
+    <%= f.input :talent %>
+    <div class="form-actions">
+      <%= f.submit %>
+      <%= link_to 'Back', admin_sys_enemies_path %>
+    </div>
+  </fieldset>
+<% end %>

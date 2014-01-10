@@ -1,0 +1,29 @@
+<h1>Listing sys_game_levels</h1>
+
+<table class="table table-bordered table-striped table-condensed">
+  <tr class="head">
+    <td class="first">ID</td>
+    <td>Name</td>
+    <td>Index</td>
+    <td>Parent</td>
+    <td></td>
+  </tr>
+
+<% @sys_game_levels.each do |sys_game_level| %>
+  <tr>
+    <td class="first"><%= sys_game_level.id %></td>
+    <td><%= sys_game_level.name %></td>
+    <td><%= sys_game_level.index %></td>
+    <td><%= sys_game_level.parent.try(:name) %></td>
+    <td>
+    <%= link_to '', edit_admin_sys_game_level_path(sys_game_level), :class => "icon small_edit" %>
+    <%= link_to '', admin_sys_game_level_path(sys_game_level), 'data-confirm' => 'Are you sure?' , :method => :delete, :class => "icon small_delete" %>
+    <%= link_to 'enemies', admin_sys_game_level_game_level_enemies_path(sys_game_level) %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Node', new_admin_sys_game_level_path %>

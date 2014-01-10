@@ -9,4 +9,6 @@ class UserGameLevel
   belongs_to :user
   belongs_to :sys_game_level
 
+  delegate :name, :to => :sys_game_level
+
 end

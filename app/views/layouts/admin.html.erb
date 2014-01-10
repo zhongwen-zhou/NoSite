@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SuperHero - Control Panel</title>
+    <%= stylesheet_link_tag "cpanel" %>
+    <%= javascript_include_tag "app" %>
+    <%= csrf_meta_tag %>
+  </head>
+  <body>
+  	<div>
+			<ul>
+				<li>
+					<%= link_to 'SysHeros', admin_sys_heros_path %>
+				</li>
+				<li>
+					<%= link_to 'SysEnemys', admin_sys_enemies_path %>
+				</li>
+        <li>
+          <%= link_to 'SysGameLevels', admin_sys_game_levels_path %>
+        </li>        
+			</ul>  		
+  	</div>
+    <%= yield %> 
+  </body>
+</html>

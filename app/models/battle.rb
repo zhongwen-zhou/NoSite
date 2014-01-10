@@ -7,4 +7,8 @@ class Battle
 
   belongs_to :user
   belongs_to :sys_game_level
+
+  def result!
+  	user.game_levels.create(:sys_game_level => sys_game_level, :stars => 3)
+  end
 end

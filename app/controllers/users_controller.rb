@@ -1,9 +1,22 @@
 # coding: utf-8
 class UsersController < ApplicationController
-  before_filter :require_user, :only => "auth_unbind"
-  before_filter :set_menu_active
-  before_filter :find_user, :only => [:show, :topics, :favorites,:notes]
-  caches_action :index, :expires_in => 2.hours, :layout => false
+  # before_filter :require_user, :only => "auth_unbind"
+  # before_filter :set_menu_active
+  # before_filter :find_user, :only => [:show, :topics, :favorites,:notes]
+  # caches_action :index, :expires_in => 2.hours, :layout => false
+
+  def new
+    @user = User.new
+  end
+
+  def create
+    @user = User.new(params[:user].permit!)
+    if @user.save
+      redirect_to(root_path, :notice => 'User 创建成功。')
+    else
+      render :action => :new
+    end    
+  end
 
   def index
     @total_user_count = User.count

@@ -1,0 +1,26 @@
+<h1>Listing enemys</h1>
+
+<table class="table table-bordered table-striped table-condensed">
+  <tr class="head">
+    <td class="first">ID</td>
+    <td>Name</td>
+    <td>Count</td>
+    <td>IsBoss</td>
+    <td></td>
+  </tr>
+
+<% @enemies.each do |enemy| %>
+  <tr>
+    <td class="first"><%= enemy.id %></td>
+    <td><%= enemy.name %></td>
+    <td><%= enemy.count %></td>
+    <td><%= enemy.is_boss %></td>
+    <td><%= link_to '', edit_admin_sys_game_level_game_level_enemy_path(@game_level, enemy), :class => "icon small_edit" %>
+    <%= link_to '', admin_sys_game_level_game_level_enemy_path(@game_level, enemy), 'data-confirm' => 'Are you sure?' , :method => :delete, :class => "icon small_delete" %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Node', new_admin_sys_game_level_game_level_enemy_path(@game_level) %>

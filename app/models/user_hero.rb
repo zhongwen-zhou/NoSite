@@ -17,4 +17,22 @@ class UserHero
 
   belongs_to :user
   belongs_to :sys_hero
+
+  delegate :name, to: :sys_hero
+
+  def level_upgrade
+    inc(:level => 1)
+  end
+
+  def star_upgrade
+    inc(:star_level => 1)
+  end
+
+  def take
+    set(:selected => true)
+  end
+
+  def takeoff
+    set(:selected => false)
+  end    
 end

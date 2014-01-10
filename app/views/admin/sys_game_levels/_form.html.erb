@@ -1,0 +1,13 @@
+<%= simple_form_for([:admin, @sys_game_level]) do |f| %>
+  <%= render 'shared/error_messages', :target => @sys_game_level %>
+  <fieldset>
+    <legend></legend>
+    <%= f.input :name %>
+    <%= f.input :index %>
+    <%= f.select :parent_id, SysGameLevel.all.collect {|p| [ p.name, p.id ] }, { include_blank: true } %>
+    <div class="form-actions">
+      <%= f.submit %>
+      <%= link_to 'Back', admin_sys_enemies_path %>
+    </div>
+  </fieldset>
+<% end %>

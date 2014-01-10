@@ -1,15 +1,59 @@
-<%= raw SiteConfig.index_html %>
-
-<div class="home_suggest_topics box box_gray">
-  <h2>社区精华贴</h2>
-  <div class="topics">
-    <%= render partial: "topics/topic", collection: @excellent_topics %>
-  </div>
-  <div class="more">
-    <%= link_to "查看更多精华贴...", excellent_topics_path %>
-  </div>
+<!-- User Basic Info -->
+<div>
+	<%= @current_user.nickname %>
+	<%= @current_user.level %>
+	<%= @current_user.experience %>
+	<%= @current_user.gold %>
+	<%= @current_user.diamond %>
+	<%= @current_user.vitality %>
 </div>
-<% if !mobile? %>
-  <%= render_cell :topics, :index_sections %>
-  <%= render_cell :topics, :index_locations %>
-<% end %>
+
+<hr/>
+
+<div>
+	<% @current_user.heros.each do |hero| %>
+		<%= hero.name %>
+		<%= hero.hp %>
+		<%= hero.mp %>
+		<%= hero.atk %>
+
+		<%= button_to '升级', user_user_hero_level_upgrade_path(@current_user, hero), :method => :put %>
+		<%= button_to '转星升级', user_user_hero_star_upgrade_path(@current_user, hero), :method => :put %>
+		<%= link_to '选上他', user_user_hero_take_path(@current_user, hero), :method => :put unless hero.selected %>
+		<%= link_to '丢下他', user_user_hero_takeoff_path(@current_user, hero), :method => :put if hero.selected %>
+	<% end %>
+</div>
+
+<hr/>
+<div>
+	<% SysHero.all.each do |hero| %>
+	<p>
+		<%= hero.name %>
+		<%= hero.hp %>
+		<%= hero.mp %>
+		<%= hero.atk %>
+		<%= hero.price %>
+
+		<%= form_tag(user_user_heros_path(@current_user)) do |f| %>
+			<%= hidden_field_tag :id, hero.id %>
+			<%= submit_tag '购买' %>
+		<% end %>
+	</p>
+	<% end %>
+</div>
+
+<hr/>
+<div>
+	<% SysGameLevel.all.each do |game_level| %>
+		<%= game_level.name %>
+		<%= link_to '开战', new_battle_path(:level_id => game_level) %>
+	<% end %>
+</div>
+
+<hr/>
+<div>
+	<% @current_user.game_levels.each do |game_level| %>
+		<%= game_level.name %>
+		<%= game_level.stars %>
+	<% end %>
+</div>

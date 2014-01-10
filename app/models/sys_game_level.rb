@@ -9,6 +9,7 @@ class SysGameLevel
 
   belongs_to :parent, class_name: 'SysGameLevel'
   has_many :children, class_name: 'SysGameLevel', foreign_key: 'parent_id'
+  has_many :enemies, class_name: 'GameLevelEnemy'
 
   validates_presence_of :name
 end

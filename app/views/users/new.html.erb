@@ -1,0 +1,13 @@
+<%= simple_form_for([@user]) do |f| %>
+  <%= render 'shared/error_messages', :target => @user %>
+  <fieldset>
+    <legend></legend>
+    <%= f.input :account %>
+    <%= f.input :password %>
+    <%= f.input :nickname %>
+    <div class="form-actions">
+      <%= f.submit %>
+      <%= link_to 'Back', new_session_path %>
+    </div>
+  </fieldset>
+<% end %>

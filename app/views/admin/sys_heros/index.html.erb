@@ -1,0 +1,30 @@
+<h1>Listing sys_heros</h1>
+
+<table class="table table-bordered table-striped table-condensed">
+  <tr class="head">
+    <td class="first">ID</td>
+    <td>Name</td>
+    <td>Hp</td>
+    <td>Mp</td>
+    <td>Atk</td>
+    <td>Talent</td>
+    <td></td>
+  </tr>
+
+<% @sys_heros.each do |sys_hero| %>
+  <tr>
+    <td class="first"><%= sys_hero.id %></td>
+    <td><%= sys_hero.name %></td>
+    <td><%= sys_hero.hp %></td>
+    <td><%= sys_hero.mp %></td>
+    <td><%= sys_hero.atk %></td>
+    <td><%= sys_hero.talent %></td>
+    <td><%= link_to '', edit_admin_sys_hero_path(sys_hero), :class => "icon small_edit" %>
+    <%= link_to '', admin_sys_hero_path(sys_hero), 'data-confirm' => 'Are you sure?' , :method => :delete, :class => "icon small_delete" %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Node', new_admin_sys_hero_path %>

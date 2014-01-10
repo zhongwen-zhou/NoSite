@@ -1,0 +1,13 @@
+<%= simple_form_for([:admin, @game_level, @enemy]) do |f| %>
+  <%= render 'shared/error_messages', :target => @enemy %>
+  <fieldset>
+    <legend></legend>
+    <%= f.select :sys_enemy_id, SysEnemy.all.collect {|p| [ p.name, p.id ] } %>
+    <%= f.input :count %>
+    <%= f.input :is_boss %>
+    <div class="form-actions">
+      <%= f.submit %>
+      <%= link_to 'Back', admin_sys_enemies_path %>
+    </div>
+  </fieldset>
+<% end %>
