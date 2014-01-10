@@ -1,5 +1,5 @@
-# coding: utf-8
-class Admin::BaseController < ApplicationController
+class Admin::BaseController < ActionController::Base
+	protect_from_forgery
   layout "admin"
   before_filter do
     authenticate_or_request_with_http_basic do |user_name, password|

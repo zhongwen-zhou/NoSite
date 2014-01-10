@@ -44,9 +44,14 @@
 
 <hr/>
 <div>
-	<% SysGameLevel.all.each do |game_level| %>
-		<%= game_level.name %>
-		<%= link_to '开战', new_battle_path(:level_id => game_level) %>
+	<% SysGameLevel.top.each do |game_level| %>
+	<p>
+		<%= game_level.name %>==========<br/>
+		<% game_level.children.each do |level| %>
+			<%= level.name %>
+			<%= link_to '开战', new_battle_path(:level_id => level) %>
+		<% end %>
+	</p>
 	<% end %>
 </div>
 
