@@ -20,7 +20,9 @@
     <td><%= sys_hero.atk %></td>
     <td><%= sys_hero.talent %></td>
     <td><%= link_to '', edit_admin_sys_hero_path(sys_hero), :class => "icon small_edit" %>
-    <%= link_to '', admin_sys_hero_path(sys_hero), 'data-confirm' => 'Are you sure?' , :method => :delete, :class => "icon small_delete" %></td>
+    <%= link_to '', admin_sys_hero_path(sys_hero), 'data-confirm' => 'Are you sure?' , :method => :delete, :class => "icon small_delete" %>
+    <%= link_to 'Upgrade Setting', admin_sys_hero_hero_star_upgrades_path(sys_hero) %>
+    </td>
   </tr>
 <% end %>
 </table>

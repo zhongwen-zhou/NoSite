@@ -9,7 +9,9 @@ class SysHero
   field :atk, :type => Integer, :default => 0 # 攻击力
   field :price, :type => Integer, :default => 200
 
+
   field :talent, :type => Integer, :default => 0 # 天赋
 
+  has_many :hero_star_upgrades
   validates_presence_of :name
 end
