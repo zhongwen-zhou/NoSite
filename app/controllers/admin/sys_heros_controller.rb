@@ -1,11 +1,11 @@
 class Admin::SysHerosController < Admin::BaseController
 
-  before_filter :except => [:index, :create, :new] do
-    @sys_hero = SysHero.find(params[:id])
+  before_filter do
+    @sys_meta_hero = SysMetaHero.find(params[:sys_meta_hero_id])
   end
 
   def index
-    @sys_heros = SysHero.all
+    @sys_heros = @sys_meta_hero.sys_heros
   end
 
   def new

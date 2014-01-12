@@ -2,6 +2,8 @@ class UserHero
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::BaseModel
+  include Mongoid::SoftDelete
+
 
   field :hp, :type => Integer, :default => 0  
   field :mp, :type => Integer, :default => 0
@@ -19,16 +21,18 @@ class UserHero
   belongs_to :user
   belongs_to :sys_hero
 
-  scope :useable, where(:delete_status => 0)
+  delegate :name,:_star_upgrade_heros, to: :sys_hero
 
-  delegate :name, to: :sys_hero
 
-  def level_upgrade
-    inc(:level => 1)
+  def show_name
+    "#{name}(#{star_level}--#{level})"
   end
 
   def star_upgrade
+    heros = user.heros.where(:id.ne => self.id, :sys_hero_id.in => (_star_upgrade_heros.map &:id))
+    heros.destroy_all
     inc(:star_level => 1)
+
   end
 
   def take
@@ -40,9 +44,10 @@ class UserHero
   end
 
   def copy_attr_from_hero(sys_hero)
-    [:hp, :mp, :atk].each do |attr|
+    [:hp, :mp, :atk, :level, :star_level].each do |attr|
       self[attr] = sys_hero[attr]
     end
+    self.experience = (sys_hero.experience / 4).to_i
   end
 
   def eat_hero_and_upgrade(eated_hero_ids)
@@ -52,6 +57,14 @@ class UserHero
       total_experience += hero.experience
     end
     inc(:experience => total_experience)
-    heros.each {|hero| hero.set(:delete_status => 1)}
+    # heros.each {|hero| hero.set(:delete_status => 1)}
+    heros.destroy_all
+    next_level_sys_hero = SysHero.where(:name => self.name, :star_level => self.star_level, :experience.gt => self.experience).asc(:level).first
+    if next_level_sys_hero
+      [:hp, :mp, :atk, :level, :star_level].each do |attr|
+        self[attr] = next_level_sys_hero[attr]
+        self.set(attr => next_level_sys_hero[attr])
+      end
+    end
   end
 end

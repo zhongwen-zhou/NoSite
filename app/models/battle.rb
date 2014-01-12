@@ -11,6 +11,7 @@ class Battle
 
   def result!
   	battle!
+    Rails.logger.info("!!!!!!!stars:#{stars}---------")
   	return false if stars == 0
   	user.win_battle(self)
   end
@@ -39,6 +40,7 @@ class Battle
   		stars = 0
   		return false
   	end
+    set(:stars => stars)
   end
 
   public

@@ -29,14 +29,18 @@ class User
 
   def win_battle(battle)
     gold, experience = battle.calculate
-    user.inc(:gold => gold)
+    inc(:gold => gold)
     add_experience(experience)
-    user.game_levels.create(:sys_game_level => sys_game_level, :stars => stars)
+    game_levels.create(:sys_game_level => battle.sys_game_level, :stars => battle.stars)
   end
 
   def add_experience(experience)
     inc(:experience => experience)
     level_experience = GameSetting.user_level["level_#{level+1}"]
-    inc(:level => 1) if experience >= level_experience
+    inc(:level => 1) if self.experience >= level_experience
+  end
+
+  def sys_hero_ids
+    heros.map &:sys_hero_id
   end
 end

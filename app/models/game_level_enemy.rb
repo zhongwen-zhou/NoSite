@@ -9,5 +9,5 @@ class GameLevelEnemy
   belongs_to :sys_enemy
   belongs_to :sys_game_level
 
-  delegate :name, to: :sys_enemy
+  delegate :name, :atk, to: :sys_enemy
 end

@@ -1,0 +1,27 @@
+<h1>英雄元数据库</h1>
+
+<table class="table table-bordered table-striped table-condensed">
+  <tr class="head">
+    <td class="first">ID</td>
+    <td>Name</td>
+    <td>Talent</td>
+    <td></td>
+  </tr>
+
+<% @sys_meta_heros.each do |sys_meta_hero| %>
+  <tr>
+    <td class="first"><%= sys_meta_hero.id %></td>
+    <td><%= sys_meta_hero.name %></td>
+    <td><%= sys_meta_hero.talent_name %></td>
+    <td><%= link_to '', edit_admin_sys_meta_hero_path(sys_meta_hero), :class => "icon small_edit" %>
+    <%= link_to '', admin_sys_meta_hero_path(sys_meta_hero), 'data-confirm' => 'Are you sure?' , :method => :delete, :class => "icon small_delete" %>
+    <%= link_to '等级细节', admin_sys_meta_hero_sys_heros_path(sys_meta_hero) %>
+    <%= link_to '星级升级设置', admin_sys_meta_hero_hero_star_upgrades_path(sys_meta_hero) %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Node', new_admin_sys_meta_hero_path %>

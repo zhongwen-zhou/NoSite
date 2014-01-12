@@ -1,0 +1,56 @@
+# Sys Heros
+p 'start-----'
+
+hero_fw = SysMetaHero.create(:name => '斧王', :talent => 0)
+hero_js = SysMetaHero.create(:name => '剑圣', :talent => 1)
+hero_xz = SysMetaHero.create(:name => '先知', :talent => 2)
+
+(1..4).each do |star_level|
+	(1..10).each do |level|
+		hp = star_level * 100 + level * 20 + 100
+		mp = star_level * 50 + level * 5 + 100
+		atk = star_level * 20 + level * 5 + 50
+		experience = star_level * 1000 + level * 100
+		SysHero.create(:name => '剑圣', :hp => hp, :mp => mp, :atk => atk, :star_level => star_level, :level => level, :experience => experience, :sys_meta_hero => hero_js)
+	end
+end
+
+(1..4).each do |star_level|
+	(1..10).each do |level|
+		hp = star_level * 100 + level * 20 + 200
+		mp = star_level * 50 + level * 5 + 50
+		atk = star_level * 20 + level * 5 + 50
+		experience = star_level * 1000 + level * 100
+		SysHero.create(:name => '斧王', :hp => hp, :mp => mp, :atk => atk, :talent => 1, :star_level => star_level, :level => level, :experience => experience, :sys_meta_hero => hero_fw)
+	end
+end
+
+(1..4).each do |star_level|
+	(1..10).each do |level|
+		hp = star_level * 100 + level * 20 + 100
+		mp = star_level * 50 + level * 5 + 150
+		atk = star_level * 20 + level * 5 + 80
+		experience = star_level * 1000 + level * 100
+		SysHero.create(:name => '先知', :hp => hp, :mp => mp, :atk => atk, :talent => 2, :star_level => star_level, :level => level, :experience => experience, :sys_meta_hero => hero_xz)
+	end
+end
+
+# Sys Enemy
+(1..20).each do |level|
+	hp = level * 20 + 50
+	mp = level * 5 + 50
+	atk = level * 5 + 30
+	SysEnemy.create(:name => "怪物_#{level}", :hp => hp, :mp => mp, :atk => atk)
+end
+
+
+# Sys Game Level
+(1..10).each do |level|
+	parent = SysGameLevel.create(:name => "第#{level}关", :is_top => 1)
+	(1..5).each do |section|
+		gold = level * 50 + section * 10 + 50
+		experience = level * 20 + section * 10
+		game_level = SysGameLevel.create(:name => "#{level}-#{section}", :gold => gold, :experience => experience, :index => section, :parent => parent)
+		game_level.enemies.create(:sys_enemy_id => (level + section), :count => section)
+	end
+end

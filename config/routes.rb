@@ -5,7 +5,7 @@ SuperHero::Application.routes.draw do
 	resources :users do
     resources :user_heros do
       post :level_upgrade
-      post :star_upgrade
+      put :star_upgrade
       put :take
       put :takeoff
     end
@@ -15,6 +15,12 @@ SuperHero::Application.routes.draw do
 
   namespace :admin do
     root :to => "home#index"
+
+    resources :sys_meta_heros do
+      resources :sys_heros
+      resources :hero_star_upgrades
+    end
+
     resources :sys_heros do
       resources :hero_star_upgrades
     end

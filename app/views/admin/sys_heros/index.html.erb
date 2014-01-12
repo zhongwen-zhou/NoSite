@@ -4,10 +4,13 @@
   <tr class="head">
     <td class="first">ID</td>
     <td>Name</td>
+    <td>StarLevel</td>
+    <td>Level</td>
     <td>Hp</td>
     <td>Mp</td>
     <td>Atk</td>
     <td>Talent</td>
+    <td>Experience</td>
     <td></td>
   </tr>
 
@@ -15,13 +18,15 @@
   <tr>
     <td class="first"><%= sys_hero.id %></td>
     <td><%= sys_hero.name %></td>
+    <td><%= sys_hero.star_level %></td>
+    <td><%= sys_hero.level %></td>
     <td><%= sys_hero.hp %></td>
     <td><%= sys_hero.mp %></td>
     <td><%= sys_hero.atk %></td>
-    <td><%= sys_hero.talent %></td>
+    <td><%= sys_hero.talent_name %></td>
+    <td><%= sys_hero.experience %></td>
     <td><%= link_to '', edit_admin_sys_hero_path(sys_hero), :class => "icon small_edit" %>
     <%= link_to '', admin_sys_hero_path(sys_hero), 'data-confirm' => 'Are you sure?' , :method => :delete, :class => "icon small_delete" %>
-    <%= link_to 'Upgrade Setting', admin_sys_hero_hero_star_upgrades_path(sys_hero) %>
     </td>
   </tr>
 <% end %>

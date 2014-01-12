@@ -3,7 +3,7 @@
 	Nickname: <%= @current_user.nickname %>
 	Level: <%= @current_user.level %>
 	Experience: <%= @current_user.experience %>
-	Gole: <%= @current_user.gold %>
+	Gold: <%= @current_user.gold %>
 	Diamond: <%= @current_user.diamond %>
 	Vitality: <%= @current_user.vitality %>
 </div>
@@ -12,37 +12,37 @@
 
 <div>
 	My Heros==========<br/>
-	<% @current_user.heros.useable.each do |hero| %>
+	<% @current_user.heros.each do |hero| %>
 		Name: <%= hero.name %>
 		Hp: <%= hero.hp %>
 		Mp: <%= hero.mp %>
 		Attack: <%= hero.atk %>
 		Level: <%= hero.level %>
 		Star_level: <%= hero.star_level %>
+		Experience: <%= hero.experience %>
 
 		<%= form_tag(user_user_hero_level_upgrade_path(@current_user, hero)) do |f| %>
 
-			<%= select_tag 'eated_hero_ids[]', options_from_collection_for_select(@current_user.heros.useable.select {|_hero| hero != _hero}, "id", "name"), { include_blank: true } %>
-			<%= select_tag 'eated_hero_ids[]', options_from_collection_for_select(@current_user.heros.useable.select {|_hero| hero != _hero}, "id", "name"), { include_blank: true } %>
-			<%= select_tag 'eated_hero_ids[]', options_from_collection_for_select(@current_user.heros.useable.select {|_hero| hero != _hero}, "id", "name"), { include_blank: true } %>
-			<%= select_tag 'eated_hero_ids[]', options_from_collection_for_select(@current_user.heros.useable.select {|_hero| hero != _hero}, "id", "name"), { include_blank: true } %>
+			<%= select_tag 'eated_hero_ids[]', options_from_collection_for_select(@current_user.heros.select {|_hero| hero != _hero}, "id", "show_name"), { include_blank: true } %>
+			<%= select_tag 'eated_hero_ids[]', options_from_collection_for_select(@current_user.heros.select {|_hero| hero != _hero}, "id", "show_name"), { include_blank: true } %>
+			<%= select_tag 'eated_hero_ids[]', options_from_collection_for_select(@current_user.heros.select {|_hero| hero != _hero}, "id", "show_name"), { include_blank: true } %>
+			<%= select_tag 'eated_hero_ids[]', options_from_collection_for_select(@current_user.heros.select {|_hero| hero != _hero}, "id", "show_name"), { include_blank: true } %>
 
 			<%= submit_tag '升级' %>
 
 		<% end %>
 
-		<%= form_tag(user_user_hero_star_upgrade_path(@current_user, hero)) do |f| %>
-			<%= select_tag 'eated_hero_ids[]', options_from_collection_for_select(@current_user.heros.useable.select {|_hero| hero != _hero}, "id", "name"), { include_blank: true } %>
-			<%= select_tag 'eated_hero_ids[]', options_from_collection_for_select(@current_user.heros.useable.select {|_hero| hero != _hero}, "id", "name"), { include_blank: true } %>
-			<%= select_tag 'eated_hero_ids[]', options_from_collection_for_select(@current_user.heros.useable.select {|_hero| hero != _hero}, "id", "name"), { include_blank: true } %>
-			<%= select_tag 'eated_hero_ids[]', options_from_collection_for_select(@current_user.heros.useable.select {|_hero| hero != _hero}, "id", "name"), { include_blank: true } %>
+		<p>
+			<% hero._star_upgrade_heros.each do |_hero| %>
+					<%= _hero.show_name %>
 
-			<%= submit_tag '升级' %>
+					[<%= @current_user.heros.where(:sys_hero_id => _hero.id).count %>]
+			<% end %>			
 
-		<% end %>		
-
-		<%#= button_to '升级', user_user_hero_level_upgrade_path(@current_user, hero), :method => :put %>
-		<%#= button_to '转星升级', user_user_hero_star_upgrade_path(@current_user, hero), :method => :put %>
+			<%= link_to '升星级', user_user_hero_star_upgrade_path(@current_user, hero), :method => :put %>
+		</p>
+		<% if false %>
+		<% end %>
 		<%= link_to '选上他', user_user_hero_take_path(@current_user, hero), :method => :put unless hero.selected %>
 		<%= link_to '丢下他', user_user_hero_takeoff_path(@current_user, hero), :method => :put if hero.selected %>
 	<% end %>
@@ -50,7 +50,7 @@
 
 <hr/>
 <div>
-	<% SysHero.all.each do |hero| %>
+	<% SysHero.where(:level => 1, :star_level => 1).each do |hero| %>
 	<p>
 		<%= hero.name %>
 		<%= hero.hp %>
@@ -83,6 +83,7 @@
 <div>
 	<% @current_user.game_levels.each do |game_level| %>
 		<%= game_level.name %>
-		<%= game_level.stars %>
+		(<%= game_level.stars %>)
+		&nbsp;&nbsp;
 	<% end %>
 </div>

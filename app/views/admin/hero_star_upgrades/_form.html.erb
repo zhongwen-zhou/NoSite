@@ -1,0 +1,18 @@
+<%= simple_form_for([:admin, @sys_meta_hero, @hero_star_upgrade]) do |f| %>
+  <%= render 'shared/error_messages', :target => @hero_star_upgrade %>
+  <fieldset>
+    <legend></legend>
+    
+    <%= f.input :star_level %>
+
+    <%= select_tag 'sys_hero_ids[]', options_from_collection_for_select(SysHero.all, "id", "show_name") %>
+
+    <%= select_tag 'sys_hero_ids[]', options_from_collection_for_select(SysHero.all, "id", "show_name") %>
+
+    <%= select_tag 'sys_hero_ids[]', options_from_collection_for_select(SysHero.all, "id", "show_name") %>
+    <div class="form-actions">
+      <%= f.submit %>
+      <%= link_to 'Back', admin_sys_heros_path %>
+    </div>
+  </fieldset>
+<% end %>

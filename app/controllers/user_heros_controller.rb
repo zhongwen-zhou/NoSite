@@ -13,7 +13,7 @@ class UserHerosController < ApplicationController
   def level_upgrade
     @hero = @current_user.heros.find(params[:user_hero_id])
     @hero.eat_hero_and_upgrade(params[:eated_hero_ids])
-    if @hero#.level_upgrade
+    if @hero
       redirect_to root_path, :notice => '升级成功'
     else
       redirect_to root_path, :notice => '升级失败'

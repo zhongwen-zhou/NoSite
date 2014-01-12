@@ -4,7 +4,8 @@ class HeroStarUpgrade
   include Mongoid::BaseModel
 
   field :star_level, :type => Integer, :default => 0  
-  belongs_to :sys_hero
+  field :count, :type => Integer, :default => 0
+  belongs_to :sys_meta_hero
   has_many :sys_heros
 
 end
