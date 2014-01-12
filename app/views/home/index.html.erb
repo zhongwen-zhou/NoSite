@@ -52,11 +52,11 @@
 <div>
 	<% SysHero.where(:level => 1, :star_level => 1).each do |hero| %>
 	<p>
-		<%= hero.name %>
-		<%= hero.hp %>
-		<%= hero.mp %>
-		<%= hero.atk %>
-		<%= hero.price %>
+		Name: <%= hero.name %>
+		Hp: <%= hero.hp %>
+		Mp: <%= hero.mp %>
+		Atk: <%= hero.atk %>
+		Price: <%= hero.price %>
 
 		<%= form_tag(user_user_heros_path(@current_user)) do |f| %>
 			<%= hidden_field_tag :id, hero.id %>

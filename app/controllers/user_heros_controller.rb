@@ -4,6 +4,7 @@ class UserHerosController < ApplicationController
     @hero = @current_user.heros.new(:sys_hero => @sys_hero)
     @hero.copy_attr_from_hero(@sys_hero)
     if @hero.save
+      @current_user.inc(:gold => -@sys_hero.price)
       redirect_to root_path, :notice => '购买成功'
     else
       redirect_to root_path, :notice => '购买失败'

@@ -9,7 +9,7 @@ class User
   
   field :level, :type => Integer, :default => 1
   field :experience, :type => Integer, :default => 0
-  field :gold, :type => Integer, :default => 0
+  field :gold, :type => Integer, :default => 1000
   field :diamond, :type => Integer, :default => 0
   field :vitality, :type => Integer, :default => 0 # 活力
 

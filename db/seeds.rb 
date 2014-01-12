@@ -11,7 +11,8 @@ hero_xz = SysMetaHero.create(:name => '先知', :talent => 2)
 		mp = star_level * 50 + level * 5 + 100
 		atk = star_level * 20 + level * 5 + 50
 		experience = star_level * 1000 + level * 100
-		SysHero.create(:name => '剑圣', :hp => hp, :mp => mp, :atk => atk, :star_level => star_level, :level => level, :experience => experience, :sys_meta_hero => hero_js)
+		price = star_level * 100 + level * 50
+		SysHero.create(:name => '剑圣', :hp => hp, :mp => mp, :atk => atk, :star_level => star_level, :level => level, :experience => experience, :sys_meta_hero => hero_js, :price => price)
 	end
 end
 
@@ -19,9 +20,10 @@ end
 	(1..10).each do |level|
 		hp = star_level * 100 + level * 20 + 200
 		mp = star_level * 50 + level * 5 + 50
+		price = star_level * 100 + level * 50
 		atk = star_level * 20 + level * 5 + 50
 		experience = star_level * 1000 + level * 100
-		SysHero.create(:name => '斧王', :hp => hp, :mp => mp, :atk => atk, :talent => 1, :star_level => star_level, :level => level, :experience => experience, :sys_meta_hero => hero_fw)
+		SysHero.create(:name => '斧王', :hp => hp, :mp => mp, :atk => atk, :talent => 1, :star_level => star_level, :level => level, :experience => experience, :sys_meta_hero => hero_fw, :price => price)
 	end
 end
 
@@ -30,8 +32,9 @@ end
 		hp = star_level * 100 + level * 20 + 100
 		mp = star_level * 50 + level * 5 + 150
 		atk = star_level * 20 + level * 5 + 80
+		price = star_level * 100 + level * 50
 		experience = star_level * 1000 + level * 100
-		SysHero.create(:name => '先知', :hp => hp, :mp => mp, :atk => atk, :talent => 2, :star_level => star_level, :level => level, :experience => experience, :sys_meta_hero => hero_xz)
+		SysHero.create(:name => '先知', :hp => hp, :mp => mp, :atk => atk, :talent => 2, :star_level => star_level, :level => level, :experience => experience, :sys_meta_hero => hero_xz, :price => price)
 	end
 end
 
