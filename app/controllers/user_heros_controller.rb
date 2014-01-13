@@ -1,10 +1,8 @@
 class UserHerosController < ApplicationController
   def create
     @sys_hero = SysHero.find(params[:id])
-    @hero = @current_user.heros.new(:sys_hero => @sys_hero)
-    @hero.copy_attr_from_hero(@sys_hero)
-    if @hero.save
-      @current_user.inc(:gold => -@sys_hero.price)
+    @hero = @current_user.buy_hero_from_sys_hero(@sys_hero)
+    if @hero
       redirect_to root_path, :notice => '购买成功'
     else
       redirect_to root_path, :notice => '购买失败'

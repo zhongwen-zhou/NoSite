@@ -1,17 +1,17 @@
-<%= simple_form_for([:admin, @sys_hero]) do |f| %>
+<%= simple_form_for([:admin, @sys_meta_hero, @sys_hero]) do |f| %>
   <%= render 'shared/error_messages', :target => @sys_hero %>
   <fieldset>
     <legend></legend>
-    <%= f.input :name %>
+    Name: <%= @sys_meta_hero.name %>
+    Talent: <%= SysMetaHero.talent_name(@sys_meta_hero.talent) %>
     <%= f.input :star_level %>
     <%= f.input :level %>
     <%= f.input :hp %>
     <%= f.input :mp %>
     <%= f.input :atk %>
-    <%= f.input :talent %>
     <div class="form-actions">
       <%= f.submit %>
-      <%= link_to 'Back', admin_sys_heros_path %>
+      <%= link_to 'Back', admin_sys_meta_hero_sys_heros_path(@sys_meta_hero) %>
     </div>
   </fieldset>
 <% end %>

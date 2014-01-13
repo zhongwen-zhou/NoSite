@@ -18,11 +18,7 @@ class SysHero
   belongs_to :sys_meta_hero
   validates_presence_of :name
 
-  delegate :hero_star_upgrades, :talent_name, :to => :sys_meta_hero
-
-  def _star_upgrade_heros
-    hero_star_upgrades.where(:star_level => star_level).first.try(:sys_heros) || []
-  end
+  delegate :hero_star_upgrades, :to => :sys_meta_hero
 
   def show_name
     "#{name}(#{star_level}--#{level})"

@@ -12,7 +12,7 @@
   <tr>
     <td class="first"><%= sys_meta_hero.id %></td>
     <td><%= sys_meta_hero.name %></td>
-    <td><%= sys_meta_hero.talent_name %></td>
+    <td><%= SysMetaHero.talent_name(sys_meta_hero.talent) %></td>
     <td><%= link_to '', edit_admin_sys_meta_hero_path(sys_meta_hero), :class => "icon small_edit" %>
     <%= link_to '', admin_sys_meta_hero_path(sys_meta_hero), 'data-confirm' => 'Are you sure?' , :method => :delete, :class => "icon small_delete" %>
     <%= link_to '等级细节', admin_sys_meta_hero_sys_heros_path(sys_meta_hero) %>
@@ -24,4 +24,4 @@
 
 <br />
 
-<%= link_to 'New Node', new_admin_sys_meta_hero_path %>
+<%= link_to '添加新英雄', new_admin_sys_meta_hero_path %>

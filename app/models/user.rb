@@ -2,6 +2,7 @@ class User
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::BaseModel
+  include Mongoid::SoftDelete
 
   field :account
   field :password
@@ -13,10 +14,12 @@ class User
   field :diamond, :type => Integer, :default => 0
   field :vitality, :type => Integer, :default => 0 # 活力
 
-  validates_presence_of :account, :password, :nickname
 
-  has_many :heros, class_name: 'UserHero'
-  has_many :game_levels, class_name: 'UserGameLevel'
+  has_many :heros, class_name: 'UserHero', dependent: :destroy, autosave: true
+  has_many :game_levels, class_name: 'UserGameLevel', dependent: :destroy, autosave: true
+
+  validates_presence_of :account, :password, :nickname
+  validates_uniqueness_of :account, :nickname
 
   class << self
     def authorize!(params)
@@ -27,11 +30,37 @@ class User
     end
   end
 
+  def buy_hero_from_sys_hero(sys_hero)
+    if gold >= sys_hero.price
+      user_hero = heros.new(:sys_hero => sys_hero,
+                            :sys_meta_hero => sys_hero.sys_meta_hero,
+                            :hp => sys_hero.hp,
+                            :mp => sys_hero.mp,
+                            :atk => sys_hero.atk,
+                            :experience => (sys_hero.experience / 5).to_i
+                            )
+      if user_hero.valid?
+        inc(:gold => - sys_hero.price)
+        user_hero.save
+        user_hero
+      else
+        nil
+      end
+    else
+      nil
+    end
+  end
+
   def win_battle(battle)
     gold, experience = battle.calculate
     inc(:gold => gold)
     add_experience(experience)
-    game_levels.create(:sys_game_level => battle.sys_game_level, :stars => battle.stars)
+    game_level = game_levels.where(:sys_game_level => battle.sys_game_level).first
+    if game_level
+      game_level.set(:stars => battle.stars) if battle.stars > game_level.stars
+    else
+      game_levels.create(:sys_game_level => battle.sys_game_level, :stars => battle.stars)
+    end
   end
 
   def add_experience(experience)

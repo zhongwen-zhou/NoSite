@@ -12,8 +12,8 @@ class SysGameLevel
   field :experience, :type => Integer, :default => 0
 
   belongs_to :parent, class_name: 'SysGameLevel'
-  has_many :children, class_name: 'SysGameLevel', foreign_key: 'parent_id'
-  has_many :enemies, class_name: 'GameLevelEnemy'
+  has_many :children, class_name: 'SysGameLevel', foreign_key: 'parent_id', dependent: :destroy, autosave: true 
+  has_many :enemies, class_name: 'GameLevelEnemy', dependent: :destroy, autosave: true 
 
   validates_presence_of :name
 

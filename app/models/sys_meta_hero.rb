@@ -6,12 +6,12 @@ class SysMetaHero
   field :name
   field :talent, :type => Integer, :default => 0 # 天赋
 
-  has_many :hero_star_upgrades
-  has_many :sys_heros
+  has_many :hero_star_upgrades, dependent: :destroy, autosave: true 
+  has_many :sys_heros, dependent: :destroy, autosave: true
 
-  validates_presence_of :name
+  validates :name, uniqueness: true, presence: true
 
-  def talent_name
+  def self.talent_name(talent)
     case talent
       when 0
         '力量'

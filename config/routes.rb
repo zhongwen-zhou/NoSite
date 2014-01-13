@@ -18,12 +18,11 @@ SuperHero::Application.routes.draw do
 
     resources :sys_meta_heros do
       resources :sys_heros
-      resources :hero_star_upgrades
+      resources :hero_star_upgrades do
+        resources :hero_star_upgrade_details
+      end
     end
 
-    resources :sys_heros do
-      resources :hero_star_upgrades
-    end
     resources :sys_enemies
     resources :sys_game_levels do
     	resources :game_level_enemies

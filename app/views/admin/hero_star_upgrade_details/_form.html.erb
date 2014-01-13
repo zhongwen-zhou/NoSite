@@ -1,0 +1,14 @@
+<%= simple_form_for([:admin, @sys_meta_hero, @hero_star_upgrade, @hero_star_upgrade_detail]) do |f| %>
+  <%= render 'shared/error_messages', :target => @hero_star_upgrade_detail %>
+  <fieldset>
+    <legend></legend>
+    
+    <%= f.input :count %>
+
+    <%= f.select :sys_hero, SysHero.all.collect {|hero| [hero.show_name, hero.id]} %>
+    <div class="form-actions">
+      <%= f.submit %>
+      <%#= link_to 'Back', admin_sys_heros_path %>
+    </div>
+  </fieldset>
+<% end %>

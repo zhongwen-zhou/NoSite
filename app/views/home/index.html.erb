@@ -2,7 +2,7 @@
 <div>
 	Nickname: <%= @current_user.nickname %>
 	Level: <%= @current_user.level %>
-	Experience: <%= @current_user.experience %>
+	Experience: <%= @current_user.experience %> / <%= GameSetting.user_level["level_#{@current_user.level+1}"] %>
 	Gold: <%= @current_user.gold %>
 	Diamond: <%= @current_user.diamond %>
 	Vitality: <%= @current_user.vitality %>
@@ -13,6 +13,7 @@
 <div>
 	My Heros==========<br/>
 	<% @current_user.heros.each do |hero| %>
+	<p>
 		Name: <%= hero.name %>
 		Hp: <%= hero.hp %>
 		Mp: <%= hero.mp %>
@@ -32,19 +33,18 @@
 
 		<% end %>
 
+		<%= link_to '选上他', user_user_hero_take_path(@current_user, hero), :method => :put unless hero.selected %>
+		<%= link_to '丢下他', user_user_hero_takeoff_path(@current_user, hero), :method => :put if hero.selected %>
 		<p>
-			<% hero._star_upgrade_heros.each do |_hero| %>
-					<%= _hero.show_name %>
+			<% hero.hero_star_upgrades.where(:star_level => hero.star_level).first.hero_star_upgrade_details.each do |detail| %>
+					<%= detail.show_name %>
 
-					[<%= @current_user.heros.where(:sys_hero_id => _hero.id).count %>]
+					[<%= @current_user.heros.where(:sys_hero_id => detail.sys_hero_id).count %> / <%= detail.count %>]
 			<% end %>			
 
 			<%= link_to '升星级', user_user_hero_star_upgrade_path(@current_user, hero), :method => :put %>
 		</p>
-		<% if false %>
-		<% end %>
-		<%= link_to '选上他', user_user_hero_take_path(@current_user, hero), :method => :put unless hero.selected %>
-		<%= link_to '丢下他', user_user_hero_takeoff_path(@current_user, hero), :method => :put if hero.selected %>
+		</p>
 	<% end %>
 </div>
 

@@ -1,4 +1,4 @@
-<h1>Listing sys_heros</h1>
+<h1><%= @sys_meta_hero.name %> 升星级 设置列表</h1>
 
 <table class="table table-bordered table-striped table-condensed">
   <tr class="head">
@@ -11,12 +11,17 @@
 <% @heroStarUpgrades.each do |hero_star_upgrade| %>
   <tr>
     <td class="first"><%= hero_star_upgrade.id %></td>
-    <td><%= hero_star_upgrade.star_level %></td>
-    <td><%= hero_star_upgrade.sys_heros.map &:show_name %></td>
+    <td><%= hero_star_upgrade.star_level %> ----> <%= hero_star_upgrade.star_level + 1 %></td>
+    <td>
+    <% hero_star_upgrade.hero_star_upgrade_details.each do |detail| %>
+      <%= detail.count %> 个 <%= detail.sys_hero.show_name %>;
+    <% end %>
+    </td>
     <td>
     <%#= link_to '', edit_admin_sys_hero_path(sys_hero), :class => "icon small_edit" %>
     <%#= link_to '', admin_sys_hero_path(sys_hero), 'data-confirm' => 'Are you sure?' , :method => :delete, :class => "icon small_delete" %>
     <%#= link_to 'Upgrade Setting', admin_sys_hero_hero_star_upgrades_path(sys_hero) %>
+    <%= link_to '合成列表', admin_sys_meta_hero_hero_star_upgrade_hero_star_upgrade_details_path(@sys_meta_hero, hero_star_upgrade) %>
     </td>
   </tr>
 <% end %>
@@ -24,4 +29,4 @@
 
 <br />
 
-<%= link_to 'New Node', new_admin_sys_meta_hero_hero_star_upgrade_path(@sys_meta_hero) %>
+<%= link_to '添加新的星升级', new_admin_sys_meta_hero_hero_star_upgrade_path(@sys_meta_hero) %>

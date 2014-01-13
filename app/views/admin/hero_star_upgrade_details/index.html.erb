@@ -1,0 +1,27 @@
+<h1><%= @sys_meta_hero.name %> 升星级 <%= @hero_star_upgrade.star_level + 1 %> 合成材料列表</h1>
+
+<table class="table table-bordered table-striped table-condensed">
+  <tr class="head">
+    <td class="first">ID</td>
+    <td>Count</td>
+    <td>Hero Names</td>
+    <td></td>
+  </tr>
+
+<% @hero_star_upgrade_details.each do |hero_star_upgrade_detail| %>
+  <tr>
+    <td class="first"><%= hero_star_upgrade_detail.id %></td>
+    <td><%= hero_star_upgrade_detail.count %></td>
+    <td><%= hero_star_upgrade_detail.sys_hero.show_name %></td>
+    <td>
+    <%#= link_to '', edit_admin_sys_hero_path(sys_hero), :class => "icon small_edit" %>
+    <%#= link_to '', admin_sys_hero_path(sys_hero), 'data-confirm' => 'Are you sure?' , :method => :delete, :class => "icon small_delete" %>
+    <%#= link_to 'Upgrade Setting', admin_sys_hero_hero_star_upgrades_path(sys_hero) %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to '添加合成元素', new_admin_sys_meta_hero_hero_star_upgrade_hero_star_upgrade_detail_path(@sys_meta_hero, @hero_star_upgrade) %>

@@ -22,7 +22,7 @@
     <td>
     <%= link_to '', edit_admin_sys_game_level_path(sys_game_level), :class => "icon small_edit" %>
     <%= link_to '', admin_sys_game_level_path(sys_game_level), 'data-confirm' => 'Are you sure?' , :method => :delete, :class => "icon small_delete" %>
-    <%= link_to 'enemies', admin_sys_game_level_game_level_enemies_path(sys_game_level) %>
+    <%= link_to 'enemies', admin_sys_game_level_game_level_enemies_path(sys_game_level) if sys_game_level.parent %>
     </td>
   </tr>
 <% end %>

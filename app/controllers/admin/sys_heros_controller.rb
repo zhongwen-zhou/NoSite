@@ -13,9 +13,12 @@ class Admin::SysHerosController < Admin::BaseController
   end
 
   def create
-    @sys_hero = SysHero.new(params[:sys_hero].permit!)
+    @sys_hero = @sys_meta_hero.sys_heros.new(params[:sys_hero].permit!)
+    @sys_hero.name = @sys_meta_hero.name
+    @sys_hero.talent = @sys_meta_hero.talent
+
     if @sys_hero.save
-      redirect_to(admin_sys_heros_path, :notice => 'SysHero 创建成功。')
+      redirect_to(admin_sys_meta_hero_sys_heros_path(@sys_meta_hero), :notice => 'SysHero 创建成功。')
     else
       render :action => :new
     end

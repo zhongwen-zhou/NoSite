@@ -3,7 +3,8 @@ class GameLevelEnemy
   include Mongoid::Timestamps
   include Mongoid::BaseModel
 
-  field :is_boss, :type => Boolean, :default => false  # 魔法值
+  field :is_boss, :type => Boolean, :default => false
+  field :index, :type => Integer, :default => 1
   field :count, :type => Integer, :default => 1
 
   belongs_to :sys_enemy
