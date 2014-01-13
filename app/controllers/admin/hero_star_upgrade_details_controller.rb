@@ -15,13 +15,8 @@ class Admin::HeroStarUpgradeDetailsController < Admin::BaseController
 
   def create
     @hero_star_upgrade_detail = @hero_star_upgrade.hero_star_upgrade_details.new(params[:hero_star_upgrade_detail].permit!)
-    # heros = SysHero.where(:id.in => params[:sys_hero_ids])
     if @hero_star_upgrade_detail.save
-      # heros.each do|hero|
-      #   @hero_star_upgrade.sys_heros.push hero
-      # end
-      # @hero_star_upgrade.save!
-      redirect_to(admin_sys_meta_heros_path, :notice => 'SysHero 创建成功。')
+      redirect_to(admin_sys_meta_hero_hero_star_upgrade_hero_star_upgrade_details_path(@sys_meta_hero, @hero_star_upgrade), :notice => 'SysHero 创建成功。')
     else
       render :action => :new
     end

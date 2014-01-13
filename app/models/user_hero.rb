@@ -30,7 +30,8 @@ class UserHero
                                :sys_hero_id => detail.sys_hero_id).limit(detail.count)
       heros.destroy_all
     end
-    inc(:star_level => 1)
+    next_level_sys_hero = SysHero.where(:name => self.name, :star_level => (self.star_level + 1), :level => self.level).first
+    upgrade_to_sys_hero!(next_level_sys_hero) if next_level_sys_hero
   end
 
   def take
@@ -50,10 +51,18 @@ class UserHero
     inc(:experience => total_experience)
     heros.destroy_all
     next_level_sys_hero = SysHero.where(:name => self.name, :star_level => self.star_level, :experience.gt => self.experience).asc(:level).first
-    if next_level_sys_hero
+    upgrade_to_sys_hero!(next_level_sys_hero) if next_level_sys_hero
+  end
+
+  def sys_experience
+    sys_hero.experience
+  end
+
+  private
+  def upgrade_to_sys_hero!(sys_hero)
+      self.set(:sys_hero_id => sys_hero.id)
       [:hp, :mp, :atk, :level, :star_level].each do |attr|
-        self.set(attr => next_level_sys_hero[attr])
+        self.set(attr => sys_hero[attr])
       end
-    end
   end
 end

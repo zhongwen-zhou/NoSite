@@ -20,7 +20,7 @@
 		Attack: <%= hero.atk %>
 		Level: <%= hero.level %>
 		Star_level: <%= hero.star_level %>
-		Experience: <%= hero.experience %>
+		Experience: <%= hero.experience %> / <%= hero.sys_experience %>
 
 		<%= form_tag(user_user_hero_level_upgrade_path(@current_user, hero)) do |f| %>
 

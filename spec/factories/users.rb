@@ -1,18 +1,19 @@
 FactoryGirl.define do
-  # factory :user do
+  factory :sys_meta_hero do
   #   sequence(:name){|n| "name#{n}" }
   #   sequence(:login){|n| "login#{n}" }
   #   sequence(:email){|n| "email#{n}@ruby-china.org" }
-  #   password 'password'
+    name 'Hero_1'
+    talent '0'
   #   password_confirmation 'password'
   #   location "China"
   #   created_at 100.days.ago
   #   verified false
-  # end
+  end
 
-  # factory :admin, :parent => :user do
-  #   email Setting.admin_emails.first
-  # end
+  factory :sys_hero do
+    hp 100
+  end
 
   # factory :wiki_editor, :parent => :user do
   #   verified true

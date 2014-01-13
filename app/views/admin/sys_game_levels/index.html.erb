@@ -1,4 +1,4 @@
-<h1>Listing sys_game_levels</h1>
+<h1>关卡列表</h1>
 
 <table class="table table-bordered table-striped table-condensed">
   <tr class="head">
@@ -22,7 +22,7 @@
     <td>
     <%= link_to '', edit_admin_sys_game_level_path(sys_game_level), :class => "icon small_edit" %>
     <%= link_to '', admin_sys_game_level_path(sys_game_level), 'data-confirm' => 'Are you sure?' , :method => :delete, :class => "icon small_delete" %>
-    <%= link_to 'enemies', admin_sys_game_level_game_level_enemies_path(sys_game_level) if sys_game_level.parent %>
+    <%= link_to '怪物设置', admin_sys_game_level_game_level_enemies_path(sys_game_level) if sys_game_level.parent %>
     </td>
   </tr>
 <% end %>
@@ -30,4 +30,4 @@
 
 <br />
 
-<%= link_to 'New Level', new_admin_sys_game_level_path %>
+<%= link_to '添加关卡', new_admin_sys_game_level_path %>

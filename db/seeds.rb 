@@ -6,6 +6,7 @@ hero_js = SysMetaHero.create(:name => '剑圣', :talent => 1)
 hero_xz = SysMetaHero.create(:name => '先知', :talent => 2)
 
 (1..4).each do |star_level|
+	star_upgrade = hero_js.hero_star_upgrades.create(:star_level => star_level)
 	(1..10).each do |level|
 		hp = star_level * 100 + level * 20 + 100
 		mp = star_level * 50 + level * 5 + 100
@@ -14,9 +15,11 @@ hero_xz = SysMetaHero.create(:name => '先知', :talent => 2)
 		price = star_level * 100 + level * 50
 		SysHero.create(:name => '剑圣', :hp => hp, :mp => mp, :atk => atk, :star_level => star_level, :level => level, :experience => experience, :sys_meta_hero => hero_js, :price => price)
 	end
+	star_upgrade.hero_star_upgrade_details.create(:count => star_level, :sys_meta_hero => hero_js, :sys_hero => SysHero.where(:sys_meta_hero_id => hero_js.id, :star_level => star_level).first, :count => star_level)
 end
 
 (1..4).each do |star_level|
+	star_upgrade = hero_fw.hero_star_upgrades.create(:star_level => star_level)
 	(1..10).each do |level|
 		hp = star_level * 100 + level * 20 + 200
 		mp = star_level * 50 + level * 5 + 50
@@ -25,9 +28,11 @@ end
 		experience = star_level * 1000 + level * 100
 		SysHero.create(:name => '斧王', :hp => hp, :mp => mp, :atk => atk, :talent => 1, :star_level => star_level, :level => level, :experience => experience, :sys_meta_hero => hero_fw, :price => price)
 	end
+	star_upgrade.hero_star_upgrade_details.create(:count => star_level, :sys_meta_hero => hero_fw, :sys_hero => SysHero.where(:sys_meta_hero_id => hero_fw.id, :star_level => star_level).first, :count => star_level)	
 end
 
 (1..4).each do |star_level|
+	star_upgrade = hero_xz.hero_star_upgrades.create(:star_level => star_level)
 	(1..10).each do |level|
 		hp = star_level * 100 + level * 20 + 100
 		mp = star_level * 50 + level * 5 + 150
@@ -36,6 +41,7 @@ end
 		experience = star_level * 1000 + level * 100
 		SysHero.create(:name => '先知', :hp => hp, :mp => mp, :atk => atk, :talent => 2, :star_level => star_level, :level => level, :experience => experience, :sys_meta_hero => hero_xz, :price => price)
 	end
+	star_upgrade.hero_star_upgrade_details.create(:count => star_level, :sys_meta_hero => hero_xz, :sys_hero => SysHero.where(:sys_meta_hero_id => hero_xz.id, :star_level => star_level).first, :count => star_level)
 end
 
 # Sys Enemy
