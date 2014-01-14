@@ -2,12 +2,20 @@
 <br/>
 <br/>
 <br/>
+<div class="container">
+<div id="messages_div" class="container">
 <% @messages.each do |message| %>
-	<%= message.created_at %>
-	<%= message.content %>
+	<%= render('message/messages/item', :message => message) %>
 <% end %>
-
-<%= form_for(@message) do |form| %>
-	<%= form.text_field :content %>
-	<%= form.submit %>
+</div>
+<%= form_for(@message, :remote => true, :html => {:onsubmit => 'return validate_content()'}) do |form| %>
+	<%= form.text_area :content %>
+	<%= form.submit '发送' %>
 <% end %>
+</div>
+<script type="text/javascript">
+  function validate_content(){
+  	alert('ok');
+  	return false;
+  }
+</script>

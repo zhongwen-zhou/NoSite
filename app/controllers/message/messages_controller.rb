@@ -10,6 +10,6 @@ class Message::MessagesController < ApplicationController
   	@message = @communication.messages.create(:sender => current_user,
   											 :receiver => @communication.another_person(current_user),
   											 :content => params[:message_message][:content])
-  	redirect_to message_messages_path(@communication)
+  	# redirect_to message_messages_path(@communication)
   end
 end

@@ -82,8 +82,12 @@
                 <% @league.members.official.each do |member| %>
                 <li class="dropdown">
                   <a id="drop4" role="button" data-toggle="dropdown" href="#">
-                    <%= member.user.name %><b class="caret"></b>
+                    <%= member.user.name %>
+                    <% if member.id != current_user.id %>
+                      <b class="caret"></b>
+                    <% end %>
                   </a>
+                  <% if member.id != current_user.id %>
                   <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
                     <li role="presentation">
                       <%= link_to '交流', start_message_communications_path(:user_id => member.user_id) %>
@@ -99,6 +103,7 @@
                     </li>
                     </li>
                   </ul>
+                  <% end %>
                 </li>
 
                 <% end %>
