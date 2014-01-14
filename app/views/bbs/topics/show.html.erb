@@ -51,7 +51,7 @@
         <%= likeable_tag(@topic) %>
         <%= topic_favorite_tag(@topic) %>
         <% if owner?(@topic) or admin? %>
-          <%= link_to "", edit_bbs_topic_path(@topic), :class => "icon small_edit", :title => "修改本帖" %>
+          <%= link_to "", edit_bbs_topic_path(@topic), :class => "icon small_edit", :title => "修改本帖", 'data-no-turbolink' => true %>
           <%= link_to "", bbs_topic_path(@topic.id), :method => :delete, 'data-confirm' => t("common.confirm_delete"), :class => "icon small_delete", :title => "删除本帖" %>
         <% end %>
       </div>

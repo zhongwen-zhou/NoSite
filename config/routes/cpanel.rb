@@ -1,4 +1,4 @@
-RubyChina::Application.routes.draw do
+NoSite::Application.routes.draw do
   namespace :cpanel do
     root :to => "home#index"
     resources :users

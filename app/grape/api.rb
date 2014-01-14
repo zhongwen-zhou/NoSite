@@ -1,7 +1,7 @@
 # require "entities"
 require "helpers"
 
-module RubyChina
+module NoSite
   class API < Grape::API
     prefix "api"
     error_format :json

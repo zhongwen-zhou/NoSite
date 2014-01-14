@@ -10,7 +10,7 @@
     %>
     <div class="box">
       <div class="btn-group">
-        <%= link_to(t("topics.start_a_new_topic_button"), new_bbs_topic_path, :class => "btn btn-success" )%>
+        <%= link_to(t("topics.start_a_new_topic_button"), new_bbs_topic_path, :class => "btn btn-success", 'data-no-turbolink' => true )%>
       </div>
     </div>
   <% end %>  

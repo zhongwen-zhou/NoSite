@@ -1,4 +1,4 @@
-RubyChina::Application.routes.draw do
+NoSite::Application.routes.draw do
 	namespace :game do
 		post 'guess' => "sysgame#guess"
 	  # root :to => "home#index"

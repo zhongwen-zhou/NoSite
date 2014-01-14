@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'active_support/core_ext'
 
-describe RubyChina::API, "nodes" do
+describe NoSite::API, "nodes" do
   describe "GET /api/nodes.json" do
     before do
       %w(fun ruby nodes).each_with_index { |n, i| Factory(:node, :name => n, :id => i + 1) }

@@ -6,7 +6,7 @@
       <%=  render_node_summary(@node) if ["new"].index(params[:action]) %>
 
       <div class="content">
-        <%= link_to(t("topics.start_a_new_topic_button"), new_bbs_topic_path(:node => @node.id), :class => "btn btn-success") %>
+        <%= link_to(t("topics.start_a_new_topic_button"), new_bbs_topic_path(:node => @node.id), :class => "btn btn-success", 'data-no-turbolink' => true) %>
       </div>
 
     </div>

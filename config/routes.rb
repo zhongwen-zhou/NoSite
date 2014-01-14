@@ -1,4 +1,4 @@
-RubyChina::Application.routes.draw do
+NoSite::Application.routes.draw do
   require 'api'
   # require "api_v2"
   
@@ -112,8 +112,8 @@ RubyChina::Application.routes.draw do
   # end
 
   # get "api" => "home#api", as: 'api'
-  mount RubyChina::API => "/"
-  # mount RubyChina::APIV2 => "/"
+  mount NoSite::API => "/"
+  # mount NoSite::APIV2 => "/"
 
   # mount JasmineRails::Engine => "/specs" if defined?(JasmineRails)
 

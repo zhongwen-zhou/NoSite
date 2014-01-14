@@ -15,22 +15,14 @@
       <!-- 灌水
       攻略
       宣战 -->
+        <% Bbs::Node.all.each do |node| %>
           <span class="nodes">
-                  <a href="/bbs/topics/node3" title="游戏情感">游戏情感</a>
+            <%= link_to node.name, bbs_node_topics_path(node) %>
           </span>
-          <span class="nodes">
-                  <a href="/bbs/topics/node3" title="游戏情感">游戏情感</a>
-          </span>
-          <span class="nodes">
-                  <a href="/bbs/topics/node3" title="游戏情感">游戏情感</a>
-          </span>
+        <% end %>
       </li>
   </ul>
 </div>
-<%# if !mobile? %>
-  <%#= render_cell 'Bbs::Topics', :index_sections %>
-  <%#= render_cell :topics, :index_locations %>
-<%# end %>
 
 <%= render('share/login_modal') unless current_user %>
 

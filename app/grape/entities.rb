@@ -1,6 +1,6 @@
 require "digest/md5"
 
-module RubyChina
+module NoSite
   module APIEntities
     class User < Grape::Entity
       expose :id, :login
