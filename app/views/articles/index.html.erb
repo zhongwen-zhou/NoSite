@@ -20,10 +20,12 @@
 
     <div class="col-md-1">
       <p><i class="fa fa-camera fa-4x"></i></p>
-      <p><%= article.created_at %></p>
+      <p><%= article.created_at.format_to_readable %></p>
     </div>
     <div class="col-md-5">
-      <a href="blog-post.html"><img src="http://placehold.it/600x300" class="img-responsive"></a>
+      <a href="<%= article_path(article) %>">
+        <%= image_tag(article.illustration_url) %>
+      </a>
     </div>
     <div class="col-md-6">
       <h3>

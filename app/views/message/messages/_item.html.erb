@@ -1,7 +1,7 @@
 <% is_sender = message.sender == current_user %>
 <div class="row">
 	<div class="col-md-4 <%= 'col-md-offset-3' if is_sender %>">
-		<%= is_sender ? '我' : message.sender.name %>说： <small><%= message.created_at.strftime("%Y-%m-%d %H:%M:%S") %></small>
+		<%= is_sender ? '我' : message.sender.name %>说： <small><%= message.created_at.format_to_readable %></small>
 		<p>
 			<%= message.content %>
 		</p>

@@ -19,6 +19,9 @@
         <li>
           <%= link_to '论坛', bbs_root_path, :target => "_blank" %>
         </li>
+        <li>
+          <%= link_to '工会联盟', league_root_path %>
+        </li>
 
         <% if current_user %>
           <li>
@@ -57,9 +60,6 @@
             </ul>
           </li>
         <% else %>
-          <li>
-            <%= link_to '工会联盟', league_root_path %>
-          </li>
           <li>
 
             <%= form_tag(user_session_path, :class => "navbar-form navbar-left form-inline", :role => "form") do |f| %>

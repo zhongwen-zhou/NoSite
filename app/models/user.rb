@@ -402,7 +402,7 @@ class User
   end
 
   def create_league(league_params)
-    return 'no coins' if self.coins < 100
+    # return 'no coins' if self.coins < 100
     league = League::League.new(league_params)
     league.president_name = self.name
     league.president = self

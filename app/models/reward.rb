@@ -15,6 +15,7 @@ class Reward
   field :league_experience, :type =>  Integer, :default => 0
   field :league_coins, :type =>  Integer, :default => 0
   belongs_to :receiver, :class_name => 'User'
+  belongs_to :badge
   
   index :updated_at => -1
 

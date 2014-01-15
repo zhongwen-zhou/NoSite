@@ -1,12 +1,15 @@
-<!-- <img src="uploads/image/201312/dm.gif" height="100px;" /> -->
+<img src="init_data/images/guess_balls/fball.png" />
+<br/>
+<div class="container">
 <%= form_tag(game_guess_path, :remote => true) do |form| %> 
   <input type="hidden" id="game_value" name="game_value"/>
   <% @guess_groups.each_with_index do |group, g_index| %>
+    <br/>
     <div class="row">
       <div class="row">
         <% group.each do |team| %>
           <div class="col-md-6">
-            <span><%= team %></span>
+            <h4><span><%= team %></span></h4>
           </div>
         <% end %>
       </div>
@@ -25,6 +28,7 @@
     <hr/>
   <% end %>
   <% if current_user && can_guess_ball? %>
-    <input id="guess_ball_submit_btn" type="submit" value="go"></input> 
+    <input id="guess_ball_submit_btn" type="submit" value="试试看咯"></input> 
   <% end %>
 <% end %>
+</div>

@@ -56,5 +56,11 @@ require "markdown"
 
 I18n.locale = 'zh-CN'
 
+class ActiveSupport::TimeWithZone
+  def format_to_readable
+    strftime("%Y-%m-%d %H:%M:%S")
+  end
+end
+
 
 
