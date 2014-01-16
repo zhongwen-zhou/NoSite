@@ -1,0 +1,30 @@
+<div class="section-colored">
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-6">
+        <h2>宣战大贴</h2>
+        <ul>
+          <% Bbs::Node.where(:name => '宣战').first.topics.each do |topic| %>
+            <li>
+              <%= link_to topic.title, bbs_topic_path(topic), :target => '_blank' %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6">
+        <h2>战况热播</h2>
+        <ul>
+          <% Bbs::Node.where(:name => '战况').first.topics.each do |topic| %>
+            <li>
+              <%= link_to topic.title, bbs_topic_path(topic), :target => '_blank' %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div><!-- /.row -->
+
+  </div><!-- /.container -->
+
+</div><!-- /.section-colored -->

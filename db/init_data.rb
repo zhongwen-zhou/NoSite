@@ -1,5 +1,6 @@
 public_section = Bbs::Section.create(:name => '公共', :sort => 0)
 war_section = Bbs::Section.create(:name => '宣战', :sort => 1)
+zk_section = Bbs::Section.create(:name => '战况', :sort => 2)
 
 (1..20).each do |index|
 	User.create(:login => "user_#{index}", 
@@ -25,6 +26,16 @@ gs_node = public_section.nodes.create(:name => '灌水',
 												:excellent => index % 2)
 end
 
+zk_node = zk_section.nodes.create(:name => '战况',
+							:summary => '你想要的战况这里都有……',
+							:sort => 1)
+
+(1..5).each do |index|
+	zk_node.topics.create(:user_id => index,
+												:title => "战况热播，战争非常的激烈啊#{index}",
+												:body => "战况热播，战争非常的激烈啊\n 战况热播，战争非常的激烈啊\n 大家就随便灌水咯\n 大家就随便灌水咯",
+												:excellent => index % 2)
+end
 
 gl_node = public_section.nodes.create(:name => '攻略',
 							:summary => '你想要的这里都有……',

@@ -1,4 +1,22 @@
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="container">
+<div id="messages_div" class="container">
 <% @messages.each do |message| %>
-	<%= message.created_at %>
-	<%= message.content %>
+	<%= render('message/messages/item', :message => message) %>
 <% end %>
+</div>
+<%= form_for([@league, Message.new], :remote => true, :html => {:onsubmit => 'return validate_content()'}) do |form| %>
+	<%= form.text_area :content %>
+	<%= form.submit '发送' %>
+<% end %>
+</div>
+<script type="text/javascript">
+  function validate_content(){
+  	alert('no ok');
+  	return true;
+  	// return false;
+  }
+</script>

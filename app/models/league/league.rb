@@ -54,7 +54,7 @@ class League::League
 
   def league_messages
     communication = Message::Communication.where(:league => self).first
-    communication.messages
+    communication.try(:messages) || []
   end
 
 end

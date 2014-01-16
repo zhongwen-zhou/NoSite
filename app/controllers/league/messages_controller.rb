@@ -1,6 +1,7 @@
 class League::MessagesController < ApplicationController
   def create
-		@league = League::League.find(params[:id])
+  	league_id = params[:league_id] || params[:id]
+		@league = League::League.find(league_id)
     @league.send_group_message(params[:content]) unless params[:content].strip.nil?
   end
 
