@@ -38,7 +38,7 @@
             </a>
             <ul class="dropdown-menu">
               <li>
-              <%= image_tag('uploads/image/201312/010.png', :class => "img-circle") %>
+              <%#= image_tag('uploads/image/201312/010.png', :class => "img-circle") %>
                 金币：<%= current_user.coins %>
                 <br/>
                 等级：<%= current_user.level %>
@@ -46,7 +46,7 @@
                 <div id="sign_today_div">
                 <% if sign_today? %>
                   您已签到！
-                <% else %>
+                <% elsif current_user.league %>
                   <%= button_to '今日签到', sign_today_league_league_path(current_user.league), :method => :put, :remote => :true %>
                 <% end %>                  
                 </div>

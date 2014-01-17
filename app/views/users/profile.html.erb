@@ -13,13 +13,44 @@
     <!-- Tab panes -->
     <div class="tab-content">
       <div class="tab-pane active" id="info">
-        <%= image_tag(current_user.avatar_url) %>
-        <%= current_user.login %>
+        <%= image_tag(current_user.avatar_image) %><br/>
+        平台帐号: <%= current_user.login %><br/>
+        等级：<%= current_user.level %><br/>
+        金币：<%= current_user.coins %><br/>
+        <% if league = current_user.league %>
+        <div>
+          <%= image_tag(league.logo_url) %>
+          <%= link_to league.name, league_league_path(league) %><br/>
+          工会等级：<%= league.level %><br/>
+          工会帮主：<%= link_to league.president_name, user_path(league.president) %><br>
+          工会副帮主：<%= link_to league.president_name, user_path(league.president) %><br>
+          帮众数量：<%= league.members_count %><br/>
+          工会宣言：<%= league.declaration %>
+        </div>
+        <% end %>
       </div>
       <div class="tab-pane" id="update">
-        <%= form_for(current_user) do |form| %>
-        
-        <% end %>
+        <ul id="user_updateTab" class="nav nav-tabs">
+          <li><a href="#basic_info" data-toggle="tab">基本信息</a></li>
+          <li><a href="#password" data-toggle="tab">修改密码</a></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="basic_info">
+            <%= form_for(current_user) do |form| %>
+              帐号：<%= current_user.login %> <small>帐号不可更改</small><br/>
+              昵称：<%= form.text_field :name %>
+              <%= form.submit %>
+            <% end %>
+          </div>
+          <div class="tab-pane" id="password">
+            <%= form_for(current_user) do |form| %>
+              当前密码：<%= form.password_field :password %><br/>
+              新密码：<%= password_field_tag :new_password %><br/>
+              确认新密码：<%= password_field_tag :new_confirm_password %><br/>
+              <%= form.submit %>
+            <% end %>
+          </div>
+        </div>
       </div>
       <div class="tab-pane" id="messages">
         已装备徽章

@@ -1,3 +1,4 @@
+<% if false %>
 <%= render "menu" %>
 
 <div class="content">
@@ -24,3 +25,61 @@
 
 </div>
 <%= render "sidebar", :user => @user %>
+<% end %>
+<%= render('ads/ad_hf_01') %>
+
+<!-- Nav tabs -->
+<div class="row">
+  <div class="col-md-2 col-md-offset-1">
+    <ul id="leagueTab" class="nav nav-stacked nav-pills">
+      <li><a href="#info" data-toggle="tab">基本信息</a></li>
+      <li><a href="#update" data-toggle="tab">工会信息</a></li>
+      <li><a href="#messages" data-toggle="tab">我的帖子</a></li>
+    </ul>
+  </div>
+  <div class="col-md-8 col-md-offset-1">
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div class="tab-pane active" id="info">
+        <%= image_tag(@user.avatar_image) %><br/>
+        平台帐号: <%= @user.login %><br/>
+        等级：<%= @user.level %><br/>
+        金币：<%= @user.coins %><br/>
+      </div>
+      <div class="tab-pane" id="update">
+        <% if league = @user.league %>
+          <div>
+            <%= image_tag(league.logo_url) %>
+            <%= link_to league.name, league_league_path(league) %><br/>
+            工会等级：<%= league.level %><br/>
+            工会帮主：<%= link_to league.president_name, user_path(league.president) %><br>
+            工会副帮主：<%= link_to league.president_name, user_path(league.president) %><br>
+            帮众数量：<%= league.members_count %><br/>
+            工会宣言：<%= league.declaration %>
+          </div>
+        <% else %>
+          还没有加入任何工会的自由人！
+        <% end %>
+      </div>
+      <div class="tab-pane" id="messages">
+        <ul>
+          <% @topics.each do |topic| %>
+            <li>
+              [<%= link_to topic.node_name, bbs_node_topics_path(topic.node_id), :target => '_blank' %>]
+              <%= link_to topic.title, bbs_topic_path(topic), :target => '_blank' %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<% content_for :scripts do %>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('#leagueTab').tab();
+    });
+  </script>
+<% end %>

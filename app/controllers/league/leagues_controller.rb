@@ -22,7 +22,6 @@ class League::LeaguesController < ApplicationController
   end
 
   def show
-    @article = Article.find(params[:id])
   end
 
   def ask_for_join

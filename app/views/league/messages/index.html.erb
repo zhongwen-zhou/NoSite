@@ -5,7 +5,8 @@
 <div class="container">
 <div id="messages_div" class="container">
 <% @messages.each do |message| %>
-	<%= render('message/messages/item', :message => message) %>
+	<%= message.content %>
+	<%#= render('message/messages/item', :message => message) %>
 <% end %>
 </div>
 <%= form_for([@league, Message.new], :remote => true, :html => {:onsubmit => 'return validate_content()'}) do |form| %>

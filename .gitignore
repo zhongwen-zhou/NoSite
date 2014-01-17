@@ -9,6 +9,9 @@ capybara-*.html
 /log/*
 /tmp/*
 /public/system/*
+/public/article/*
+/public/badge/*
+/public/league/*
 /coverage/
 /spec/tmp/*
 **.orig

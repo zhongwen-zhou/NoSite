@@ -2,12 +2,26 @@
 <link rel="stylesheet" href="http://blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
 <link rel="stylesheet" href="css/bootstrap-image-gallery.min.css">
 
+<style type="text/css">
+.blueimp-gallery > .description {
+  position: absolute;
+  top: 30px;
+  left: 15px;
+  color: #fff;
+  display: none;
+}
+.blueimp-gallery-controls > .description {
+  display: block;
+}
+</style>
+
 <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
 <div id="blueimp-gallery" class="blueimp-gallery">
     <!-- The container for the modal slides -->
     <div class="slides"></div>
     <!-- Controls for the borderless lightbox -->
     <h3 class="title"></h3>
+    <p class="description"></p>
     <a class="prev">‹</a>
     <a class="next">›</a>
     <a class="close">×</a>
@@ -25,10 +39,10 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left prev">
                         <i class="glyphicon glyphicon-chevron-left"></i>
-                        Previous
+                        上一张
                     </button>
                     <button type="button" class="btn btn-primary next">
-                        Next
+                        下一张
                         <i class="glyphicon glyphicon-chevron-right"></i>
                     </button>
                 </div>
@@ -41,19 +55,19 @@
   <div id="links" class="row">
 
     <div class="col-md-4 portfolio-item">
-      <a href="init_data/images/pic_walls/pic_wall_big_1.jpg" title="Banana" data-gallery>
+      <a href="init_data/images/pic_walls/pic_wall_big_1.jpg" title="Banana"  data-description="This is a banana." data-gallery>
         <img src="init_data/images/pic_walls/pic_wall_1.png" alt="Banana">
       </a>
     </div>
 
     <div class="col-md-3 col-md-offset-1 portfolio-item">
-      <a href="init_data/images/pic_walls/pic_wall_big_2.jpg" title="Apple" data-gallery>
+      <a href="init_data/images/pic_walls/pic_wall_big_2.jpg" title="Apple"  data-description="This is a banana." data-gallery>
           <img src="init_data/images/pic_walls/pic_wall_2.png" alt="Apple">
       </a>      
     </div>
 
     <div class="col-md-3 col-md-offset-1 portfolio-item">
-      <a href="init_data/images/pic_walls/pic_wall_big_3.jpg" title="Orange" data-gallery>
+      <a href="init_data/images/pic_walls/pic_wall_big_3.jpg" title="Orange"  data-description="This is a banana." data-gallery>
           <img src="init_data/images/pic_walls/pic_wall_3.png" alt="Orange">
       </a>
     </div>
@@ -64,3 +78,18 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
 <script src="js/bootstrap-image-gallery.min.js"></script>
+<script type="text/javascript">
+blueimp.Gallery(
+    document.getElementById('links'),
+    {
+        onslide: function (index, slide) {
+            var text = this.list[index].getAttribute('data-description'),
+                node = this.container.find('.description');
+            node.empty();
+            if (text) {
+                node[0].appendChild(document.createTextNode(text));
+            }
+        }
+    }
+);
+</script>

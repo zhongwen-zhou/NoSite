@@ -26,14 +26,11 @@
     </div>
     <%= render('articles_list') %>
     <div class="col-lg-4 col-md-4">
-      <p>
+      <ul>
       <% ::Bbs::Topic.excellent.limit(6).each do |topic| %>
-        <li>
-          [<%= link_to topic.node_name, bbs_node_topics_path(topic.node_id), :target => '_blank' %>]
-          <%= link_to topic.title, bbs_topic_path(topic), :target => '_blank' %>
-        </li>
+        <%= render('bbs/share/topic_item', :topic => topic) %>
       <% end %>
-      </p>
+      </ul>
     </div>
   </div><!-- /.row -->
 </div><!-- /.section -->
@@ -46,30 +43,7 @@
       <div class="col-lg-8 text-center">
 
       <% @leagues.each do |league| %>
-      <div class="col-lg-4 col-md-4 col-sm-6">
-        <div>
-          <span>
-            <strong><%= league.name %></strong>
-            <img src="<%= league.logo_url %>" width="60" height="60" class="img-circle" />
-            <%= button_to '加入工会', ask_for_join_league_league_path(league), :method => :put, :remote => true if current_user && current_user.can_join_league?(league) %>
-            &nbsp;
-            <br/>
-            <span>帮主：<%= league.president_name %></span>
-          </span>
-          <p>
-            等级：<span><%= league.level %></span>
-            人数：<span><%= league.members_count %></span>
-          </p>
-          <p>
-            宣言： &nbsp;<%= league.declaration %>
-          </p>
-        </div>
-      </div>
-      <% end %>
-      <% (6-@leagues.count).times do %>
-      <div class="col-lg-4 col-md-4 col-sm-6">
-        <a href="portfolio-item.html"><img class="img-responsive img-home-portfolio" src="uploads/image/201312/700_450.gif"></a>
-      </div>
+        <%= render('league/share/item', :league => league) %>
       <% end %>
       </div>
     </div><!-- /.row -->

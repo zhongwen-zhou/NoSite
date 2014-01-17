@@ -442,4 +442,9 @@ class User
     self.guess_balls = "#{Date.current.to_s}@#{value}"
   end
 
+  def avatar_image
+    return league.logo_url if league
+    "/avatar.png"
+  end
+
 end

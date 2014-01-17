@@ -78,3 +78,9 @@ end
 											:logo => File.open("db/images/leagues/league_#{index}.png")})
 	league.add_member(User.find(20-index), false).positive!
 end
+
+User.all.each do |user|
+	Badge.all.each_with_index do |badge, index|
+		BadgeWinner.create(:user => user, :badge => badge, :status => index % 2)
+	end
+end

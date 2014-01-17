@@ -49,13 +49,19 @@ module UsersHelper
       return image_tag("avatar/#{size}.png", :class => "uface")
     end
 
-    if user[:avatar].blank?
-      default_url = asset_path("avatar/#{size}.png")
-      img_src = "#{Setting.gravatar_proxy}/avatar/#{user.login}.png?s=#{width * 2}&d=404"
-      img = image_tag(img_src, :class => "uface", :style => "width:#{width}px;height:#{width}px;")
+    if user.league
+      img = image_tag(user.league.logo_url)
     else
-      img = image_tag(user.avatar.url(user_avatar_size_name_for_2x(size)), :class => "uface", :style => "width:#{width}px;height:#{width}px;")
+      img = image_tag('/avatar.png')
     end
+
+    # if user[:avatar].blank?
+    #   default_url = asset_path("avatar/#{size}.png")
+    #   img_src = "#{Setting.gravatar_proxy}/avatar/#{user.login}.png?s=#{width * 2}&d=404"
+    #   img = image_tag(img_src, :class => "uface", :style => "width:#{width}px;height:#{width}px;")
+    # else
+    #   img = image_tag(user.avatar.url(user_avatar_size_name_for_2x(size)), :class => "uface", :style => "width:#{width}px;height:#{width}px;")
+    # end
 
     if link
       raw %(<a href="#{user_path(user.login)}">#{img}</a>)

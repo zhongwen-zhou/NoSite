@@ -5,9 +5,9 @@
 <div class="row">
   <div class="col-md-2 col-md-offset-1">
     <ul id="leagueTab" class="nav nav-stacked nav-pills">
-      <li><a href="#info" data-toggle="tab">联盟简介</a></li>
+      <li class="active"><a href="#info" data-toggle="tab">工会信息</a></li>
       <li><a href="#desc" data-toggle="tab">创建条件</a></li>
-      <li><a href="#messages" data-toggle="tab">奖励机制</a></li>
+      <li><a href="#messages" data-toggle="tab">工会消息</a></li>
       <% if current_user.try(:league) %>
         <li>
           <a href="#my_league" data-toggle="tab">我的联盟</a>
@@ -19,13 +19,28 @@
     <!-- Tab panes -->
     <div class="tab-content">
       <div class="tab-pane active" id="info">
-        我们将通过免费定期为公会做新闻及媒体宣传，建立公会专区，提供免费空间，举办线下活动等方式促进公会的发展及壮大。同时开展同其他各游戏公会、各游戏组织之间的友谊与合作，争取玩家利益最大化，保护弱势群体,支持普通游戏玩家为自身利益的维权行动。联盟也将组织会员广泛开展各种健康有益的活动，互相学习、互相沟通，不断提高联盟内部各会员之间的团结。 
+        <span><%= image_tag(@league.logo_url) %><strong><%= @league.name %></strong></span><br/>
+        <span>帮主：<strong><%= @league.president.name %></strong></span><br/>
+        <span>等级：<strong><%= @league.level %></strong></span><br/>
+        <span>成员数：<strong><%= @league.members_count %></strong></span><br/>
+        <span>宣言：<strong><%= @league.declaration %></strong></span>
       </div>
       <div class="tab-pane" id="desc">
         公会联盟的原则为：信任、团结、平等、发展、友爱、公正。
       </div>
       <div class="tab-pane" id="messages">
-        公会门户，由一群热爱网络游戏和游戏公会的游戏人、行业人和公会人共同建立，是致力于服务公会类网游、游戏公 会和游戏玩家的门户网站。在众多公会玩家及游戏厂商的支持下，拥有众多合作公会，同大量游戏厂商展开广泛合作，努力成为国内最专业 的骨灰玩家聚散地。
+        <div id="messages_div" class="container">
+          <% current_user.league.league_messages.each do |message| %>
+            <%= message.content %>
+            <%#= render('message/messages/item', :message => message) %>
+          <% end %>
+        </div>
+        <% if can_send_message?(@league) %>
+          <%= form_for([@league, Message.new], :remote => true, :html => {:onsubmit => 'return validate_content()'}) do |form| %>
+            <%= form.text_area :content %>
+            <%= form.submit '发送' %>
+          <% end %>
+        <% end %>
       </div>
       <% if current_user.try(:league) %>
       <div class="tab-pane" id="my_league">
@@ -48,7 +63,7 @@
 
           <!-- Tab panes -->
           <div class="tab-content">
-            <div class="tab-pane" id="profile">
+            <div class="tab-pane active" id="profile">
               <span>工会名：<strong><%= @league.name %></strong></span><br/>
               <span>帮主：<strong><%= @league.president.name %></strong></span><br/>
               <span>等级：<strong><%= @league.level %></strong></span><br/>
@@ -57,7 +72,7 @@
               <span>宣言：<strong><%= @league.declaration %></strong></span>
             </div>
             <% if @league.president == current_user %>
-              <div class="tab-pane active" id="news">
+              <div class="tab-pane" id="news">
                 <% @league.members.asking.each do |member| %>
                   <%= member.user.login %> &nbsp;&nbsp;申请加入工会！
                   <%= button_to '同意', agree_join_league_league_path(@league, :member_id => member), :method => :put, :remote => :ture %>
@@ -65,7 +80,7 @@
               </div>
             <% end %>
             <% if @league.president == current_user %>
-              <div class="tab-pane active" id="welfares">
+              <div class="tab-pane" id="welfares">
                 <%= form_tag( welfare_league_league_path(@league), :remote => :true, :class => "form-inline") do |f| %>
                   <div class="form-group">
                     <label class="sr-only" for="exampleInputEmail2">
@@ -77,7 +92,7 @@
                 <% end %>
               </div>
             <% end %>
-            <div class="tab-pane active" id="members">
+            <div class="tab-pane" id="members">
               <ul class="nav nav-pills">
                 <% @league.members.official.each do |member| %>
                 <li class="dropdown">
@@ -110,9 +125,9 @@
               </ul>
             </div>
             <div class="tab-pane" id="settings">
-              <%= form_tag(league_league_messages_path(@league), :remote => true) do |form| %>
-                <textarea name="content"></textarea>
-                <input type="submit" value="send"/>
+              <%= form_for([@league, Message.new], :remote => true) do |form| %>
+                <%= form.text_area :content %>
+                <%= form.submit '发送' %>
               <% end %>
             </div>
           </div>

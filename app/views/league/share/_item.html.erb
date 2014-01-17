@@ -1,0 +1,19 @@
+<div class="col-lg-4 col-md-4 col-sm-6">
+  <div>
+    <span>
+      <strong><%= link_to league.name, league_league_path(league) %></strong>
+      <img src="<%= league.logo_url %>" width="60" height="60" class="img-circle" />
+      <%= button_to '加入工会', ask_for_join_league_league_path(league), :method => :put, :remote => true if current_user && current_user.can_join_league?(league) %>
+      &nbsp;
+      <br/>
+      <span>帮主：<%= league.president_name %></span>
+    </span>
+    <p>
+      等级：<span><%= league.level %></span>
+      人数：<span><%= league.members_count %></span>
+    </p>
+    <p>
+      宣言： &nbsp;<%= league.declaration %>
+    </p>
+  </div>
+</div>

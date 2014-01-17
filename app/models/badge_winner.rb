@@ -6,7 +6,7 @@ class BadgeWinner
 
   field :status, :type => Integer, :default => 0
 
-  belongs_to :use
+  belongs_to :user
   belongs_to :badge
 
   scope :wore, where(:status => 1)
