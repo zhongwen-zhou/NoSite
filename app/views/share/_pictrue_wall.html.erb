@@ -2,18 +2,6 @@
 <link rel="stylesheet" href="http://blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
 <link rel="stylesheet" href="css/bootstrap-image-gallery.min.css">
 
-<style type="text/css">
-.blueimp-gallery > .description {
-  position: absolute;
-  top: 30px;
-  left: 15px;
-  color: #fff;
-  display: none;
-}
-.blueimp-gallery-controls > .description {
-  display: block;
-}
-</style>
 
 <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
 <div id="blueimp-gallery" class="blueimp-gallery">
@@ -37,6 +25,7 @@
                 </div>
                 <div class="modal-body next"></div>
                 <div class="modal-footer">
+                    <div class="modal-desc"></div>
                     <button type="button" class="btn btn-default pull-left prev">
                         <i class="glyphicon glyphicon-chevron-left"></i>
                         上一张
@@ -79,17 +68,7 @@
 <script src="http://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
 <script src="js/bootstrap-image-gallery.min.js"></script>
 <script type="text/javascript">
-blueimp.Gallery(
-    document.getElementById('links'),
-    {
-        onslide: function (index, slide) {
-            var text = this.list[index].getAttribute('data-description'),
-                node = this.container.find('.description');
-            node.empty();
-            if (text) {
-                node[0].appendChild(document.createTextNode(text));
-            }
-        }
-    }
-);
+// $(function(){
+
+// });
 </script>

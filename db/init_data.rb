@@ -19,7 +19,7 @@ gs_node = public_section.nodes.create(:name => '灌水',
 							:summary => '随意灌……',
 							:sort => 0)
 
-(1..5).each do |index|
+(1..10).each do |index|
 	gs_node.topics.create(:user_id => index,
 												:title => "大家就随便灌水咯_#{index}",
 												:body => "大家就随便灌水咯\n 大家就随便灌水咯\n 大家就随便灌水咯\n 大家就随便灌水咯",
@@ -41,7 +41,7 @@ gl_node = public_section.nodes.create(:name => '攻略',
 							:summary => '你想要的这里都有……',
 							:sort => 1)
 
-(1..5).each do |index|
+(1..10).each do |index|
 	gl_node.topics.create(:user_id => index,
 												:title => "喜欢啥游戏说啥游戏咯_#{index}",
 												:body => "喜欢啥游戏说啥游戏咯\n 喜欢啥游戏说啥游戏咯\n 喜欢啥游戏说啥游戏咯\n 喜欢啥游戏说啥游戏咯",

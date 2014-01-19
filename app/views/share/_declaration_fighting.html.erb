@@ -7,7 +7,9 @@
         <h2>宣战大贴</h2>
         <ul>
           <% Bbs::Node.where(:name => '宣战').first.topics.each do |topic| %>
-            <%= render('bbs/share/topic_item', :topic => topic) %>
+            <li>
+            <%= link_to topic.title, bbs_topic_path(topic), :target => '_blank' %>
+            </li>
           <% end %>
         </ul>
       </div>

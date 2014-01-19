@@ -27,7 +27,7 @@
     <%= render('articles_list') %>
     <div class="col-lg-4 col-md-4">
       <ul>
-      <% ::Bbs::Topic.excellent.limit(6).each do |topic| %>
+      <% ::Bbs::Topic.where(:node_id.in => [1,3]).excellent.limit(10).each do |topic| %>
         <%= render('bbs/share/topic_item', :topic => topic) %>
       <% end %>
       </ul>
