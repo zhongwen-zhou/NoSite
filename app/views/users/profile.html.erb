@@ -17,6 +17,7 @@
         平台帐号: <%= current_user.login %><br/>
         等级：<%= current_user.level %><br/>
         金币：<%= current_user.coins %><br/>
+        推荐码：<%= current_user.private_token %><br/>
         <% if league = current_user.league %>
         <div>
           <%= image_tag(league.logo_url) %>
