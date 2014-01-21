@@ -52,7 +52,7 @@ module UsersHelper
     if user.league
       img = image_tag(user.league.logo_url)
     else
-      img = image_tag('/avatar.png')
+      img = image_tag('/avatar.png', :width => 50, :height => 50)
     end
 
     # if user[:avatar].blank?
