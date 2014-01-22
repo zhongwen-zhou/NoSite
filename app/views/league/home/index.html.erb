@@ -19,20 +19,23 @@
     <!-- Tab panes -->
     <div class="tab-content">
       <div class="tab-pane active" id="info">
+        <% unless @league.new_record? %>
         <span><%= image_tag(@league.logo_url) %><strong><%= @league.name %></strong></span><br/>
         <span>帮主：<strong><%= @league.president.name %></strong></span><br/>
         <span>等级：<strong><%= @league.level %></strong></span><br/>
         <span>成员数：<strong><%= @league.members_count %></strong></span><br/>
         <span>宣言：<strong><%= @league.declaration %></strong></span>
+        <% end %>
       </div>
       <div class="tab-pane" id="desc">
         公会联盟的原则为：信任、团结、平等、发展、友爱、公正。
       </div>
       <div class="tab-pane" id="messages">
         <div id="messages_div" class="container">
+          <% if current_user && current_user.league %>
           <% current_user.league.league_messages.each do |message| %>
             <%= message.content %>
-            <%#= render('message/messages/item', :message => message) %>
+          <% end %>
           <% end %>
         </div>
         <% if can_send_message?(@league) %>
