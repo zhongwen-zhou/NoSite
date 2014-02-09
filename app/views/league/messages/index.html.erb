@@ -8,10 +8,10 @@
 	<%= message.content %>
 <% end %>
 </div>
-<%= form_for([@league, Message.new], :remote => true) do |form| %>
-	<%= form.text_area :content %>
-	<%= form.submit '发送' %>
-<% end %>
+            <%= form_for(Message::Message.new, :url => league_league_messages_path(@league), :remote => true, :html => {:onsubmit => 'return validate_content()'}) do |form| %>
+              <%= form.text_area :content %>
+              <%= form.submit '发送' %>
+            <% end %>
 </div>
 <script type="text/javascript">
   // function validate_content(){

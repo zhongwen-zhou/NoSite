@@ -1,6 +1,6 @@
 # coding: utf-8
 # 留言
-class Message
+class Messagex
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::BaseModel

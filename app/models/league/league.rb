@@ -44,7 +44,8 @@ class League::League
   end
 
   def send_group_message(content)
-    communication = Message::Communication.create(:league => self)
+    communication = Message::Communication.where(:league => self).first
+    communication ||= Message::Communication.create(:league => self)
     self.members.each do |member|
       Message::Message.create(:content => content,
                               :receiver => member,
