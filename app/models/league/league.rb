@@ -15,6 +15,7 @@ class League::League
   field :coins, :type => Integer, :default => 0
   field :president_name
   has_many :members, :class_name => 'League::Member', :dependent => :destroy, :autosave => true
+  has_many :messages, :class_name => 'League::Message', :dependent => :destroy, :autosave => true
   belongs_to :president, :class_name => 'User'
 
   mount_uploader :logo, League::LogoUploader
@@ -44,18 +45,6 @@ class League::League
   end
 
   def send_group_message(content)
-    communication = Message::Communication.where(:league => self).first
-    communication ||= Message::Communication.create(:league => self)
-    self.members.each do |member|
-      Message::Message.create(:content => content,
-                              :receiver => member,
-                              :communication => communication)
-    end
+    messages.create(:content => content)
   end
-
-  def league_messages
-    communication = Message::Communication.where(:league => self).first
-    communication.try(:messages) || []
-  end
-
 end

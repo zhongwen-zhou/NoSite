@@ -1,6 +1,4 @@
-<div class="row">
-  <h1>广告</h1>
-</div>
+<%= render('ads/ad_hf_01') %>
 <div class="row">
   <div class="col-md-3">
     
@@ -13,7 +11,7 @@
 
   </div>
   <div class="col-md-4">
-    
+    <%= notice_message %>
     <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
       <fieldset>
         <legend><%= t("common.login") %></legend>

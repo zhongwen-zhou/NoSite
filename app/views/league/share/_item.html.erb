@@ -3,7 +3,7 @@
     <span>
       <strong><%= link_to league.name, league_league_path(league) %></strong>
       <img src="<%= league.logo_url %>" width="60" height="60" class="img-circle" />
-      <%= button_to '加入工会', ask_for_join_league_league_path(league), :method => :put, :remote => true if current_user && current_user.can_join_league?(league) %>
+      <%= button_to '加入工会', ask_for_join_league_league_path(league), :method => :put, :remote => true, :class => 'join_league_btn' if current_user && current_user.can_join_league?(league) %>
       &nbsp;
       <br/>
       <span>帮主：<%= league.president_name %></span>

@@ -41,7 +41,7 @@
       <span class="opts">
       </span>
       <div>
-          <% reply.user.badge_winners.each do |badge_winner| %>
+          <% reply.user.badge_winners.wore.each do |badge_winner| %>
             <%= image_tag(badge_winner.badge.photo_url, :width => 50, :height => 50) %>
           <% end %>
       </div>

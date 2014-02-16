@@ -3,15 +3,17 @@
 <br/>
 <br/>
 <div class="container">
-<div id="messages_div" class="container">
-<% @messages.each do |message| %>
-	<%= message.content %>
-<% end %>
-</div>
-            <%= form_for(Message::Message.new, :url => league_league_messages_path(@league), :remote => true, :html => {:onsubmit => 'return validate_content()'}) do |form| %>
-              <%= form.text_area :content %>
-              <%= form.submit '发送' %>
-            <% end %>
+	<div id="messages_div" class="container">
+	<% @messages.each do |message| %>
+		<%= message.content %>
+	<% end %>
+	</div>
+	<% if can_publish_message?(@league) %>
+	  <%= form_for([:league, @message], :remote => true) do |form| %>
+	  	<%= form.text_area :content %>
+	    <%= form.submit '发送' %>
+	  <% end %>
+  <% end %>
 </div>
 <script type="text/javascript">
   // function validate_content(){

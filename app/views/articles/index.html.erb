@@ -18,7 +18,7 @@
 
   <div class="row">
 
-    <div class="col-md-1">
+    <div class="col-md-2">
       <p><i class="fa fa-camera fa-4x"></i></p>
       <p><%= article.created_at.format_to_readable %></p>
     </div>
@@ -27,7 +27,7 @@
         <%= image_tag(article.illustration_url) %>
       </a>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-5">
       <h3>
         <%= link_to article.title, article_path(article) %>
       </h3>

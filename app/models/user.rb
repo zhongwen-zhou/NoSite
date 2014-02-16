@@ -83,6 +83,7 @@ class User
   value :signed
   value :guess_balls
 
+
   def email_required?
     false
   end
@@ -192,6 +193,10 @@ class User
       when :member then self.state == STATE[:normal]
       else false
     end
+  end
+
+  before_create do |user|
+    user.private_token = (0...8).map { (65 + rand(26)).chr }.join
   end
 
   # before_create :default_value_for_create
