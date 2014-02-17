@@ -1,23 +1,95 @@
-<br/>
-<br/>
-<br/>
-<br/>
+<%= render('ads/ad_hf_01') %>
 <div class="container">
-	<div id="messages_div" class="container">
-	<% @messages.each do |message| %>
-		<%= message.content %>
-	<% end %>
-	</div>
-	<% if can_publish_message?(@league) %>
-	  <%= form_for([:league, @message], :remote => true) do |form| %>
-	  	<%= form.text_area :content %>
-	    <%= form.submit '发送' %>
-	  <% end %>
-  <% end %>
+	<div class="row-fluid">
+	  
+	  <div class="col-md-9">
+	    <div class="well">
+	      <h3>
+	      玩家站内信
+	      </h3>
+ 				<hr>
+	      <ul class="nav nav-tabs">
+	        <li>
+	        <%= link_to '私信', message_root_path %>
+	        </li>
+	        <li class="active">
+	        	<a href='#'>工会群聊天</a>
+	        </li>
+	      </ul>  
+	      <table class="table">
+	        <thead>
+	          <tr>
+	            <th class="span2">发信人</th>
+	            <th class="span6">内容</th>
+	            <th class="span2">聊天时间</th>
+	          </tr>
+	        </thead>
+	        <tbody>
+		        <% @messages.each do |message| %>
+	            <tr class="message_list">
+		            <td>
+			            <a href="#9">
+								    <%= @league.name %>
+		              </a>
+		            </td>
+		            <td>
+		            	<a href="#">
+		            	<%= message.content %>
+		          		</a>
+		            </td>
+		            <td>
+			            <small>
+		              	<%= message.try(:created_at).try(:format_to_readable) %>
+		              </small>
+		            </td>
+		          </tr>
+						<% end %>
+	        </tbody>
+	      </table>
+	      <div class="page_nav">
+		    <%= will_paginate @messages, :page_links => false, :container => false %>
+	      	<!-- 
+	      	<span>共17条数据</span> <span>共2页</span>&nbsp;<strong>1</strong>&nbsp;<a href="http://www.ycpai.com/active/message/2">2</a>&nbsp;<a href="http://www.ycpai.com/active/message/2">下一页</a>&nbsp;  
+	      	-->
+	    	</div>
+	    </div>
+	  </div>
+
+  	<div class="col-md-3">
+	  	<%= image_tag('/init_data/images/ads/ad_message_01.png') %>
+	  </div>
+
+	  <br/>
+	  <br/>
+	  <br/>
+
+	  <div class="col-md-3 well">
+			<% if can_publish_message?(@league) %>
+			  <%= form_for([:league, @message], :remote => true) do |form| %>
+			  	<%= form.text_area :content, :size => "26x7" %>
+			  	<br/><br/>
+			    <%= form.submit '发送' %>
+			  <% end %>
+		  <% end %>
+	  </div>
+	</div> 
 </div>
+
+<% content_for :scripts do %>
 <script type="text/javascript">
-  // function validate_content(){
-  	// return true;
-  	// return false;
-  // }
+  $(function(){
+    $("#new_league_message").validate({
+      rules: {
+        'league_message[content]': {
+          required: true
+        }
+      },
+      messages: {
+        'league_message[content]': {
+          required: "请输入内容"
+        }
+      }
+    });
+  });
 </script>
+<% end %>

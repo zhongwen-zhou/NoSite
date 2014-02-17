@@ -37,7 +37,7 @@
         </ul>
         <div class="tab-content">
           <div class="tab-pane active" id="basic_info">
-            <%= form_for(current_user) do |form| %>
+            <%= form_for(current_user, :remote => true) do |form| %>
               帐号：<%= current_user.login %> <small>帐号不可更改</small><br/>
               昵称：<%= form.text_field :name %>
               <%= form.submit %>

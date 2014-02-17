@@ -26,6 +26,10 @@ class UsersController < ApplicationController
     # drop_breadcrumb(@user.login)
   end
 
+  def update
+    current_user.set(:name => params[:user][:name])
+  end
+
   def topics
     @topics = @user.topics.recent.paginate(:page => params[:page], :per_page => 30)
     drop_breadcrumb(@user.login, user_path(@user.login))

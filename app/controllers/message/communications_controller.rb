@@ -7,4 +7,11 @@ class Message::CommunicationsController < ApplicationController
     @message = Message::Message.new
     redirect_to message_messages_path(communication)
   end
+
+
+  def destroy
+  	communication = Message::Communication.find(params[:id])
+  	communication.destroy
+  	return redirect_to message_root_path
+  end  
 end
