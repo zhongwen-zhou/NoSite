@@ -10,4 +10,5 @@ class BadgeWinner
   belongs_to :badge
 
   scope :wore, where(:status => 1)
+  scope :unware, where(:status => 0)
 end

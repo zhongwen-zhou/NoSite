@@ -55,16 +55,16 @@
       </div>
       <div class="tab-pane" id="messages">
         已装备徽章
-        <div>
+        <div id="wore_badges">
           <% current_user.badge_winners.wore.each do |badge_winner| %>
-            <%= image_tag(badge_winner.badge.photo_url, :width => 50, :height => 50) %>
+            <%= image_tag(badge_winner.badge.photo_url, :width => 50, :height => 50, :class => :wore) %>
           <% end %>
         </div>
         <br/>
-        所有徽章
-        <div>
-          <% current_user.badge_winners.each do |badge_winner| %>
-            <%= image_tag(badge_winner.badge.photo_url, :width => 50, :height => 50) %>
+        徽章仓库
+        <div id="unware_badges">
+          <% current_user.badge_winners.unware.each do |badge_winner| %>
+            <%= image_tag(badge_winner.badge.photo_url, :width => 50, :height => 50, :class => :unware) %>
           <% end %>
         </div>
       </div>
@@ -77,6 +77,20 @@
   <script type="text/javascript">
     $(document).ready(function(){
       $('#leagueTab').tab();
+
+      $('.unware').on('dblclick', function(){
+        var item = $(this);
+        item.removeClass('unware');
+        item.addClass('wore');
+        $('#wore_badges').append($(this));
+      });
+
+      $('.wore').on('dblclick', function(){
+        var item = $(this);
+        item.removeClass('wore');
+        item.addClass('unware');
+        $('#unware_badges').append($(this));
+      });      
     });
   </script>
 <% end %>
