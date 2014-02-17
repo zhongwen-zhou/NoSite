@@ -1,6 +1,6 @@
 /*
- * blueimp Gallery jQuery plugin 1.2.2
- * https://github.com/blueimp/Gallery
+ * Bootstrap Image Gallery 3.0.1
+ * https://github.com/blueimp/Bootstrap-Image-Gallery
  *
  * Copyright 2013, Sebastian Tschan
  * https://blueimp.net
@@ -9,7 +9,7 @@
  * http://www.opensource.org/licenses/MIT
  */
 
-/* global define, window, document */
+/*global define, window */
 
 (function (factory) {
     'use strict';
@@ -27,58 +27,64 @@
 }(function ($, Gallery) {
     'use strict';
 
-    // Global click handler to open links with data-gallery attribute
-    // in the Gallery lightbox:
-    $(document).on('click', '[data-gallery]', function (event) {
-        // Get the container id from the data-gallery attribute:
-        var id = $(this).data('gallery'),
-            widget = $(id),
-            container = (widget.length && widget) ||
-                $(Gallery.prototype.options.container),
-            callbacks = {
-                onopen: function () {
-                    container
-                        .data('gallery', this)
-                        .trigger('open');
-                },
-                onopened: function () {
-                    container.trigger('opened');
-                },
-                onslide: function () {
-                    container.trigger('slide', arguments);
-                },
-                onslideend: function () {
-                    container.trigger('slideend', arguments);
-                },
-                onslidecomplete: function () {
-                    container.trigger('slidecomplete', arguments);
-                },
-                onclose: function () {
-                    container.trigger('close');
-                },
-                onclosed: function () {
-                    container
-                        .trigger('closed')
-                        .removeData('gallery');
-                }
-            },
-            options = $.extend(
-                // Retrieve custom options from data-attributes
-                // on the Gallery widget:
-                container.data(),
-                {
-                    container: container[0],
-                    index: this,
-                    event: event
-                },
-                callbacks
-            ),
-            // Select all links with the same data-gallery attribute:
-            links = $('[data-gallery="' + id + '"]');
-        if (options.filter) {
-            links = links.filter(options.filter);
+    $.extend(Gallery.prototype.options, {
+        useBootstrapModal: true
+    });
+
+    var close = Gallery.prototype.close,
+        imageFactory = Gallery.prototype.imageFactory,
+        videoFactory = Gallery.prototype.videoFactory,
+        textFactory = Gallery.prototype.textFactory;
+
+    $.extend(Gallery.prototype, {
+
+        modalFactory: function (obj, callback, factoryInterface, factory) {
+            if (!this.options.useBootstrapModal || factoryInterface) {
+                return factory.call(this, obj, callback, factoryInterface);
+            }
+            var that = this,
+                modalTemplate = this.container.children('.modal'),
+                modal = modalTemplate.clone().show()
+                    .on('click', function (event) {
+                        // Close modal if click is outside of modal-content:
+                        if (event.target === modal[0] ||
+                                event.target === modal.children()[0]) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                            that.close();
+                        }
+                    }),
+                element = factory.call(this, obj, function (event) {
+                    callback({
+                        type: event.type,
+                        target: modal[0]
+                    });
+                    modal.addClass('in');
+                    modal.css('overflow-y','hidden');
+                }, factoryInterface);
+            modal.find('.modal-title').text(element.title || String.fromCharCode(160));
+            modal.find('.modal-body').append(element);
+            modal.find('.modal-desc').text($(element).data('desc'));
+            return modal[0];
+        },
+
+        imageFactory: function (obj, callback, factoryInterface) {
+            return this.modalFactory(obj, callback, factoryInterface, imageFactory);
+        },
+
+        videoFactory: function (obj, callback, factoryInterface) {
+            return this.modalFactory(obj, callback, factoryInterface, videoFactory);
+        },
+
+        textFactory: function (obj, callback, factoryInterface) {
+            return this.modalFactory(obj, callback, factoryInterface, textFactory);
+        },
+
+        close: function () {
+            this.container.find('.modal').removeClass('in');
+            close.call(this);
         }
-        return new Gallery(links, options);
+
     });
 
 }));
