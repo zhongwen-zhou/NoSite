@@ -123,9 +123,15 @@ NoSite::Application.routes.draw do
   get "users" => "users#index", as: 'users'
   resources :users do
     member do
-      # get :topics
       get :favorites
       get :notes
+
+    end
+    resources :badges, :only => [] do
+      member do
+        post :garb
+        post :off
+      end
     end
   end
 

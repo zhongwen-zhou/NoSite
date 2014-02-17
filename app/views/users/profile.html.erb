@@ -57,14 +57,14 @@
         已装备徽章
         <div id="wore_badges">
           <% current_user.badge_winners.wore.each do |badge_winner| %>
-            <%= image_tag(badge_winner.badge.photo_url, :width => 50, :height => 50, :class => :wore) %>
+            <%= image_tag(badge_winner.badge.photo_url, :width => 50, :height => 50, :'data-wore' => true, :'data-badge-id' => badge_winner.id, :class => 'badge_item') %>
           <% end %>
         </div>
         <br/>
         徽章仓库
         <div id="unware_badges">
           <% current_user.badge_winners.unware.each do |badge_winner| %>
-            <%= image_tag(badge_winner.badge.photo_url, :width => 50, :height => 50, :class => :unware) %>
+            <%= image_tag(badge_winner.badge.photo_url, :width => 50, :height => 50, :'data-wore' => false, :'data-badge-id' => badge_winner.id, :class => 'badge_item') %>
           <% end %>
         </div>
       </div>
@@ -78,19 +78,22 @@
     $(document).ready(function(){
       $('#leagueTab').tab();
 
-      $('.unware').on('dblclick', function(){
+      $('.badge_item').on('dblclick', function(){
         var item = $(this);
-        item.removeClass('unware');
-        item.addClass('wore');
-        $('#wore_badges').append($(this));
+        if(item.attr('data-wore') == 'true'){
+          var url = "/users/<%= current_user.id %>/badges/"+$(this).attr('data-badge-id')+"/off.js";
+          $.post(url, null, function(){
+            $('#unware_badges').append(item);
+            item.attr('data-wore', 'false')
+          });
+        }else{
+          var url = "/users/<%= current_user.id %>/badges/"+$(this).attr('data-badge-id')+"/garb.js";
+          $.post(url, null, function(){
+            $('#wore_badges').append(item);
+            item.attr('data-wore', 'true')
+          });
+        }
       });
-
-      $('.wore').on('dblclick', function(){
-        var item = $(this);
-        item.removeClass('wore');
-        item.addClass('unware');
-        $('#unware_badges').append($(this));
-      });      
     });
   </script>
 <% end %>
