@@ -30,7 +30,7 @@
       <div class="tab-pane" id="messages">
         <div id="messages_div" class="container">
           <% if current_user && current_user.league %>
-            <% current_user.league.each do |message| %>
+            <% current_user.league.messages.each do |message| %>
               <%= message.content %>
             <% end %>
           <% end %>
