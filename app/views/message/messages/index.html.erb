@@ -1,20 +1,29 @@
-<br/>
-<br/>
-<br/>
-<br/>
 <div class="container">
-<div id="messages_div" class="container">
-<% @messages.each do |message| %>
-	<%= render('message/messages/item', :message => message) %>
-<% end %>
+	<div id="messages_div" class="container">
+	<% @messages.each do |message| %>
+		<%= render('message/messages/item', :message => message) %>
+	<% end %>
+	</div>
+	<%= form_for(@message, :remote => true) do |form| %>
+		<%= form.text_area :content %>
+		<%= form.submit '发送' %>
+	<% end %>
 </div>
-<%= form_for(@message, :remote => true, :html => {:onsubmit => 'return validate_content()'}) do |form| %>
-	<%= form.text_area :content %>
-	<%= form.submit '发送' %>
-<% end %>
-</div>
+<% content_for :scripts do %>
 <script type="text/javascript">
-  function validate_content(){
-  	return false;
-  }
+  $(function(){
+    $("#new_message_message").validate({
+      rules: {
+        'message_message[content]': {
+          required: true
+        }
+      },
+      messages: {
+        'message_message[content]': {
+          required: "请输入内容"
+        }
+      }
+    });
+  });
 </script>
+<% end %>
