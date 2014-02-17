@@ -30,9 +30,36 @@
         </div>
       </fieldset>
     <% end %> 
-
   </div>
   <div class="col-md-3 col-md-offset-2">
     <%= render :partial => "devise/shared/links" %>
   </div>
 </div>
+<% content_for :scripts do %>
+<script type="text/javascript">
+  $(function(){
+    $("#new_user").validate({
+      rules: {
+        'user[login]': {
+          required: true,
+          minlength: 5
+        },
+        'user[password]': {
+          required: true,
+          minlength: 6
+        }
+      },
+      messages: {
+        'user[login]': {
+          required: "请输入用户名",
+          minlength: "用户名不能小于5个字符"
+        },
+        'user[password]': {
+          required: "请输入密码",
+          minlength: "密码不能小于5个字符"
+        }
+      }
+    });
+  });
+</script>
+<% end %>

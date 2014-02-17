@@ -129,8 +129,8 @@ module ApplicationHelper
   end
 
   def can_guess_ball?
-    return true if current_user.guess_balls.nil?
-    return false if current_user.guess_balls.get().split('@')[0] == Date.current.to_s
+    # return true if current_user.guess_balls.value.empty?
+    # return false if current_user.guess_balls.get().split('@')[0] == Date.current.to_s
     return true
   end
 

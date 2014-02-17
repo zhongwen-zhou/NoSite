@@ -2,6 +2,7 @@
 #= require jquery_ujs
 #= require jquery.turbolinks
 #= require bootstrap_v3
+#= require bootbox.min
 #= require modern-business
 #= require will_paginate
 #= require jquery.timeago
@@ -12,6 +13,8 @@
 #= require jquery.html5-fileupload
 #= require social-share-button
 #= require jquery.atwho
+#= require jquery.validate.min
+#= require additional-methods.min
 #= require nprogress
 #= require emoji_list
 #= require faye

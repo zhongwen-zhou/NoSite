@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.where(:login => params[:id]).first || User.find(params[:id])
     @topics = @user.topics.limit(20)
     # 排除掉几个非技术的节点
     # without_node_ids = [21,22,23,31,49,51,57,25]
