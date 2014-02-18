@@ -34,16 +34,27 @@
     </footer>
   </div><!-- /.container -->
 
+<div style="position:fixed;right:0; width: 250px; height:215px; text-align:right; font-size:14px; line-height:22px; color:#000;" id="rb_ad">  
+<a href="javascript:close_rbad();" target="_self">关闭</a><br />  
+<%= image_tag('/init_data/images/ads/ad_message_01.png') %>
+</div>
+
     <%= yield :scripts %>
     <script type="text/javascript">
-      <% if current_user %>
         $(function(){
-          $.get('<%= notice_path %>', {}, function(data){
-            $('#rewards_count_span').text(data.rewards_count);
-            $('#messages_count_span').text(data.messages_count);
-          });
+          <% if current_user %>
+              $.get('<%= notice_path %>', {}, function(data){
+                $('#rewards_count_span').text(data.rewards_count);
+                $('#messages_count_span').text(data.messages_count);
+              });
+          <% end %>
         });
-      <% end %>
+
+        $('#rb_ad').css('top', document.documentElement.scrollTop+document.documentElement.clientHeight-215)
+        function close_rbad(){
+          $('#rb_ad').remove();
+        } 
+
     </script>
 
 <!--
