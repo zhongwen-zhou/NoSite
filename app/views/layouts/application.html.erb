@@ -11,6 +11,7 @@
     <title>蕉点享乐科技</title>
     <%#= stylesheet_link_tag "web", "data-turbolinks-track" => true %>
     <%= stylesheet_link_tag "web", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "web", "data-turbolinks-track" => true %>
     <%= csrf_meta_tag %>
   </head>
 
@@ -32,8 +33,6 @@
       </div>
     </footer>
   </div><!-- /.container -->
-
-  <%= javascript_include_tag "web", "data-turbolinks-track" => true %>
 
     <%= yield :scripts %>
     <script type="text/javascript">
