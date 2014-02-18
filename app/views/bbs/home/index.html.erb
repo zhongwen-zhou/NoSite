@@ -30,7 +30,7 @@
   <script type="text/javascript">
     $(document).ready(function(){
     	<% unless current_user %>
-	    	$('#loginModal').modal();
+	    	$('#loginModal').modal({backdrop : 'static'});
     	<% end %>
     });
   </script>
