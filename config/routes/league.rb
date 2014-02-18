@@ -16,6 +16,7 @@ NoSite::Application.routes.draw do
 	  		post :welfare
 	  		put :ask_for_join
 	  		put :agree_join
+	  		put :refuse_join
 	  		put :sign_today
 	  	end
 	  end

@@ -33,6 +33,10 @@ class League::LeaguesController < ApplicationController
     @league.members.find(params[:member_id]).positive!
   end
 
+  def refuse_join
+    @league.members.find(params[:member_id]).destroy
+  end
+
   def sign_today
     current_user.sign_today!
   end

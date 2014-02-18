@@ -1,11 +1,17 @@
 
 <%= render('ads/ad_hf_01') %>
 
+<style type="text/css">
+  .league_message{ 
+    background-color: #DAEAF9;border-radius: 4px; padding: 5px 
+  }
+</style>
+
 <% unless current_user.try(:league) %>
   <div class="row">
     <div class="col-md-8 col-md-offset-3">
       <div class="jumbotron">
-        <h1>创建你的联盟吧！</h1>
+        <h1>创建你的工会联盟吧！</h1>
         <p>
         <div >
 
@@ -22,7 +28,7 @@
               <textarea name="league_league[declaration]"></textarea>
 
               <p>
-                <label>Logo</label>
+                <label>工会旗帜</label>
                 <%= f.file_field :logo %>
                 <%= f.hidden_field :logo_cache %>
               </p>
@@ -38,10 +44,44 @@
     </div>
   </div>
 
+  <% content_for :scripts do %>
+    <script type="text/javascript">
+      $(function(){
+        $("#new_league_league").validate({
+          rules: {
+            'league_league[name]': {
+              required: true,
+              minlength: 5
+            },
+            'league_league[declaration]': {
+              required: true,
+              minlength: 6
+            },
+            'league_league[logo]': {
+              required: true
+            } 
+          },
+          messages: {
+            'league_league[name]': {
+              required: "请输入工会名",
+              minlength: "用户名不能小于5个字符"
+            },
+            'league_league[declaration]': {
+              required: "工会宣言",
+              minlength: "密码不能小于6个字符"
+            },
+            'league_league[logo]': {
+              required: "请选择工会旗帜"
+            }
+          }
+        });
+      });
+    </script>
+  <% end %>
+
 <% else %>
-
-
-
+  <% league = current_user.league %>
+  <% is_admin = league.president_id == current_user.id %>
   <!-- Nav tabs -->
   <div class="row">
     <div class="col-md-2 col-md-offset-1">
@@ -49,7 +89,7 @@
         <li class="active"><a href="#info" data-toggle="tab">工会信息</a></li>
         <li><a href="#messages" data-toggle="tab">工会消息</a></li>
         <li><a href="#members" data-toggle="tab">工会成员</a></li>
-        <% if current_user.try(:league) %>
+        <% if is_admin %>
           <li>
             <a href="#my_league" data-toggle="tab">我的联盟</a>
           </li>
@@ -62,9 +102,9 @@
         <div class="tab-pane active" id="info">
           <% unless @league.new_record? %>
           <span><%= image_tag(@league.logo_url) %><strong><%= @league.name %></strong></span><br/>
-          <span>帮主：<strong><%= @league.president.name %></strong></span><br/>
+          <span>帮主：<strong><%= @league.president_name %></strong></span><br/>
           <span>等级：<strong><%= @league.level %></strong></span><br/>
-          <span>成员数：<strong><%= @league.members_count %></strong></span><br/>
+          <span>成员数：<strong><%= @league.members.official.count %></strong></span><br/>
           <span>宣言：<strong><%= @league.declaration %></strong></span>
           <% end %>
         </div>
@@ -72,7 +112,12 @@
           <div id="messages_div" class="container">
             <% if current_user && current_user.league %>
               <% current_user.league.messages.each do |message| %>
-                <%= message.content %>
+                <p class="league_message">
+                  <%= message.content %>  &nbsp;&nbsp;&nbsp;
+                  <small>
+                    <%= message.created_at.format_to_readable %>
+                  </small>
+                </p>
               <% end %>
             <% end %>
           </div>
@@ -90,24 +135,26 @@
                   <li class="dropdown">
                     <a id="drop4" role="button" data-toggle="dropdown" href="#">
                       <%= member.user.name %>
-                      <% if member.id != current_user.id %>
+                      <% if member.user_id != current_user.id %>
                         <b class="caret"></b>
                       <% end %>
                     </a>
-                    <% if member.id != current_user.id %>
+                    <% if member.user_id != current_user.id %>
                     <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
                       <li role="presentation">
                         <%= link_to '交流', start_message_communications_path(:user_id => member.user_id) %>
                       </li>
-                      <li role="presentation" class="divider"></li>
-                      <li role="presentation">
-                        <%= link_to '设为副会长', league_league_member_set_vice_president_path(@league, member), :remote => true if member.role == 0 %>
-                        <%= link_to '取消副会长', league_league_member_canel_vice_president_path(@league, member), :remote => true if member.role == 1 %>
-                      </li>
-                      <li role="presentation">
-                        <%= link_to '设为指挥', league_league_member_set_conductor_path(@league, member), :remote => true if member.role == 0 %>
-                        <%= link_to '取消指挥', league_league_member_canel_conductor_path(@league, member, :remote => true) if member.role == 2 %>
-                      </li>
+                      <% if is_admin %>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation">
+                          <%= link_to '设为副会长', league_league_member_set_vice_president_path(@league, member), :remote => true if member.role == 0 %>
+                          <%= link_to '取消副会长', league_league_member_canel_vice_president_path(@league, member), :remote => true if member.role == 1 %>
+                        </li>
+                        <li role="presentation">
+                          <%= link_to '设为指挥', league_league_member_set_conductor_path(@league, member), :remote => true if member.role == 0 %>
+                          <%= link_to '取消指挥', league_league_member_canel_conductor_path(@league, member, :remote => true) if member.role == 2 %>
+                        </li>
+                      <% end %>
                       </li>
                     </ul>
                     <% end %>
@@ -117,92 +164,45 @@
                 </ul>
 
         </div>      
-        <% if current_user.try(:league) %>
-        <div class="tab-pane" id="my_league">
-          <% if @league.new_record? %>
-            网游资讯，大陆资讯、海外资讯、活动资讯、游戏八卦、人物专访、游戏产业
-          <% else %>
-
+        <% if is_admin %>
+          <div class="tab-pane" id="my_league">
             <!-- Nav tabs -->
             <ul id="my_league" class="nav nav-tabs">
-              <li><a href="#profile" data-toggle="tab">Profile</a></li>
-              <% if @league.president == current_user %>
-                <li><a href="#news" data-toggle="tab">消息</a></li>
-              <% end %>
-              <% if @league.president == current_user %>
-                <li><a href="#welfares" data-toggle="tab">福利</a></li>
-              <% end %>
-              <li><a href="#members" data-toggle="tab">成员</a></li>
-              <li><a href="#settings" data-toggle="tab">工会群消息</a></li>
+              <li><a href="#news" data-toggle="tab">消息</a></li>
+              <li><a href="#welfares" data-toggle="tab">福利</a></li>
             </ul>
 
             <!-- Tab panes -->
             <div class="tab-content">
-              <div class="tab-pane active" id="profile">
-                <span>工会名：<strong><%= @league.name %></strong></span><br/>
-                <span>帮主：<strong><%= @league.president.name %></strong></span><br/>
-                <span>等级：<strong><%= @league.level %></strong></span><br/>
-                <span>旗帜：<%= image_tag(@league.logo_url) %></span><br/>
-                <span>成员数：<strong><%= @league.members_count %></strong></span><br/>
-                <span>宣言：<strong><%= @league.declaration %></strong></span>
-              </div>
-              <% if @league.president == current_user %>
-                <div class="tab-pane" id="news">
-                  <% @league.members.asking.each do |member| %>
-                    <%= member.user.login %> &nbsp;&nbsp;申请加入工会！
-                    <%= button_to '同意', agree_join_league_league_path(@league, :member_id => member), :method => :put, :remote => :ture %>
-                  <% end %>
-                </div>
-              <% end %>
-              <% if @league.president == current_user %>
-                <div class="tab-pane" id="welfares">
-                  <%= form_tag( welfare_league_league_path(@league), :remote => :true, :class => "form-inline") do |f| %>
-                    <div class="form-group">
-                      <label class="sr-only" for="exampleInputEmail2">
-                        金币福利
-                      </label>
-                      <input type="text" class="form-control" id="exampleInputEmail2" name="coins" placeholder="输入发放的金币">
+              <div class="tab-pane active" id="news">
+                <% @league.members.asking.each do |member| %>
+                  <div class="row">
+                    <div class="col-md-8">
+                    <%= link_to member.user.name, user_path(member.user) %> &nbsp;&nbsp;申请加入工会！
                     </div>
-                    <button type="submit" class="btn btn-default">确定</button>
-                  <% end %>
-                </div>
-              <% end %>
-              <div class="tab-pane" id="members">
-                <ul class="nav nav-pills">
-                  <% @league.members.official.each do |member| %>
-                  <li class="dropdown">
-                    <a id="drop4" role="button" data-toggle="dropdown" href="#">
-                      <%= member.user.name %>
-                      <% if member.id != current_user.id %>
-                        <b class="caret"></b>
-                      <% end %>
-                    </a>
-                    <% if member.id != current_user.id %>
-                    <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
-                      <li role="presentation">
-                        <%= link_to '交流', start_message_communications_path(:user_id => member.user_id) %>
-                      </li>
-                      <li role="presentation" class="divider"></li>
-                      <li role="presentation">
-                        <%= link_to '设为副会长', league_league_member_set_vice_president_path(@league, member), :remote => true if member.role == 0 %>
-                        <%= link_to '取消副会长', league_league_member_canel_vice_president_path(@league, member), :remote => true if member.role == 1 %>
-                      </li>
-                      <li role="presentation">
-                        <%= link_to '设为指挥', league_league_member_set_conductor_path(@league, member), :remote => true if member.role == 0 %>
-                        <%= link_to '取消指挥', league_league_member_canel_conductor_path(@league, member, :remote => true) if member.role == 2 %>
-                      </li>
-                      </li>
-                    </ul>
-                    <% end %>
-                  </li>
-
-                  <% end %>
-                </ul>
+                    
+                    <div class="col-md-2">
+                    <%= button_to '同意', agree_join_league_league_path(@league, :member_id => member), :class => "btn btn-success", :method => :put, :remote => :ture %>
+                    </div>
+                    <div class="col-md-2">
+                    <%= button_to '拒绝', refuse_join_league_league_path(@league, :member_id => member), :class => "btn btn-danger", :method => :put, :remote => :ture %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+              <div class="tab-pane" id="welfares">
+                <%= form_tag( welfare_league_league_path(@league), :remote => :true, :id => 'welfare_form', :class => "form-inline") do |f| %>
+                  <div class="form-group">
+                    <label class="sr-only" for="exampleInputEmail2">
+                      金币福利
+                    </label>
+                    <input type="text" class="form-control" id="exampleInputEmail2" name="coins" placeholder="输入发放的金币">
+                  </div>
+                  <button type="submit" class="btn btn-info">确定</button>
+                <% end %>
               </div>
             </div>
-
-          <% end %>
-        </div>
+          </div>
         <% end %>
       </div>
     </div>
@@ -221,6 +221,24 @@
     	<% end %>
       $('#leagueTab').tab();
       $('#my_league').tab();
+
+      $("#welfare_form").validate({
+        rules: {
+          'coins': {
+            required: true,
+            digits: true,
+            min: 10
+          }
+        },
+        messages: {
+          'coins': {
+            required: "不能为空！",
+            digits: "请输入整数",
+            min: "不能小于10"
+          }
+        }
+      });
+
     });
   </script>
 <% end %>

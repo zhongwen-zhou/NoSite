@@ -396,14 +396,15 @@ class User
 
 
   def can_join_league?(league)
-    # result = false
-    count = League::Member.where(:league => league, :user => self, :status => 1).count
-    # join_league_status == 0
-    if join_league_status == 0 && count ==0
-      true
-    else
-      false
-    end
+    League::Member.where(:user => self).empty?
+    # # result = false
+    # count = League::Member.where(:league => league, :user => self, :status => 1).count
+    # # join_league_status == 0
+    # if join_league_status == 0 && count ==0
+    #   true
+    # else
+    #   false
+    # end
   end
 
   def create_league(league_params)

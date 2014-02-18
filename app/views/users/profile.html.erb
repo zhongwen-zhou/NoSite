@@ -94,6 +94,23 @@
           });
         }
       });
+
+
+      $("#edit_user_<%= current_user.id %>").validate({
+        rules: {
+          'user[name]': {
+            required: true,
+            minlength: 5
+          }
+        },
+        messages: {
+          'user[name]': {
+            required: "请输入用户名",
+            minlength: "用户名不能小于5个字符"
+          }
+        }
+      });
+
     });
   </script>
 <% end %>
