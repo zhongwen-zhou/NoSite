@@ -48,7 +48,7 @@ module NoSite
     
     config.assets.precompile += %w(application.css app.js topics.css topics.js window.css front.css cpanel.css
         users.css pages.css pages.js notes.css notes.js 
-        mobile.css home.css)
+        mobile.css home.css web.js web.css)
   end
 end
 
