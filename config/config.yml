@@ -38,3 +38,4 @@ test:
 
 production:
   <<: *defaults
+  upload_url: "http://wolf-howl.me"
