@@ -1,14 +1,38 @@
+<style type="text/css">
+  .chat_ul{list-style: none outside none; margin: 10px}
+  .chat_ul li{ margin: 10px 5px;}
+  .chat_ul .chat_time{ font-size:8px; color:gray; margin-bottom: 0px}
+  .chat_left{ float: left; padding-right: 10%}
+  .chat_left .chat_content{ background-color: #DAEAF9;border-radius: 4px; padding: 5px}
+  .chat_right{ float: right; padding-left: 10%}
+  .chat_right .chat_content{background-color: #E7E7E9;border-radius: 4px;padding: 5px;}
+  .chat_content{font-size:14px;}
+  
+</style>
+
 <%= render('ads/ad_hf_01') %>
+
 <div class="container">
-	<div id="messages_div" class="container">
-	<% @messages.each do |message| %>
-		<%= render('message/messages/item', :message => message) %>
-	<% end %>
-	</div>
-	<%= form_for(@message, :remote => true) do |form| %>
-		<%= form.text_area :content %>
-		<%= form.submit '发送' %>
-	<% end %>
+
+  <div class="row-fluid">
+    <div class="col-md-9">
+      <div class="well">
+        <div id="messages_div" class="container">
+      	<% @messages.each do |message| %>
+      		<%= render('message/messages/item', :message => message) %>
+      	<% end %>
+      	</div>
+      </div>
+        <%= form_for(@message, :remote => true) do |form| %>
+          <%= form.text_area :content, :size => '80x6' %>
+          <%= form.submit '发送' %>
+        <% end %>
+    </div>
+
+    <div class="col-md-3">
+      <%= image_tag('/init_data/images/ads/ad_message_01.png') %>
+    </div>
+  </div>
 </div>
 <% content_for :scripts do %>
 <script type="text/javascript">

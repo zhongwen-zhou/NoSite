@@ -1,9 +1,15 @@
 <% is_sender = message.sender == current_user %>
-<div class="row">
-	<div class="col-md-4 <%= 'col-md-offset-3' if is_sender %>">
-		<%= is_sender ? '我' : message.sender.name %>说： <small><%= message.created_at.format_to_readable %></small>
-		<p>
-			<%= message.content %>
-		</p>
-	</div>
-</div>
+
+<li>
+	<div class=" old_list <%= is_sender ? 'chat_right' : 'chat_left' %>">
+		<p class="chat_time">
+	    <small>
+	    	<%= message.created_at.format_to_readable %>
+	    </small>
+	    </p>
+    <p class="chat_content line_break">
+    	<%= message.content %>
+    </p>
+  </div>
+  <div style="clear: both"></div>
+</li>
