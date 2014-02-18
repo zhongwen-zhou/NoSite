@@ -1,15 +1,12 @@
----
 address: 0.0.0.0
 pid: tmp/pids/thin.pid
 timeout: 120
-port: 7000
+port: 9000
 log: log/thin.log
-max_conns: 20480
+max_conns: 2048
 require: []
 
-max_persistent_conns: 4048
+max_persistent_conns: 2000
 environment: production
-servers: 2
+servers: 1
 daemonize: true
-chdir: /home/ruby/www/ruby-china/current
-
