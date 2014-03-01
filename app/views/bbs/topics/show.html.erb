@@ -80,7 +80,7 @@
     </div>
   <% end %>
 
-  <% if current_user %>
+  <% if current_user && can_publish_reply?(@topic) %>
     <div id="reply" class="form box">
       <% if can? :create, ::Bbs::Reply %>
         <%= render "editor_toolbar" %>
@@ -102,13 +102,23 @@
       <% end %>
     </div>
   <% else %>
-      <%= render :partial => "topics/translation/need_login_to_reply" %>
+      <%#= render :partial => "topics/translation/need_login_to_reply" %>
   <% end %>
 </div>
 
 <% if !mobile? %>
   <div class="sidebar">
-    <%= render "sidebar_box_node_new_topic" %>
+    <% if can_publish_topic?(@topic.node) %>
+      <%= render "sidebar_box_node_new_topic" %>
+    <% else %>
+
+      <div class="box">
+        <div class="btn-group">
+          只有工会的发言人才能在宣战频道发帖！
+        </div>
+      </div>
+
+    <% end %>
     <%= render_cell 'Bbs::Topics', :tips %>
     <%= render_cell 'Bbs::Topics', :sidebar_for_node_recent_topics, { :topic => @topic} %>
   </div>

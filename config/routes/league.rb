@@ -9,9 +9,11 @@ NoSite::Application.routes.draw do
 
 	  	resources :members, :only => [] do
 	  		get :set_vice_president
-	  		get :canel_vice_president
+	  		get :cancel_vice_president
 	  		get :set_conductor
-	  		get :canel_conductor
+	  		get :cancel_conductor
+			get :set_spokesman
+	  		get :cancel_spokesman
 	  	end
 
 	  	resources :messages, :only => [:index, :create]

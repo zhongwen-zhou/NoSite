@@ -148,12 +148,17 @@
                         <li role="presentation" class="divider"></li>
                         <li role="presentation">
                           <%= link_to '设为副会长', league_league_member_set_vice_president_path(@league, member), :remote => true if member.role == 0 %>
-                          <%= link_to '取消副会长', league_league_member_canel_vice_president_path(@league, member), :remote => true if member.role == 1 %>
+                          <%= link_to '取消副会长', league_league_member_cancel_vice_president_path(@league, member), :remote => true if member.role == 1 %>
                         </li>
                         <li role="presentation">
                           <%= link_to '设为指挥', league_league_member_set_conductor_path(@league, member), :remote => true if member.role == 0 %>
-                          <%= link_to '取消指挥', league_league_member_canel_conductor_path(@league, member, :remote => true) if member.role == 2 %>
+                          <%= link_to '取消指挥', league_league_member_cancel_conductor_path(@league, member), :remote => true if member.role == 2 %>
                         </li>
+
+                        <li role="presentation">
+                          <%= link_to '设为发言人', league_league_member_set_spokesman_path(@league, member), :remote => true if member.role == 0 %>
+                          <%= link_to '取消发言人', league_league_member_cancel_spokesman_path(@league, member), :remote => true if member.role == 3 %>
+                        </li>                        
                       <% end %>
                       </li>
                     </ul>

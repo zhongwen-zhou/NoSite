@@ -1,2 +1,4 @@
+<% if can_publish_topic?(@node) %>
 <%= render "sidebar_box_node_new_topic" %>
+<% end %>
 <%= raw SiteConfig.topic_index_sidebar_html %>
