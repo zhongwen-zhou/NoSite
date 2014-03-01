@@ -1,4 +1,4 @@
 (function(){
 	$('#league_message_content').val('');
-	$('#messages_div').append("<%= params[:league_message][:content] %>")
+	$('#messages_div').append("<%= j render('league_message_item', :message => @message) %>");
 })();

@@ -2,7 +2,7 @@ class League::MessagesController < ApplicationController
   def create
   	league_id = params[:league_id] || params[:id]
 		@league = League::League.find(league_id)
-    @league.send_group_message(params[:league_message][:content]) unless params[:league_message][:content].strip.nil?
+    @message = @league.send_group_message(params[:league_message][:content], current_user) unless params[:league_message][:content].strip.nil?
   end
 
   def index

@@ -3,6 +3,10 @@ NoSite::Application.routes.draw do
 	  root :to => "home#index"
 	  resources :leagues do
 
+	  	collection do
+	  		get :search
+	  	end
+
 	  	resources :members, :only => [] do
 	  		get :set_vice_president
 	  		get :canel_vice_president

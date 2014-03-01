@@ -2,8 +2,17 @@
 class League::LeaguesController < ApplicationController
   # layout :false
 
-  before_filter :except => [:create] do
+  before_filter :except => [:create, :index, :search] do
     @league = League::League.find(params[:id])
+  end
+
+  def index
+    @leagues = League::League.all.desc(:activity)
+  end
+
+  def search
+    keyword = params[:keyword]
+    @leagues = League::League.where(:name => /#{keyword}/)
   end
 
   def new

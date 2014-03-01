@@ -24,25 +24,9 @@
 	            <th class="span2">聊天时间</th>
 	          </tr>
 	        </thead>
-	        <tbody>
+	        <tbody id="messages_div">
 		        <% @messages.each do |message| %>
-	            <tr class="message_list">
-		            <td>
-			            <a href="#9">
-								    <%= @league.name %>
-		              </a>
-		            </td>
-		            <td>
-		            	<a href="#">
-		            	<%= message.content %>
-		          		</a>
-		            </td>
-		            <td>
-			            <small>
-		              	<%= message.try(:created_at).try(:format_to_readable) %>
-		              </small>
-		            </td>
-		          </tr>
+		        	<%= render('league_message_item', :message => message) %>
 						<% end %>
 	        </tbody>
 	      </table>
@@ -64,12 +48,12 @@
 	  <br/>
 
 	  <div class="col-md-3 well">
-			<% if can_publish_message?(@league) %>
 			  <%= form_for([:league, @message], :remote => true) do |form| %>
 			  	<%= form.text_area :content, :size => "26x7" %>
 			  	<br/><br/>
 			    <%= form.submit '发送' %>
 			  <% end %>
+			<% if can_publish_message?(@league) %>
 		  <% end %>
 	  </div>
 	</div> 

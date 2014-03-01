@@ -13,7 +13,8 @@ class League::League
   field :level, :type => Integer, :default => 1
   field :experience, :type => Integer, :default => 0
   field :coins, :type => Integer, :default => 0
-  field :president_name
+  field :activity, :type => Integer, :default => 1
+  field :president_name, :type => String
   has_many :members, :class_name => 'League::Member', :dependent => :destroy, :autosave => true
   has_many :messages, :class_name => 'League::Message', :dependent => :destroy, :autosave => true
   belongs_to :president, :class_name => 'User'
@@ -44,7 +45,7 @@ class League::League
     end
   end
 
-  def send_group_message(content)
-    messages.create(:content => content)
+  def send_group_message(content, user)
+    messages.create(:content => content, :sender => user)
   end
 end

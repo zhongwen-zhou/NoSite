@@ -6,4 +6,5 @@ class League::Message
   field :content
   field :status, :type => Integer, :default => 0
   belongs_to :league, :class_name => 'League::League'
+  belongs_to :sender, :class_name => 'User'
 end

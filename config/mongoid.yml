@@ -8,7 +8,7 @@ development:
     default:
       hosts:
         - 127.0.0.1:27017
-      database: ruby_china_dev
+      database: nosite_dev
 
 test:
   <<: *defaults

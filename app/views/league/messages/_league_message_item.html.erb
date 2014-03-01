@@ -1,0 +1,17 @@
+<tr class="message_list">
+    <td>
+        <a href="#9">
+				    <%= message.sender.name %>
+      </a>
+    </td>
+    <td>
+    	<a href="#">
+    	<%= message.content %>
+  		</a>
+    </td>
+    <td>
+        <small>
+      	<%= message.try(:created_at).try(:format_to_readable) %>
+      </small>
+    </td>
+</tr>
