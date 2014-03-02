@@ -3,6 +3,7 @@
 #= require jquery.turbolinks
 #= require bootstrap_v3
 #= require bootbox.min
+#= require respond
 #= require modern-business
 #= require will_paginate
 #= require jquery.timeago

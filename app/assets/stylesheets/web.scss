@@ -6,3 +6,8 @@
  */
 
  li{list-style:none;}
+
+ /*styles for 300 and up @ 16px!*/
+/* The max-width declaration below blocks this from ever working */
+@media only screen and (min-width: 480px){
+}
