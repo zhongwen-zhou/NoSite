@@ -1,7 +1,8 @@
 <%= render('ads/ad_hf_01') %>
 <div class="section">
   <div class="row">
-    <div class="col-lg-4 col-md-4">
+    <%= render('articles_list') %>
+    <div class="col-lg-5">
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
           <!-- Indicators -->
           <ol class="carousel-indicators">
@@ -24,14 +25,29 @@
           </div>
         </div>
     </div>
-    <%= render('articles_list') %>
-    <div class="col-lg-4 col-md-4 well">
-      <ul>
-      <% ::Bbs::Topic.where(:node_id.in => [1,3]).excellent.limit(7).each do |topic| %>
-        <%= render('bbs/share/topic_item', :topic => topic) %>
-      <% end %>
-      </ul>
+
+    <div class="col-lg-3">
+      <div class="panel panel-default">
+        <div class="panel-heading" style="background-color: #50b0c1; color: #ffffff; font-size: 16px;">
+          <div class="row">
+            <h3 class="panel-title col-md-9">
+              <%= link_to '社区', articles_path %>
+            </h3>
+            <h5 class="panel-title col-md-3">
+              <%= link_to '更多', articles_path %>
+            </h5>
+          </div>   
+        </div>  
+        <div class="panel-body" style="font-size: 12px;">
+          <ul style="margin: 0px; padding: 0px;">
+          <% ::Bbs::Topic.where(:node_id.in => [1,3]).excellent.limit(7).each do |topic| %>
+            <%= render('bbs/share/topic_item', :topic => topic) %>
+          <% end %>
+          </ul>
+        </div>
+      </div> 
     </div>
+
   </div><!-- /.row -->
 </div><!-- /.section -->
 <%= render('ads/ad_hf_01') %>

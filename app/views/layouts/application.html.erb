@@ -20,10 +20,10 @@
   <%= render('share/web_top_nav') %>
   <%= render('share/web_spread') if @share_content[:web_spread] %>
 
-  <div class="container">
+  <div class="container col-lg-8 col-lg-offset-2">
     <%= yield %>
   </div>
-  <div class="container">
+  <div class="container col-lg-8 col-lg-offset-2">
     <hr>
     <footer>
       <div class="row">
