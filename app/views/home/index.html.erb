@@ -1,3 +1,26 @@
+<style type="text/css">
+  .league_container_head {
+    height: 40px;
+    background-color: green;
+  }
+  .servertime_container_head {
+    height: 40px;
+    background-color: grey;
+  }
+  .servertime_item_name {
+    color: red;
+  }
+  .servertime_start_game {
+    width: 100px;
+    height: 30px;
+    background-color: red;
+  }
+  .guessball_team {
+    height: 35px;
+    background-color: green;
+  }
+</style>
+
 <%= render('ads/ad_hf_01') %>
 <div class="section">
   <div class="row">
@@ -30,10 +53,10 @@
       <div class="panel panel-default">
         <div class="panel-heading" style="background-color: #50b0c1; color: #ffffff; font-size: 16px;">
           <div class="row">
-            <h3 class="panel-title col-md-9">
+            <h3 class="panel-title col-md-7">
               <%= link_to '社区', articles_path %>
             </h3>
-            <h5 class="panel-title col-md-3">
+            <h5 class="panel-title col-md-5">
               <%= link_to '更多', articles_path %>
             </h5>
           </div>   
@@ -53,25 +76,29 @@
 <%= render('ads/ad_hf_01') %>
 <div class="section">
     <div class="row">
-      <div class="col-lg-4">
-        <%= render('sgames/guess_ball') %>
-      </div>
-      <div class="col-lg-8 text-center well">
-      <div class="row">
+      
+      <div class="col-lg-9">
+        <div class="row league_container_head">
+          <div style="float: left; margin-top: 10px;">工会</div>
 
-        <form action="<%= search_league_leagues_path %>" class="navbar-form navbar-left" role="search" method="get">
-          <div class="form-group">
-            <input name="keyword" type="text" class="form-control" placeholder="Search">
+          <div style="float: right;">
+            <form action="<%= search_league_leagues_path %>" class="navbar-form navbar-left" role="search" method="get">
+              <div class="form-group">
+                <input name="keyword" type="text" class="form-control" placeholder="Search">
+              </div>
+              <button type="submit" class="btn btn-default">搜索</button>
+              <%= link_to '所有工会', league_leagues_path %>
+            </form>
           </div>
-          <button type="submit" class="btn btn-default">Submit</button>
-          <%= link_to 'All Leagues', league_leagues_path %>
-        </form>
+        </div>
+        <div class="row">
+          <% @leagues.each do |league| %>
+            <%= render('league/share/item', :league => league) %>
+          <% end %>
+        </div>
       </div>
-      <div class="row text-center">
-        <% @leagues.each do |league| %>
-          <%= render('league/share/item', :league => league) %>
-        <% end %>
-      </div>
+      <div class="col-lg-3">
+        <%= render('sgames/guess_ball') %>
       </div>
     </div><!-- /.row -->
 </div><!-- /.section -->
@@ -81,15 +108,36 @@
 
 <%= render('ads/ad_hf_01') %>
 
-<%= render('servertimes/servertimes') %>
+<div class="row">
+  <div class="col-md-10">
+    <%= render('servertimes/servertimes') %>  
+  </div>
+
+  <div class="col-md-2">
+    <%= render('score/score_list') %>    
+  </div>
+</div>
+
+<%#= render('servertimes/servertimes') %>
+
+<%#= render('ads/ad_hf_01') %>
+
+<%#= render('score/score_list') %>
 
 <%= render('ads/ad_hf_01') %>
 
-<%= render('score/score_list') %>
 
-<%= render('ads/ad_hf_01') %>
+<div class="row">
+  <div class="col-md-9">
+    <%= render('share/declaration_fighting') %>
+  </div>
 
-<%= render('share/declaration_fighting') %>
+  <div class="col-md-3">
+    <%= render('share/fighting_live') %> 
+  </div>
+</div>
+
+<%#= render('share/declaration_fighting') %>
 
 <%= render('ads/ad_hf_01') %>
 

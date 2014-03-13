@@ -11,6 +11,12 @@
       </div>   
     </div>  
     <div class="panel-body">
+      <p>
+        <h4><a href="#">《DOTA》火女风采</a></h4>
+        <%= image_tag('/init_data/images/articles/top_01.png') %>
+        非常爱美网是韩国最高端的整形美容机构,对所选整形医院提供预约、翻译、监督等,确保指定代表院长、医师亲自实施。
+      </p>
+      <hr/>
       <% @articles.each do |article| %>
         <div class="row margin_5">
           <%= link_to article.title, article_path(article), :class => "col-md-12" %>

@@ -1,3 +1,4 @@
+<% if false %>
 <div class="section-colored">
 
   <div class="container">
@@ -28,3 +29,33 @@
   </div><!-- /.container -->
 
 </div><!-- /.section-colored -->
+<% end %>
+
+<div class="row">
+  <div class="servertime_container_head">
+    <h3 style="float:left;">战火燃烧</h3>
+    <h4 style="float:right;">更多</h4>
+  </div>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <td class="first">游戏名称</td>
+      <td>开服时间</td>
+      <td>服务器名</td>
+      <td>游戏类型</td>
+      <td>运营商</td>
+      <td>进行游戏</td>
+    </thead>
+    <tbody>
+      <% 4.times do %>
+        <tr>
+          <td class="servertime_item_name">古剑奇侠</td>
+          <td>16:40</td>
+          <td>双线358区</td>
+          <td>角色扮演</td>
+          <td>4399</td>
+          <td><a href="#" class="servertime_start_game">开始游戏</a></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div><!-- /.row -->

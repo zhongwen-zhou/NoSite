@@ -16,7 +16,6 @@
     </div>
   </div>
 </div>
-<% end %>
 
 <div class="section-colored">
 
@@ -41,3 +40,26 @@
   </div><!-- /.container -->
 
 </div><!-- /.section-colored -->
+<% end %>
+
+
+<div class="row">
+  <div class="score_container_head">
+    <h3 style="float:left;">积分墙</h3>
+  </div>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <td class="first">游戏名称</td>
+      <td>热门度</td>
+    </thead>
+    <tbody>
+      <% 2.times do %>
+        <tr>
+          <td class="score_item_name">古剑奇侠</td>
+          <td>10</td>
+          <td><a href="#" class="score_start_game">下载</a></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div><!-- /.row -->

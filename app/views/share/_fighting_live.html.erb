@@ -1,0 +1,19 @@
+<div class="panel panel-default">
+  <div class="panel-heading" style="background-color: #50b0c1; color: #ffffff; font-size: 16px;">
+    <div class="row">
+      <h3 class="panel-title col-md-7">
+        <%= link_to '激烈战况', articles_path %>
+      </h3>
+      <h5 class="panel-title col-md-5">
+        <%= link_to '更多', articles_path %>
+      </h5>
+    </div>   
+  </div>  
+  <div class="panel-body" style="font-size: 12px;">
+    <ul style="margin: 0px; padding: 0px;">
+    <% Bbs::Node.where(:name => '战况').first.topics.each do |topic| %>
+      <%= render('bbs/share/topic_item', :topic => topic) %>
+    <% end %>
+    </ul>
+  </div>
+</div> 
