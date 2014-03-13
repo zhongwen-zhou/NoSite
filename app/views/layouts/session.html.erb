@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <meta name="baidu-tc-cerfication" content="b74fb8b8a7e0d354da5b140d10e27113" />
+
+    <title>蕉点享乐科技</title>
+    <%#= stylesheet_link_tag "web", "data-turbolinks-track" => true %>
+    <%= stylesheet_link_tag "web", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "web", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tag %>
+  </head>
+
+  <body>
+
+  <%= render('share/web_top_nav') %>
+
+  <div class="container col-lg-8 col-lg-offset-2">
+    <%= yield %>
+  </div>
+  <div class="container col-lg-8 col-lg-offset-2">
+    <hr>
+    <footer>
+      <div class="row">
+        <div class="col-lg-12">
+          <p>Copyright &copy; Company 2013</p>
+        </div>
+      </div>
+    </footer>
+  </div><!-- /.container -->
+
+<div style="position:fixed;right:0; width: 250px; height:215px; text-align:right; font-size:14px; line-height:22px; color:#000;" id="rb_ad">  
+<a href="javascript:close_rbad();" target="_self">关闭</a><br />  
+<%= image_tag('/init_data/images/ads/ad_message_01.png') %>
+</div>
+
+    <%= yield :scripts %>
+    <script type="text/javascript">
+        $(function(){
+          <% if current_user %>
+              $.get('<%= notice_path %>', {}, function(data){
+                $('#rewards_count_span').text(data.rewards_count);
+                $('#messages_count_span').text(data.messages_count);
+              });
+          <% end %>
+        });
+
+        $('#rb_ad').css('top', document.documentElement.scrollTop+document.documentElement.clientHeight-215)
+        function close_rbad(){
+          $('#rb_ad').remove();
+        } 
+
+    </script>
+
+<!--
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fce4d522ef16088c1da74376f930a99b2' type='text/javascript'%3E%3C/script%3E"));
+</script>
+-->
+
+  </body>
+</html>
+

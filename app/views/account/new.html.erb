@@ -1,20 +1,66 @@
 <%= render('ads/ad_hf_01') %>
 
-<div class="row">
-  <div class="col-md-3">
-    
-    <div class="jumbotron">
-      <h2>我们的网站宣言</h2>
-      <p>
-        游戏公会联盟的宗旨：为配合游戏公会的良性发展
-      </p>
-    </div>    
+<style type="text/css">
+  p.form_field_container {
+    width: 100%;
+    height: 55px;
+    border: 1px solid #dee3e4;
+    margin: 10px 0px;
+    font-size: 16px;
+    padding: 15px 20px;
+  }
 
-  </div>
-  <div class="col-md-4">
+  p.form_field_container label{
+    width: 130px;
+  }
+
+  p.form_field_container label.error{
+    color: red;
+    font-size: 12px;
+  }
+
+
+  .form_submit_btn {
+    width: 200px;
+    color: #ffffff;
+  }
+
+  .session_login_left {
+    padding-top: 220px;
+  }
+</style>
+
+<div class="row">
+
+  <div class="col-lg-7">
     <%= notice_message %>
     <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
       <%= render "shared/error_messages", :target => resource %>
+      <p class="form_field_container">
+        <label>* 平台帐号</label>
+        <input type="text" name="user[login]"/>
+      </p>
+      <p style="color: #000;">谨慎填写，以后不可修改，建议用 Twitter ID。</p>
+      <p class="form_field_container">
+        <label>平台昵称</label>
+        <input type="text" name="user[name]"/>
+      </p>
+      <p class="form_field_container">
+        <label>密码</label>
+        <input type="password" name="user[password]"/>
+      </p>
+      <p class="form_field_container">
+        <label>确认密码</label>
+        <input type="password" name="user[password_confirmation]"/>
+      </p>
+      <p class="form_field_container">
+        <label>推荐码</label>
+        <input type="text" name="recommendation_code"/>
+      </p>
+      <p>
+        <input type="submit" class="form_submit_btn"/>
+      </p>
+      <% if false %>
       <fieldset>
         <legend><%= t("users.register_user")%></legend>
         <%= f.input :login, :hint => t("users.suggest_using_twitter_id") %>
@@ -29,11 +75,13 @@
           <%= f.submit "提交注册信息", :class => "btn btn-primary", 'data-disable-with' => t("common.submitting") %>
         </div>
       </fieldset>
+      <% end %>
     <% end %>    
 
   </div>
-  <div class="col-md-3 col-md-offset-2">
-    <%= render :partial => "devise/shared/links" %>
+  <div class="col-lg-5 session_login_left">
+    已有通行证？<a href="#" class="session_login">直接登录</a>
+    <%#= render :partial => "devise/shared/links" %>
   </div>
 </div>
 

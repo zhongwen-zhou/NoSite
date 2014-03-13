@@ -1,5 +1,6 @@
 # coding: utf-8
 class AccountController < Devise::RegistrationsController  
+  layout 'session'
   def edit
     @user = current_user
     # 首次生成用户 Token
