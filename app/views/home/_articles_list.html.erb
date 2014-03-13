@@ -1,3 +1,4 @@
+<% if false %>
 <div class="col-lg-4">
   <div class="panel panel-default">
     <div class="panel-heading" style="background-color: #9a1000; color: #ffffff; font-size: 16px;">
@@ -24,4 +25,33 @@
       <% end %>
     </div>
   </div> 
+</div>
+<% end %>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5">
+          <h3 class="panel-title">业界资讯</h3>
+        </div>
+        <div class="col-md-4 col-md-offset-3">
+          <h4 class="panel-title">更多</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <p>
+      <h4><a href="#" style="color: #d34600;">《DOTA》火女风采</a></h4>
+      <%= image_tag('/init_data/images/articles/top_01.png', :style => "float: left;") %>
+      <span style="font-size: 12px; color: #6f6f6f;">非常爱美网是韩国最高端的整形美容机构,对所选整形医院提供预约、翻译、监督等,确保指定代表院长、医师亲自实施。</span>
+    </p>
+    <hr/>
+    <% @articles.each do |article| %>
+      <div class="row margin_5">
+        <%= link_to article.title, article_path(article), :class => "col-md-12" %>
+      </div>
+    <% end %>
+  </div>
 </div>

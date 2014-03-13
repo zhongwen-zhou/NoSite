@@ -31,7 +31,9 @@
 <%= render('ads/ad_hf_01') %>
 <div class="section">
   <div class="row">
-    <%= render('articles_list') %>
+    <div class="col-lg-4">
+      <%= render('articles_list') %>
+    </div>
     <div class="col-lg-5">
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
           <!-- Indicators -->
@@ -118,8 +120,8 @@
           <div class="panel-heading">
             <div class="row">
               <div class="col-md-3">工会</div>
-              <div class="col-md-9" style="float: right;">
-                <form action="<%= search_league_leagues_path %>" class="navbar-form navbar-left" role="search" method="get" style="margin: 0px; padding: 0px;">
+              <div class="col-md-7 col-md-offset-2">
+                <form action="<%= search_league_leagues_path %>" class="navbar-form navbar-left" role="search" method="get" style="margin: 0px; padding: 0px; float: right;">
                   <div class="form-group">
                     <input name="keyword" type="text" class="form-control" placeholder="Search">
                   </div>

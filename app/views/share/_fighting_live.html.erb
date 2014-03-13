@@ -12,7 +12,10 @@
   <div class="panel-body" style="font-size: 12px;">
     <ul style="margin: 0px; padding: 0px;">
     <% Bbs::Node.where(:name => '战况').first.topics.each do |topic| %>
-      <%= render('bbs/share/topic_item', :topic => topic) %>
+      <%#= render('bbs/share/topic_item', :topic => topic) %>
+      <li>
+        <%= link_to topic.title[0..9], bbs_topic_path(topic), :target => '_blank' %>
+      </li>
     <% end %>
     </ul>
   </div>
