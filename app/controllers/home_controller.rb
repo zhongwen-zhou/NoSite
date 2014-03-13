@@ -1,7 +1,7 @@
 # coding: utf-8
 class HomeController < ApplicationController
   def index
-    @articles = Article.desc(:created_at).limit(5)
+    @articles = Article.desc(:created_at).limit(3)
     @leagues = League::League.all.limit(6)
     @share_content = {:web_spread => true}
     @guess_groups = [['中国队', '日本队'], ['皇马', '巴萨']]
