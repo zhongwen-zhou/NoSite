@@ -1,81 +1,23 @@
-<% if false %>
-<div class="section-colored text-center">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <h2>
-          积分墙
-        </h2>
-        <p>
-        <ul>
-          <li><a href="#">古剑奇侠</a></li>          
-          <li><a href="#">古剑奇侠</a></li>          
-        </ul>
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
+<style type="text/css">
+  .score_list {
+    font-size: 11px;
+  }
+</style>
 
-<div class="section-colored">
-
-  <div class="container">
-
-    <div class="row">
-      <table class="table table-bordered table-striped">
-          <h3>积分墙</h3>
-        <tbody>
-          <% 3.times do %>
-            <tr>
-            <td><a href="#">古剑奇侠</a></td>
-            <td><a href="#">古剑奇侠</a></td>
-            <td><a href="#">古剑奇侠</a></td>
-            <td><a href="#">古剑奇侠</a></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div><!-- /.row -->
-
-  </div><!-- /.container -->
-
-</div><!-- /.section-colored -->
-
-
-<div class="row">
-  <div class="score_container_head">
-    <h3 style="float:left;">积分墙</h3>
-  </div>
-  <table class="table table-bordered table-striped">
-    <thead>
-      <td class="first">游戏名称</td>
-      <td>热门度</td>
-    </thead>
-    <tbody>
-      <% 2.times do %>
-        <tr>
-          <td class="score_item_name">古剑奇侠</td>
-          <td>10</td>
-          <td><a href="#" class="score_start_game">下载</a></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div><!-- /.row -->
-<% end %>
 
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">积分墙</h3>
   </div>
   <div class="panel-body">
-      <table class="table table-bordered table-striped">
+      <table class="table table-bordered table-striped score_list">
         <thead>
           <td class="first">游戏名称</td>
           <td>热门度</td>
+          <td>下载</td>
         </thead>
         <tbody>
-          <% 2.times do %>
+          <% 4.times do %>
             <tr>
               <td class="score_item_name">古剑奇侠</td>
               <td>10</td>
