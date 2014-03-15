@@ -14,13 +14,14 @@
     width: 130px;
   }
 
-  p.form_field_container label.error{
+  #new_user label.error{
     color: red;
     font-size: 12px;
   }
 
 
   .form_submit_btn {
+    margin-left: 30%;
     width: 200px;
     color: #ffffff;
   }
@@ -28,59 +29,81 @@
   .session_login_left {
     padding-top: 220px;
   }
+
+  p.form_field_container input {
+    width: 200px;
+  }
 </style>
 
 <div class="row">
 
-  <div class="col-lg-7">
-    <%= notice_message %>
-    <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-      <%= render "shared/error_messages", :target => resource %>
-      <p class="form_field_container">
-        <label>* 平台帐号</label>
-        <input type="text" name="user[login]"/>
-      </p>
-      <p style="color: #000;">谨慎填写，以后不可修改，建议用 Twitter ID。</p>
-      <p class="form_field_container">
-        <label>平台昵称</label>
-        <input type="text" name="user[name]"/>
-      </p>
-      <p class="form_field_container">
-        <label>密码</label>
-        <input type="password" name="user[password]"/>
-      </p>
-      <p class="form_field_container">
-        <label>确认密码</label>
-        <input type="password" name="user[password_confirmation]"/>
-      </p>
-      <p class="form_field_container">
-        <label>推荐码</label>
-        <input type="text" name="recommendation_code"/>
-      </p>
-      <p>
-        <input type="submit" class="form_submit_btn"/>
-      </p>
-      <% if false %>
-      <fieldset>
-        <legend><%= t("users.register_user")%></legend>
-        <%= f.input :login, :hint => t("users.suggest_using_twitter_id") %>
-        <%= f.input :name %>
-        <%= f.input :password %>
-        <%= f.input :password_confirmation %>
+  <div class="col-lg-8">
 
-        <label>推荐码</label>
-        <br/>
-        <input type="text" name="recommendation_code" />
-        <div class="form-actions">
-          <%= f.submit "提交注册信息", :class => "btn btn-primary", 'data-disable-with' => t("common.submitting") %>
-        </div>
-      </fieldset>
-      <% end %>
-    <% end %>    
+
+
+    <div class="panel panel-warning">
+      <div class="panel-heading">
+        <h3 class="panel-title">注册101FUN帐号</h3>
+      </div>
+      <div class="panel-body">
+
+        <% if true %>
+        <%= notice_message %>
+        <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :class => "form-horizontal") do |f| %>
+          <%= render "shared/error_messages", :target => resource %>
+
+          <div class="form-group">
+            <label for="inputEmail1" class="col-sm-3 control-label">* 平台帐号</label>
+            <div class="col-sm-7">
+              <input type="text" class="form-control" id="inputEmail1" placeholder="平台帐号" name="user[login]">
+            </div>
+          </div>
+
+          <p style="color: #000; font-size: 12px; margin-left: 200px;">谨慎填写，以后不可修改，建议用 Twitter ID。</p>
+
+
+          <div class="form-group">
+            <label for="inputEmail2" class="col-sm-3 control-label">* 平台昵称</label>
+            <div class="col-sm-7">
+              <input type="text" class="form-control" id="inputEmail2" placeholder="平台昵称" name="user[name]">
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <label for="inputEmail2" class="col-sm-3 control-label">* 密码</label>
+            <div class="col-sm-7">
+              <input type="text" class="form-control" id="inputEmail3" placeholder="密码" name="user[password]">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="inputEmail4" class="col-sm-3 control-label">* 确认密码</label>
+            <div class="col-sm-7">
+              <input type="text" class="form-control" id="inputEmail4" placeholder="确认密码" name="user[password_confirmation]">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="inputEmail5" class="col-sm-3 control-label"> 推荐码</label>
+            <div class="col-sm-7">
+              <input type="text" class="form-control" id="inputEmail5" placeholder="推荐码" name="recommendation_code">
+            </div>
+          </div>
+
+          <p>
+            <input type="submit" value="提交注册信息" class="form_submit_btn btn btn-danger"/>
+          </p>
+        <% end %>    
+        <% end %>
+      </div>
+    </div>
+
 
   </div>
-  <div class="col-lg-5 session_login_left">
-    已有通行证？<a href="#" class="session_login">直接登录</a>
+  <div class="col-lg-4 session_login_left">
+    已有通行证？
+    <%= link_to '直接登录', new_user_session_path, :class => 'session_login' %>
     <%#= render :partial => "devise/shared/links" %>
   </div>
 </div>
