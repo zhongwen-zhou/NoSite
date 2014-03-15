@@ -34,15 +34,21 @@
   .guess_ball_input {
     margin-left: 20px;
   }
+
+  .ads_image {
+    width: 100%;
+  }
 </style>
 <br/>
-<%= render('ads/ad_hf_01') %>
+<%#= render('ads/ad_hf_01') %>
+<%= image_tag('/init_data/images/ads/ad_02.png', :class => 'ads_image') %>
 <div class="section">
   <div class="row">
     <div class="col-lg-4">
       <%= render('articles_list') %>
     </div>
     <div class="col-lg-5">
+      <div class="row">
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
           <!-- Indicators -->
           <ol class="carousel-indicators">
@@ -64,6 +70,11 @@
             </div>                                    
           </div>
         </div>
+      </div>
+      <br/>
+      <div class="row">
+        <%= image_tag('/init_data/images/ads/ad_04.png', :class => 'ads_image') %>
+      </div>
     </div>
 
     <div class="col-lg-3">
@@ -80,7 +91,7 @@
         </div>  
         <div class="panel-body" style="font-size: 12px;">
           <ul style="margin: 0px; padding: 0px;">
-          <% ::Bbs::Topic.where(:node_id.in => [1,3]).excellent.limit(9).each_with_index do |topic, index| %>
+          <% ::Bbs::Topic.where(:node_id.in => [1,3]).excellent.limit(12).each_with_index do |topic, index| %>
             <%#= render('bbs/share/topic_item', :topic => topic) %>
             <% color = case index
                         when 0 
@@ -147,7 +158,8 @@
       </div>
     </div><!-- /.row -->
 </div><!-- /.section -->
-<%= render('ads/ad_hf_01') %>
+<%#= render('ads/ad_hf_01') %>
+<%= image_tag('/init_data/images/ads/ad_03.png', :class => 'ads_image') %>
 
 <%= render('sgames/sys_game') %>
 
