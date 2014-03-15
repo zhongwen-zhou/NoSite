@@ -76,8 +76,6 @@
 <% content_for :scripts do %>
   <script type="text/javascript">
     $(document).ready(function(){
-      $('#leagueTab').tab();
-
       $('.badge_item').on('dblclick', function(){
         var item = $(this);
         if(item.attr('data-wore') == 'true'){

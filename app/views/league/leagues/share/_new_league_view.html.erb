@@ -1,0 +1,80 @@
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title">创建你的工会</h3>
+          </div>
+          <div class="panel-body">
+                <%= notice_message %>
+                <%= simple_form_for(@league) do |f| %>
+                  <%= render "shared/error_messages", :target => @league %>
+
+
+                  <div class="form-group">
+                    <label for="inputEmail1" class="col-sm-3 control-label">* 工会名</label>
+                    <div class="col-sm-7">
+                      <input type="text" class="form-control" id="inputEmail1" placeholder="工会名" name="league_league[name]">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputEmail1" class="col-sm-3 control-label">* 工会旗帜</label>
+                    <div class="col-sm-7">
+                      <%= f.file_field :logo %>
+                      <%= f.hidden_field :logo_cache %>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputEmail2" class="col-sm-3 control-label">* 工会宣言</label>
+                    <div class="col-sm-7">
+
+                    <textarea class="form-control" name="league_league[declaration]" placeholder="工会宣言"></textarea>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <input type="submit" value="创建工会" class="btn btn-danger" style="width:70%; margin-left:10%;" />
+                  </div>
+                <% end %> 
+          </div>
+        </div>
+
+    </div>
+  </div>
+
+  <% content_for :scripts do %>
+    <script type="text/javascript">
+      $(function(){
+        $("#new_league_league").validate({
+          rules: {
+            'league_league[name]': {
+              required: true,
+              minlength: 5
+            },
+            'league_league[declaration]': {
+              required: true,
+              minlength: 6
+            },
+            'league_league[logo]': {
+              required: true
+            } 
+          },
+          messages: {
+            'league_league[name]': {
+              required: "请输入工会名",
+              minlength: "用户名不能小于5个字符"
+            },
+            'league_league[declaration]': {
+              required: "工会宣言",
+              minlength: "密码不能小于6个字符"
+            },
+            'league_league[logo]': {
+              required: "请选择工会旗帜"
+            }
+          }
+        });
+      });
+    </script>
+  <% end %>

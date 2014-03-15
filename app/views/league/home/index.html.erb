@@ -8,77 +8,7 @@
 </style>
 
 <% unless current_user.try(:league) %>
-  <div class="row">
-    <div class="col-md-8 col-md-offset-3">
-      <div class="jumbotron">
-        <h1>创建你的工会联盟吧！</h1>
-        <p>
-        <div >
-
-          <%= simple_form_for(@league) do |f| %>
-            <%= render "shared/error_messages", :target => @league %>
-            <fieldset>
-              
-              <label for="name">工会名</label>
-              <input type="text" name="league_league[name]" %>
-
-              <br/>
-
-              <label for="declaration">工会宣言</label>
-              <textarea name="league_league[declaration]"></textarea>
-
-              <p>
-                <label>工会旗帜</label>
-                <%= f.file_field :logo %>
-                <%= f.hidden_field :logo_cache %>
-              </p>
-              <div class="form-actions">
-                <%= f.submit "创建工会", :class => "btn btn-primary", 'data-disable-with' => t("common.submitting") %>
-              </div>
-            </fieldset>
-          <% end %>
-
-        </div>
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <% content_for :scripts do %>
-    <script type="text/javascript">
-      $(function(){
-        $("#new_league_league").validate({
-          rules: {
-            'league_league[name]': {
-              required: true,
-              minlength: 5
-            },
-            'league_league[declaration]': {
-              required: true,
-              minlength: 6
-            },
-            'league_league[logo]': {
-              required: true
-            } 
-          },
-          messages: {
-            'league_league[name]': {
-              required: "请输入工会名",
-              minlength: "用户名不能小于5个字符"
-            },
-            'league_league[declaration]': {
-              required: "工会宣言",
-              minlength: "密码不能小于6个字符"
-            },
-            'league_league[logo]': {
-              required: "请选择工会旗帜"
-            }
-          }
-        });
-      });
-    </script>
-  <% end %>
-
+  <%= render('league/leagues/share/new_league_view') %>
 <% else %>
   <% league = current_user.league %>
   <% is_admin = league.president_id == current_user.id %>
