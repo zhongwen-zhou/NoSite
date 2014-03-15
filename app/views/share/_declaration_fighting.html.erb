@@ -145,15 +145,17 @@
     <div class="container">
 
       <div class="row">
+        <% League::ProclaimWar.desc(:created_at).limit(6).each do |proclaimWar| %>
         <div class="col-md-6">
-          <%= image_tag(League::League.first.logo_url) %>
+          <%= image_tag(proclaimWar.challenger.logo_url) %>
           挑战
-          <%= image_tag(League::League.last.logo_url) %>
+          <%= image_tag(proclaimWar.defender.logo_url) %>
           &nbsp;&nbsp;&nbsp;
           来打一架吧！
           &nbsp;&nbsp;&nbsp;
-          <small style="color: red;">13:40</small>
+          <small style="color: red;"><%= proclaimWar.created_at.strftime("%H:%M") %></small>
         </div>
+        <% end %>
         <div class="col-md-6">
           <%= image_tag(League::League.first.logo_url) %>
           挑战

@@ -1,6 +1,12 @@
+<br/>
 <%= render('ads/ad_hf_01') %>
-
+<br/>
 <!-- Nav tabs -->
+<% if current_user && current_user.league %>
+  <div class="row">
+    <%= link_to '向他们宣战！', proclaim_war_league_league_path(@league), :remote => true, :class => 'btn btn-danger', :style => 'margin-left: 70%;' %>
+  </div>
+<% end %>
 <div class="row">
   <div class="col-md-2 col-md-offset-1">
     <ul id="leagueTab" class="nav nav-stacked nav-pills">

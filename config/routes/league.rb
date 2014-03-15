@@ -24,6 +24,7 @@ NoSite::Application.routes.draw do
 	  		put :agree_join
 	  		put :refuse_join
 	  		put :sign_today
+	  		get :proclaim_war
 	  	end
 	  end
 	end

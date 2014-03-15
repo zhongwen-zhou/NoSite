@@ -54,6 +54,15 @@ class League::LeaguesController < ApplicationController
     @league.gift_welfare(:coins => params[:coins])
   end
 
+  def proclaim_war
+    current_user.league.proclaim_war(@league)
+    war_node = Bbs::Node.find(4)
+    war_node.topics.create(:user => current_user.id,
+                        :title => "[#{current_user.league.name}] 向 [#{@league.name}] 宣战！",
+                        :body => "Come on!#{@league.name},我们来分个胜负吧！"
+                        )
+  end
+
   private
   def league_params
     params.require(:league_league).permit(:name, :declaration, :logo)

@@ -48,4 +48,8 @@ class League::League
   def send_group_message(content, user)
     messages.create(:content => content, :sender => user)
   end
+
+  def proclaim_war(league)
+    League::ProclaimWar.create(:challenger => self, :defender => league)
+  end
 end
