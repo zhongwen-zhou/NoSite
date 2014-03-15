@@ -36,13 +36,14 @@
   }
 
   .ads_image {
+    margin: 0px 0px 0px 0px;
     width: 100%;
   }
 </style>
-<br/>
 <%#= render('ads/ad_hf_01') %>
+<br/>
 <%= image_tag('/init_data/images/ads/ad_02.png', :class => 'ads_image') %>
-<div class="section">
+<div class="section" style="height: 260px;">
   <div class="row">
     <div class="col-lg-4">
       <%= render('articles_list') %>
@@ -60,20 +61,16 @@
           <!-- Wrapper for slides -->
           <div class="carousel-inner">
             <div class="item active">
-              <img src="init_data/images/ads_1/001.png" />
+              <img src="init_data/images/ads_1/00x.jpg" />
             </div>
             <div class="item">
-              <img src="init_data/images/ads_1/002.png" />
+              <img src="init_data/images/ads_1/00x.jpg" />
             </div>
             <div class="item">
-              <img src="init_data/images/ads_1/003.png"/>
+              <img src="init_data/images/ads_1/00x.jpg"/>
             </div>                                    
           </div>
         </div>
-      </div>
-      <br/>
-      <div class="row">
-        <%= image_tag('/init_data/images/ads/ad_04.png', :class => 'ads_image') %>
       </div>
     </div>
 
@@ -123,7 +120,8 @@
 
   </div><!-- /.row -->
 </div><!-- /.section -->
-<%= render('ads/ad_hf_01') %>
+<%#= render('ads/ad_hf_01') %>
+<%= image_tag('/init_data/images/ads/ad_03.png', :class => 'ads_image') %>
 <div class="section">
     <div class="row">
       
@@ -159,12 +157,14 @@
     </div><!-- /.row -->
 </div><!-- /.section -->
 <%#= render('ads/ad_hf_01') %>
-<%= image_tag('/init_data/images/ads/ad_03.png', :class => 'ads_image') %>
-
+<%= image_tag('/init_data/images/ads/ad_02.png', :class => 'ads_image') %>
+<div class="section" >
 <%= render('sgames/sys_game') %>
+</div>
 
-<%= render('ads/ad_hf_01') %>
-
+<%#= render('ads/ad_hf_01') %>
+<%= image_tag('/init_data/images/ads/ad_03.png', :class => 'ads_image') %>
+<div class="section" style="height: 260px;">
 <div class="row">
   <div class="col-md-9">
     <%= render('servertimes/servertimes') %>  
@@ -174,6 +174,7 @@
     <%= render('score/score_list') %>    
   </div>
 </div>
+</div>
 
 <%#= render('servertimes/servertimes') %>
 
@@ -181,9 +182,10 @@
 
 <%#= render('score/score_list') %>
 
-<%= render('ads/ad_hf_01') %>
+<%#= render('ads/ad_hf_01') %>
+<%= image_tag('/init_data/images/ads/ad_02.png', :class => 'ads_image') %>
 
-
+<div class="section" >
 <div class="row">
   <div class="col-md-9">
     <%= render('share/declaration_fighting') %>
@@ -193,12 +195,15 @@
     <%= render('share/fighting_live') %> 
   </div>
 </div>
+</div>
 
 <%#= render('share/declaration_fighting') %>
 
-<%= render('ads/ad_hf_01') %>
-
+<%#= render('ads/ad_hf_01') %>
+<%= image_tag('/init_data/images/ads/ad_03.png', :class => 'ads_image') %>
+<div class="section">
 <%= render('share/pictrue_wall') %>
+</div>
 
 <% content_for :scripts do %>
   <script type="text/javascript">
