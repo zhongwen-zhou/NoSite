@@ -87,6 +87,8 @@ gem 'dalli', '1.1.1'
 gem 'eventmachine', '1.0.3'
 gem 'thin', "1.5.0"
 
+gem 'rails_kindeditor'
+
 group :development, :test do
   gem 'pry-rails'
   gem 'capistrano', '2.9.0', require: false

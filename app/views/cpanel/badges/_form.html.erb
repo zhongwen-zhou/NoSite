@@ -1,0 +1,17 @@
+<%= simple_form_for([:cpanel, @badge]) do |f| %>
+  <%= render "shared/error_messages", :target => @badge %>
+  <fieldset>
+    <legend>Article页面编辑</legend>
+    <%= f.input :name, :input_html => { :class => "xxlarge" } %>
+    <%= f.input :desc, :input_html => { :class => "xxlarge" } %>
+
+	<p>
+	  <label>头图</label>
+		<%= f.file_field :photo %>
+    <%= f.hidden_field :photo_cache %>
+	</p>
+
+    <div class="form-actions">
+      <%= f.submit t("common.save"), :class => "btn btn-primary", 'data-disable-with' => t("common.saving") %>
+    </div>
+<% end %>

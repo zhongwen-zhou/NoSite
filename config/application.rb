@@ -11,7 +11,7 @@ if defined?(Bundler)
   Bundler.require *Rails.groups(:assets => %w(production development test))
 end
 
-module RubyChina
+module NoSite
   class Application < Rails::Application
     # Custom directories with classes and modules you want to be autoloadable.
     config.autoload_paths += %W(#{config.root}/uploaders)
@@ -35,6 +35,8 @@ module RubyChina
     config.assets.enabled = true
     config.assets.version = '1.0'
 
+    config.paths["config/routes.rb"].concat(Dir[Rails.root.join("config/routes/*.rb")])
+
     config.generators do |g|
       g.test_framework :rspec
       g.fixture_replacement :factory_girl, :dir => "spec/factories"
@@ -46,13 +48,19 @@ module RubyChina
     
     config.assets.precompile += %w(application.css app.js topics.css topics.js window.css front.css cpanel.css
         users.css pages.css pages.js notes.css notes.js 
-        mobile.css home.css)
+        mobile.css home.css web.js web.css)
   end
 end
 
 require "markdown"
 
 I18n.locale = 'zh-CN'
+
+class ActiveSupport::TimeWithZone
+  def format_to_readable
+    strftime("%Y-%m-%d %H:%M:%S")
+  end
+end
 
 
 

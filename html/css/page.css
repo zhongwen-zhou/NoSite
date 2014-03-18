@@ -1,0 +1,66 @@
+@charset "utf-8";
+/* CSS Document */
+
+.page_nav {
+    clear: both;
+    color: #666666;
+    font: 12px/24px Arial;
+    padding: 30px 0 0;
+    text-align: center;
+}
+.page_nav a {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #DBE5EE;
+    border-radius: 2px 2px 2px 2px;
+    color: #333333;
+    cursor: pointer;
+    display: inline-block;
+    font: 12px/22px Arial,Helvetica,sans-serif;
+    height: 22px;
+    margin: 0 2px;
+    padding: 0 8px;
+    text-decoration: none;
+}
+.page_nav strong {
+    background: none repeat scroll 0 0 #005580;
+    border: medium none;
+    border-radius: 2px 2px 2px 2px;
+    color: #FFFFFF;
+    display: inline-block;
+    font-weight: normal;
+    height: 24px;
+    line-height: 24px;
+    margin: 0 3px;
+    padding: 0 8px;
+    text-decoration: none;
+}
+.page_nav a:hover, .page_nav a.on {
+    background: none repeat scroll 0 0 #005580;
+    border: medium none;
+    color: #FFFFFF;
+    height: 24px;
+    line-height: 24px;
+    margin: 0 3px;
+    text-decoration: none;
+}
+.page_nav a.select {
+    cursor: default;
+}
+.page_nav .view_all {
+    display: block;
+    text-align: center;
+}
+.page_nav .view_all a {
+    border: medium none;
+    color: #0066CC;
+    height: auto;
+    line-height: 24px;
+    margin: 0;
+    padding: 0;
+}
+.page_nav .view_all a:hover {
+    background: none repeat scroll 0 0 transparent;
+    height: auto;
+    margin: 0;
+    padding: 0;
+}

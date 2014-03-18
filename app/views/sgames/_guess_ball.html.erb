@@ -1,0 +1,109 @@
+<% if false %>
+<img src="init_data/images/guess_balls/fball.png" />
+<br/>
+<div class="container">
+<%= form_tag(game_guess_path, :remote => true) do |form| %> 
+  <input type="hidden" id="game_value" name="game_value"/>
+  <% @guess_groups.each_with_index do |group, g_index| %>
+    <br/>
+    <div class="row">
+      <div class="row">
+        <% group.each do |team| %>
+          <div class="col-md-6">
+            <h4><span><%= team %></span></h4>
+          </div>
+        <% end %>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <input type="radio" name="<%= "group_#{g_index}" %>" value="<%= "#{g_index}-1" %>" >胜
+        </div>
+        <div class="col-md-4">
+          <input type="radio" name="<%= "group_#{g_index}" %>" value="<%= "#{g_index}-2" %>" >负
+        </div>
+        <div class="col-md-4">
+          <input type="radio" name="<%= "group_#{g_index}" %>" value="<%= "#{g_index}-3" %>" >平
+        </div>
+      </div>
+    </div>
+    <hr/>
+  <% end %>
+  <% if current_user && can_guess_ball? %>
+    <input id="guess_ball_submit_btn" type="submit" value="试试看咯" class="btn btn-info"></input> 
+  <% end %>
+<% end %>
+</div>
+
+<div class="row">
+  <div class="guessball_team_head">
+    <h3 style="float:left;">竟彩足球</h3>
+  </div>
+
+  <div>
+    <img src="init_data/images/guess_balls/fball.png" , width ='220px;'/>
+  </div>
+
+  <div>
+    <p class="guessball_team">中国队 VS 日本队</p>
+    <p style="height: 40px;">
+      <input type="radio" name="group_#{g_index}" value="g_index}-1" >胜</input>
+      <input type="radio" name="group_#{g_index}" value="g_index}-1" >胜</input>
+      <input type="radio" name="group_#{g_index}" value="g_index}-1" >胜</input>
+    </p>
+
+
+    <p class="guessball_team">中国队 VS 日本队</p>
+    <p style="height: 40px;">
+      <input type="radio" name="group_#{g_index}" value="g_index}-1" >胜</input>
+      <input type="radio" name="group_#{g_index}" value="g_index}-1" >胜</input>
+      <input type="radio" name="group_#{g_index}" value="g_index}-1" >胜</input>
+    </p>
+
+
+  </div>
+  <div>
+    <input type="button" value="下注吧！"/>
+  </div>
+</div><!-- /.row -->
+<% end %>
+
+
+
+<div class="panel panel-danger">
+  <div class="panel-heading">
+    <h3 class="panel-title">竞彩足球</h3>
+  </div>
+  <div class="panel-body" style="padding: 0px 15px 10px 15px;">
+    <div class="row">
+      <img src="init_data/images/guess_balls/fball.png" , width ='100%;', height = '129px;'/>
+    </div>
+
+    <div class="row">
+        <p style="background-color: #86EB66; text-align: center;">  中国队 VS 日本队
+        </p>
+        <p style="height: 20px; text-align: center;">
+          <input type="radio" name="group_1" value="1" >胜</input>
+          <input type="radio" name="group_1" value="2" >平</input>
+          <input type="radio" name="group_1" value="3" >负</input>
+        </p>  
+    </div>
+
+    <div class="row">
+        <p style="background-color: #06CC7D; text-align: center;">  中国队 VS 日本队
+        </p>
+        <p style="height: 20px; text-align: center;">
+          <input type="radio" name="group_2" value="1" >胜</input>
+          <input type="radio" name="group_2" value="2" >平</input>
+          <input type="radio" name="group_2" value="3" >负</input>
+        </p>  
+    </div>
+
+    <% if current_user && can_guess_ball? %>
+      <div class="row">
+        <div class="col-md-4 col-md-offset-3">
+          <%= link_to '下注吧！', game_guess_path, :remote => true, :class => "btn btn-warning", :id => 'guess_ball_submit_btn' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

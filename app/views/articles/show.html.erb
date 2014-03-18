@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">
+        <%= link_to '业界资讯', articles_path %> <small><%= @article.title %></small></h1>
+      <ol class="breadcrumb">
+        <li><a href="index.html">首页</a></li>
+        <li class="active">资讯</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-lg-8">
+    
+      <!-- the actual blog post: title/author/date/content -->
+      <p>
+        <%= @article.created_at.format_to_readable %>
+      </p>
+      <hr>
+        <%= image_tag(@article.illustration_url) if @article.illustration %>
+      <!-- <img src="http://placehold.it/900x300" class="img-responsive"> -->
+      <hr>
+      <p class="lead">
+        <%= @article.review %>
+      </p>
+
+      <p>
+        <%= raw(@article.content) %>
+      </p>
+    </div>
+    
+    <div class="col-lg-4">
+        <%= image_tag('/init_data/images/ads/ad_article_01.png') %>
+<!-- 
+      <div class="well">
+        <h4>资讯搜索</h4>
+        <div class="input-group">
+          <input type="text" class="form-control">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+          </span>
+        </div>
+      </div>
+       -->
+
+      <div class="well">
+        <h4>最热文章</h4>
+          <div class="row">
+            <div class="col-lg-10">
+              <ul class="list-unstyled">
+                <% Article.all.sort(:clicks => :desc).limit(6).each do |article| %>
+                  <li>
+                    <%= link_to article.title, article_path(article) %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+      </div><!-- /well -->
+    </div>
+  </div>
+
+</div><!-- /.container -->

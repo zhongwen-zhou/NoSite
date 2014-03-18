@@ -4,6 +4,8 @@
     city: "城市"
     company: "公司"
     join_time: "Since"
+    coins: "金币"
+    scores: "积分"
     signature: "签名"
     personal_website: "博客"
     recent_publish_topic: "最近发布的帖子"

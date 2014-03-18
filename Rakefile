@@ -4,7 +4,7 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
-RubyChina::Application.load_tasks
+NoSite::Application.load_tasks
 
 namespace :test do
   desc "preparing config files..."

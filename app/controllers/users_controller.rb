@@ -2,8 +2,12 @@
 class UsersController < ApplicationController
   before_filter :require_user, :only => "auth_unbind"
   before_filter :set_menu_active
-  before_filter :find_user, :only => [:show, :topics, :favorites,:notes]
+  before_filter :find_user, :only => [:topics, :favorites,:notes]
   caches_action :index, :expires_in => 2.hours, :layout => false
+
+
+  def profile
+  end
 
   def index
     @total_user_count = User.count
@@ -12,12 +16,18 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.where(:login => params[:id]).first || User.find(params[:id])
+    @topics = @user.topics.limit(20)
     # 排除掉几个非技术的节点
-    without_node_ids = [21,22,23,31,49,51,57,25]
-    @topics = @user.topics.without_node_ids(without_node_ids).high_likes.limit(20)
-    @replies = @user.replies.only(:topic_id,:body_html,:created_at).recent.includes(:topic).limit(10)
-    set_seo_meta("#{@user.login}")
-    drop_breadcrumb(@user.login)
+    # without_node_ids = [21,22,23,31,49,51,57,25]
+    # @topics = @user.topics.without_node_ids(without_node_ids).high_likes.limit(20)
+    # @replies = @user.replies.only(:topic_id,:body_html,:created_at).recent.includes(:topic).limit(10)
+    # set_seo_meta("#{@user.login}")
+    # drop_breadcrumb(@user.login)
+  end
+
+  def update
+    current_user.set(:name => params[:user][:name])
   end
 
   def topics

@@ -1,5 +1,5 @@
 # coding: utf-8
-RubyChina::Application.configure do
+NoSite::Application.configure do
   # Settings specified here will take precedence over those in config/environment.rb
 
   # The production environment is meant for finished, "live" apps.
@@ -13,10 +13,10 @@ RubyChina::Application.configure do
   config.action_controller.perform_caching = true
 
   # Specifies the header that your server uses for sending files
-  config.action_dispatch.x_sendfile_header = "X-Sendfile"
+  # config.action_dispatch.x_sendfile_header = "X-Sendfile"
 
   # For nginx:
-  # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect'
+  config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect'
 
   # If you have no front-end server that supports something like X-Sendfile,
   # just comment this out and Rails will serve the files
@@ -62,6 +62,8 @@ RubyChina::Application.configure do
 
   config.assets.js_compressor  = :uglifier
   config.assets.css_compressor = :scss
+
+  config.assets.enabled = true
 
 end
 

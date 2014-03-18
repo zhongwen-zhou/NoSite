@@ -46,6 +46,7 @@ class User
   # field :twitter
   # 是否信任用户
   field :verified, :type => Mongoid::Boolean, :default => false
+  field :is_admin, :type => Mongoid::Boolean, :default => false
   field :state, :type => Integer, :default => 1
   field :guest, :type => Mongoid::Boolean, :default => false
   field :tagline
@@ -55,6 +56,13 @@ class User
   field :private_token
   field :favorite_topic_ids, :type => Array, :default => []
 
+
+  # =======Tony=======
+  field :coins, :type => Integer, :default => 0
+  field :scores, :type => Integer, :default => 0
+  field :level, :type => Integer, :default => 1
+  field :join_league_status, :type => Integer, :default => 0
+
   mount_uploader :avatar, AvatarUploader
 
   index :login => 1
@@ -62,12 +70,19 @@ class User
   index :location => 1
   index({private_token: 1},{ sparse: true })
 
-  has_many :topics, :dependent => :destroy
+  has_many :topics, :dependent => :destroy, :class_name => 'Bbs::Topic'
   has_many :notes
-  has_many :replies, :dependent => :destroy
+  has_many :replies, :dependent => :destroy, :class_name => 'Bbs::Reply'
   embeds_many :authorizations
   has_many :notifications, :class_name => 'Notification::Base', :dependent => :delete
   has_many :photos
+
+  has_many :badge_winners, :class_name => 'BadgeWinner'
+
+  #======Redis Value====
+  value :signed
+  value :guess_balls
+
 
   def email_required?
     false
@@ -95,9 +110,11 @@ class User
 
   validates :login, :format => {:with => /\A\w+\z/, :message => '只允许数字、大小写字母和下划线'}, :length => {:in => 3..20}, :presence => true, :uniqueness => {:case_sensitive => false}
 
-  has_and_belongs_to_many :following_nodes, :class_name => 'Node', :inverse_of => :followers
+  has_and_belongs_to_many :following_nodes, :class_name => 'Bbs::Node', :inverse_of => :followers
   has_and_belongs_to_many :following, :class_name => 'User', :inverse_of => :followers
   has_and_belongs_to_many :followers, :class_name => 'User', :inverse_of => :following
+
+  belongs_to :league, :class_name => 'League::League'
 
   scope :hot, desc(:replies_count, :topics_count)
 
@@ -139,7 +156,8 @@ class User
 
   # 是否是管理员
   def admin?
-    Setting.admin_accounts.include?(self.login)
+    # Setting.admin_accounts.include?(self.login)
+    self.is_admin
   end
 
   # 是否有 Wiki 维护权限
@@ -175,6 +193,10 @@ class User
       when :member then self.state == STATE[:normal]
       else false
     end
+  end
+
+  before_create do |user|
+    user.private_token = (0...8).map { (65 + rand(26)).chr }.join
   end
 
   # before_create :default_value_for_create
@@ -348,4 +370,87 @@ class User
   def ensure_private_token!
     self.update_private_token if self.private_token.blank?
   end
+
+  # =========Tony========
+  def add_coins(add_coins_type)
+    coins = case add_coins_type
+    when 'TOPIC_CREATE'
+      100
+    when 'REPLY_TOPIC'
+      50
+    end
+    
+    self.inc(:coins => coins)  
+  end
+
+  def add_scores(add_scores_type)
+    score = case add_scores_type
+    when 'TOPIC_CREATE'
+      20
+    when 'REPLY_TOPIC'
+      10
+    end
+
+    self.inc(:scores => score)
+  end
+
+
+  def can_join_league?(league)
+    League::Member.where(:user => self).empty?
+    # # result = false
+    # count = League::Member.where(:league => league, :user => self, :status => 1).count
+    # # join_league_status == 0
+    # if join_league_status == 0 && count ==0
+    #   true
+    # else
+    #   false
+    # end
+  end
+
+  def create_league(league_params)
+    # return 'no coins' if self.coins < 100
+    league = League::League.new(league_params)
+    league.president_name = self.name
+    league.president = self
+    if league.save
+      self.inc(:coins => -100)
+      member = league.add_member(self, true)
+      member.positive!
+      member.save
+    else
+      Rails.logger.info("-=-=-=-=-=-=-!!!!!!")
+      Rails.logger.info("Error:#{league.errors.inspect}")
+    end
+    return league
+  end
+
+  def recommend_by(recommendation_code)
+    user = User.where(:private_token => recommendation_code).first
+    return false unless user
+
+    Reward.create(:title => "推荐好友奖励",
+                  :content => "感谢你推荐好友来到享乐创意，我们奉上500金币，请笑纳！",
+                  :personal_experience => 50,
+                  :personal_coins => 500,
+                  :receiver => user)
+  end
+
+  def sign_today!
+    Reward.create(:title => "每日签到有奖",
+                  :content => "感谢你每日签到有奖，我们奉上100金币，请笑纳！",
+                  :personal_experience => 100,
+                  :personal_coins => 100,
+                  :receiver => self)    
+    self.signed = Date.current.to_s
+  end
+
+  def guess_ball(value)
+    self.guess_balls = "#{Date.current.to_s}@#{value}"
+  end
+
+  def avatar_image
+    return league.logo_url if league
+    "/avatar.png"
+  end
+
 end

@@ -1,0 +1,30 @@
+<style type="text/css">
+  .score_list {
+    font-size: 11px;
+  }
+</style>
+
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">积分墙</h3>
+  </div>
+  <div class="panel-body">
+      <table class="table table-bordered table-striped score_list" style="margin-bottom: 1px;">
+        <thead>
+          <td class="first">游戏名称</td>
+          <td>热门度</td>
+          <td>下载</td>
+        </thead>
+        <tbody>
+          <% 5.times do %>
+            <tr>
+              <td class="score_item_name">古剑奇侠</td>
+              <td>10</td>
+              <td><a href="#" class="score_start_game">下载</a></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+  </div>
+</div>

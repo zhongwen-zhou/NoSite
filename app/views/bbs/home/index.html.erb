@@ -1,0 +1,37 @@
+<%= raw SiteConfig.index_html %>
+
+<div class="home_suggest_topics box box_gray">
+  <h2>社区精华贴</h2>
+  <div class="topics">
+    <%= render partial: "bbs/topics/topic", collection: @excellent_topics %>
+  </div>
+  <div class="more">
+    <%= link_to "查看更多精华贴...", excellent_bbs_topics_path %>
+  </div>
+</div>
+<div id="sections" class="box">
+  <ul>
+      <li>
+      <!-- 灌水
+      攻略
+      宣战 -->
+        <% Bbs::Node.all.each do |node| %>
+          <span class="nodes">
+            <%= link_to node.name, bbs_node_topics_path(node) %>
+          </span>
+        <% end %>
+      </li>
+  </ul>
+</div>
+
+<%= render('share/login_modal') unless current_user %>
+
+<% content_for :scripts do %>
+  <script type="text/javascript">
+    $(document).ready(function(){
+    	<% unless current_user %>
+	    	$('#loginModal').modal({backdrop : 'static'});
+    	<% end %>
+    });
+  </script>
+<% end %>

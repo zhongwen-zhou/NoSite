@@ -1,0 +1,15 @@
+<% is_sender = message.sender == current_user %>
+
+<li>
+	<div class=" old_list <%= is_sender ? 'chat_right' : 'chat_left' %>">
+		<p class="chat_time">
+	    <small>
+	    	<%= message.created_at.format_to_readable %>
+	    </small>
+	    </p>
+    <p class="chat_content line_break">
+    	<%= message.content %>
+    </p>
+  </div>
+  <div style="clear: both"></div>
+</li>

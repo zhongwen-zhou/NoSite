@@ -1,0 +1,114 @@
+<%= render('ads/ad_hf_01') %>
+
+<!-- Nav tabs -->
+<div class="row">
+  <div class="col-md-2 col-md-offset-1">
+    <ul id="leagueTab" class="nav nav-stacked nav-pills">
+      <li><a href="#info" data-toggle="tab">基本信息</a></li>
+      <li><a href="#update" data-toggle="tab">资料修改</a></li>
+      <li><a href="#messages" data-toggle="tab">我的徽章</a></li>
+    </ul>
+  </div>
+  <div class="col-md-8 col-md-offset-1">
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div class="tab-pane active" id="info">
+        <%= image_tag(current_user.avatar_image) %><br/>
+        平台帐号: <%= current_user.login %><br/>
+        等级：<%= current_user.level %><br/>
+        金币：<%= current_user.coins %><br/>
+        推荐码：<%= current_user.private_token %><br/>
+        <% if league = current_user.league %>
+        <div>
+          <%= image_tag(league.logo_url) %>
+          <%= link_to league.name, league_league_path(league) %><br/>
+          工会等级：<%= league.level %><br/>
+          工会帮主：<%= link_to league.president_name, user_path(league.president) %><br>
+          工会副帮主：<%= link_to league.president_name, user_path(league.president) %><br>
+          帮众数量：<%= league.members_count %><br/>
+          工会宣言：<%= league.declaration %>
+        </div>
+        <% end %>
+      </div>
+      <div class="tab-pane" id="update">
+        <ul id="user_updateTab" class="nav nav-tabs">
+          <li><a href="#basic_info" data-toggle="tab">基本信息</a></li>
+          <li><a href="#password" data-toggle="tab">修改密码</a></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="basic_info">
+            <%= form_for(current_user, :remote => true) do |form| %>
+              帐号：<%= current_user.login %> <small>帐号不可更改</small><br/>
+              昵称：<%= form.text_field :name %>
+              <%= form.submit %>
+            <% end %>
+          </div>
+          <div class="tab-pane" id="password">
+            <%= form_for(current_user) do |form| %>
+              当前密码：<%= form.password_field :password %><br/>
+              新密码：<%= password_field_tag :new_password %><br/>
+              确认新密码：<%= password_field_tag :new_confirm_password %><br/>
+              <%= form.submit %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane" id="messages">
+        已装备徽章
+        <div id="wore_badges">
+          <% current_user.badge_winners.wore.each do |badge_winner| %>
+            <%= image_tag(badge_winner.badge.photo_url, :width => 50, :height => 50, :'data-wore' => true, :'data-badge-id' => badge_winner.id, :class => 'badge_item') %>
+          <% end %>
+        </div>
+        <br/>
+        徽章仓库
+        <div id="unware_badges">
+          <% current_user.badge_winners.unware.each do |badge_winner| %>
+            <%= image_tag(badge_winner.badge.photo_url, :width => 50, :height => 50, :'data-wore' => false, :'data-badge-id' => badge_winner.id, :class => 'badge_item') %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<% content_for :scripts do %>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('.badge_item').on('dblclick', function(){
+        var item = $(this);
+        if(item.attr('data-wore') == 'true'){
+          var url = "/users/<%= current_user.id %>/badges/"+$(this).attr('data-badge-id')+"/off.js";
+          $.post(url, null, function(){
+            $('#unware_badges').append(item);
+            item.attr('data-wore', 'false')
+          });
+        }else{
+          var url = "/users/<%= current_user.id %>/badges/"+$(this).attr('data-badge-id')+"/garb.js";
+          $.post(url, null, function(){
+            $('#wore_badges').append(item);
+            item.attr('data-wore', 'true')
+          });
+        }
+      });
+
+
+      $("#edit_user_<%= current_user.id %>").validate({
+        rules: {
+          'user[name]': {
+            required: true,
+            minlength: 5
+          }
+        },
+        messages: {
+          'user[name]': {
+            required: "请输入用户名",
+            minlength: "用户名不能小于5个字符"
+          }
+        }
+      });
+
+    });
+  </script>
+<% end %>

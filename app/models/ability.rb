@@ -4,7 +4,7 @@ class Ability
   def initialize(user)
 
     if user.blank?
-      # not logged in
+      # no user logged in
       cannot :manage, :all
       basic_read_only
 
@@ -12,31 +12,31 @@ class Ability
       # admin
       can :manage, :all
     elsif user.has_role?(:member)
-      # Topic
+      # ::Bbs::Topic
       if !user.newbie?
-        can :create, Topic
+        can :create, ::Bbs::Topic
       end
-      can :favorite, Topic
-      can :follow, Topic
-      can :unfollow,Topic
-      can :update, Topic do |topic|
+      can :favorite, ::Bbs::Topic
+      can :follow, ::Bbs::Topic
+      can :unfollow,::Bbs::Topic
+      can :update, ::Bbs::Topic do |topic|
         (topic.user_id == user.id)
       end
-      can :destroy, Topic do |topic|
+      can :destroy, ::Bbs::Topic do |topic|
          (topic.user_id == user.id)
       end
 
-      # Reply
+      # ::Bbs::Reply
       # 新手用户晚上禁止回帖，防 spam，可在面板设置是否打开
       if !(user.newbie? &&
            (SiteConfig.reject_newbie_reply_in_the_evening == 'true') &&
            (Time.zone.now.hour < 9 || Time.zone.now.hour > 22))
-        can :create, Reply
+        can :create, ::Bbs::Reply
       end
-      can :update, Reply do |reply|
+      can :update, ::Bbs::Reply do |reply|
         reply.user_id == user.id
       end
-      can :destroy, Reply do |reply|
+      can :destroy, ::Bbs::Reply do |reply|
         reply.user_id == user.id
       end
 
@@ -76,12 +76,12 @@ class Ability
         photo.user_id == photo.id
       end
 
-      # Comment
-      can :create, Comment
-      can :update, Comment do |comment|
+      # ::Bbs::Comment
+      can :create, ::Bbs::Comment
+      can :update, ::Bbs::Comment do |comment|
         comment.user_id == comment.id
       end
-      can :destroy, Comment do |comment|
+      can :destroy, ::Bbs::Comment do |comment|
         comment.user_id == comment.id
       end
 
@@ -101,11 +101,11 @@ class Ability
 
   protected
     def basic_read_only
-      can :read,Topic
-      can :feed,Topic
-      can :node,Topic
+      can :read,::Bbs::Topic
+      can :feed,::Bbs::Topic
+      can :node,::Bbs::Topic
 
-      can :read, Reply
+      can :read, ::Bbs::Reply
 
       can :read,  Page
       can :recent, Page
@@ -116,8 +116,8 @@ class Ability
 
       can :read, Photo
       can :read, Site
-      can :read, Section
-      can :read, Node
-      can :read, Comment
+      can :read, ::Bbs::Section
+      can :read, ::Bbs::Node
+      can :read, ::Bbs::Comment
     end
 end

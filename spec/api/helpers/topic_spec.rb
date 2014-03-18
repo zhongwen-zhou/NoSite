@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe RubyChina::APIHelpers do
-  before { extend RubyChina::APIHelpers }
+describe NoSite::APIHelpers do
+  before { extend NoSite::APIHelpers }
 
   it "should use size that is valid" do
     stub_params(:size => 10)

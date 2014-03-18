@@ -1,0 +1,88 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%#= link_to "蕉点享乐游戏", root_path, :class => "navbar-brand" %>
+      <a href="/" ><%= image_tag('/init_data/images/logo.png') %></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <%= link_to '开服时间表', servertimes_path %>
+        </li>
+        <li>
+          <%= link_to '论坛', bbs_root_path, :target => "_blank" %>
+        </li>
+        <li>
+          <%= link_to '工会联盟', league_root_path %>
+        </li>
+
+        <% if current_user %>
+          <li>
+            <a href="<%= message_root_path %>">站内信 <span id="messages_count_span" class="badge">0</span></a>
+          </li>
+          <li>
+            <a href="<%= rewards_path %>">奖励中心 <span id="rewards_count_span" class="badge">0</span></a>
+          </li>
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <%= current_user.name %>
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+              <%#= image_tag('uploads/image/201312/010.png', :class => "img-circle") %>
+                金币：<%= current_user.coins %>
+                <br/>
+                等级：<%= current_user.level %>
+                <br/>
+                <div id="sign_today_div">
+                <% if sign_today? %>
+                  您已签到！
+                <% elsif current_user.league %>
+                  <%= button_to '今日签到', sign_today_league_league_path(current_user.league), :method => :put, :remote => :true %>
+                <% end %>                  
+                </div>
+              </li>
+              <li>
+                <%= link_to '个人设置', profile_users_path %>
+              </li>
+              <li>
+                <%= link_to(t("common.logout"), destroy_user_session_path, method: "delete" ) %>
+              </li>
+            </ul>
+          </li>
+        <% else %>
+          <li>
+
+            <%= form_tag(user_session_path, :class => "navbar-form navbar-left form-inline", :role => "form") do |f| %>
+
+              <div class="form-group">
+                <label class="sr-only" for="login_email"></label>
+                <input type="text" class="form-control" id="login_email" placeholder="请输入帐号" name="user[login]">
+              </div>
+              <div class="form-group">
+                <label class="sr-only" for="login_password"></label>
+                <input type="password" class="form-control" id="login_password" placeholder="请输入密码" name="user[password]">
+              </div>
+              <button type="submit" class="btn btn-default"><%= t("common.login") %></button>
+
+            <% end %>
+         
+          </li>
+          <li>
+            <%= link_to( t("common.register"), new_user_registration_path) %>
+          </li>
+        <% end %>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container -->
+</nav>

@@ -23,6 +23,7 @@
         </li>
       <% end %>
 
+      <% if false %>
       <% if !@user.location.blank? %>
         <li class="adr">
           <label><%= t("users.city")%>:</label>
@@ -30,7 +31,6 @@
         </li>
       <% end %>
 
-      <% if false %>
       <% if !@user.company.blank? %>
         <li class="adr">
           <label><%= t("users.company")%>:</label>
@@ -70,6 +70,16 @@
       <li>
         <label><%= t("users.join_time")%>:</label>
         <span><%= render_user_join_time(@user) %></span>
+      </li>
+
+      <li>
+        <label><%= t("users.coins")%>:</label>
+        <span><%= render_user_coins(@user) %></span>
+      </li>
+
+      <li>
+        <label><%= t("users.scores")%>:</label>
+        <span><%= render_user_scores(@user) %></span>
       </li>
 
     </ul>

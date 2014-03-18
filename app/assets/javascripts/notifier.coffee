@@ -33,11 +33,11 @@ class Notifier
       console.log("Desktop notifications are not supported for this Browser/OS version yet.")
 
   showTooltip: ->
-    $('.breadcrumb').before("<div class='alert alert-info' id='notification-alert'><a href='#' id='link_enable_notifications' style='color:green'>点击这里</a> 开启桌面提醒通知功能。 <a class='close' data-dismiss='alert' href='#'>×</a></div>")
-    $("#notification-alert").alert()
-    $('#notification-alert').on 'click', 'a#link_enable_notifications', (e) =>
-      e.preventDefault()
-      @requestPermission(@setPermission)
+#    $('.breadcrumb').before("<div class='alert alert-info' id='notification-alert'><a href='#' id='link_enable_notifications' style='color:green'>点击这里</a> 开启桌面提醒通知功能。 <a class='close' data-dismiss='alert' href='#'>×</a></div>")
+#    $("#notification-alert").alert()
+#    $('#notification-alert').on 'click', 'a#link_enable_notifications', (e) =>
+#      e.preventDefault()
+#      @requestPermission(@setPermission)
 
   visitUrl: (url) ->
     window.location.href = url

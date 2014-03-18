@@ -1,0 +1,4 @@
+(function(){
+	$('#message_message_content').val('');
+	$('#messages_div').append("<%= j render('message/messages/item', :message => @message) %>")
+})();

@@ -49,6 +49,37 @@ module UsersHelper
       return image_tag("avatar/#{size}.png", :class => "uface")
     end
 
+    if user.league
+      img = image_tag(user.league.logo_url)
+    else
+      img = image_tag('/avatar.png', :width => 50, :height => 50)
+    end
+
+    # if user[:avatar].blank?
+    #   default_url = asset_path("avatar/#{size}.png")
+    #   img_src = "#{Setting.gravatar_proxy}/avatar/#{user.login}.png?s=#{width * 2}&d=404"
+    #   img = image_tag(img_src, :class => "uface", :style => "width:#{width}px;height:#{width}px;")
+    # else
+    #   img = image_tag(user.avatar.url(user_avatar_size_name_for_2x(size)), :class => "uface", :style => "width:#{width}px;height:#{width}px;")
+    # end
+
+    if link
+      raw %(<a href="#{user_path(user.login)}">#{img}</a>)
+    else
+      raw img
+    end
+  end
+
+  def league_logo_tag(league, size = :normal, opts = {})
+    link = opts[:link] || true
+
+    width = user_avatar_width_for_size(size)
+
+    if user.blank?
+      # hash = Digest::MD5.hexdigest("") => d41d8cd98f00b204e9800998ecf8427e
+      return image_tag("avatar/#{size}.png", :class => "uface")
+    end
+
     if user[:avatar].blank?
       default_url = asset_path("avatar/#{size}.png")
       img_src = "#{Setting.gravatar_proxy}/avatar/#{user.login}.png?s=#{width * 2}&d=404"
@@ -62,10 +93,18 @@ module UsersHelper
     else
       raw img
     end
-  end
+  end  
 
   def render_user_join_time(user)
     I18n.l(user.created_at.to_date, :format => :long)
+  end
+
+  def render_user_coins(user)
+    user.coins
+  end
+
+  def render_user_scores(user)
+    user.scores
   end
 
   def render_user_tagline(user)

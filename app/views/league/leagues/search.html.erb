@@ -1,0 +1,63 @@
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-lg-12">
+      <h1 class="page-header">工会联盟</h1>
+      <ol class="breadcrumb">
+        <li>
+          <%= link_to '首页', root_path %>
+        </li>
+        <li class="active">工会联盟</li>
+      </ol>
+    </div>
+
+  </div>
+  
+  <% if @leagues.empty? %>
+    对不起，没有找到和 “” 相关的工会！<%= link_to '查看所有工会', league_leagues_path %>
+  <% else %>
+
+  <% @leagues.each do |league| %>
+
+
+  <div class="row">
+
+    <div class="col-md-3">
+      <a href="<%= league_league_path(league) %>">
+        <%= image_tag(league.logo_url) %>
+      </a>
+      <h3>
+        <%= link_to league.name, league_league_path(league) %>
+      </h3>
+      <p><%= league.created_at.format_to_readable %></p>
+    </div>
+    <div class="col-md-7">
+      <span>帮主：<strong><%= link_to league.president_name, user_path(league.president) %></strong></span><br/>
+      <span>等级：<strong><%= league.level %></strong></span><br/>
+      <span>成员数：<strong><%= league.members.official.count %></strong></span><br/>
+      <span>宣言：<strong><%= league.declaration %></strong></span>
+    </div>
+    <div class="col-md-2">
+      <p>
+        <%= button_to '加入工会', ask_for_join_league_league_path(league), :method => :put, :remote => true, :class => 'join_league_btn btn btn-info' if current_user && current_user.can_join_league?(league) %>
+      </p>
+    </div>
+
+  </div>
+
+  <hr>
+  <% end %>
+  <% end %>
+
+
+  <div class="row">
+
+    <ul class="pager">
+      <li class="previous"><a href="#">&larr; Older</a></li>
+      <li class="next"><a href="#">Newer &rarr;</a></li>
+    </ul>
+
+  </div>
+
+</div><!-- /.container -->

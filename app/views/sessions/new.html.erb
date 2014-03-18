@@ -1,35 +1,119 @@
-<% content_for :sitemap do %><span class="current">加入社区</span><% end %>
-<div class="content">
-    <div class="box">
-    <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-      <fieldset>
-        <legend><%= t("common.login") %></legend>
-        <%= f.input :login, :input_html => { :style => "width:180px;" } %>
-        <%= f.input :password, :input_html => { :style => "width:180px;" } %>
-        <% if devise_mapping.rememberable? -%>
-        <div class="control-group checkbox optional">
-          <label class="checkbox optional control-label"></label>
-          <div class="controls">
-            <div class="inputs-list"><label for="user_remember_me"><%= f.check_box :remember_me, :style => "width:auto;" %> <%= t("common.remember_me") %></label></div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <meta name="baidu-tc-cerfication" content="b74fb8b8a7e0d354da5b140d10e27113" />
+
+    <title>蕉点享乐科技</title>
+    <%#= stylesheet_link_tag "web", "data-turbolinks-track" => true %>
+    <%= stylesheet_link_tag "web", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "web", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tag %>
+  </head>
+
+  <body>
+
+  <%= render('share/web_top_nav') %>
+
+    <div class="row" style="background-image:url(/init_data/images/session/bg_01.png); padding: 50px 0px;">
+      <div class="col-lg-4 col-lg-offset-7">
+
+
+
+        <div class="panel panel-warning">
+          <div class="panel-heading">
+            <h3 class="panel-title">登录101FUN</h3>
+          </div>
+          <div class="panel-body">
+                <%= notice_message %>
+                <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+
+
+                  <div class="form-group">
+                    <label for="inputEmail1" class="col-sm-3 control-label">* 平台帐号</label>
+                    <div class="col-sm-7">
+                      <input type="text" class="form-control" id="inputEmail1" placeholder="平台帐号" name="user[login]">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputEmail2" class="col-sm-3 control-label">* 密码</label>
+                    <div class="col-sm-7">
+                      <input type="password" class="form-control" id="inputEmail2" placeholder="密码" name="user[password]">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <input type="submit" value="登录" class="btn btn-danger" style="width:70%; margin-left:10%;" />
+                  </div>
+
+                  <hr/>
+                  <div class="form-group">
+                    <span style="margin-left: 50%;">还没有通行证？<%= link_to '立即注册', new_user_registration_path, :class => 'btn btn-info'%></span>
+                  </div>
+
+                <% end %> 
           </div>
         </div>
-        <% end -%>
-        <div class="form-actions">
-          <%= f.submit t("common.login"), :class => "btn btn-primary", 'data-disable-with' => t("common.logining") %>
-        </div>
-      </fieldset>
-    <% end %>
-  </div>
-</div>
-<div class="sidebar">
-  <div class="box">
-    <h2>还没有帐号？</h2>
-    <%= render :partial => "devise/shared/links" %>
-  </div>
-  <div class="box">
-        <h2>用其他平台的帐号登录</h2>
-        <ul>
-          <li><%= link_to "Github", user_omniauth_authorize_path(:github) %> </li>
-        </ul>
+
+
+
+      </div>
+
     </div>
-</div>
+    <% content_for :scripts do %>
+    <script type="text/javascript">
+      $(function(){
+        $("#new_user").validate({
+          rules: {
+            'user[login]': {
+              required: true,
+              minlength: 5
+            },
+            'user[password]': {
+              required: true,
+              minlength: 6
+            }
+          },
+          messages: {
+            'user[login]': {
+              required: "请输入用户名",
+              minlength: "用户名不能小于5个字符"
+            },
+            'user[password]': {
+              required: "请输入密码",
+              minlength: "密码不能小于5个字符"
+            }
+          }
+        });
+      });
+    </script>
+    <% end %>
+
+
+
+  <div class="container col-lg-8 col-lg-offset-2">
+    <hr>
+    <footer>
+      <div class="row">
+        <div class="col-lg-12">
+          <p>Copyright &copy; Company 2013</p>
+        </div>
+      </div>
+    </footer>
+  </div><!-- /.container -->
+  </body>
+</html>
+
+
+
+
+
+
+
+
+

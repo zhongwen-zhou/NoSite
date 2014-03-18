@@ -1,0 +1,20 @@
+<%= simple_form_for @topic do |f| %>
+  <%= render "shared/error_messages", :target => @topic %>
+  <div class="control-group">
+    <%= f.hidden_field(:node_id, :value => @topic.node_id) %>
+    <%= f.text_field :title, :class => "span5", placeholder: "在这里填写标题" %>
+  </div>
+  
+  <div class="control-group edit_tools">
+    <%#= render "editor_toolbar" %>
+  </div>
+  
+  <div class="control-group">
+    <%#= f.text_area :body, :class => "topic_editor closewarning" %>
+    <%= f.kindeditor :body, :width => 360, :height => 300, :class => "topic_editor closewarning" %>
+  </div>
+
+  <div class="control-group">
+    <%= f.submit t("common.save"), :class => "btn btn-primary", 'data-disable-with' => t("common.saving") %>
+  </div>
+<% end %>

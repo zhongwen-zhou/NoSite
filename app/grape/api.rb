@@ -1,7 +1,7 @@
-require "entities"
+# require "entities"
 require "helpers"
 
-module RubyChina
+module NoSite
   class API < Grape::API
     prefix "api"
     error_format :json
@@ -11,6 +11,19 @@ module RubyChina
     # Authentication:
     # APIs marked as 'require authentication' should be provided the user's private token,
     # either in post body or query string, named "token"
+
+    get '/hi' do
+      {:status => :ok}
+    end
+
+    get '/add_coins' do
+      if params[:coins].to_i > 50
+        {:status => :fail}
+      else
+        User.find(params[:user_id]).inc(:coins => params[:coins].to_i)
+        {:status => :ok}
+      end
+    end
 
     resource :topics do
 

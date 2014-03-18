@@ -1,4 +1,4 @@
-module RubyChina
+module NoSite
   module APIHelpers
     def warden
       env['warden']

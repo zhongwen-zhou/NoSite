@@ -1,0 +1,72 @@
+<%= render('ads/ad_hf_01') %>
+<div class="container">
+	<div class="row-fluid">
+	  <div class="col-md-9">
+	    <div class="well">
+	      <h3>
+	      玩家站内信
+	      </h3>
+	      
+ 				<hr>
+	      <ul class="nav nav-tabs">
+	        <li class="active">
+		        <a href="#">私信</a>
+	        </li>
+	        <li>
+		        <%= link_to '工会群聊天', league_league_messages_path(current_user.league) if current_user.league %>
+
+	        </li>
+	      </ul>  
+	      <table class="table">
+	        <thead>
+	          <tr>
+	            <th class="span2">发信人</th>
+	            <th class="span6">内容</th>
+	            <th class="span2">聊天时间</th>
+	            <th class="span2">操作</th>
+	          </tr>
+	        </thead>
+	        <tbody>
+		        <% @communications.each do |communication| %>
+	            <tr class="message_list">
+		            <td>
+			            <a href="#9">
+
+								    <%= user_avatar_tag(communication.sender) %>
+
+								    <br>
+										<%= communication.another_person(current_user).login %>
+		              </a>
+		            </td>
+		            <td>
+		            	<a href="#">
+										<%= communication.last_message.content %>
+		            		<!-- <span class="badge badge-info">有新消息</span> -->
+		          		</a>
+		            </td>
+		            <td>
+			            <small>
+		              	<%= communication.last_message.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+		              </small>
+		            </td>
+		            <td>
+									<%= link_to '继续交流', message_messages_path(communication) %>
+			            <br>
+
+			            <%= link_to '<small>取消联系</small>'.html_safe, message_communication_path(communication), :confirm => '确定删除该会话么？', :method => :delete %>
+		            </td>
+		          </tr>
+						<% end %>
+	        </tbody>
+	      </table>
+	      <div class="page_nav">
+	      	<!-- <span>共17条数据</span> <span>共2页</span>&nbsp;<strong>1</strong>&nbsp;<a href="http://www.ycpai.com/active/message/2">2</a>&nbsp;<a href="http://www.ycpai.com/active/message/2">下一页</a>&nbsp;  -->
+	    	</div>
+	    </div>
+	  </div>
+
+	  <div class="col-md-3">
+	  	<%= image_tag('/init_data/images/ads/ad_message_01.png') %>
+	  </div>
+	</div> 
+</div>

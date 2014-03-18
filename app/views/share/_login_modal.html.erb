@@ -1,0 +1,60 @@
+<div id="loginModal" class="modal fade">
+  <div class="modal-dialog">
+    <%= form_tag(user_session_path, :class => "form-horizontal", :role => "form", :id => "login_form") do |f| %>
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h4 class="modal-title">您没有登录！请登录</h4>
+	      </div>
+	      <div class="modal-body">
+				  <div class="form-group">
+				    <label for="login_email" class="col-sm-2 control-label">平台帐号</label>
+				    <div class="col-sm-10">
+					    <input type="text" class="form-control" id="login_email" placeholder="请输入帐号" name="user[login]">
+				    </div>
+				  </div>
+				  <br/>
+				  <div class="form-group">
+				    <label for="login_password" class="col-sm-2 control-label">登录密码</label>
+				    <div class="col-sm-10">
+				      <input type="password" class="form-control" id="login_password" placeholder="请输入密码" name="user[password]">
+				    </div>
+				  </div>
+
+	      </div>
+	      <div class="modal-footer">
+	        <button type="submit" class="btn btn-primary">登录</button>
+	        <%= link_to '注册', 'account/sign_up' %>
+	      </div>
+	    </div><!-- /.modal-content -->
+		<% end %>  
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<% content_for :scripts do %>
+<script type="text/javascript">
+  $(function(){
+    $("#login_form").validate({
+      rules: {
+        'user[login]': {
+          required: true,
+          minlength: 5
+        },
+        'user[password]': {
+          required: true,
+          minlength: 6
+        }
+      },
+      messages: {
+        'user[login]': {
+          required: "请输入用户名",
+          minlength: "用户名不能小于5个字符"
+        },
+        'user[password]': {
+          required: "请输入密码",
+          minlength: "密码不能小于5个字符"
+        }
+      }
+    });
+  });
+</script>
+<% end %>

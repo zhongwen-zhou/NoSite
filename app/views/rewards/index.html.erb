@@ -1,0 +1,46 @@
+<%= render('ads/ad_hf_01') %>
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-1">
+
+<ul class="nav nav-pills">
+  <li <%= render_active_class(:game) %>>
+    <%= link_to '游戏奖励', rewards_path(:type => :game) %>
+  </li>
+  <li <%= render_active_class(:league) %>>
+    <%= link_to '工会奖励', rewards_path(:type => :league) %>
+  </li>
+  <li <%= render_active_class(:sys) %>>
+    <%= link_to '系统奖励', rewards_path(:type => :sys) %>
+  </li>
+</ul>
+
+    <table class="table table-hover table-striped">
+      <thead>
+        <tr>
+          <th>编号</th>
+          <th>名称</th>
+          <th>奖励理由</th>
+          <th>金币</th>
+          <th>经验</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @rewards.each do |reward| %>
+        <tr>
+          <td><%= reward.id %></td>
+          <td><%= reward.title %></td>
+          <td><%= reward.content %></td>
+          <td><%= reward.personal_coins %></td>
+          <td><%= reward.personal_experience %></td>
+          <td>
+          <%= button_to '领取奖励', receive_reward_path(reward), :method => :put if reward.status == 0 %>
+          <%= "您已领取" if reward.status == 1 %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

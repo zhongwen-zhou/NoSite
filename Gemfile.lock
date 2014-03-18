@@ -290,6 +290,9 @@ GEM
       i18n (~> 0.5)
     rails_autolink (1.1.0)
       rails (> 3.1)
+    rails_kindeditor (0.4.4)
+      carrierwave
+      mini_magick
     railties (4.0.0)
       actionpack (= 4.0.0)
       activesupport (= 4.0.0)
@@ -440,6 +443,7 @@ DEPENDENCIES
   rails (= 4.0.0)
   rails-i18n (= 0.1.8)
   rails_autolink (>= 1.1.0)
+  rails_kindeditor
   redcarpet (~> 3.0.0)
   redis-namespace (~> 1.2.1)
   redis-objects (= 0.5.2)

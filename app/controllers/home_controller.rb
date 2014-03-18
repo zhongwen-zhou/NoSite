@@ -1,11 +1,14 @@
 # coding: utf-8
 class HomeController < ApplicationController
   def index
-    @excellent_topics = Topic.excellent.recent.fields_for_list.includes(:user).limit(20)
-    drop_breadcrumb("首页", root_path)
+    @articles = Article.desc(:created_at).limit(3)
+    @leagues = League::League.all.limit(6)
+    @share_content = {:web_spread => true}
+    @guess_groups = [['中国队', '日本队'], ['皇马', '巴萨']]
   end
 
-  def api
-    drop_breadcrumb("API", root_path)
+  def notice
+  	render :json => {:rewards_count => Reward.where(:receiver => current_user, :status => 0).count,
+  					 :messages_count => Message::Message.where(:receiver => current_user, :status => 0).count}
   end
 end

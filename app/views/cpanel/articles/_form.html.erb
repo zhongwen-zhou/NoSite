@@ -1,0 +1,18 @@
+<%= simple_form_for([:cpanel, @article]) do |f| %>
+  <%= render "shared/error_messages", :target => @article %>
+  <fieldset>
+    <legend>Article页面编辑</legend>
+    <%= f.input :title, :input_html => { :class => "xxlarge" } %>
+    <%= f.input :review, :input_html => { :class => "xxlarge" } %>
+
+	<p>
+	  <label>头图</label>
+		<%= f.file_field :illustration %>
+	    <%= f.hidden_field :illustration_cache %>
+	</p>
+
+    <%= f.kindeditor :content, :width => 800, :height => 300 %>
+    <div class="form-actions">
+      <%= f.submit t("common.save"), :class => "btn btn-primary", 'data-disable-with' => t("common.saving") %>
+    </div>
+<% end %>
