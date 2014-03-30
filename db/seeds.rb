@@ -1,135 +1,86 @@
-# coding: utf-8
+public_section = Bbs::Section.create(:name => '公共', :sort => 0)
+war_section = Bbs::Section.create(:name => '宣战', :sort => 1)
+zk_section = Bbs::Section.create(:name => '战况', :sort => 2)
 
-# 默认配置项
-# 如需新增设置项，请在这里初始化默认值，然后到后台修改
-# 首页
-# SiteConfig.index_html
-SiteConfig.save_default("index_html",<<-eos
-<div class="box" style="text-align:center;">
-  <p><img alt="Big_logo" src="/assets/big_logo.png"></p>
-  <p></p>
-  <p>Ruby China Group， 致力于构建完善的 Ruby 中文社区。</p>
-  <p>功能正在完善中，欢迎 <a href="http://github.com/huacnlee/ruby-china">贡献代码</a> 。</p>
-  <p>诚邀有激情的活跃 Ruby 爱好者参与维护社区，联系 <b style="color:#c00;">lgn21st@gmail.com</b></p>
-</div>
-eos
-)
+(1..20).each do |index|
+  User.create(:login => "user_#{index}", 
+    :name => "User_#{index}", 
+    :password => 'tonytone',
+    :password_confirmation => 'tonytone')
+end
 
-# Wiki 首页 HTML
-SiteConfig.save_default("wiki_index_html",<<-eos
-<div class="box">
-  Wiki Home page.
-</div>
-eos
-)
+(1..6).each do |index|
+  Badge.create(:name => "荣誉_#{index}",
+               :desc => "荣誉_#{index} 的详细描述",
+               :photo => File.open("db/images/badges/badge_#{index}.png"))
+end
 
-# Footer HTML
-SiteConfig.save_default("footer_html",<<-eos
-<p class="copyright">
- &copy; Ruby China Group.
-</p>
-eos
-)
+gs_node = public_section.nodes.create(:name => '灌水',
+              :summary => '随意灌……',
+              :sort => 0)
 
-# 话题后面的HTML代码
-SiteConfig.save_default("after_topic_html",<<-eos
-<div class="share_links">
- <a href="https://twitter.com/share" class="twitter-share-button" data-count="none"">Tweet</a>
- <script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
-</div>
-eos
-)
+(1..10).each do |index|
+  gs_node.topics.create(:user_id => index,
+                        :title => "大家就随便灌水咯_#{index}",
+                        :body => "大家就随便灌水咯\n 大家就随便灌水咯\n 大家就随便灌水咯\n 大家就随便灌水咯",
+                        :excellent => index % 2)
+end
 
-# 话题正文前面的HTML
-SiteConfig.save_default("before_topic_html",<<-eos
-eos
-)
+zk_node = zk_section.nodes.create(:name => '战况',
+              :summary => '你想要的战况这里都有……',
+              :sort => 1)
 
-# 话题列表首页边栏HTML
-SiteConfig.save_default("topic_index_sidebar_html",<<-eos
-<div class="box">
-  <h2>公告</h2>
-  <div class="content">
-    Hello world.
-  </div>
-</div>
+(1..5).each do |index|
+  zk_node.topics.create(:user_id => index,
+                        :title => "战况热播，战争非常的激烈啊#{index}",
+                        :body => "战况热播，战争非常的激烈啊\n 战况热播，战争非常的激烈啊\n 大家就随便灌水咯\n 大家就随便灌水咯",
+                        :excellent => index % 2)
+end
 
-<div class="box">
-  <h2>置顶话题</h2>
-  <ul class="content">
-    <li><a href="/topics/1">Foo bar</a></li>
-  </ul>
-</div>
-eos
-)
+gl_node = public_section.nodes.create(:name => '攻略',
+              :summary => '你想要的这里都有……',
+              :sort => 1)
 
-# 酷站列表首页头的HTML
-SiteConfig.save_default("site_index_html",<<-eos
-下面列出了基于 Ruby 语言开发的网站。如果你知道还有不在此列表的，请帮忙补充。
-eos
-)
+(1..10).each do |index|
+  gl_node.topics.create(:user_id => index,
+                        :title => "喜欢啥游戏说啥游戏咯_#{index}",
+                        :body => "喜欢啥游戏说啥游戏咯\n 喜欢啥游戏说啥游戏咯\n 喜欢啥游戏说啥游戏咯\n 喜欢啥游戏说啥游戏咯",
+                        :excellent => index % 2)
+end
 
-# 自定有 HTML head 区域的内容
-SiteConfig.save_default("custom_head_html",<<-eos
-<link rel="dns-prefetch" href="//assets.youhost.com">
-eos
-)
+war_node = war_section.nodes.create(:name => '宣战',
+              :summary => '谁不服的，上来啊单挑啊……',
+              :sort => 0)
 
-# 要在论坛首页列表隐藏的节点,以逗号隔开
-SiteConfig.save_default("node_ids_hide_in_topics_index","")
+(1..5).each do |index|
+  war_node.topics.create(:user_id => index,
+                        :title => "宣战吧！_#{index}",
+                        :body => "喜欢啥宣战吧！说啥游戏咯\n 喜欢啥游戏说啥游戏咯\n 喜欢宣战吧！说啥游戏咯\n 喜欢啥游戏说啥游戏咯",
+                        :excellent => index % 2)
+end
 
-# Sidebar 新建话题按钮，下拉显示的节点列表
-SiteConfig.save_default("new_topic_dropdown_node_ids","")
+tony_user = User.create(:login => 'zhongwen', 
+                        :name => 'Tony', 
+                        :password => 'tonytone',
+                        :password_confirmation => 'tonytone',
+                        :is_admin => true)
 
-# 禁止回复的某些词语
-SiteConfig.save_default("ban_words_on_reply","mark\n收藏\n顶\n赞\nup\n")
+(1..5).each do |index|
+  Article.create(:title => "《DOTA2》英雄属性排行榜_#{index}",
+                 :content=> "今日，官方为我们放出了3D电影《西游记之大闹天宫》终极版海报以及新剧照，在海报中，“美猴王”甄子丹、“玉皇大帝”周润发、“牛魔王”郭富城组队领衔，已经拉开“魔幻三雄”大PK的架势。影片将于2014年大年初一以3D/IMAX3D/中国巨幕形式上映。",
+                 :illustration => File.open('db/images/articles/article_x.png'))
+end
 
-# 随机显示的 tip 信息
-SiteConfig.save_default("tips","提示1\n提示2")
+(1..6).each do |index|
+  user = User.find(index)
+  league = user.create_league({:name => "测试工会_#{index}",
+                      :declaration => "如果不努力战斗，那么等待你的就是无尽的死亡轮回，一起来看看吧！",
+                      :logo => File.open("db/images/leagues/league_#{index}.png")})
+  league.add_member(User.find(20-index), false).positive!
+end
 
-SiteConfig.save_default("newbie_notices",%(<p>为提高社区质量，防止新人一来就发帖提问接触 Ruby 遇到的问题，新用户需要达到下面条件才可发帖：</p>
-    <ol style="color:#ad2b2d;">
-      <li>注册时间超过一个月；</li>
-      <li>回帖数量必须达到 10 贴以上；</li>
-    </ol>
-    <p>请在新人阶段多浏览，看看其他老用户是如何在社区里面分享与解决问题的。</p>))
-
-SiteConfig.save_default("reject_newbie_reply_in_the_evening", "false")
-
-# ========================= init Section, Node =========================
-
-# s1 = Section.create(:name => "Ruby")
-# Node.create(:name => "Ruby",:summary => "...", :section_id => s1.id)
-# Node.create(:name => "Ruby on Rails",:summary => "...", :section_id => s1.id)
-# Node.create(:name => "Gem",:summary => "...", :section_id => s1.id)
-# s2 = Section.create(:name => "Web Development")
-# Node.create(:name => "Python",:summary => "...", :section_id => s2.id)
-# Node.create(:name => "Javascript",:summary => "...", :section_id => s2.id)
-# Node.create(:name => "CoffeeScript",:summary => "...", :section_id => s2.id)
-# Node.create(:name => "HAML",:summary => "...", :section_id => s2.id)
-# Node.create(:name => "SASS",:summary => "...", :section_id => s2.id)
-# Node.create(:name => "MongoDB",:summary => "...", :section_id => s2.id)
-# Node.create(:name => "Redis",:summary => "...", :section_id => s2.id)
-# Node.create(:name => "Git",:summary => "...", :section_id => s2.id)
-# Node.create(:name => "MySQL",:summary => "...", :section_id => s2.id)
-# Node.create(:name => "Hadoop",:summary => "...", :section_id => s2.id)
-# Node.create(:name => "Google",:summary => "...", :section_id => s2.id)
-# Node.create(:name => "Java",:summary => "...", :section_id => s2.id)
-# Node.create(:name => "Tornado",:summary => "...", :section_id => s2.id)
-# Node.create(:name => "Linux",:summary => "...", :section_id => s2.id)
-# Node.create(:name => "Nginx",:summary => "...", :section_id => s2.id)
-# Node.create(:name => "Apache",:summary => "...", :section_id => s2.id)
-# Node.create(:name => "Cloud",:summary => "...", :section_id => s2.id)
-# s6 = Section.create(:name => "Ruby China")
-# Node.create(:name => "公告",:summary => "...", :section_id => s6.id)
-# Node.create(:name => "反馈",:summary => "...", :section_id => s6.id)
-# Node.create(:name => "开发",:summary => "...", :section_id => s6.id)
-
-# SiteNode.create(:name => "国内商业网站", :sort => 100)
-# SiteNode.create(:name => "国外著名网站", :sort => 99)
-# SiteNode.create(:name => "Ruby 社区网站", :sort => 98)
-# SiteNode.create(:name => "技术博客", :sort => 97)
-# SiteNode.create(:name => "Ruby 开源项目", :sort => 96)
-# SiteNode.create(:name => "国内企业", :sort => 95)
-# SiteNode.create(:name => "其他", :sort => 94)
-
+User.all.each do |user|
+  Badge.all.each_with_index do |badge, index|
+    BadgeWinner.create(:user => user, :badge => badge, :status => index % 2)
+  end
+end

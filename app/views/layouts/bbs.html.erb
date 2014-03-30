@@ -25,9 +25,7 @@
   <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container">
-        <h4>
-          <a href="/" class="">蕉点享乐游戏</a>
-        </h4>
+        <a style="float:left;" href="/" ><%= image_tag('/init_data/images/logo.png') %></a>
         <%= render_list :class => "nav" do |li|
            li << link_to(t("menu.topics"), bbs_topics_path)
         end %>

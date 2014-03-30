@@ -82,11 +82,11 @@ module Bbs::TopicsHelper
   end
 
   def can_publish_reply?(topic)
-    league = current_user.league
-    node = topic.node
-    return false if league.nil? && node.id == 4
-    member = league.members.where(:user => current_user).first
-    return false if node.id == 4 && member.role != 3
+    # league = current_user.league
+    # node = topic.node
+    # return false if league.nil? && node.id == 4
+    # member = league.members.where(:user => current_user).first
+    # return false if node.id == 4 && member.role != 3
     return true
   end
 end

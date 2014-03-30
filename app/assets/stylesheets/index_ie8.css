@@ -1,0 +1,13 @@
+.center-block {
+	margin-left: 16%;
+	margin-right: 16%;
+}
+
+.center-block .col-lg-8 {
+	width: 100%;
+}
+
+.nav li form.navbar-form {
+	margin: 3px -15px;
+	padding: 0px 15px;
+}

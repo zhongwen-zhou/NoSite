@@ -14,6 +14,7 @@ capybara-*.html
 /public/league/*
 /public/tmp/*
 /public/assets/*
+/public/uploads/tmp/*
 /config/config.yml
 /coverage/
 /spec/tmp/*
@@ -25,3 +26,5 @@ pickle-email-*.html
 config/initializers/secret_token.rb
 public/photo
 public/user
+
+.DS_Stroe

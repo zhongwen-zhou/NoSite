@@ -12,12 +12,17 @@
     <%= stylesheet_link_tag "web", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "web", "data-turbolinks-track" => true %>
     <%= csrf_meta_tag %>
+    <!--[if lt IE 9]>
+      <link rel="stylesheet" type="text/css" href="/assets/ie8.css" />
+    <![endif]-->
   </head>
 
   <body>
 
   <%= render('share/web_top_nav') %>
   <%= render('share/web_spread') if @share_content[:web_spread] %>
+
+  <div class='center-block'>
 
   <div class="container col-lg-8 col-lg-offset-2">
     <%= yield %>
@@ -35,6 +40,7 @@
       </div>
     </footer>
   </div><!-- /.container -->
+  </div>
 
 <div style="position:fixed;right:0; width: 250px; height:215px; text-align:right; font-size:14px; line-height:22px; color:#000;" id="rb_ad">  
 <a href="javascript:close_rbad();" target="_self">关闭</a><br />  
