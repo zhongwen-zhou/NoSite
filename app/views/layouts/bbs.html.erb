@@ -20,13 +20,6 @@
   <%#= auto_discovery_link_tag(:rss, feed_bbs_topics_url,:title => '订阅最新帖') %>
   <%= javascript_include_tag "app", "data-turbolinks-track" => true %>
   <%= yield :node_feed_link %>
-
-<script type="text/javascript">
-var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F72e690df0eb5b0121b2ca90417ad73b9' type='text/javascript'%3E%3C/script%3E"));
-</script>
-
-
 </head>
 <body data-offset="50" data-controller-name="<%= controller_name %>">
   <div class="navbar navbar-fixed-top">
@@ -100,6 +93,11 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
       //     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
       //     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       // })();
+
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F23b694c87aa8d1e29e90beff93981eb3' type='text/javascript'%3E%3C/script%3E"));
+
+
   </script>
 </body>
 </html>
