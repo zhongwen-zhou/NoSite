@@ -115,7 +115,7 @@ class Bbs::Topic
     self.replied_at = Time.now
     self.last_reply_id = reply.id 
     self.last_reply_user_id = reply.user_id
-    self.last_reply_user_login = reply.user.try(:login) || nil
+    self.last_reply_user_login = reply.user.try(:name) || nil
     self.save
   end
 
