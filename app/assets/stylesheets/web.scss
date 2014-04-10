@@ -17,3 +17,25 @@ body{
 /* The max-width declaration below blocks this from ever working */
 @media only screen and (min-width: 480px){
 }
+
+.panel-orange {
+  border-color: #F5A274;
+}
+
+.panel-orange > .panel-heading {
+  color: #000;
+  background-color: #F5A274;
+  border-color: #F5A274;
+}
+
+.panel-orange > .panel-heading + .panel-collapse .panel-body {
+  border-top-color: #F5A274;
+}
+
+.panel-orange > .panel-heading > .dropdown .caret {
+  border-color: #F5A274 transparent;
+}
+
+.panel-orange > .panel-footer + .panel-collapse .panel-body {
+  border-bottom-color: #F5A274;
+}
