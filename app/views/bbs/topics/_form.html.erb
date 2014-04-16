@@ -10,11 +10,33 @@
   </div>
   
   <div class="control-group">
-    <%#= f.text_area :body, :class => "topic_editor closewarning" %>
-    <%= f.kindeditor :body, :width => 360, :height => 300, :class => "topic_editor closewarning" %>
+    <%= f.text_area :body, :class => "topic_editor closewarning" %>
+    <%#= f.kindeditor :body, :width => 360, :height => 300, :class => "topic_editor closewarning" %>
   </div>
 
   <div class="control-group">
     <%= f.submit t("common.save"), :class => "btn btn-primary", 'data-disable-with' => t("common.saving") %>
   </div>
 <% end %>
+<script type="text/javascript">
+    var csrfitems = document.getElementsByName("csrfmiddlewaretoken");
+    var csrftoken = "";
+    if(csrfitems.length > 0)
+    {
+        csrftoken = csrfitems[0].value;
+    }
+         
+    var editor ;
+    KindEditor.ready(function(K) {  
+        var options = {  
+            width : '360px',  
+            height : '300px',  
+            filterMode : true,
+            uploadJson : K.undef('/kindeditor/upload/'),
+            extraFileUploadParams : {
+                csrfmiddlewaretoken:csrftoken
+            }
+       };  
+        editor = K.create('textarea', options);  
+    });                      
+</script> 
