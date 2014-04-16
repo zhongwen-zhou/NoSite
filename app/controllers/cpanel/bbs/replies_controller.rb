@@ -35,8 +35,8 @@ class Cpanel::Bbs::RepliesController < Cpanel::ApplicationController
   def update
     @reply = ::Bbs::Reply.unscoped.find(params[:id])
 
-    if @reply.update_attributes(params[:reply].permit!)
-       redirect_to(cpanel_replies_path, :notice => '::Bbs::Reply was successfully updated.')
+    if @reply.update_attributes(params[:bbs_reply].permit!)
+       redirect_to(cpanel_bbs_replies_path, :notice => '::Bbs::Reply was successfully updated.')
     else
       render :action => "edit"
     end
