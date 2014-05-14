@@ -255,6 +255,8 @@ GEM
       omniauth (~> 1.0)
     origin (1.1.0)
     orm_adapter (0.4.0)
+    pjax_rails (0.3.4)
+      jquery-rails
     polyglot (0.3.3)
     postmark (0.9.15)
       json
@@ -329,6 +331,7 @@ GEM
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
       rspec-mocks (~> 2.13.0)
+    ruby-ole (1.2.11.7)
     ruby-progressbar (1.2.0)
     rubyzip (0.9.9)
     rvm-capistrano (1.2.2)
@@ -355,6 +358,8 @@ GEM
       activemodel (>= 4.0.0.rc1, < 4.1)
     slop (3.4.7)
     social-share-button (0.1.4)
+    spreadsheet (0.7.9)
+      ruby-ole (>= 1.0)
     sprite-factory (1.4.1)
     sprockets (2.10.0)
       hike (~> 1.2)
@@ -436,6 +441,7 @@ DEPENDENCIES
   nokogiri (~> 1.6.0)
   omniauth (~> 1.0.1)
   omniauth-github (~> 1.1.0)
+  pjax_rails
   postmark-rails (= 0.4.1)
   pry-rails
   puma (= 2.6.0)
@@ -456,6 +462,7 @@ DEPENDENCIES
   sidekiq (= 2.5.3)
   simple_form (= 3.0.0.rc)
   social-share-button (= 0.1.4)
+  spreadsheet
   sprite-factory (= 1.4.1)
   thin (= 1.5.0)
   turbolinks (~> 1.2.0)

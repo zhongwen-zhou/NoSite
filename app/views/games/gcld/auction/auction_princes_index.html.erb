@@ -1,0 +1,195 @@
+<style type="text/css">
+
+.bg-img{
+	background-image: url(/assets/games/gcld/jingpai_beijing.png);
+	background-repeat: no-repeat;
+	height: 456px;
+	width: 930px;
+}
+
+.person-bg-img{
+	background-image: url(/assets/games/gcld/goumaikuang.png);
+	background-repeat: no-repeat;
+	height: 167px;
+	width: 119px;
+}
+
+/**************************************************/
+.font-16-yellow{
+	font-size: 16px;
+	color: yellow;
+}
+
+.font-12-yellow{
+	font-size: 12px;
+	color: yellow;
+}
+
+.font-14-white{
+	font-size: 14px;
+	color: white;
+}
+/**************************************************/
+.margin-top-15{
+	margin-top: 15px;
+}
+
+.margin-top-25{
+	margin-top: 25px;
+}
+
+.margin-top-55{
+	margin-top: 55px;
+}
+
+.margin-left-5{
+	margin-left: 5px;
+}
+
+.margin-left-10{
+	margin-left: 10px;
+}
+
+.margin-left-50{
+	margin-left: 50px;
+}
+
+/**************************************************/
+.jpbtn{
+	display: block;
+	height: 27px;
+	width: 91px;
+	background-image: url(/assets/games/gcld/jingpai.png);
+	margin-left: 13px;
+}
+
+.jpbtn:hover{
+	background-image: url(/assets/games/gcld/jingpai_1.png);
+}
+
+.jpbtn-got{
+	display: block;
+	height: 27px;
+	width: 91px;
+	background-image: url(/assets/games/gcld/jingpai_2.png);
+	margin-left: 13px;
+}
+
+.head-img-a :hover{
+
+}
+
+/**************************************************/
+	
+</style>
+<% if false %>
+<div>
+	<ul>
+	<% @castellans.each do |castellan| %>
+		<li>
+		姓名：<%= castellan.name %><br/>
+		武力：<%= castellan.wu_li %><br/>
+		价格：<%= castellan.price %><br/>
+		获得者：<%= castellan.user ? castellan.user.name : '' %><br/>
+		<input type="button" value="竞拍" data-role="auction-btn" data-id="<%= castellan.id %>" data-price="<%= castellan.price %>"/>
+		<br/>
+		<br/>
+
+		</li>
+	<% end %>
+	</ul>
+</div>
+<% end %>
+
+  	<div class="container bg-img">
+  		<div class="center-block">
+  			<div class="row margin-top-25 margin-left-5">
+  				<div class="col-lg-9">
+	  				<%= image_tag('games/gcld/biaoti.png') %>
+  				</div>
+
+  				<div class="col-lg-3">
+  					<div class="row">
+  						<span class="font-16-yellow">竞拍倒计时：00:15:59</span>
+  					</div>
+  					<div class="row">
+  						<span class="font-16-yellow">服务器：群雄逐鹿</span>
+  					</div>
+  				</div>
+  				
+  				<!-- row 1 -->
+  				<div class="row margin-left-50 margin-top-55 text-center">
+  					<% @castellans[0...6].each do |castellan| %>
+
+	  					<div class="col-lg-2 person-bg-img margin-left-10">
+	  						<div class="row margin-top-15">
+	  							<a class="head-img-a" href="javascript:void(0);">
+	  								<%= image_tag('games/gcld/touxiang.png') %>
+	  							</a>
+	  						</div>
+	  						<div class="row">
+	  							<span class="font-12-yellow">竞拍者：二虎</span>
+	  						</div>
+	  						<div class="row">
+	  							<span class="font-14-white">金币：2000</span>
+	  						</div>
+	  						<div class="row">
+	  							<a class="jpbtn" href="#">
+	  							</a>
+	  						</div>
+	  					</div>
+  					<% end %>
+
+  				</div>
+
+  				<!-- row 2 -->
+  				<div class="row margin-left-50 text-center">
+
+  					<% @castellans[6...12].each do |castellan| %>
+
+	  					<div class="col-lg-2 person-bg-img margin-left-10">
+	  						<div class="row margin-top-15">
+	  							<a class="head-img-a" href="javascript:void(0);">
+	  								<%= image_tag('games/gcld/touxiang.png') %>
+	  							</a>
+	  						</div>
+	  						<div class="row">
+	  							<span class="font-12-yellow">竞拍者：二虎</span>
+	  						</div>
+	  						<div class="row">
+	  							<span class="font-14-white">金币：2000</span>
+	  						</div>
+	  						<div class="row">
+	  							<a class="jpbtn" href="#">
+	  							</a>
+	  						</div>
+	  					</div>
+  					<% end %>
+
+
+
+  				</div>
+  				
+  			</div>
+  		
+  			
+  		</div>
+  	</div>
+
+
+<script>
+	$(function(){
+		$('[data-role=auction-btn]').click(function(){
+			var data = {castellan_id : $(this).attr('data-id'), price : $(this).attr('data-price')};
+			$.post('<%= games_gcld_auction_auction_prince_path %>', data, function(data){
+				console.log(data);
+			});
+		});
+
+		setTimeout(function(){
+			// window.location.href = '/games/gcld/auction/auction_princes_index.html';
+			// console.log('xxx');
+			// window.location.href = 'http://baidu.com/';
+		}, 3000)
+	});
+</script>

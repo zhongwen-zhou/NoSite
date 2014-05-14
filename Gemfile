@@ -14,6 +14,7 @@ gem "jquery-rails", "3.0.4"
 gem "rails_autolink", ">= 1.1.0"
 gem "md_emoji"
 gem 'exception_notification'
+gem 'spreadsheet'
 
 # 上传组件
 gem 'carrierwave', '0.6.2'
@@ -25,6 +26,7 @@ gem "mongoid", github: 'mongoid/mongoid', ref: '11e45e5a30a45458b83db99ab6c9d9cc
 gem 'mongoid_auto_increment_id', "0.6.2"
 gem 'mongoid_rails_migrations', '1.0.0'
 
+gem 'pjax_rails'
 # 用户系统
 gem 'devise', '3.0.1'
 gem 'devise-encryptable', '0.1.2'

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <title>101FUN遊戏平台</title>
+    <%#= stylesheet_link_tag "web", "data-turbolinks-track" => true %>
+    <%= stylesheet_link_tag "web" %>
+    <%= javascript_include_tag "web" %>
+    <%= javascript_include_tag "jquery.pjax" %>
+    <%= csrf_meta_tag %>
+    <!--[if lt IE 9]>
+      <link rel="stylesheet" type="text/css" href="/assets/ie8.css" />
+    <![endif]-->
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?23b694c87aa8d1e29e90beff93981eb3";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  </head>
+
+  <body>
+
+  <%= render('share/web_top_nav') %>
+  <%= render('share/web_spread') if @share_content[:web_spread] %>
+
+  <%= link_to 'refresh', games_gcld_auction_auction_princes_index_path(:pjax => true), :id => 'refresh-btn' %>
+
+  <div class='center-block'>
+
+  <div class="container col-lg-8 col-lg-offset-2" data-pjax-container>
+    <%= yield %>
+  </div>
+  <div class="container col-lg-8 col-lg-offset-2">
+    <hr>
+    <footer style="text-align: center;">
+      <div class="row">
+        <a href="/about">关于我们</a> &nbsp;&nbsp;<a href="/law">法律声明</a>&nbsp;&nbsp; 友情链接
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <p>蕉点享乐信息技术（成都）有限公司</p>
+          <p>蜀ICP备14006662号</p>
+        </div>
+      </div>
+    </footer>
+  </div><!-- /.container -->
+  </div>
+
+<div style="position:fixed;right:0; width: 250px; height:215px; text-align:right; font-size:14px; line-height:22px; color:#000;" id="rb_ad">  
+<a href="javascript:close_rbad();" target="_self">关闭</a><br />  
+<%= image_tag('/init_data/images/ads/ad_message_01.png') %>
+</div>
+
+    <%= yield :scripts %>
+    <script type="text/javascript">
+        $(function(){
+          <% if current_user %>
+              $.get('<%= notice_path %>', {}, function(data){
+                $('#rewards_count_span').text(data.rewards_count);
+                $('#messages_count_span').text(data.messages_count);
+              });
+          <% end %>
+
+          $(document).pjax('a:not([data-remote]):not([data-behavior]):not([data-skip-pjax])', '[data-pjax-container]')
+
+          SetInterval(function(){
+            $('#refresh-btn').click();
+          }, 5000);
+
+        });
+
+        // $('#rb_ad').css('top', document.documentElement.scrollTop+document.documentElement.clientHeight-215)
+        // function close_rbad(){
+        //   $('#rb_ad').remove();
+        // } 
+
+    </script>
+
+
+  </body>
+</html>
+
