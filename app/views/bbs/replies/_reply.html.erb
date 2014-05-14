@@ -8,7 +8,7 @@
   <% else %>
     <div class="pull-left face">
       <% if reply.user.league %>
-        <%= image_tag(reply.user.league.logo_url) %>
+        <%= image_tag(reply.user.league.logo_url, :width => 50, :height => 50) %>
       <% else %>
         <%= user_avatar_tag(reply.user, :normal) %>
       <% end %>
