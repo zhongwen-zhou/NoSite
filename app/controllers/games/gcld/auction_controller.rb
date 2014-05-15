@@ -3,7 +3,7 @@ class Games::Gcld::AuctionController < ApplicationController
   layout 'auction'
   def auction_princes_index
     # role_type_id = Games::Gcld::RoleType.where(:db_id => 2100).first.id
-    @castellans = Games::Gcld::Castellan.where(:role_type_id => 2100)
+    @castellans = Games::Gcld::Castellan.where(:role_type_id => 2100).desc(:created_at)
     render :layout => false if params[:pjax]
   end
 
@@ -21,7 +21,9 @@ class Games::Gcld::AuctionController < ApplicationController
       castellan.set(:user => current_user.id)
       end
     end    
+    castellan.save!
     castellan.reload
+
     render :json => {:user_name => castellan.user_castellan.user.name}
   end
 end

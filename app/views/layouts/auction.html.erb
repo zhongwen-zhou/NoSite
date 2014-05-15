@@ -56,11 +56,12 @@ var _hmt = _hmt || [];
     </footer>
   </div><!-- /.container -->
   </div>
-
+<% if false %>
 <div style="position:fixed;right:0; width: 250px; height:215px; text-align:right; font-size:14px; line-height:22px; color:#000;" id="rb_ad">  
 <a href="javascript:close_rbad();" target="_self">关闭</a><br />  
 <%= image_tag('/init_data/images/ads/ad_message_01.png') %>
 </div>
+<% end %>
 
     <%= yield :scripts %>
     <script type="text/javascript">
@@ -72,19 +73,42 @@ var _hmt = _hmt || [];
               });
           <% end %>
 
-          $(document).pjax('a:not([data-remote]):not([data-behavior]):not([data-skip-pjax])', '[data-pjax-container]')
+          $(document).pjax('a:not([data-remote]):not([data-behavior]):not([data-skip-pjax])', '[data-pjax-container]');
 
-          SetInterval(function(){
-            $('#refresh-btn').click();
-          }, 5000);
+          // setInterval(function(){
+            // $('#refresh-btn').click();
+          // }, 3000);
+
+bootbox.dialog({
+  message: "I am a custom dialog",
+  title: "Custom title",
+  buttons: {
+    success: {
+      label: "Success!",
+      className: "btn-success",
+      callback: function() {
+        Example.show("great success");
+      }
+    },
+    danger: {
+      label: "Danger!",
+      className: "btn-danger",
+      callback: function() {
+        Example.show("uh oh, look out!");
+      }
+    },
+    main: {
+      label: "Click ME!",
+      className: "btn-primary",
+      callback: function() {
+        Example.show("Primary button");
+      }
+    }
+  }
+});
+
 
         });
-
-        // $('#rb_ad').css('top', document.documentElement.scrollTop+document.documentElement.clientHeight-215)
-        // function close_rbad(){
-        //   $('#rb_ad').remove();
-        // } 
-
     </script>
 
 

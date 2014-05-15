@@ -121,21 +121,32 @@
   				<div class="row margin-left-50 margin-top-55 text-center">
   					<% @castellans[0...6].each do |castellan| %>
 
-	  					<div class="col-lg-2 person-bg-img margin-left-10">
+	  					<div class="col-lg-2 person-bg-img margin-left-10" data-role="auction-container" data-id="<%= castellan.id %>">
 	  						<div class="row margin-top-15">
-	  							<a class="head-img-a" href="javascript:void(0);">
+	  							<a class="head-img-a" href="javascript:void(0);" data-role="castellan-avatar">
 	  								<%= image_tag('games/gcld/touxiang.png') %>
 	  							</a>
 	  						</div>
+	  						<% if castellan.user_castellan %>
 	  						<div class="row">
-	  							<span class="font-12-yellow">竞拍者：二虎</span>
+	  							<span class="font-12-yellow" data-role="auction-user">竞拍者：<%= castellan.user_castellan.user.name %></span>
+	  						</div>
+	  						<% else %>
+	  						<div class="row">
+	  							<span class="font-12-yellow">&nbsp;</span>
+	  						</div>
+
+	  						<% end %>
+	  						<div class="row">
+	  							<span class="font-14-white">金币：<%= castellan.price %></span>
 	  						</div>
 	  						<div class="row">
-	  							<span class="font-14-white">金币：2000</span>
-	  						</div>
-	  						<div class="row">
-	  							<a class="jpbtn" href="#">
+	  						<% if castellan.user_castellan.user_id == current_user.id %>
+	  							<a class="jpbtn-got"></a>
+	  						<% else %>
+	  							<a class="jpbtn" href="javascript:void(0);" value="竞拍" data-role="auction-btn" data-id="<%= castellan.id %>" data-price="<%= castellan.price %>">
 	  							</a>
+	  						<% end %>
 	  						</div>
 	  					</div>
   					<% end %>
@@ -146,22 +157,32 @@
   				<div class="row margin-left-50 text-center">
 
   					<% @castellans[6...12].each do |castellan| %>
-
-	  					<div class="col-lg-2 person-bg-img margin-left-10">
+	  					<div class="col-lg-2 person-bg-img margin-left-10" data-role="auction-container" data-id="<%= castellan.id %>">
 	  						<div class="row margin-top-15">
 	  							<a class="head-img-a" href="javascript:void(0);">
 	  								<%= image_tag('games/gcld/touxiang.png') %>
 	  							</a>
 	  						</div>
+	  						<% if castellan.user_castellan %>
 	  						<div class="row">
-	  							<span class="font-12-yellow">竞拍者：二虎</span>
+	  							<span class="font-12-yellow" data-role="auction-user">竞拍者：<%= castellan.user_castellan.user.name %></span>
+	  						</div>
+	  						<% else %>
+	  						<div class="row">
+	  							<span class="font-12-yellow">&nbsp;</span>
+	  						</div>
+
+	  						<% end %>
+	  						<div class="row">
+	  							<span class="font-14-white">金币：<%= castellan.price %></span>
 	  						</div>
 	  						<div class="row">
-	  							<span class="font-14-white">金币：2000</span>
-	  						</div>
-	  						<div class="row">
-	  							<a class="jpbtn" href="#">
+	  						<% if castellan.user_castellan.user_id == current_user.id %>
+	  							<a class="jpbtn-got"></a>
+	  						<% else %>
+	  							<a class="jpbtn" href="javascript:void(0);" value="竞拍" data-role="auction-btn" data-id="<%= castellan.id %>" data-price="<%= castellan.price %>">
 	  							</a>
+	  						<% end %>
 	  						</div>
 	  					</div>
   					<% end %>
@@ -179,17 +200,19 @@
 
 <script>
 	$(function(){
+
+		$('[data-role=castellan-avatar]').popover({title: 'hello', trigger: 'hover'});
+
 		$('[data-role=auction-btn]').click(function(){
-			var data = {castellan_id : $(this).attr('data-id'), price : $(this).attr('data-price')};
+			var btn = $(this);
+			btn.removeClass('jpbtn').addClass('jpbtn-got');
+			btn.attr('disabled', 'disabled');
+			var data = {castellan_id : btn.attr('data-id'), price : btn.attr('data-price')};
 			$.post('<%= games_gcld_auction_auction_prince_path %>', data, function(data){
-				console.log(data);
+				var html_temp = "[data-role=auction-container][data-id="+btn.attr('data-id')+"]";
+				var name_dom = $(html_temp).find('[data-role=auction-user]');
+				$(name_dom).text(data['user_name']);
 			});
 		});
-
-		setTimeout(function(){
-			// window.location.href = '/games/gcld/auction/auction_princes_index.html';
-			// console.log('xxx');
-			// window.location.href = 'http://baidu.com/';
-		}, 3000)
 	});
 </script>
