@@ -13,6 +13,9 @@
 		        <a href="#">私信</a>
 	        </li>
 	        <li>
+		        <a href="<%= message_sys_messages_path %>">系统私信</a>
+	        </li>
+	        <li>
 		        <%= link_to '工会群聊天', league_league_messages_path(current_user.league) if current_user.league %>
 
 	        </li>

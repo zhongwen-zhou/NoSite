@@ -1,0 +1,53 @@
+<%= render('ads/ad_hf_01') %>
+<div class="container">
+	<div class="row-fluid">
+	  <div class="col-md-9">
+	    <div class="well">
+	      <h3>
+	      玩家站内信
+	      </h3>
+	      
+ 				<hr>
+	      <ul class="nav nav-tabs">
+	        <li>
+		        <a href="<%= message_root_path %>">私信</a>
+	        </li>
+	        <li class="active">
+		        <a href="#">系统私信</a>
+	        </li>
+	        <li>
+		        <%= link_to '工会群聊天', league_league_messages_path(current_user.league) if current_user.league %>
+
+	        </li>
+	      </ul>  
+	      <table class="table">
+	        <thead>
+	          <tr>
+	            <th class="span10">信息内容</th>
+	            <th class="span2">发信时间</th>
+	          </tr>
+	        </thead>
+	        <tbody>
+		        <% @messages.each do |message| %>
+	            <tr class="message_list">
+		            <td>
+			        	<%= message.content %>
+		            </td>
+		            <td>
+		            	<%= message.created_at.strftime('%Y-%m-%d %H:%M:%S') %>
+		            </td>
+		          </tr>
+						<% end %>
+	        </tbody>
+	      </table>
+	      <div class="page_nav">
+	      	<!-- <span>共17条数据</span> <span>共2页</span>&nbsp;<strong>1</strong>&nbsp;<a href="http://www.ycpai.com/active/message/2">2</a>&nbsp;<a href="http://www.ycpai.com/active/message/2">下一页</a>&nbsp;  -->
+	    	</div>
+	    </div>
+	  </div>
+
+	  <div class="col-md-3">
+	  	<%= image_tag('/init_data/images/ads/ad_message_01.png') %>
+	  </div>
+	</div> 
+</div>

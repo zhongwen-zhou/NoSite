@@ -84,6 +84,7 @@ gem 'postmark-rails', '0.4.1'
 gem 'garelic', '0.0.2'
 
 gem "god"
+gem 'gon'
 
 gem 'dalli', '1.1.1'
 gem 'eventmachine', '1.0.3'

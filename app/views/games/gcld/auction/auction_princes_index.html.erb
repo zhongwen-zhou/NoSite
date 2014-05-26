@@ -3,7 +3,6 @@
 .bg-img{
 	background-image: url(/assets/games/gcld/jingpai_beijing.png);
 	background-repeat: no-repeat;
-	height: 456px;
 	width: 930px;
 }
 
@@ -17,6 +16,11 @@
 /**************************************************/
 .font-16-yellow{
 	font-size: 16px;
+	color: yellow;
+}
+
+.font-14-yellow{
+	font-size: 14px;
 	color: yellow;
 }
 
@@ -54,19 +58,24 @@
 	margin-left: 50px;
 }
 
-/**************************************************/
+.padding-top-10{
+	padding-top: 10px;
+}
+
+.padding-left-20{
+	padding-left: 20px;
+}
 .jpbtn{
 	display: block;
 	height: 27px;
 	width: 91px;
-	background-image: url(/assets/games/gcld/jingpai.png);
 	margin-left: 13px;
+	background-image: url(/assets/games/gcld/jingpai.png);
 }
 
 .jpbtn:hover{
 	background-image: url(/assets/games/gcld/jingpai_1.png);
 }
-
 .jpbtn-got{
 	display: block;
 	height: 27px;
@@ -74,32 +83,78 @@
 	background-image: url(/assets/games/gcld/jingpai_2.png);
 	margin-left: 13px;
 }
+.property-div{
+	height: 281px;
+	width: 160px;
+	background-image: url(/assets/games/gcld/shuxingkuang.png);
+	background-repeat: no-repeat;
+}
 
-.head-img-a :hover{
+.property-div p{
+	margin: 0 0 2px;
+}
 
+.area{
+	margin-left: -10px;
+}
+
+.popover-content {
+padding: 0px;
+}
+/**************************************************/
+	
+
+.cancel-btn{
+	background-image: url(/assets/games/gcld/quxiao.png);
+	background-repeat: no-repeat;
+	width: 62px;
+	height: 24px;
+	margin-right: 20px;
+}
+
+.cancel-btn:hover{
+	background-image: url(/assets/games/gcld/quxiao_1.png);
+}
+
+.srue-btn{
+	background-image: url(/assets/games/gcld/queren.png);
+	background-repeat: no-repeat;
+	width: 62px;
+	height: 24px;
+}
+.srue-btn:hover{
+	background-image: url(/assets/games/gcld/queren_1.png);
+}
+/**************************************************/
+.popover-content {
+	padding: 0px;
+}
+
+.modal-content{
+	width: 243px;
+	height: 123px;
+	background-image: url(/assets/games/gcld/goumaitishi.png);
+	background-repeat: no-repeat;
+}
+
+.modal-footer {
+	padding: 19px 20px 20px;
+	margin-top: 0px;
+	text-align: center;
+	border-top: none;
+}
+
+.bootbox-body{
+	font-size: 14px;
+	color: yellow;
 }
 
 /**************************************************/
-	
-</style>
-<% if false %>
-<div>
-	<ul>
-	<% @castellans.each do |castellan| %>
-		<li>
-		姓名：<%= castellan.name %><br/>
-		武力：<%= castellan.wu_li %><br/>
-		价格：<%= castellan.price %><br/>
-		获得者：<%= castellan.user ? castellan.user.name : '' %><br/>
-		<input type="button" value="竞拍" data-role="auction-btn" data-id="<%= castellan.id %>" data-price="<%= castellan.price %>"/>
-		<br/>
-		<br/>
 
-		</li>
-	<% end %>
-	</ul>
-</div>
-<% end %>
+
+
+</style>
+
 
   	<div class="container bg-img">
   		<div class="center-block">
@@ -110,7 +165,7 @@
 
   				<div class="col-lg-3">
   					<div class="row">
-  						<span class="font-16-yellow">竞拍倒计时：00:15:59</span>
+  						<span class="font-16-yellow">竞拍倒计时：<%= @left_times %></span>
   					</div>
   					<div class="row">
   						<span class="font-16-yellow">服务器：群雄逐鹿</span>
@@ -121,9 +176,9 @@
   				<div class="row margin-left-50 margin-top-55 text-center">
   					<% @castellans[0...6].each do |castellan| %>
 
-	  					<div class="col-lg-2 person-bg-img margin-left-10" data-role="auction-container" data-id="<%= castellan.id %>">
+	  					<div class="col-lg-2 person-bg-img margin-left-10" data-role="auction-container" data-id="<%= castellan.id %>" data-name="<%= castellan.name %>" data-wuli="<%= castellan.wu_li %>" data-zhili="<%= castellan.zhi_li %>" data-tongshuai="<%= castellan.tong_shuai %>" data-zhengzhi="<%= castellan.zheng_zhi %>">
 	  						<div class="row margin-top-15">
-	  							<a class="head-img-a" href="javascript:void(0);" data-role="castellan-avatar">
+	  							<a class="head-img-a" href="javascript:void(0);" data-id="<%= castellan.id %>" data-role="castellan-avatar">
 	  								<%= image_tag('games/gcld/touxiang.png') %>
 	  							</a>
 	  						</div>
@@ -138,10 +193,10 @@
 
 	  						<% end %>
 	  						<div class="row">
-	  							<span class="font-14-white">金币：<%= castellan.price %></span>
+	  							<span class="font-14-white" data-role="castellan-price">金币：<%= castellan.price %></span>
 	  						</div>
 	  						<div class="row">
-	  						<% if castellan.user_castellan.user_id == current_user.id %>
+	  						<% if castellan.user_castellan && castellan.user_castellan.user_id == current_user.id %>
 	  							<a class="jpbtn-got"></a>
 	  						<% else %>
 	  							<a class="jpbtn" href="javascript:void(0);" value="竞拍" data-role="auction-btn" data-id="<%= castellan.id %>" data-price="<%= castellan.price %>">
@@ -150,16 +205,17 @@
 	  						</div>
 	  					</div>
   					<% end %>
-
   				</div>
 
   				<!-- row 2 -->
   				<div class="row margin-left-50 text-center">
 
   					<% @castellans[6...12].each do |castellan| %>
-	  					<div class="col-lg-2 person-bg-img margin-left-10" data-role="auction-container" data-id="<%= castellan.id %>">
+
+
+	  					<div class="col-lg-2 person-bg-img margin-left-10" data-role="auction-container" data-id="<%= castellan.id %>" data-name="<%= castellan.name %>" data-wuli="<%= castellan.wu_li %>" data-zhili="<%= castellan.zhi_li %>" data-tongshuai="<%= castellan.tong_shuai %>" data-zhengzhi="<%= castellan.zheng_zhi %>">
 	  						<div class="row margin-top-15">
-	  							<a class="head-img-a" href="javascript:void(0);">
+	  							<a class="head-img-a" href="javascript:void(0);" data-id="<%= castellan.id %>" data-role="castellan-avatar">
 	  								<%= image_tag('games/gcld/touxiang.png') %>
 	  							</a>
 	  						</div>
@@ -177,7 +233,7 @@
 	  							<span class="font-14-white">金币：<%= castellan.price %></span>
 	  						</div>
 	  						<div class="row">
-	  						<% if castellan.user_castellan.user_id == current_user.id %>
+	  						<% if castellan.user_castellan && castellan.user_castellan.user_id == current_user.id %>
 	  							<a class="jpbtn-got"></a>
 	  						<% else %>
 	  							<a class="jpbtn" href="javascript:void(0);" value="竞拍" data-role="auction-btn" data-id="<%= castellan.id %>" data-price="<%= castellan.price %>">
@@ -185,34 +241,92 @@
 	  						<% end %>
 	  						</div>
 	  					</div>
+
+
   					<% end %>
-
-
-
   				</div>
-  				
+
+  				<%= will_paginate @castellans %>
   			</div>
-  		
-  			
   		</div>
   	</div>
 
 
 <script>
 	$(function(){
+		var money = gon.user_money;
 
-		$('[data-role=castellan-avatar]').popover({title: 'hello', trigger: 'hover'});
+		function info_text(id){
+			var castellan = gon.castellans_info[id];
+			str = '<div class="property-div padding-top-10 padding-left-20">'
+			+'<p>'+'<span class="font-14-yellow">主公：'+castellan.name+'</span>  '+'</p>'+'<p>'+'<span class="font-14-yellow">势力：猪猪</span>'+'</p>'+'<p>'+'<span class="font-14-yellow">都城：猪猪</span>  '+'</p>'+'<p>'+'<span class="font-14-yellow">统帅：'+castellan.tong_shuai+'</span>  '+'</p>'+'<p>'+'<span class="font-14-yellow">武力：'+castellan.wu_li+'</span>'+'</p>'+'<p>'+'<span class="font-14-yellow">智力：'+castellan.zhi_li+'</span>  '+'</p>'+'<p>'+'<span class="font-14-yellow">政治：'+castellan.zheng_zhi+'</span>  '+'</p>'+'<p>'+'<span class="font-14-yellow">疆域:</span>'+'</p>'+'<div class="area">'+'<img src="/assets/games/gcld/shili/area_1.png">'+'</div>'+'</div>';
+			return str;
+
+		}
+
+		$('[data-role=castellan-avatar]').each(function(){
+			var _id = $(this).attr('data-id');
+			$(this).popover({
+				html : true,
+				trigger : 'hover',
+				content : info_text(_id)
+			});
+		});
 
 		$('[data-role=auction-btn]').click(function(){
 			var btn = $(this);
-			btn.removeClass('jpbtn').addClass('jpbtn-got');
-			btn.attr('disabled', 'disabled');
-			var data = {castellan_id : btn.attr('data-id'), price : btn.attr('data-price')};
-			$.post('<%= games_gcld_auction_auction_prince_path %>', data, function(data){
-				var html_temp = "[data-role=auction-container][data-id="+btn.attr('data-id')+"]";
-				var name_dom = $(html_temp).find('[data-role=auction-user]');
-				$(name_dom).text(data['user_name']);
+			if(money < parseInt(btn.attr('data-price'))){
+				bootbox.alert('您的金币不够，请先赚取金币！');
+				return false;
+			}
+
+
+			bootbox.dialog({
+			  message: "是否话费500金币购买猪猪？",
+			  title: "",
+			  buttons: {
+			  	cancel: {
+			      label: " ",
+			      className: "cancel-btn",
+			      callback: function() {
+			        Example.show("great success");
+			      }
+			    },
+			    success: {
+			      label: " ",
+			      className: "srue-btn",
+			      callback: function() {
+					btn.removeClass('jpbtn').addClass('jpbtn-got');
+					btn.attr('disabled', 'disabled');
+					var data = {castellan_id : btn.attr('data-id'), price : btn.attr('data-price')};
+					$.post('<%= games_gcld_auction_auction_prince_path %>', data, function(data){
+						var html_temp = "[data-role=auction-container][data-id="+btn.attr('data-id')+"]";
+						var name_dom = $(html_temp).find('[data-role=auction-user]');
+						$(name_dom).text('竞拍者：'+data['user_name']);
+					});
+			      }
+			    }
+			    
+			  }
 			});
+
+
+
+			// var confirm_html = "<div>ok</div>";
+
+
+			// bootbox.confirm(confirm_html, function(){
+			// 	btn.removeClass('jpbtn').addClass('jpbtn-got');
+			// 	btn.attr('disabled', 'disabled');
+			// 	var data = {castellan_id : btn.attr('data-id'), price : btn.attr('data-price')};
+			// 	$.post('<%= games_gcld_auction_auction_prince_path %>', data, function(data){
+			// 		var html_temp = "[data-role=auction-container][data-id="+btn.attr('data-id')+"]";
+			// 		var name_dom = $(html_temp).find('[data-role=auction-user]');
+			// 		$(name_dom).text('竞拍者：'+data['user_name']);
+			// 	});
+			// });
+			return false;
 		});
+
 	});
 </script>

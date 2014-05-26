@@ -12,6 +12,7 @@
     <%= stylesheet_link_tag "web" %>
     <%= javascript_include_tag "web" %>
     <%= javascript_include_tag "jquery.pjax" %>
+    <%= include_gon %>
     <%= csrf_meta_tag %>
     <!--[if lt IE 9]>
       <link rel="stylesheet" type="text/css" href="/assets/ie8.css" />
@@ -34,7 +35,7 @@ var _hmt = _hmt || [];
   <%= render('share/web_top_nav') %>
   <%= render('share/web_spread') if @share_content[:web_spread] %>
 
-  <%= link_to 'refresh', games_gcld_auction_auction_princes_index_path(:pjax => true), :id => 'refresh-btn' %>
+  <%#= link_to 'refresh', games_gcld_auction_auction_princes_index_path(:pjax => true), :id => 'refresh-btn' %>
 
   <div class='center-block'>
 
@@ -75,37 +76,53 @@ var _hmt = _hmt || [];
 
           $(document).pjax('a:not([data-remote]):not([data-behavior]):not([data-skip-pjax])', '[data-pjax-container]');
 
-          // setInterval(function(){
+          setInterval(function(){
             // $('#refresh-btn').click();
-          // }, 3000);
+            $.get('/games/gcld/auction/auction_princes_index.json', function(data){
+              for(var i in data){
+                container = $("[data-role=auction-container][data-id="+i+"]");
+                container.find('[data-role=castellan-price]').text(data[i].price);
+                container.find('[data-role=auction-user]').text(data[i].user_name);
+                status = data[i].buy_status
+                btn = container.find('[data-role=auction-btn]');
+                if(status == 0){
+                  btn.addClass('no_money');
+                }else if(status == 1){
+                  // btn
+                }else if(status == 2){
+                  
+                }
+              }
+            });
+          }, 3000);
 
-bootbox.dialog({
-  message: "I am a custom dialog",
-  title: "Custom title",
-  buttons: {
-    success: {
-      label: "Success!",
-      className: "btn-success",
-      callback: function() {
-        Example.show("great success");
-      }
-    },
-    danger: {
-      label: "Danger!",
-      className: "btn-danger",
-      callback: function() {
-        Example.show("uh oh, look out!");
-      }
-    },
-    main: {
-      label: "Click ME!",
-      className: "btn-primary",
-      callback: function() {
-        Example.show("Primary button");
-      }
-    }
-  }
-});
+// bootbox.dialog({
+//   message: "I am a custom dialog",
+//   title: "Custom title",
+//   buttons: {
+//     success: {
+//       label: "Success!",
+//       className: "btn-success",
+//       callback: function() {
+//         Example.show("great success");
+//       }
+//     },
+//     danger: {
+//       label: "Danger!",
+//       className: "btn-danger",
+//       callback: function() {
+//         Example.show("uh oh, look out!");
+//       }
+//     },
+//     main: {
+//       label: "Click ME!",
+//       className: "btn-primary",
+//       callback: function() {
+//         Example.show("Primary button");
+//       }
+//     }
+//   }
+// });
 
 
         });

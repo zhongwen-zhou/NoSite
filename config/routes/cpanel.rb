@@ -5,6 +5,17 @@ NoSite::Application.routes.draw do
     resources :articles
     resources :badges
     resources :site_configs
+
+    namespace :games do
+      namespace :gcld do
+        resources :castellans do
+          collection do
+            post :start_auction_zhaizhu
+          end
+        end
+      end
+    end
+
     namespace :bbs do
       resources :replies
       resources :topics do

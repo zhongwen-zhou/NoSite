@@ -181,6 +181,9 @@ GEM
       ruby-progressbar (~> 1.0)
     garelic (0.0.2)
     god (0.13.2)
+    gon (5.0.4)
+      actionpack (>= 2.3.0)
+      json
     hashie (1.2.0)
     highline (1.6.8)
     hike (1.2.3)
@@ -426,6 +429,7 @@ DEPENDENCIES
   fuubar
   garelic (= 0.0.2)
   god
+  gon
   grape!
   jasmine-rails!
   jquery-rails (= 3.0.4)

@@ -3,7 +3,7 @@ class Games::Base
   include Mongoid::Document
   include Mongoid::Timestamps
 
-
   # 数据库id
   field :db_id, :type => Integer
+
 end
