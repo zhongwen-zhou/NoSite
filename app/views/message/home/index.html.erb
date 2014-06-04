@@ -30,6 +30,7 @@
 	          </tr>
 	        </thead>
 	        <tbody>
+	        	<% unless @communications.empty? %>
 		        <% @communications.each do |communication| %>
 	            <tr class="message_list">
 		            <td>
@@ -43,13 +44,17 @@
 		            </td>
 		            <td>
 		            	<a href="#">
+		            		<% if communication.last_message %>
 										<%= communication.last_message.content %>
+										<% end %>
 		            		<!-- <span class="badge badge-info">有新消息</span> -->
 		          		</a>
 		            </td>
 		            <td>
 			            <small>
+		            		<% if communication.last_message %>
 		              	<%= communication.last_message.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+		              	<% end %>
 		              </small>
 		            </td>
 		            <td>
@@ -59,6 +64,7 @@
 			            <%= link_to '<small>取消联系</small>'.html_safe, message_communication_path(communication), :confirm => '确定删除该会话么？', :method => :delete %>
 		            </td>
 		          </tr>
+						<% end %>
 						<% end %>
 	        </tbody>
 	      </table>
