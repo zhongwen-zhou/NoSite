@@ -23,7 +23,7 @@ window.Topics =
       return false
 
     opts =
-      url : "/photos"
+      url : "/bbs/photos"
       type : "POST"
       beforeSend : () ->
         $("#topic_add_image").hide()
