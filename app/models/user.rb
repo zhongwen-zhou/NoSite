@@ -303,6 +303,7 @@ class User
     topic_id = topic_id.to_i
     return false if self.favorite_topic_ids.include?(topic_id)
     self.push(favorite_topic_ids: topic_id)
+    self.add_coins('LIKE_TOPIC')
     true
   end
 
@@ -311,6 +312,7 @@ class User
     return false if topic_id.blank?
     topic_id = topic_id.to_i
     self.pull(favorite_topic_ids: topic_id)
+    self.add_coins('UNLIKE_TOPIC')
     true
   end
 
@@ -375,9 +377,13 @@ class User
   def add_coins(add_coins_type)
     coins = case add_coins_type
     when 'TOPIC_CREATE'
-      100
+      6
     when 'REPLY_TOPIC'
-      50
+      3
+    when 'LIKE_TOPIC'
+      1
+    when 'UNLIKE_TOPIC'
+      -1
     end
     
     self.inc(:coins => coins)  
