@@ -39,7 +39,7 @@
 								    <%= user_avatar_tag(communication.sender) %>
 
 								    <br>
-										<%= communication.another_person(current_user).login %>
+										<%= communication.another_person(current_user).try(:login) %>
 		              </a>
 		            </td>
 		            <td>
