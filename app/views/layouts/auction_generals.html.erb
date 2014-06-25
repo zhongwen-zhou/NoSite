@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <title>101FUN遊戏平台</title>
+    <%#= stylesheet_link_tag "web", "data-turbolinks-track" => true %>
+    <%= stylesheet_link_tag "web" %>
+    <%= javascript_include_tag "web" %>
+    <%= javascript_include_tag "jquery.pjax" %>
+    <%= include_gon %>
+    <%= csrf_meta_tag %>
+    <!--[if lt IE 9]>
+      <link rel="stylesheet" type="text/css" href="/assets/ie8.css" />
+    <![endif]-->
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?23b694c87aa8d1e29e90beff93981eb3";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  </head>
+
+  <body>
+
+  <%= render('share/web_top_nav') %>
+  <%= render('share/web_spread') if @share_content[:web_spread] %>
+
+  <%#= link_to 'refresh', games_gcld_auction_auction_princes_index_path(:pjax => true), :id => 'refresh-btn' %>
+
+  <div class='center-block'>
+
+  <div class="container col-lg-8 col-lg-offset-2" data-pjax-container>
+    <%= yield %>
+  </div>
+  <div class="container col-lg-8 col-lg-offset-2">
+    <hr>
+    <footer style="text-align: center;">
+      <div class="row">
+        <a href="/about">关于我们</a> &nbsp;&nbsp;<a href="/law">法律声明</a>&nbsp;&nbsp; 友情链接
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <p>蕉点享乐信息技术（成都）有限公司</p>
+          <p>蜀ICP备14006662号</p>
+        </div>
+      </div>
+    </footer>
+  </div><!-- /.container -->
+  </div>
+<% if false %>
+<div style="position:fixed;right:0; width: 250px; height:215px; text-align:right; font-size:14px; line-height:22px; color:#000;" id="rb_ad">  
+<a href="javascript:close_rbad();" target="_self">关闭</a><br />  
+<%= image_tag('/init_data/images/ads/ad_message_01.png') %>
+</div>
+<% end %>
+
+    <%= yield :scripts %>
+    <script type="text/javascript">
+        $(function(){
+          <% if current_user %>
+              $.get('<%= notice_path %>', {}, function(data){
+                $('#rewards_count_span').text(data.rewards_count);
+                $('#messages_count_span').text(data.messages_count);
+              });
+          <% end %>
+
+          $(document).pjax('a:not([data-remote]):not([data-behavior]):not([data-skip-pjax])', '[data-pjax-container]');
+
+          window.dsq = setInterval(function(){
+            // $('#refresh-btn').click();
+            $.get('/games/gcld/auction/auction_princes_index.json', function(data){
+              if(!data){
+                $('[data-role=auction-left-times]').text("竞拍倒计时：已截止");
+                bootbox.alert('拍卖主公已结束！');
+                window.clearInterval(window.dsq);
+                return false;
+              }
+              var castellans = data.castellans;
+              var left_times = data.left_times;
+              $('[data-role=auction-left-times]').text("竞拍倒计时："+left_times);
+              for(var i in castellans){
+                container = $("[data-role=auction-container][data-id="+i+"]");
+                container.find('[data-role=castellan-price]').text(castellans[i].price);
+                container.find('[data-role=auction-user]').text(castellans[i].user_name);
+                status = castellans[i].buy_status
+                btn = container.find('[data-role=auction-btn]');
+                if(status == 4){
+                  btn.attr('disabled', 'disabled');
+                }else{
+                  btn.removeAttr('disabled');
+                  if(status == 0){
+                    btn.addClass('no_money');
+                  }else if(status == 1){
+                    // btn
+                  }else if(status == 2){
+                    
+                  }
+                }
+              }
+            });
+          }, 3000);
+
+// bootbox.dialog({
+//   message: "I am a custom dialog",
+//   title: "Custom title",
+//   buttons: {
+//     success: {
+//       label: "Success!",
+//       className: "btn-success",
+//       callback: function() {
+//         Example.show("great success");
+//       }
+//     },
+//     danger: {
+//       label: "Danger!",
+//       className: "btn-danger",
+//       callback: function() {
+//         Example.show("uh oh, look out!");
+//       }
+//     },
+//     main: {
+//       label: "Click ME!",
+//       className: "btn-primary",
+//       callback: function() {
+//         Example.show("Primary button");
+//       }
+//     }
+//   }
+// });
+
+
+        });
+    </script>
+
+
+  </body>
+</html>
+

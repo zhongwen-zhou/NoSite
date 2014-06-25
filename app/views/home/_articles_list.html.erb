@@ -1,43 +1,15 @@
-<% if false %>
-<div class="col-lg-4">
-  <div class="panel panel-default">
-    <div class="panel-heading" style="background-color: #9a1000; color: #ffffff; font-size: 16px;">
-      <div class="row">
-        <h3 class="panel-title col-md-9">
-          <%= link_to '业界资讯', articles_path %>
-        </h3>
-        <h5 class="panel-title col-md-3">
-          <%= link_to '更多', articles_path %>
-        </h5>
-      </div>   
-    </div>  
-    <div class="panel-body">
-      <p>
-        <h4><a href="#" style="color: #d34600;">《DOTA》火女风采</a></h4>
-        <%= image_tag('/init_data/images/articles/top_01.png', :style => "float: left;") %>
-        <span style="font-size: 12px; color: #6f6f6f;">非常爱美网是韩国最高端的整形美容机构,对所选整形医院提供预约。</span>
-      </p>
-      <hr style="margin: 0px 0px;" />
-      <% @articles.each do |article| %>
-        <div class="row margin_5">
-          <%= link_to article.title, article_path(article), :class => "col-md-12" %>
-        </div>
-      <% end %>
-    </div>
-  </div> 
-</div>
-<% end %>
-
 <div class="panel panel-orange">
-  <div class="panel-heading">
+  <div class="panel-heading" >
     <div class="container">
       <div class="row">
-        <div class="col-md-5">
+        <!-- <div class="col-md-5"> -->
+        <div class="" style="float: left;">
           <h3 class="panel-title">
             <%= link_to '业界资讯', articles_path %>
           </h3>
         </div>
-        <div class="col-md-3 col-md-offset-4">
+        <!-- <div class="col-md-3 col-md-offset-4"> -->
+        <div class="" style="float: right;">
           <h4 class="panel-title">
             <%= link_to '更多', articles_path %>
           </h4>
@@ -46,14 +18,14 @@
     </div>
   </div>
   <div class="panel-body">
-    <p>
+      <%= image_tag('/init_data/images/articles/tu_22.png', :width => 223, :height => 120) %>
+      <% if false %>
       <h4>
         <%= link_to Article.first.title[0..12], article_path(Article.first), :style => "color: #d34600;" %>
       </h4>
       <%= image_tag('/init_data/images/articles/top_01.png', :style => "float: left;") %>
       <span style="font-size: 12px; color: #6f6f6f;">非常爱美网是韩国最高端的整形美容机构。</span>
-    </p>
-    <hr style="margin 3px 0px;" />
+      <% end %>
     <% @articles.each do |article| %>
       <div class="row margin_5">
         <%= link_to article.title, article_path(article), :class => "col-md-12" %>

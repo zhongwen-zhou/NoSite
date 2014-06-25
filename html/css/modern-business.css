@@ -52,7 +52,8 @@ body {
 
 /* Half Page Height Carousel Customization */
 .carousel {
-  height: 25%;
+  /*height: 25%;*/
+  height: 315px;
 }
 
 .item,

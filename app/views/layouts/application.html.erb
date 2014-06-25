@@ -9,13 +9,20 @@
 
     <title>101FUN遊戏平台</title>
     <%#= stylesheet_link_tag "web", "data-turbolinks-track" => true %>
-    <%= stylesheet_link_tag "web", "data-turbolinks-track" => true %>
+    <%#= stylesheet_link_tag "web", "data-turbolinks-track" => true %>
+
+    <link href="/assets/bootstrap_v3.css" media="screen" rel="stylesheet" />
+    <link href="/assets/modern-business.css" media="screen" rel="stylesheet" />
+    <link href="/assets/font-awesome.min.css" media="screen" rel="stylesheet" />
+    <link href="/assets/site.css" media="screen" rel="stylesheet" />
+
     <%= javascript_include_tag "web", "data-turbolinks-track" => true %>
     <%= csrf_meta_tag %>
     <!--[if lt IE 9]>
       <link rel="stylesheet" type="text/css" href="/assets/ie8.css" />
     <![endif]-->
 
+<!--
 <script>
 var _hmt = _hmt || [];
 (function() {
@@ -25,6 +32,7 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
+-->
 
   </head>
 
@@ -33,12 +41,14 @@ var _hmt = _hmt || [];
   <%= render('share/web_top_nav') %>
   <%= render('share/web_spread') if @share_content[:web_spread] %>
 
-  <div class='center-block'>
+  <div class='main-container'>
 
-  <div class="container col-lg-8 col-lg-offset-2">
+  <!-- <div class="container col-lg-8 col-lg-offset-2"> -->
+  <div class="">
     <%= yield %>
   </div>
-  <div class="container col-lg-8 col-lg-offset-2">
+  <!-- <div class="container col-lg-8 col-lg-offset-2"> -->
+  <div class="">
     <hr>
     <footer style="text-align: center;">
       <div class="row">

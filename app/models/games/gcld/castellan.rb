@@ -15,6 +15,10 @@ class Games::Gcld::Castellan < Games::Base
   belongs_to :user, :class_name => 'User'  # 所属用户
   belongs_to :user_castellan, :class_name => 'Games::Gcld::UserCastellan'  # 当前最大的竞拍者
 
-  counter :zhaizhu_auction_times, :global => true # 竞拍债主剩余时间
-  counter :start_auction_at, :global => true # 开始竞拍债主剩余时间
+  counter :zhaizhu_auction_times, :global => true # 竞拍主公剩余时间
+  counter :start_auction_at, :global => true # 开始竞拍主公剩余时间
+
+  counter :generals_auction_times, :global => true # 竞拍武将剩余时间
+  counter :start_auction_generals_at, :global => true # 开始竞拍武将剩余时间
+
 end

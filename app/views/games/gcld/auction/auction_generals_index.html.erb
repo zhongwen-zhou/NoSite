@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+  </head>
+
+  <!--
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/bootstrap-theme.css">
+  <link rel="stylesheet" href="css/auction_small.css">
+
+  <script src="js/jquery-1.11.0.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="js/bootbox.min.js"></script>
+  -->
+
+	  <%#= stylesheet_link_tag "web" %>
+	  <%= stylesheet_link_tag "gcld/bootstrap" %>
+	  <%= stylesheet_link_tag "gcld/bootstrap-theme" %>
+	  <%= stylesheet_link_tag "gcld/auction_small" %>
+    <%= javascript_include_tag "web" %>
+    <%= javascript_include_tag "jquery.pjax" %>
+    <%= include_gon %>
+    <%= csrf_meta_tag %>
+
+  <body>
+  	<br/>
+  	<br/>
+  	<br/>
+
+  	<!--contents-->
+  	<div class="container bg-img">
+  		<div class="center-block">
+        <div class="row margin-top-12">
+          <div class="col-lg-3 col-lg-offset-9 text-right">
+            <span class="font-16-yellow">竞拍倒计时：00:15:59</span>
+          </div>
+        </div>
+
+  			<div class="row margin-left-5">
+  				<div class="col-lg-2">
+	  				<%= image_tag('games/gcld/biaoti_1.png') %>
+  				</div>
+
+          <div class="col-lg-8">
+            <a class="prev_person float-left margin-right-3 margin-top-6 margin-left-10" href="#"></a>
+            <div class="pepole_bar float-left margin-right-3 padding-top-5 text-center">
+            	<% @influences[0...5].each do |influence| %>
+	              <a class="generals_a" href="/games/gcld/auction/auction_generals_index.html?influence_id=<%= influence.id %>"><%= influence.name %></a>
+              <% end %>
+            </div>
+            <a class="next_person float-left margin-top-6" href="#"></a>
+          </div>
+
+  				<div class="col-lg-2">
+  					<div class="row line-height-30">
+  						<span class="font-16-yellow">服务器：群雄逐鹿</span>
+  					</div>
+  				</div>
+  				
+          <div class="clearfix"></div>
+  				<!-- row 1 -->
+  				<div class="row margin-left-50 margin-top-8 text-center">
+  					<% if @castellans %>
+  					<% @castellans[0...6].each do |castellan| %>
+	  					<div class="col-lg-2 person-bg-img margin-left-10" data-role="auction-container" data-id="<%= castellan.id %>" data-name="<%= castellan.name %>" data-wuli="<%= castellan.wu_li %>" data-zhili="<%= castellan.zhi_li %>" data-tongshuai="<%= castellan.tong_shuai %>" data-zhengzhi="<%= castellan.zheng_zhi %>">
+	  						<div class="row margin-top-15">
+	  							<a class="head-img-a" href="javascript:void(0);" data-id="<%= castellan.id %>" data-role="castellan-avatar">
+	  								<%= image_tag('games/gcld/touxiang.png') %>
+	  							</a>
+	  						</div>
+	  						<% if castellan.user_castellan %>
+	  						<div class="row">
+	  							<span class="font-12-yellow" data-role="auction-user">竞拍者：<%= castellan.user_castellan.user.name %></span>
+	  						</div>
+	  						<% else %>
+	  						<div class="row">
+	  							<span class="font-12-yellow">&nbsp;</span>
+	  						</div>
+
+	  						<% end %>
+	  						<div class="row">
+	  							<span class="font-14-white">金币：<%= castellan.price %></span>
+	  						</div>
+	  						<div class="row">
+	  						<% if castellan.user_castellan && castellan.user_castellan.user_id == current_user.id %>
+	  							<a class="jpbtn-got"></a>
+	  						<% else %>
+	  							<a class="jpbtn" href="javascript:void(0);" value="竞拍" data-role="auction-btn" data-id="<%= castellan.id %>" data-price="<%= castellan.price %>">
+	  							</a>
+	  						<% end %>
+	  						</div>
+	  					</div>
+  					<% end %>
+  					<% end %>
+  				</div>
+
+  				<!-- row 2 -->
+  				<div class="row margin-left-50 text-center" style="height: 170px;">
+  				<% if @castellans && @castellans.length > 6 %>
+  				<% @castellans[6...12].each do |castellan| %>
+	  					<div class="col-lg-2 person-bg-img margin-left-10" data-role="auction-container" data-id="<%= castellan.id %>" data-name="<%= castellan.name %>" data-wuli="<%= castellan.wu_li %>" data-zhili="<%= castellan.zhi_li %>" data-tongshuai="<%= castellan.tong_shuai %>" data-zhengzhi="<%= castellan.zheng_zhi %>">
+	  						<div class="row margin-top-15">
+	  							<a class="head-img-a" href="javascript:void(0);" data-id="<%= castellan.id %>" data-role="castellan-avatar">
+	  								<%= image_tag('games/gcld/touxiang.png') %>
+	  							</a>
+	  						</div>
+	  						<% if castellan.user_castellan %>
+	  						<div class="row">
+	  							<span class="font-12-yellow" data-role="auction-user">竞拍者：<%= castellan.user_castellan.user.name %></span>
+	  						</div>
+	  						<% else %>
+	  						<div class="row">
+	  							<span class="font-12-yellow">&nbsp;</span>
+	  						</div>
+
+	  						<% end %>
+	  						<div class="row">
+	  							<span class="font-14-white">金币：<%= castellan.price %></span>
+	  						</div>
+	  						<div class="row">
+	  						<% if castellan.user_castellan && castellan.user_castellan.user_id == current_user.id %>
+	  							<a class="jpbtn-got"></a>
+	  						<% else %>
+	  							<a class="jpbtn" href="javascript:void(0);" value="竞拍" data-role="auction-btn" data-id="<%= castellan.id %>" data-price="<%= castellan.price %>">
+	  							</a>
+	  						<% end %>
+	  						</div>
+	  					</div>
+  					<% end %>
+  					<% end %>
+
+  				</div>
+
+          <div class="row margin-top-6">
+            <div class="col-lg-3 col-lg-offset-4 margin-right-12">
+              <input type="text" class="form-control search-input" data-role="search-input">
+            </div>
+            <div class="col-lg-1">
+              <a class="search-a" href="javascript: void(0);" data-role="search-btn"></a>
+            </div>
+            <div class="col-lg-1">
+              <span class="font-16-yellow margin-left-25">1/15</span>
+            </div>
+            <div class="col-lg-1">
+              <a class="prev_page" href="#"></a>
+            </div>
+            <div class="col-lg-1">
+              <a class="next_page" href="#"></a>
+            </div>
+            
+          </div>
+  				
+  			</div>
+  		
+  			
+  		</div>
+  	</div>
+
+<script>
+	$(function(){
+
+		$('[data-role=search-btn]').click(function(){
+			var value = $('[data-role=search-input]').val();
+			window.location.href="/games/gcld/auction/search_auction_generals.html?name="+value;
+		});
+
+		function info_text(id){
+			var castellan = gon.castellans_info[id];
+			str = '<div class="property-div padding-top-10 padding-left-20">'
+			+'<p>'+'<span class="font-14-yellow">主公：'+castellan.name+'</span>  '+'</p>'+'<p>'+'<span class="font-14-yellow">势力：猪猪</span>'+'</p>'+'<p>'+'<span class="font-14-yellow">都城：猪猪</span>  '+'</p>'+'<p>'+'<span class="font-14-yellow">统帅：'+castellan.tong_shuai+'</span>  '+'</p>'+'<p>'+'<span class="font-14-yellow">武力：'+castellan.wu_li+'</span>'+'</p>'+'<p>'+'<span class="font-14-yellow">智力：'+castellan.zhi_li+'</span>  '+'</p>'+'<p>'+'<span class="font-14-yellow">政治：'+castellan.zheng_zhi+'</span>  '+'</p>'+'<p>'+'<span class="font-14-yellow">疆域:</span>'+'</p>'+'<div class="area">'+'<img src="/assets/games/gcld/shili/area_1.png">'+'</div>'+'</div>';
+			return str;
+
+		}
+
+		$('[data-role=castellan-avatar]').each(function(){
+			var _id = $(this).attr('data-id');
+			$(this).popover({
+				html : true,
+				trigger : 'hover',
+				content : info_text(_id)
+			});
+		});
+
+		// bootbox.dialog({
+		//   message: "是否话费500金币购买猪猪？",
+		//   title: "",
+		//   buttons: {
+		//   	cancel: {
+		//       label: " ",
+		//       className: "cancel-btn",
+		//       callback: function() {
+		//         Example.show("great success");
+		//       }
+		//     },
+		//     success: {
+		//       label: " ",
+		//       className: "srue-btn",
+		//       callback: function() {
+		//         Example.show("great success");
+		//       }
+		//     }
+		    
+		//   }
+		// });	
+	});
+</script>
+
+  </body>
+</html>

@@ -9,7 +9,13 @@
 
     <title>101FUN遊戏平台</title>
     <%#= stylesheet_link_tag "web", "data-turbolinks-track" => true %>
-    <%= stylesheet_link_tag "web" %>
+    <%#= stylesheet_link_tag "web" %>
+
+    <%= stylesheet_link_tag "gcld/bootstrap" %>
+    <%= stylesheet_link_tag "gcld/bootstrap-theme" %>
+    <%= stylesheet_link_tag "gcld/auction_small" %>
+
+
     <%= javascript_include_tag "web" %>
     <%= javascript_include_tag "jquery.pjax" %>
     <%= include_gon %>
@@ -40,6 +46,9 @@ var _hmt = _hmt || [];
   <div class='center-block'>
 
   <div class="container col-lg-8 col-lg-offset-2" data-pjax-container>
+  <br/>
+  <br/>
+  <br/>
     <%= yield %>
   </div>
   <div class="container col-lg-8 col-lg-offset-2">
@@ -76,21 +85,35 @@ var _hmt = _hmt || [];
 
           $(document).pjax('a:not([data-remote]):not([data-behavior]):not([data-skip-pjax])', '[data-pjax-container]');
 
-          setInterval(function(){
+          window.dsq = setInterval(function(){
             // $('#refresh-btn').click();
             $.get('/games/gcld/auction/auction_princes_index.json', function(data){
-              for(var i in data){
+              if(!data){
+                $('[data-role=auction-left-times]').text("竞拍倒计时：已截止");
+                bootbox.alert('拍卖主公已结束！');
+                window.clearInterval(window.dsq);
+                return false;
+              }
+              var castellans = data.castellans;
+              var left_times = data.left_times;
+              $('[data-role=auction-left-times]').text("竞拍倒计时："+left_times);
+              for(var i in castellans){
                 container = $("[data-role=auction-container][data-id="+i+"]");
-                container.find('[data-role=castellan-price]').text(data[i].price);
-                container.find('[data-role=auction-user]').text(data[i].user_name);
-                status = data[i].buy_status
+                container.find('[data-role=castellan-price]').text('金币：' + castellans[i].price);
+                container.find('[data-role=auction-user]').text(castellans[i].user_name);
+                status = castellans[i].buy_status
                 btn = container.find('[data-role=auction-btn]');
-                if(status == 0){
-                  btn.addClass('no_money');
-                }else if(status == 1){
-                  // btn
-                }else if(status == 2){
-                  
+                if(status == 4){
+                  btn.attr('disabled', 'disabled');
+                }else{
+                  btn.removeAttr('disabled');
+                  if(status == 0){
+                    btn.addClass('no_money');
+                  }else if(status == 1){
+                    // btn
+                  }else if(status == 2){
+                    
+                  }
                 }
               }
             });

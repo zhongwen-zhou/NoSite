@@ -1,0 +1,249 @@
+li{list-style:none;}
+
+body{
+	background-image: url('/init_data/images/background.png');
+	background-repeat: no-repeat;
+	width: 1600px;
+}
+
+
+ /*styles for 300 and up @ 16px!*/
+/* The max-width declaration below blocks this from ever working */
+@media only screen and (min-width: 480px){
+}
+
+.panel-orange {
+  border-color: #F5A274;
+}
+
+.panel-orange > .panel-heading {
+  color: #000;
+  background-color: #F5A274;
+  border-color: #F5A274;
+}
+
+.panel-orange > .panel-heading + .panel-collapse .panel-body {
+  border-top-color: #F5A274;
+}
+
+.panel-orange > .panel-heading > .dropdown .caret {
+  border-color: #F5A274 transparent;
+}
+
+.panel-orange > .panel-footer + .panel-collapse .panel-body {
+  border-bottom-color: #F5A274;
+}
+
+/* 整体框架内容容器 */
+.main-container {
+	width: 980px;
+	margin: auto;
+}
+
+
+/* 第一个顶部条 */
+.top-a-container {
+	height: 240px; 
+	overflow: hidden;
+}
+
+/* 业界咨询 */
+.articles-list {
+	width: 225px;
+	float: left;
+}
+.articles-list .panel-heading {
+	background-image: url('/init_data/images/panels/articles_header.png'); 
+	height: 31px;
+}
+.articles-list .panel-body {
+	padding: 0px;
+}
+
+.topbbs-list {
+	width: 238px; 
+	float: left; 
+	margin-left: 13.5px;
+}
+
+.topbbs-list .panel-heading {
+	background-image: url('/init_data/images/panels/top_bbs_header.png'); 
+	height: 30px;
+}
+
+.topbbs-list .panel-body {
+	padding-top: 10px;
+}
+
+/* 第二个顶部条 */
+.top-b-container {
+	height: 328px;
+	overflow: hidden;
+}
+
+.leagues-list {
+	width: 725px; 
+	float: left;
+	height: 328px;
+}
+
+.leagues-list .panel-heading {
+	background-image: url('/init_data/images/panels/leagues_header.png');
+	height: 35px;
+	padding: 0px;
+}
+
+.leagues-list .panel-body {
+	background-image: url('/init_data/images/leagues/leagues_list_bg.png');
+	padding: 0px;
+	padding-bottom: 25px;
+	padding-left: 25px;
+}
+
+.league-items-list {
+	/*padding-right: 20px;*/
+	margin: auto;
+	padding: 20px;
+	/*padding-bottom: 10px;*/
+}
+
+.league-item {
+	width: 195px;
+	height: 98px;
+	background-image: url('/init_data/images/leagues/league_item_bg.png');
+	float: left;
+	margin-right: 23px;
+	margin-top: 20px;
+}
+
+
+
+.guessball {
+	width: 237px; 
+	height: 328px;
+	float: left; 
+	margin-left: 13.5px;
+	overflow: hidden;
+}
+
+.guessball .panel-heading {
+	background-image: url('/init_data/images/panels/guessball_header.png');
+	height: 31px;
+}
+
+
+/* 第三个顶部条 */
+.top-c-container {
+	height: 490px;
+	overflow: hidden;
+}
+
+.sys-game {
+	height: 485px;
+}
+
+.sys-game .panel-heading{
+	background-image: url('/init_data/images/panels/sys_game_header.png');
+	height: 31px;
+}
+
+.sys-game .panel-body {
+	height: 430px;
+	background-image: url('/init_data/images/panels/sys_game_body.png');
+	padding: 8px;
+}
+
+/* 第四个顶部条 */
+.top-d-container {
+	height: 240px;
+	overflow: hidden;
+}
+
+.servertimes {
+	width: 980px;
+}
+
+.servertimes .panel-heading {
+	background-image: url('/init_data/images/panels/servertimes_header.png');
+	height: 31px;
+}
+
+
+/* Freda */
+
+.float-left{
+	float: left;
+}
+
+.margin-left-10{
+  margin-left: 10px;
+}
+
+.margin-left-38{
+	margin-left: 38px;
+}
+
+.margin-left-20{
+	margin-left: 20px;
+}
+
+.padding-top-14{
+	padding-top: 14px;
+}
+/*美女图片墙*/
+.picture-wall .panel-heading{
+	background-image: url(/init_data/images/panels/meinvtu_header.png);
+	height: 38px;
+	width: 980px;
+	color: white;
+}
+
+/*宣战吧*/
+.fighting{
+	width: 727px;
+	text-align: center;
+}
+
+.fighting .panel-heading{
+	background-image: url(/init_data/images/panels/xuanzhanba_header.png);
+	height: 38px;
+	width: 728px;
+}
+
+.fighting .panel-body{
+	background-image: url(/init_data/images/panels/xuanzhanba_body.png);
+	height: 236px;
+	width: 728px;
+}
+
+.come-fighting{
+	background-image: url(/init_data/images/panels/tiaozhan_bg.png);
+	width: 194px;
+	height: 100px;
+	background-repeat: no-repeat;
+}
+
+
+/*激烈战况*/
+.fighting-live .panel-heading{
+	background-image: url(/init_data/images/panels/zhankuang_header.png);
+	height: 30px;
+	width: 240px;
+}
+
+.fighting-live .panel-body{
+	background-image: url(/init_data/images/panels/zhankuang_body.png);
+	height: 244px;
+	width: 240px;
+}
+
+
+/* 贴心小提示 */
+.tip {
+	width: 1044px;
+	height: 168px;
+	position: fixed;
+	top: 700px;
+	left: 235px;
+	background-image: url(/init_data/images/tip.png);
+}

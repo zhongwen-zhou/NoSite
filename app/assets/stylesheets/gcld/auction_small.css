@@ -1,0 +1,290 @@
+.bg-img{
+	background-image: url(/assets/games/gcld/jingpai_beijing.png);
+	background-repeat: no-repeat;
+	height: 456px;
+	width: 930px;
+}
+
+.person-bg-img{
+	background-image: url(/assets/games/gcld/goumaikuang.png);
+	background-repeat: no-repeat;
+	height: 167px;
+	width: 119px;
+}
+
+/**************************************************/
+.font-16-yellow{
+	font-size: 16px;
+	color: yellow;
+}
+
+.font-14-yellow{
+	font-size: 14px;
+	color: yellow;
+}
+
+.font-12-yellow{
+	font-size: 12px;
+	color: yellow;
+}
+
+.font-14-white{
+	font-size: 14px;
+	color: white;
+}
+/**************************************************/
+.margin-right-3{
+	margin-right: 3px;
+}
+
+.margin-top-6{
+	margin-top: 6px;
+}
+.margin-top-8{
+	margin-top: 8px;
+}
+
+.margin-top-12{
+	margin-top: 12px;
+}
+
+.margin-top-15{
+	margin-top: 15px;
+}
+
+.margin-top-25{
+	margin-top: 25px;
+}
+
+.margin-top-55{
+	margin-top: 55px;
+}
+
+.margin-left-5{
+	margin-left: 5px;
+}
+
+.margin-left-10{
+	margin-left: 10px;
+}
+
+.margin-left-25{
+	margin-left: 25px;
+}
+
+.margin-left-50{
+	margin-left: 50px;
+}
+
+.margin-right-12{
+	margin-right: 12px;
+}
+
+.padding-top-5{
+	padding-top: 5px;
+}
+
+.padding-top-10{
+	padding-top: 10px;
+}
+
+.padding-left-20{
+	padding-left: 20px;
+}
+
+.float-left{
+	float: left;
+}
+
+.line-height-30{
+	line-height: 30px;
+}
+/**************************************************/
+.jpbtn{
+	display: block;
+	height: 27px;
+	width: 91px;
+	background-image: url(/assets/games/gcld/jingpai.png);
+	margin-left: 13px;
+}
+
+.jpbtn:hover{
+	background-image: url(/assets/games/gcld/jingpai_1.png);
+}
+
+.jpbtn-got{
+	display: block;
+	height: 27px;
+	width: 91px;
+	background-image: url(/assets/games/gcld/jingpai_2.png);
+	margin-left: 13px;
+}
+
+.property-div{
+	height: 281px;
+	width: 160px;
+	background-image: url(/assets/games/gcld/shuxingkuang.png);
+	background-repeat: no-repeat;
+}
+
+.property-div p{
+	margin: 0 0 2px;
+}
+
+.area{
+	margin-left: -10px;
+}
+
+.cancel-btn{
+	background-image: url(/assets/games/gcld/quxiao.png);
+	background-repeat: no-repeat;
+	width: 62px;
+	height: 24px;
+	margin-right: 20px;
+}
+
+.cancel-btn:hover{
+	background-image: url(/assets/games/gcld/quxiao_1.png);
+}
+
+.srue-btn{
+	background-image: url(/assets/games/gcld/queren.png);
+	background-repeat: no-repeat;
+	width: 62px;
+	height: 24px;
+}
+.srue-btn:hover{
+	background-image: url(/assets/games/gcld/queren_1.png);
+}
+
+.prev_person{
+	display: block;
+	width: 10px;
+	height: 18px;
+	background-image: url(/assets/games/gcld/shangfan.png);
+	background-repeat: no-repeat;
+}
+
+.prev_person:hover{
+	background-image: url(/assets/games/gcld/shangfan_1.png);
+}
+
+.next_person{
+	display: block;
+	width: 10px;
+	height: 18px;
+	background-image: url(/assets/games/gcld/xiafan.png);
+	background-repeat: no-repeat;
+}
+
+.next_person:hover{
+	background-image: url(/assets/games/gcld/xiafan_1.png);
+}
+
+.prev_page{
+	display: block;
+	width: 62px;
+	height: 24px;
+	background-image: url(/assets/games/gcld/shangyiye.png);
+	background-repeat: no-repeat;
+}
+
+.prev_page:hover{
+	background-image: url(/assets/games/gcld/shangyiye_1.png);
+}
+
+.next_page{
+	display: block;
+	width: 62px;
+	height: 24px;
+	background-image: url(/assets/games/gcld/xiayiye.png);
+	background-repeat: no-repeat;
+}
+
+.next_page:hover{
+	background-image: url(/assets/games/gcld/xiayiye_1.png);
+}
+
+.pepole_bar{
+	width: 525px;
+	height: 31px;
+	background-image: url(/assets/games/gcld/shilixuanze_beijing.png);
+	background-repeat: no-repeat;
+}
+
+.generals_a{
+	display: block;
+	width: 105px;
+	height: 25px;
+	background-image: url(/assets/games/gcld/shilixuanze.png);
+	background-repeat: no-repeat;
+	font-size: 14px;
+	color: yellow;
+	float: left;
+}
+
+.generals_a:hover{
+	background-image: url(/assets/games/gcld/shilixuanze_1.png);
+	text-decoration: none;
+	font-size: 14px;
+	color: yellow;
+}
+
+.search-input{
+	background-image: url(/assets/games/gcld/sousuokuang.png);
+	background-repeat: no-repeat;
+	width: 224px;
+	height: 22px;
+	color: white;
+}
+
+.search-a{
+	display: block;
+	background-image: url(/assets/games/gcld/sousuo_anniu.png);
+	background-repeat: no-repeat;
+	width: 65px;
+	height: 32px;
+}
+
+.search-a:hover{
+	background-image: url(/assets/games/gcld/sousuo_anniu_1.png);
+	text-decoration: none;
+}
+
+a{
+	cursor: url(/assets/games/gcld/guangbiao.ico);
+}
+/**************************************************/
+.popover{
+	background-color: transparent;
+}
+
+.popover > .arrow, 
+.popover > .arrow:after{
+	border-style: none;
+}
+
+.popover-content {
+	padding: 0px;
+}
+
+.modal-content{
+	width: 243px;
+	height: 123px;
+	background-image: url(/assets/games/gcld/goumaitishi.png);
+	background-repeat: no-repeat;
+}
+
+.modal-footer {
+	padding: 19px 20px 20px;
+	margin-top: 0px;
+	text-align: center;
+	border-top: none;
+}
+
+.bootbox-body{
+	font-size: 14px;
+	color: yellow;
+}
+
+/**************************************************/

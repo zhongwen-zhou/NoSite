@@ -11,6 +11,7 @@ NoSite::Application.routes.draw do
         resources :castellans do
           collection do
             post :start_auction_zhaizhu
+            post :start_auction_generals
           end
         end
       end

@@ -14,8 +14,8 @@
     </div>
   </div>
   <div class="panel-body">
-      <table class="table table-bordered table-striped">
-        <thead>
+      <table class="table table-bordered table-striped" style="text-align: center;">
+        <thead style="">
           <td class="first">游戏名称</td>
           <td>开服时间</td>
           <td>服务器名</td>
@@ -31,7 +31,11 @@
               <td>双线358区</td>
               <td>角色扮演</td>
               <td>4399</td>
-              <td><a href="#" class="servertime_start_game">开始游戏</a></td>
+              <td>
+                <a href="#" class="servertime_start_game">
+                  <%= image_tag('/init_data/images/server_times/start_game_btn.png') %>
+                </a>
+              </td>
             </tr>
           <% end %>
         </tbody>

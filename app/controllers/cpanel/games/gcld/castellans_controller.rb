@@ -10,6 +10,12 @@ class Cpanel::Games::Gcld::CastellansController < Cpanel::ApplicationController
     redirect_to cpanel_games_gcld_castellans_path
   end
 
+  def start_auction_generals
+    ::Games::Gcld::Castellan.generals_auction_times.reset params[:auction_time].to_i.minutes
+    ::Games::Gcld::Castellan.start_auction_generals_at.reset Time.now.to_i
+    redirect_to cpanel_games_gcld_castellans_path
+  end
+
   def new
     @article = Article.new
 
