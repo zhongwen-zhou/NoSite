@@ -57,6 +57,7 @@ body{
 	height: 31px;
 }
 .articles-list .panel-body {
+	background-image: url('/init_data/images/panels/articles_body.png'); 
 	padding: 0px;
 }
 
@@ -72,8 +73,20 @@ body{
 }
 
 .topbbs-list .panel-body {
-	padding-top: 10px;
+	padding: 0px;
+	/*padding-top: 10px;*/
 }
+
+.topbbs-list li.item_ji {
+	height: 25px;
+	background-image: url('/init_data/images/topbbs/item_ji.png'); 
+}
+
+.topbbs-list li.item_ou {
+	height: 25px;
+	background-image: url('/init_data/images/topbbs/item_ou.png'); 
+}
+
 
 /* 第二个顶部条 */
 .top-b-container {
@@ -116,6 +129,12 @@ body{
 	margin-top: 20px;
 }
 
+.league-item .join_league_btn {
+	width: 80px;
+	height: 26px;
+	background-image: url('/init_data/images/leagues/join_league_1.png');
+}
+
 
 
 .guessball {
@@ -129,6 +148,35 @@ body{
 .guessball .panel-heading {
 	background-image: url('/init_data/images/panels/guessball_header.png');
 	height: 31px;
+}
+
+.guessball .panel-body {
+	background-image: url('/init_data/images/panels/guessball_body.png');
+	padding: 0px 25px;
+}
+
+.guessball .first-game {
+	text-align: center;
+	margin-top: 5px;
+	height: 50px;
+}
+
+.guessball .second-game {
+	text-align: center;
+	margin-top: 5px;
+	height: 50px;
+}
+
+.guessball .first-game .game-name {
+	background-image: url('/init_data/images/guess_balls/first_game_bg.png');
+}
+
+.guessball .second-game .game-name {
+	background-image: url('/init_data/images/guess_balls/second_game_bg.png');
+}
+
+.guessball .detain-btn {
+	background-image: url('/init_data/images/guess_balls/xiazhu_1.png');
 }
 
 
@@ -198,6 +246,12 @@ body{
 	color: white;
 }
 
+.picture-wall .panel-body {
+	background-image: url(/init_data/images/panels/meinvtu_body.png);
+
+}
+
+
 /*宣战吧*/
 .fighting{
 	width: 727px;
@@ -235,6 +289,19 @@ body{
 	background-image: url(/init_data/images/panels/zhankuang_body.png);
 	height: 244px;
 	width: 240px;
+	padding: 0px;
+}
+
+.fighting-live .item {
+	height: 25px;
+}
+
+.fighting-live .item_ji {
+	background-image: url(/init_data/images/topbbs/item_ji.png);
+}
+
+.fighting-live .item_ou {
+	background-image: url(/init_data/images/topbbs/item_ou.png);
 }
 
 
