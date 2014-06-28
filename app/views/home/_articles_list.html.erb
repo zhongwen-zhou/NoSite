@@ -27,7 +27,7 @@
       <span style="font-size: 12px; color: #6f6f6f;">非常爱美网是韩国最高端的整形美容机构。</span>
       <% end %>
     <% @articles.each do |article| %>
-      <div class="row margin_5">
+      <div class="row margin_5" style="widht: 200px; overflow: hidden;">
         <%= link_to article.title, article_path(article), :class => "col-md-12" %>
       </div>
     <% end %>
