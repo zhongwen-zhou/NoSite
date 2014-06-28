@@ -28,7 +28,7 @@
       <% end %>
     <% @articles.each do |article| %>
       <div class="row margin_5" style="width: 200px; overflow: hidden;">
-        <%= link_to article.title[0..12], article_path(article), :class => "col-md-12" %>
+        <%= link_to article.title[0..12], article_path(article), :class => "col-md-12", :title => article.title %>
       </div>
     <% end %>
   </div>
