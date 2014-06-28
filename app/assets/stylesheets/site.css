@@ -133,6 +133,7 @@ body{
 	width: 80px;
 	height: 26px;
 	background-image: url('/init_data/images/leagues/join_league_1.png');
+	float: right;
 }
 
 
@@ -201,6 +202,15 @@ body{
 	padding: 8px;
 }
 
+.sys-game .start-game-btn {
+}
+
+.sys-game .coin-game-img {
+	position: absolute;
+	margin-top: -25px;
+	margin-left: -45px;
+}
+
 /* 第四个顶部条 */
 .top-d-container {
 	height: 240px;
@@ -249,6 +259,25 @@ body{
 .picture-wall .panel-body {
 	background-image: url(/init_data/images/panels/meinvtu_body.png);
 
+}
+
+.picture-wall .left-big-item {
+	width: 220px;
+	float: left;
+}
+
+.picture-wall .right-list-container {
+	width: 720px;
+	height: 300px;
+	/*overflow: hidden;*/
+	float: right;
+	/*margin-left: 10px;*/
+}
+
+.picture-wall .right-list-container .portfolio-item {
+	width: 230px;
+	float: left;
+	margin-left: 10px;
 }
 
 

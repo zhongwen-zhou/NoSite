@@ -1,47 +1,3 @@
-<style type="text/css">
-  .league_container_head {
-    height: 40px;
-    background-color: #008acb;
-    color: #fff;
-    font-size: 16px;
-    padding: 3px 8px; 
-  }
-  .servertime_container_head {
-    height: 40px;
-    background-color: #935c09;
-  }
-  .servertime_item_name {
-    color: red;
-  }
-  .servertime_start_game {
-    width: 100px;
-    height: 30px;
-    background-color: red;
-  }
-  .guessball_team {
-    height: 35px;
-    background-color: #1a6c00;
-  }
-
-  .guessball_team_head {
-    background-color: #1a6c00;
-  }
-
-  .panel-heading h4 {
-    font-size: 11px;
-  }
-
-  .guess_ball_input {
-    margin-left: 20px;
-  }
-
-  .ads_image {
-    margin: 0px 0px 0px 0px;
-    width: 100%;
-  }
-
-</style>
-
 <!--[if lt IE 9]>
       <link rel="stylesheet" type="text/css" href="/assets/index_ie8.css" />
 <![endif]-->
@@ -127,7 +83,7 @@
               <div class="" style="float: right;">
                 <form action="<%= search_league_leagues_path %>" class="navbar-form navbar-left" role="search" method="get" style="margin: 0px; padding: 0px; float: right;">
                   <div class="form-group">
-                    <input name="keyword" type="text" class="form-control" placeholder="Search">
+                    <input name="keyword" type="text" class="form-control" placeholder="搜索工会">
                   </div>
                   <button type="submit" class="btn btn-default">搜索</button>
                   <%= link_to '所有工会', league_leagues_path, :class => "btn btn-success" %>

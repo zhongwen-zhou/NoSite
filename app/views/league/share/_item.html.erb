@@ -1,16 +1,15 @@
 <div class="league-item" style="">
-    <div style="float: left; margin-right:40px;">
+    <div style="float: left; height: 70px;">
       <img src="<%= league.logo_url %>" width="60" height="60" class="img-circle" />
     </div>
-    <div>
+    <div style="float: right; height: 70px;">
       <strong><%= link_to league.name, league_league_path(league) %></strong>
       <%= button_to '', ask_for_join_league_league_path(league), :method => :put, :remote => true, :class => 'join_league_btn' if current_user && current_user.can_join_league?(league) %>
     </div>
-    <div class="clearfix"/>
-    <div style="margin: auto; margin-top: 15px; font-size: 10px;">
+    <div class="clearfix"></div>
+    <div style="font-size: 10px; line-height: 15px;">
       帮主：<%= league.president_name %><br/>
       等级：<%= league.level %>
       人数：<span><%= league.members.official.count %></span>
     </div>
-  </div>
 </div>
