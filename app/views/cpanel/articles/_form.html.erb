@@ -11,8 +11,32 @@
 	    <%= f.hidden_field :illustration_cache %>
 	</p>
 
-    <%= f.kindeditor :content, :width => 800, :height => 300 %>
+    <%#= f.kindeditor :content, :width => 800, :height => 300 %>
+    <%= f.text_area :content, :class => "topic_editor closewarning" %>
     <div class="form-actions">
       <%= f.submit t("common.save"), :class => "btn btn-primary", 'data-disable-with' => t("common.saving") %>
     </div>
 <% end %>
+
+<script type="text/javascript">
+    var csrfitems = document.getElementsByName("csrfmiddlewaretoken");
+    var csrftoken = "";
+    if(csrfitems.length > 0)
+    {
+        csrftoken = csrfitems[0].value;
+    }
+         
+    var editor ;
+    KindEditor.ready(function(K) {  
+        var options = {  
+            width : '360px',  
+            height : '300px',  
+            filterMode : true,
+            uploadJson : K.undef('/kindeditor/upload/'),
+            extraFileUploadParams : {
+                csrfmiddlewaretoken:csrftoken
+            }
+       };  
+        editor = K.create('textarea', options);  
+    });                      
+</script> 
