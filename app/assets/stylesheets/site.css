@@ -3,7 +3,8 @@ li{list-style:none;}
 body{
 	background-image: url('/init_data/images/background.png');
 	background-repeat: no-repeat;
-	width: 1600px;
+	/*width: 1600px;*/
+	background-size: cover;
 }
 
 
@@ -11,6 +12,36 @@ body{
 /* The max-width declaration below blocks this from ever working */
 @media only screen and (min-width: 480px){
 }
+/*
+.navbar-fixed-top li {
+	width: 120px;
+}
+*/
+.navbar-fixed-top li.rewards {
+	background-image: url('/init_data/images/navbar/rewards.png');
+	background-repeat: no-repeat;
+	background-position: 0px 15px;
+	width: 130px;
+}
+
+.navbar-fixed-top li a {
+	padding-left: 25px;
+}
+
+.navbar-fixed-top li.messages {
+	background-image: url('/init_data/images/navbar/messages.png');
+	background-repeat: no-repeat;
+	background-position: 0px 15px;
+	width: 115px;
+}
+
+.navbar-fixed-top li.leagues {
+	background-image: url('/init_data/images/navbar/leagues.png');
+	background-repeat: no-repeat;
+	background-position: 0px 13px;
+	width: 110px;
+}
+
 
 .panel-orange {
   border-color: #F5A274;
@@ -130,6 +161,7 @@ body{
 }
 
 .league-item .join_league_btn {
+	margin-top: 8px;
 	width: 80px;
 	height: 26px;
 	background-image: url('/init_data/images/leagues/join_league_1.png');
@@ -340,6 +372,6 @@ body{
 	height: 168px;
 	position: fixed;
 	top: 700px;
-	left: 280px;
+	/*left: 280px;*/
 	background-image: url(/init_data/images/tip.png);
 }

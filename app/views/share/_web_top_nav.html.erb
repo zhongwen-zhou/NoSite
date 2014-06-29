@@ -20,15 +20,15 @@
         <li>
           <%= link_to '论坛', bbs_root_path, :target => "_blank" %>
         </li>
-        <li>
+        <li class="leagues">
           <%= link_to '工会联盟', league_root_path %>
         </li>
 
         <% if current_user %>
-          <li>
+          <li class="messages">
             <a href="<%= message_root_path %>">站内信 <span id="messages_count_span" class="badge">0</span></a>
           </li>
-          <li>
+          <li class="rewards">
             <a href="<%= rewards_path %>">奖励中心 <span id="rewards_count_span" class="badge">0</span></a>
           </li>
 

@@ -2,15 +2,13 @@
   <div class="panel-heading" >
     <div class="container">
       <div class="row">
-        <!-- <div class="col-md-5"> -->
         <div class="" style="float: left;">
-          <h3 class="panel-title">
+          <h3 class="panel-title" style="color: #fff; font-size: 10px;">
             <%= link_to '业界资讯', articles_path %>
           </h3>
         </div>
-        <!-- <div class="col-md-3 col-md-offset-4"> -->
         <div class="" style="float: right;">
-          <h4 class="panel-title">
+          <h4 class="panel-title" style="color: #fff; font-size: 8px;">
             <%= link_to '更多', articles_path %>
           </h4>
         </div>
@@ -28,7 +26,7 @@
       <% end %>
     <% @articles.each do |article| %>
       <div class="row margin_5" style="width: 200px; overflow: hidden;">
-        <%= link_to article.title[0..12], article_path(article), :class => "col-md-12", :title => article.title %>
+        <%= link_to article.title[0..10], article_path(article), :class => "col-md-12", :title => article.title %>
       </div>
     <% end %>
   </div>
