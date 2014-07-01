@@ -33,7 +33,7 @@ window.App =
   notifier : null,
 
   loading : () ->
-    console.log "loading..."
+    # console.log "loading..."
 
   fixUrlDash : (url) ->
     url.replace(/\/\//g,"/").replace(/:\//,"://")
@@ -131,7 +131,7 @@ window.App =
         span.addClass("badge-error")
         new_title = "(#{json.count}) #{new_title}"
         url = App.fixUrlDash("#{ROOT_URL}#{json.content_path}")
-        console.log url
+        # console.log url
         $.notifier.notify("",json.title,json.content,url)
       else
         span.removeClass("badge-error")

@@ -30,7 +30,7 @@ class Notifier
         if window.webkitNotifications.checkPermission() isnt 2
           @showTooltip()
     else
-      console.log("Desktop notifications are not supported for this Browser/OS version yet.")
+      # console.log("Desktop notifications are not supported for this Browser/OS version yet.")
 
   showTooltip: ->
 #    $('.breadcrumb').before("<div class='alert alert-info' id='notification-alert'><a href='#' id='link_enable_notifications' style='color:green'>点击这里</a> 开启桌面提醒通知功能。 <a class='close' data-dismiss='alert' href='#'>×</a></div>")
