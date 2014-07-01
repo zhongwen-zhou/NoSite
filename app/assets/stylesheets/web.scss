@@ -2,40 +2,8 @@
  *= require bootstrap_v3
  *= require modern-business.scss
  *= font-awesome.min.css
+ *= site
  *= require_self
  */
 
  li{list-style:none;}
-
-body{
-	background-image: url('/init_data/images/background.jpg');
-	background-repeat: no-repeat;
-}
-
-
- /*styles for 300 and up @ 16px!*/
-/* The max-width declaration below blocks this from ever working */
-@media only screen and (min-width: 480px){
-}
-
-.panel-orange {
-  border-color: #F5A274;
-}
-
-.panel-orange > .panel-heading {
-  color: #000;
-  background-color: #F5A274;
-  border-color: #F5A274;
-}
-
-.panel-orange > .panel-heading + .panel-collapse .panel-body {
-  border-top-color: #F5A274;
-}
-
-.panel-orange > .panel-heading > .dropdown .caret {
-  border-color: #F5A274 transparent;
-}
-
-.panel-orange > .panel-footer + .panel-collapse .panel-body {
-  border-bottom-color: #F5A274;
-}
