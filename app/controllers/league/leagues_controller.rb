@@ -48,6 +48,13 @@ class League::LeaguesController < ApplicationController
 
   def sign_today
     current_user.sign_today!
+    respond_to do |format|
+      format.html do
+        render :text => 'ok'
+      end
+
+      format.js
+    end
   end
 
   def welfare
