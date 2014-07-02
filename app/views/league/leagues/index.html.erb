@@ -1,3 +1,10 @@
+<style type="text/css">
+  .league-logo-img {
+    max-width: 80px;
+    max-height: 80px;
+  }
+</style>
+
 <div class="container">
 
   <div class="row">
@@ -29,7 +36,7 @@
 
     <div class="col-md-3">
       <a href="<%= league_league_path(league) %>">
-        <%= image_tag(league.logo_url) %>
+        <%= image_tag(league.logo_url, :class => 'league-logo-img') %>
       </a>
       <h3>
         <%= link_to league.name, league_league_path(league) %>
