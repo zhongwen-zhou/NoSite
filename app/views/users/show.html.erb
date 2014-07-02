@@ -1,31 +1,10 @@
-<% if false %>
-<%= render "menu" %>
+<style type="text/css">
+  .league-logo-img {
+    max-width: 120px;
+    max-height: 120px;
+  }
+</style>
 
-<div class="content">
-  <%= render "info" %>
-
-  <div class="recent_topics box">
-    <h2 class="title">倍受大家喜欢的帖子</h2>
-    <ul>
-      <% @topics.each do |item| %>
-        <li>
-          <span class="node"><%= render_node_name(item.node_name,item.node_id) %></span>
-          <%= topic_title_tag(item) %> <%= topic_excellent_tag(item) %>
-          <span class="info pull-right"><%= item.likes_count %> 人喜欢, <%= item.replies_count %> 条回复</span>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-  <div class="box">
-    <h2 class="title"><%= t("topics.recent_replies")%></h2>
-    <%= render "replies", :replies => @replies %>
-  </div>
-
-
-
-</div>
-<%= render "sidebar", :user => @user %>
-<% end %>
 <%= render('ads/ad_hf_01') %>
 
 <!-- Nav tabs -->
@@ -49,7 +28,7 @@
       <div class="tab-pane" id="update">
         <% if league = @user.league %>
           <div>
-            <%= image_tag(league.logo_url) %>
+            <%= image_tag(league.logo_url, :class => 'league-logo-img') %>
             <%= link_to league.name, league_league_path(league) %><br/>
             工会等级：<%= league.level %><br/>
             工会帮主：<%= link_to league.president_name, user_path(league.president) %><br>
