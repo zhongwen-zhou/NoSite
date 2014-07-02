@@ -1,3 +1,11 @@
+<style type="text/css">
+  .league-logo-img {
+    max-width: 120px;
+    max-height: 120px;
+  }
+</style>
+
+
 <br/>
 <%= render('ads/ad_hf_01') %>
 <br/>
@@ -20,7 +28,7 @@
       <div class="tab-pane active" id="info">
         <% if league = @league %>
           <div>
-            <%= image_tag(league.logo_url) %>
+            <%= image_tag(league.logo_url, :class => 'league-logo-img') %>
             <%= link_to league.name, league_league_path(league) %><br/>
             工会等级：<%= league.level %><br/>
             工会帮主：<%= link_to league.president_name, user_path(league.president) %><br>
