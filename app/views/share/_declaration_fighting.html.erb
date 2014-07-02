@@ -1,3 +1,9 @@
+<style type="text/css">
+  .league-logo-img {
+    max-width: 60px;
+    max-height: 60px;
+  }
+</style>
 <div class="panel panel-orange">
   <div class="panel-heading">
     <div class="container">
@@ -23,9 +29,9 @@
         <!-- <div class="col-md-6" style="margin-top: 5px;"> -->
         <div class="come-fighting padding-top-14 float-left margin-left-20">
           <p>
-          <%= image_tag(proclaimWar.challenger.logo_url) %>
+          <%= image_tag(proclaimWar.challenger.logo_url, :class => 'league-logo-img') %>
           挑战
-          <%= image_tag(proclaimWar.defender.logo_url) %>
+          <%= image_tag(proclaimWar.defender.logo_url, :class => 'league-logo-img') %>
           </p>
           <p>来打一架吧！</p>
         </div>
