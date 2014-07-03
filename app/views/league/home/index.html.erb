@@ -1,4 +1,11 @@
 
+<style type="text/css">
+  .league-logo-img {
+    max-width: 120px;
+    max-height: 120px;
+  }
+</style>
+
 <%= render('ads/ad_hf_01') %>
 
 <style type="text/css">
@@ -7,10 +14,13 @@
   }
 </style>
 
-<% unless current_user.try(:league) %>
+
+
+<% if League::Member.where(:user => current_user).size == 0 %>
   <%= render('league/leagues/share/new_league_view') %>
 <% else %>
   <% league = current_user.league %>
+  <% if league %>
   <% is_admin = league.president_id == current_user.id %>
   <!-- Nav tabs -->
   <div class="row">
@@ -31,11 +41,15 @@
       <div class="tab-content">
         <div class="tab-pane active" id="info">
           <% unless @league.new_record? %>
-          <span><%= image_tag(@league.logo_url) %><strong><%= @league.name %></strong></span><br/>
+          <span><%= image_tag(@league.logo_url, :class => 'league-logo-img') %></span><br/>
+          <span>工会名称:<%= @league.name %></span><br/>
           <span>帮主：<strong><%= @league.president_name %></strong></span><br/>
           <span>等级：<strong><%= @league.level %></strong></span><br/>
           <span>成员数：<strong><%= @league.members.official.count %></strong></span><br/>
           <span>宣言：<strong><%= @league.declaration %></strong></span>
+            <%= link_to('退出工会', league_league_member_path('1111','111'), :method => 'DELETE', :remote => true) %>
+          <% if @league.president_id != current_user.id %>
+          <% end %>
           <% end %>
         </div>
         <div class="tab-pane" id="messages">
@@ -142,6 +156,9 @@
       </div>
     </div>
   </div>
+  <% else %>
+    您所申请加入的工会还没有批准您的加入，请耐心等候！
+  <% end %>
 <% end %>
 
 

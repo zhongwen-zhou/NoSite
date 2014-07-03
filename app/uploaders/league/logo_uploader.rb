@@ -2,6 +2,11 @@
 class League::LogoUploader < BaseUploader
   process :resize_to_limit => [680, nil]
 
+
+  version :small do
+    process :resize_to_fill => [60, 60]
+  end
+
   # Override the filename of the uploaded files:
   def filename
     if super.present?

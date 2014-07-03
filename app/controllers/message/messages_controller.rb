@@ -2,7 +2,8 @@
 class Message::MessagesController < ApplicationController
   def index
   	@message = Message::Message.new
-  	@messages = Message::Communication.find(params[:id]).messages.paginate(:page => params[:page], :per_page => 10)
+    @communication = Message::Communication.find(params[:id])
+  	@messages = @communication.messages.paginate(:page => params[:page], :per_page => 10)
   end
 
   def create

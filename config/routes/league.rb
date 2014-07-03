@@ -7,7 +7,7 @@ NoSite::Application.routes.draw do
 	  		get :search
 	  	end
 
-	  	resources :members, :only => [] do
+	  	resources :members, :only => [:destroy] do
 	  		get :set_vice_president
 	  		get :cancel_vice_president
 	  		get :set_conductor

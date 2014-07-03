@@ -12,7 +12,7 @@
 <!-- Nav tabs -->
 <% if current_user && current_user.league %>
   <div class="row">
-    <%= link_to '向他们宣战！', proclaim_war_league_league_path(@league), :remote => true, :class => 'btn btn-danger', :style => 'margin-left: 70%;' %>
+    <%= link_to '向他们宣战！', proclaim_war_league_league_path(@league), :remote => true, :class => 'btn btn-danger', :style => 'margin-left: 70%;' if ((@league != current_user.league) && (current_user.league.president_id == current_user.id)) %>
   </div>
 <% end %>
 <div class="row">

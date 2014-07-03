@@ -176,6 +176,9 @@
   <script type="text/javascript">
     $(document).ready(function(){
       $('.tip').css('left', (window.document.body.clientWidth - 1044)/2);
+      setTimeout(function(){
+        $('.tip').remove();
+      }, 10000)
     });
   </script>
 <% end %>

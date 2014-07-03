@@ -48,7 +48,7 @@
                 <% if sign_today? %>
                   您已签到！
                 <% elsif current_user.league %>
-                  <%= button_to '今日签到', sign_today_league_league_path(current_user.league), :method => :put, :remote => :true %>
+                  <%= link_to '今日签到', sign_today_league_league_path(current_user.league), :method => :put, :remote => :true %>
                 <% end %>                  
                 </div>
               </li>

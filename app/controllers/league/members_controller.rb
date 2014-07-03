@@ -1,9 +1,15 @@
 # coding: utf-8
 class League::MembersController < ApplicationController
 
-  before_filter :except => [:create] do
+  before_filter :except => [:create, :destroy] do
     @league = League::League.find(params[:league_id])
     @member = League::Member.find(params[:member_id])
+  end
+
+  def destroy
+    @member = League::Member.where(:user => current_user, :league => current_user.league)
+    current_user.set(:league => nil)
+    @member.destroy
   end
 
   def set_vice_president
