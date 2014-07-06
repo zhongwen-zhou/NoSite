@@ -63,6 +63,10 @@ class User
   field :level, :type => Integer, :default => 1
   field :join_league_status, :type => Integer, :default => 0
 
+  field :guessed_at, :type => Date
+  field :guessed_value, :type => String
+  field :guessed_out, :type => Boolean
+
   mount_uploader :avatar, AvatarUploader
 
   index :login => 1
@@ -81,7 +85,6 @@ class User
 
   #======Redis Value====
   value :signed
-  value :guess_balls
 
 
   def email_required?
@@ -450,8 +453,10 @@ class User
     self.signed = Date.current.to_s
   end
 
-  def guess_ball(value)
-    self.guess_balls = "#{Date.current.to_s}@#{value}"
+  def guess_ball!(value)
+    set(:guessed_at => Date.current)
+    set(:guessed_value => value)
+    set(:guessed_out => false)
   end
 
   def avatar_image

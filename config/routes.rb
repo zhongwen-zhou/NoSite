@@ -1,5 +1,5 @@
 NoSite::Application.routes.draw do
-  require 'api'
+  # require 'api'
   # require "api_v2"
   
   # resources :sites
@@ -114,7 +114,7 @@ NoSite::Application.routes.draw do
   # end
 
   # get "api" => "home#api", as: 'api'
-  mount NoSite::API => "/"
+  # mount NoSite::API => "/"
   # mount NoSite::APIV2 => "/"
 
   # mount JasmineRails::Engine => "/specs" if defined?(JasmineRails)

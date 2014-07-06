@@ -129,9 +129,16 @@ module ApplicationHelper
   end
 
   def can_guess_ball?
-    # return true if current_user.guess_balls.value.empty?
-    # return false if current_user.guess_balls.get().split('@')[0] == Date.current.to_s
-    return true
+    return true if current_user.guessed_at.nil?
+    current_user.guessed_at != Date.current
+  end
+
+  def render_groups_name(group_no)
+    if group_no == 'g1'
+      "#{GuessBall.instance.g1_team1} VS #{GuessBall.instance.g1_team2}"
+    else
+      "#{GuessBall.instance.g2_team1} VS #{GuessBall.instance.g2_team2}"
+    end
   end
 
 end

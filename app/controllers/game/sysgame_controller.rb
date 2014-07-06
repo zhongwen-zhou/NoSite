@@ -1,5 +1,6 @@
 class Game::SysgameController < ApplicationController
   def guess
-  	current_user.guess_ball(params[:game_value] || 1)
+  	value = "#{params[:group_1]}-#{params[:group_2]}"
+  	current_user.guess_ball!(value.to_s)
   end
 end

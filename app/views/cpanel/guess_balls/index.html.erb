@@ -1,0 +1,27 @@
+<h3>注意：是先操作比赛结果（昨天的比赛），然后再是设置新的比赛</h3>
+<h2>基本信息</h2>
+<p>
+	竞猜组1:<br/>
+	队伍1:<%= GuessBall.instance.g1_team1 %><br/>
+	队伍2:<%= GuessBall.instance.g1_team2 %><br/>
+</p>
+<hr/>
+<p>
+	竞猜组2:<br/>
+	队伍1:<%= GuessBall.instance.g2_team1 %><br/>
+	队伍2:<%= GuessBall.instance.g2_team2 %><br/>
+</p>
+<hr/>
+<h2>比赛结果</h2>
+<p>
+	竞猜组1:<br/>
+	<%= GuessBall.instance.g1_team1 %> <%= GuessBall.instance.g1_result %> <%= GuessBall.instance.g1_team2 %>
+</p>
+<hr/>
+<p>
+	竞猜组2:<br/>
+	<%= GuessBall.instance.g2_team1 %> <%= GuessBall.instance.g2_result %> <%= GuessBall.instance.g2_team2 %>
+</p>
+
+<%= link_to '修改竞猜队伍', edit_teams_cpanel_guess_balls_path %>
+<%= link_to '设置比赛结果', edit_results_cpanel_guess_balls_path %>

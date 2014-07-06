@@ -1,0 +1,16 @@
+<%= form_tag(update_teams_cpanel_guess_balls_path, :method => 'post') do |f| %>
+<h2>基本信息</h2>
+<p>
+	竞猜组1:<br/>
+	队伍1:<input type="text" name="g1_team1" value="<%= GuessBall.instance.g1_team1 %>" /><br/>
+	队伍2:<input type="text" name="g1_team2" value="<%= GuessBall.instance.g1_team2 %>" /><br/>
+</p>
+<hr/>
+<p>
+	竞猜组2:<br/>
+	队伍1:<input type="text" name="g2_team1" value="<%= GuessBall.instance.g2_team1 %>" /><br/>
+	队伍2:<input type="text" name="g2_team2" value="<%= GuessBall.instance.g2_team2 %>" /><br/>
+</p>
+<hr/>
+	<input type="submit" value="确定" />
+<% end %>
