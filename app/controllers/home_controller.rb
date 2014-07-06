@@ -12,15 +12,22 @@ class HomeController < ApplicationController
       guess_ball = GuessBall.instance
       results = current_user.guessed_value
       coins = 0
-      p results
-      p guess_ball.g1_result
-      p guess_ball.g2_result
+
+      right = false
+
       if results.split('-').first == guess_ball.g1_result
         coins += 100
+        right = true
       end
 
       if results.split('-').last == guess_ball.g2_result
         coins += 100
+        right = true
+      end
+
+      unless right
+        coins = 10
+        Reward.create!(:receiver => current_user, :classification => 0, :personal_coins => coins, :content => '您昨天的赌球一个都没有中哦，不过我们还是奖励你10金币，再接再厉哦！')
       end
 
       if coins > 0
