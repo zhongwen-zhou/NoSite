@@ -30,12 +30,8 @@ class Cpanel::ArticlesController < Cpanel::ApplicationController
   end
 
   def update
-    @article = Article.unscoped.find(params[:id])
-    @article.title = params[:article][:title]
-    @article.body = params[:article][:body]
-    @article.slug = params[:article][:slug]
-    @article.locked = params[:article][:locked]
-    @article.user_id = current_user.id
+    @article = Article.find(params[:id])
+    @article.update_attributes!(params[:article].permit!)
 
     if @article.save
       redirect_to(cpanel_articles_path, :notice => 'Article was successfully updated.')

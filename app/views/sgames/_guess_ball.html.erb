@@ -7,7 +7,7 @@
       <img src="init_data/images/guess_balls/fball.png" , width ='100%;', height = '100%;'/>
     </div>
 
-    <%= form_tag(game_guess_path, :method => 'post', :remote => true) do |f| %>
+    <%= form_tag(game_guess_path, :method => 'post', :remote => true, :id => 'guess_balls_form') do |f| %>
     <div class="first-game">
         <p class="game-name" style="">  
         <%= render_groups_name('g1') %>
@@ -35,8 +35,8 @@
       <div class="row">
         <div class="col-md-4 col-md-offset-3" >
           <%#= link_to '下注吧！', game_guess_path, :remote => true, :class => "detain-btn", :id => 'guess_ball_submit_btn' %>
-          <input type="submit" class="detain-btn" id="guess_ball_submit_btn" value=""/>
-            <%#= image_tag('/init_data/images/guess_balls/xiazhu_1.png') %>
+          <!-- <input type="submit" class="detain-btn" id="guess_ball_submit_btn" value=""/> -->
+          <%= image_tag('/init_data/images/guess_balls/xiazhu_1.png', :'data-role' => 'detain-btn') %>
         </div>
       </div>
     <% end %>
@@ -44,3 +44,8 @@
     <% end %>
   </div>
 </div>
+<script>
+  $('[data-role=detain-btn]').click(function(){
+    $('#guess_balls_form').submit();
+  });
+</script>

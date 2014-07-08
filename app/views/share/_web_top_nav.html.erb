@@ -45,14 +45,6 @@
                 金币：<%= current_user.coins %>
                 <br/>
                 等级：<%= current_user.level %>
-                <br/>
-                <div id="sign_today_div">
-                <% if sign_today? %>
-                  您已签到！
-                <% elsif current_user.league %>
-                  <%= link_to '今日签到', sign_today_league_league_path(current_user.league), :method => :put, :remote => :true %>
-                <% end %>                  
-                </div>
               </li>
               <li>
                 <%= link_to '个人设置', profile_users_path %>
@@ -62,6 +54,15 @@
               </li>
             </ul>
           </li>
+
+          <li class="" data-role="sign-container">
+            <% if sign_today? %>
+            <%= image_tag('/init_data/images/navbar/signed.png') %>
+            <% elsif current_user.league %>
+              <%= link_to image_tag('/init_data/images/navbar/sign_btn.png'), sign_today_league_league_path(current_user.league), :method => :put, :remote => :true, :class => 'sign-btn' %>
+            <% end %>
+          </li>
+
         <% else %>
           <li>
 

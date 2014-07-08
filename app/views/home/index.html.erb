@@ -58,10 +58,10 @@
 
         </div>  
         <div class="panel-body" style="font-size: 12px;">
-          <ul style="margin: 0px; padding: 0px;">
+          <ul style="margin: 0px; padding: 0px; padding-left: 8px;">
           <% ::Bbs::Topic.where(:node_id.in => [1,3]).excellent.desc(:created_at).limit(12).each_with_index do |topic, index| %>
               <li class="item <%= (index % 2) == 1 ? 'item_ji' : 'item_ou' %>">
-                [<%= link_to topic.node_name, bbs_node_topics_path(topic.node_id), :target => '_blank' %>]
+                [<%= link_to topic.node_name, bbs_node_topics_path(topic.node_id), :target => '_blank', :class => 'topbbs-type-item' %>]
                 <%= link_to topic.title[0..8], bbs_topic_path(topic), :target => '_blank' %>
               </li>
 
