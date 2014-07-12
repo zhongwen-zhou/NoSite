@@ -3,14 +3,21 @@
     <div class="container">
       <div class="row">
         <div class="" style="float: left;">
+          <% if false %>
           <h3 class="panel-title" style="color: #fff; font-size: 10px;">
             <%= link_to '业界资讯', articles_path %>
           </h3>
+          <% end %>
+          <a href="<%= articles_path %>">
+          <%= image_tag '/init_data/images/panels/yjzx.png'%>
+          </a>
         </div>
         <div class="" style="float: right;">
+          <% if false %>
           <h4 class="panel-title" style="color: #fff; font-size: 8px;">
             <%= link_to '更多', articles_path %>
           </h4>
+          <% end %>
         </div>
       </div>
     </div>

@@ -94,6 +94,7 @@ body .carousel {
 	float: left;
 }
 .articles-list .panel-heading {
+	padding: 5px 15px;
 	background-image: url('/init_data/images/panels/articles_header.png'); 
 	height: 31px;
 }
@@ -109,6 +110,7 @@ body .carousel {
 }
 
 .topbbs-list .panel-heading {
+	padding: 5px 15px;
 	background-image: url('/init_data/images/panels/top_bbs_header.png'); 
 	height: 30px;
 }
@@ -196,6 +198,7 @@ body .carousel {
 }
 
 .guessball .panel-heading {
+	padding: 5px 10px;
 	background-image: url('/init_data/images/panels/guessball_header.png');
 	height: 31px;
 }
@@ -243,6 +246,7 @@ body .carousel {
 }
 
 .sys-game .panel-heading{
+	padding: 3px 10px;
 	background-image: url('/init_data/images/panels/sys_game_header.png');
 	height: 31px;
 }
@@ -273,6 +277,7 @@ body .carousel {
 }
 
 .servertimes .panel-heading {
+	padding: 5px 10px;
 	background-image: url('/init_data/images/panels/servertimes_header.png');
 	height: 31px;
 }
@@ -339,6 +344,7 @@ body .carousel {
 }
 
 .fighting .panel-heading{
+	padding: 5px 10px;
 	background-image: url(/init_data/images/panels/xuanzhanba_header.png);
 	height: 38px;
 	width: 728px;
@@ -360,6 +366,7 @@ body .carousel {
 
 /*激烈战况*/
 .fighting-live .panel-heading{
+	padding: 5px 10px;
 	background-image: url(/init_data/images/panels/zhankuang_header.png);
 	height: 30px;
 	width: 240px;
