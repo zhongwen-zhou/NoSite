@@ -3,7 +3,9 @@
   <fieldset>
     <legend>Article页面编辑</legend>
     <%= f.input :title, :input_html => { :class => "xxlarge" } %>
-    <%= f.input :index, :input_html => { :class => "xxlarge", :disabled => @picture.present? ? 'disabled' : 'none' } %>
+    <% input_options = { :class => 'xxlarge'} %>
+    <% input_options.merge { :disabled => 'disabled'} if @picture.present? %>
+    <%= f.input :index, :input_html => input_options %>
     <%= f.input :desc, :input_html => { :class => "xxlarge" } %>
 
 	<p>
