@@ -4,7 +4,7 @@
     <legend>Article页面编辑</legend>
     <%= f.input :title, :input_html => { :class => "xxlarge" } %>
     <% input_options = { :class => 'xxlarge'} %>
-    <% input_options.merge { :disabled => 'disabled'} if @picture.present? %>
+    <% input_options.merge!({:disabled => 'disabled'}) unless @picture.new_record? %>
     <%= f.input :index, :input_html => input_options %>
     <%= f.input :desc, :input_html => { :class => "xxlarge" } %>
 
