@@ -20,7 +20,6 @@ class Cpanel::GirlPicturesController < Cpanel::ApplicationController
 
   def create
     @picture = ::GirlPicture.new(params[:girl_picture].permit!)
-    p @picture
 
     if @picture.save
       redirect_to(cpanel_girl_pictures_path, :notice => 'Badge was successfully created.')
@@ -30,15 +29,12 @@ class Cpanel::GirlPicturesController < Cpanel::ApplicationController
   end
 
   def update
-    @badge = Badge.unscoped.find(params[:id])
-    @badge.title = params[:badge][:title]
-    @badge.body = params[:badge][:body]
-    @badge.slug = params[:badge][:slug]
-    @badge.locked = params[:badge][:locked]
-    @badge.user_id = current_user.id
+    @picture = ::GirlPicture.find(params[:id])
 
-    if @badge.save
-      redirect_to(cpanel_badges_path, :notice => 'Badge was successfully updated.')
+    @picture.update_attributes(params[:girl_picture].permit!)
+
+    if @picture.save
+      redirect_to(cpanel_girl_pictures_path, :notice => 'Badge was successfully updated.')
     else
       render :action => "edit"
     end
