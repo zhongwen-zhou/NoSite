@@ -53,19 +53,25 @@
     <div id="links" class="">
 
       <div class="portfolio-item left-big-item">
-        <a href="init_data/images/pic_walls/pic_wall_big_1.jpg" title="Banana"  data-desc="勇者斗恶龙4新图首曝光." data-gallery>
-          <img src="init_data/images/pic_walls/tu_2.png" alt="Banana">
+        <% first_picture = GirlPicture.where(:index => 1).first %>
+        <a href="<%= first_picture.b_image_url %>" title="<%= first_picture.title %>"  data-desc="<%= first_picture.desc %>" data-gallery>
+          <img src="<%= first_picture.f_image_url %>" alt="<%= first_picture.title %>">
         </a>
       </div>
 
       <div class="right-list-container">
         <div class="">
+        <% pictures = GirlPicture.where(:index.in => [2,3,4]).asc(:index) %>
+        <% pictures.each do |picture| %>
           <div class="portfolio-item">
-            <a href="init_data/images/pic_walls/pic_wall_big_2.jpg" title="Apple"  data-desc="成吉思汗3上演双服混战." data-gallery>
-                <img src="init_data/images/pic_walls/tu_3.png" alt="Apple">
-            </a>        
-          </div>
 
+            <a href="<%= picture.b_image_url %>" title="<%= picture.title %>"  data-desc="<%= picture.desc %>" data-gallery>
+              <img src="<%= picture.f_image_url %>" alt="<%= picture.title %>">
+            </a>                    
+          </div>
+        <% end %>
+
+        <% if false %>
           <div class="portfolio-item">
             <a href="init_data/images/pic_walls/pic_wall_big_3.jpg" title="Apple"  data-desc="汪星人的土鳖宿命 一个真正悲伤的故事." data-gallery>
                 <img src="init_data/images/pic_walls/tu_4.png" alt="Apple">
@@ -77,10 +83,12 @@
                 <img src="init_data/images/pic_walls/tu_5.png" alt="Apple">
             </a>
           </div>      
+        <% end %>
         </div>
 
         <div class="clearfix"></div>
 
+        <% if false %>
         <div class="">
           <div class="portfolio-item">
             <a href="init_data/images/pic_walls/pic_wall_big_4.jpg" title="Apple"  data-desc="This is a banana." data-gallery>
@@ -99,6 +107,35 @@
             </a>
           </div>   
         </div> 
+        <% end %>
+
+        <div class="">
+        <% pictures = GirlPicture.where(:index.in => [5,6,7]).asc(:index) %>
+        <% pictures.each do |picture| %>
+          <div class="portfolio-item">
+
+            <a href="<%= picture.b_image_url %>" title="<%= picture.title %>"  data-desc="<%= picture.desc %>" data-gallery>
+              <img src="<%= picture.f_image_url %>" alt="<%= picture.title %>">
+            </a>                    
+          </div>
+        <% end %>
+
+        <% if false %>
+          <div class="portfolio-item">
+            <a href="init_data/images/pic_walls/pic_wall_big_3.jpg" title="Apple"  data-desc="汪星人的土鳖宿命 一个真正悲伤的故事." data-gallery>
+                <img src="init_data/images/pic_walls/tu_4.png" alt="Apple">
+            </a>
+          </div>
+
+          <div class="portfolio-item">
+            <a href="init_data/images/pic_walls/pic_wall_big_3.jpg" title="Apple"  data-desc="汪星人的土鳖宿命 一个真正悲伤的故事." data-gallery>
+                <img src="init_data/images/pic_walls/tu_5.png" alt="Apple">
+            </a>
+          </div>      
+        <% end %>
+        </div>
+
+
       </div>
     </div> 
   </div>

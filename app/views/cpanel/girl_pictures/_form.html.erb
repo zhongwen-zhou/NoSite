@@ -1,0 +1,24 @@
+<%= simple_form_for([:cpanel, @picture]) do |f| %>
+  <%= render "shared/error_messages", :target => @picture %>
+  <fieldset>
+    <legend>Article页面编辑</legend>
+    <%= f.input :title, :input_html => { :class => "xxlarge" } %>
+    <%= f.input :index, :input_html => { :class => "xxlarge", :disabled => @picture.present? ? 'disabled' : 'none' } %>
+    <%= f.input :desc, :input_html => { :class => "xxlarge" } %>
+
+	<p>
+	  <label>前面图</label>
+		<%= f.file_field :f_image %>
+    <%= f.hidden_field :f_image_cache %>
+	</p>
+
+  <p>
+    <label>后面图</label>
+    <%= f.file_field :b_image %>
+    <%= f.hidden_field :b_image_cache %>
+  </p>
+
+    <div class="form-actions">
+      <%= f.submit t("common.save"), :class => "btn btn-primary", 'data-disable-with' => t("common.saving") %>
+    </div>
+<% end %>

@@ -1,0 +1,30 @@
+<% content_for :sitemap do %>
+  <span class="current">美女图</span>
+<% end %>
+<h1>美女图 列表</h1>
+
+<table class="table table-bordered table-striped table-condensed">
+  <tr class="head">
+    <td class="first">Index</td>
+    <td>Title</td>
+    <td>Desc</td>
+    <td>前图</td>
+    <td>后图图</td>
+    <td style="width:80px;"></td>
+  </tr>
+
+<% @pictures.each do |picture| %>
+  <tr class="">
+    <td class="first"><%= picture.index %></td>
+    <td><%= truncate(picture.title,:length => 30) %></td>
+    <td><%= picture.desc %></td>
+    <td><%= image_tag picture.f_image_url, :width => 200, :height => 200 %></td>
+    <td><%= image_tag picture.b_image_url, :width => 200, :height => 200 %></td>
+    <td>
+    <%= link_to '编辑', edit_cpanel_girl_picture_path(picture), :class => "icon small_edit" %>
+  </tr>
+<% end %>
+</table>
+<br/>
+
+<%= link_to '新加美女图', new_cpanel_girl_picture_path %>

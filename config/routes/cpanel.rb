@@ -6,6 +6,10 @@ NoSite::Application.routes.draw do
     resources :badges
     resources :site_configs
 
+    resources :girl_pictures
+
+
+
     resources :guess_balls, :only =>[:index] do
       collection do
         get :edit_teams
