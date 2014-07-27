@@ -1,3 +1,4 @@
+<% if false %>
 <%= render('ads/ad_hf_01') %>
 
 <style type="text/css">
@@ -49,6 +50,7 @@
 
         <% if true %>
         <%= notice_message %>
+      
         <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :class => "form-horizontal") do |f| %>
           <%= render "shared/error_messages", :target => resource %>
 
@@ -142,3 +144,381 @@
   });
 </script>
 <% end %>
+<% end %>
+
+<!DOCTYPE html>
+<!-- saved from url=(0037)http://www.101fun.com/account/sign_up -->
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <meta name="baidu-tc-cerfication" content="b74fb8b8a7e0d354da5b140d10e27113">
+
+    <title>蕉点享乐科技</title>
+  
+    <%= stylesheet_link_tag "web", "data-turbolinks-track" => true %>
+    <link href="/assets/site.css" media="screen" rel="stylesheet" />
+    <%= javascript_include_tag "web", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tag %>
+
+
+<style type="text/css">
+  
+/*****login****/
+.login-bg{
+  background-image: url(/assets/sessions/denglu_beijing.jpg);
+  width: 1600px;
+  height: 900px;
+  margin-left: 0px;
+}
+
+.login-frame{
+  background-image: url(/assets/sessions/denglukuang.png);
+  width: 411px;
+  height: 440px;
+}
+
+.title-image{
+  line-height: 62px;
+  text-align: center;
+}
+
+.login-btn{
+  width: 358px;
+  height: 42px;
+  background-image: url(/assets/sessions/denglu.png);
+  border: none;
+  border-radius: 0px;
+}
+
+.login-btn:hover{
+  background-image: url(/assets/sessions/denglu_1.png);
+}
+
+.go-reg{
+  width: 125px;
+  height: 42px;
+  background-image: url(/assets/sessions/liji_zhuce.png);
+  display: block;
+}
+
+.go-reg:hover {
+  background-image: url(/assets/sessions/liji_zhuce_1.png);
+}
+
+.my-footer {
+  background-color: #24201d;
+  margin: 0px;
+  padding: 18px 0px 0px;
+  text-align: center;
+  width: 1600px;
+  color: #908681;
+}
+
+.gray-bar {
+  background-color: #5d4f46;
+  width: 1600px;
+  height: 35px;
+}
+/***register***/
+.reg-frame{
+  background-image: url(/assets/sessions/zhucekuang.png);
+  width: 582px;
+  height: 624px;
+}
+
+.reg-image{
+  line-height: 80px;
+  text-align: center;
+}
+
+.reg-btn{
+  width: 358px;
+  height: 42px;
+  background-image: url(/assets/sessions/zhuce.png);
+  border: none;
+  border-radius: 0px;
+}
+
+.reg-btn:hover{
+  background-image: url(/assets/sessions/zhuce_1.png);
+}
+
+.go-login{
+  width: 125px;
+  height: 42px;
+  background-image: url(/assets/sessions/liji_denglu.png);
+  display: block;
+}
+
+.go-login:hover {
+  background-image: url(/assets/sessions/liji_denglu_1.png);
+}
+
+.reg-tip {
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.reg-frame .form-control {
+  height: 53px;
+}
+
+.reg-frame .control-label {
+  line-height: 45px;
+}
+/*********************************************************/
+.margin-top-200{
+  margin-top: 200px;
+}
+
+.margin-top-120{
+  margin-top: 120px;
+}
+
+.margin-top-75{
+  margin-top: 75px;
+}
+
+.margin-top-40{
+  margin-top: 40px;
+}
+
+.margin-top-30{
+  margin-top: 30px;
+}
+
+.margin-top-20{
+  margin-top: 20px;
+}
+
+.margin-top-14{
+  margin-top: 14px;
+}
+
+.margin-top-8{
+  margin-top: 8px;
+}
+
+.margin-top-5{
+  margin-top: 5px;
+}
+
+.margin-left-68{
+  margin-left: 68px;
+}
+
+.margin-left-20{
+  margin-left: 20px;
+}
+
+.margin-left-28{
+  margin-left: 28px;
+}
+
+.no-vertical-margin{
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.no-padding-left{
+  padding-left: 0px;
+}
+
+.padding-right-26 {padding-right: 26px;}
+
+.font-blue{
+  font-size: 20px;
+  color: #025eb5;
+  font-weight: bold;
+  line-height: 42px;
+}
+
+.font-20 {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 20px;
+}
+
+.font-12 {
+  font-size: 12px;
+}
+
+.light-green {
+ color: #bdeb16;
+}
+
+.light-blue {
+  color:#cbc3fe;
+}
+
+
+</style>
+
+
+  </head>
+
+  <body>
+
+    <%= render('share/web_top_nav') %>
+
+
+<div class="row login-bg">
+  <div class="col-lg-4 col-lg-offset-7 reg-frame margin-top-120">
+    <div class="reg-image">
+      <img src="/assets/sessions/zhucezi.png">
+    </div>
+      <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :class => "form-horizontal") do |f| %>
+
+      
+        <div class="row margin-top-20">
+          <div class="form-group no-vertical-margin">
+            <label for="inputEmail1" class="col-sm-3 control-label font-20"> 平台帐号</label>
+            <div class="col-sm-8 no-padding-left">
+              <input type="text" class="form-control" id="inputEmail1" placeholder="平台帐号" name="user[login]">
+            </div>
+          </div>
+        </div>
+
+        <div class="row text-center">
+          <span class="col-sm-8 col-sm-offset-3 reg-tip">
+          请谨慎填写，注册后账号不可修改，建议用Twitter ID注册。
+          </span>
+        </div>
+        
+        <div class="row">
+          <div class="form-group">
+            <label for="inputEmail2" class="col-sm-3 control-label font-20">平台昵称</label>
+            <div class="col-sm-8 no-padding-left">
+              <input type="text" class="form-control" id="inputEmail2" placeholder="平台昵称" name="user[name]">
+            </div>
+          </div>
+        </div>
+     
+        <div class="row margin-top-5">
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-3 control-label font-20">密码</label>
+            <div class="col-sm-8 no-padding-left">
+              <input type="password" class="form-control" id="inputEmail3" placeholder="密码" name="user[password]">
+            </div>
+          </div>
+        </div>
+
+        <div class="row margin-top-5">
+          <div class="form-group">
+            <label for="inputEmail4" class="col-sm-3 control-label font-20">确认密码</label>
+            <div class="col-sm-8 no-padding-left">
+              <input type="password" class="form-control" id="inputEmail4" placeholder="确认密码" name="user[password_confirmation]">
+            </div>
+          </div>
+        </div>
+          
+        <div class="row margin-top-5">
+          <div class="form-group">
+            <label for="inputEmail5" class="col-sm-3 control-label font-20">推荐码</label>
+            <div class="col-sm-8 no-padding-left">
+              <input type="text" class="form-control" id="inputEmail5" placeholder="推荐码" name="recommendation_code">
+            </div>
+          </div>
+        </div>
+
+        <div class="row margin-top-30">
+          <div class="form-group">
+            <div class="col-sm-9 col-sm-offset-3">
+              <input type="submit" value="" class="btn reg-btn">
+            </div>
+          </div> 
+        </div>      
+
+        <div class="row margin-top-8">
+          <div class="form-group">
+            <div class="col-sm-4 col-sm-offset-3">
+              <span class="font-blue">
+              已有通行证？
+              </span>
+            </div>
+          
+            <div class="col-sm-3 margin-left-28">
+              <a class="go-login" href="/account/sign_in"></a>
+            </div>
+          </div> 
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <footer class="my-footer">
+    <p class="font-12 light-green">
+    蕉点享乐信息技术（成都）有限公司
+    </p>
+    <p class="font-12 light-blue">蜀ICP备14006662号</p>
+    <p class="font-12">
+      抵制不良游戏，拒绝盗版游戏，注意自我保护，谨防受骗上当，适度游戏益脑，沉迷游戏伤身，合理安排时间，享受健康生活。
+    </p>
+    <div class="gray-bar">
+      &nbsp;
+    </div>
+  </footer>
+  <!-- /.container -->
+
+
+
+    <script type="text/javascript">
+  $(function(){
+    $("#new_user").validate({
+      rules: {
+        'user[login]': {
+          required: true,
+          minlength: 5
+        },
+        'user[password]': {
+          required: true,
+          minlength: 6
+        },
+        'user[name]': {
+          required: true
+        }
+      },
+      messages: {
+        'user[login]': {
+          required: "请输入用户名",
+          minlength: "用户名不能小于5个字符"
+        },
+        'user[password]': {
+          required: "请输入密码",
+          minlength: "密码不能小于5个字符"
+        },
+        'user[name]': {
+          required: "请输入昵称"
+        }
+      }
+    });
+  });
+</script>
+
+    <script type="text/javascript">
+        $(function(){
+        });
+
+        $('#rb_ad').css('top', document.documentElement.scrollTop+document.documentElement.clientHeight-215)
+        function close_rbad(){
+          $('#rb_ad').remove();
+        } 
+
+    </script>
+
+<!--
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fce4d522ef16088c1da74376f930a99b2' type='text/javascript'%3E%3C/script%3E"));
+</script>
+-->
+
+  
+
+
+</body></html>
