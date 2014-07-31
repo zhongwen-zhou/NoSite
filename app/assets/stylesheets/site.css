@@ -48,24 +48,29 @@ body .carousel {
 
 
 .panel-orange {
+	border: 0px solid transparent;
   border-color: #F5A274;
 }
 
 .panel-orange > .panel-heading {
+	border: 0px solid transparent;
   color: #000;
   background-color: #F5A274;
   border-color: #F5A274;
 }
 
 .panel-orange > .panel-heading + .panel-collapse .panel-body {
+	border: 0px solid transparent;
   border-top-color: #F5A274;
 }
 
 .panel-orange > .panel-heading > .dropdown .caret {
+	border: 0px solid transparent;
   border-color: #F5A274 transparent;
 }
 
 .panel-orange > .panel-footer + .panel-collapse .panel-body {
+	border: 0px solid transparent;
   border-bottom-color: #F5A274;
 }
 
@@ -103,6 +108,10 @@ body .carousel {
 	padding: 0px;
 }
 
+.articles-list .article-item {
+	background-image: url('/init_data/images/articles/article_item.png'); 
+}
+
 .topbbs-list {
 	width: 238px; 
 	float: left; 
@@ -117,6 +126,7 @@ body .carousel {
 
 .topbbs-list .panel-body {
 	padding: 0px;
+	background-image: url('/init_data/images/panels/top_bbs_body.png'); 
 	/*padding-top: 10px;*/
 }
 
@@ -128,13 +138,13 @@ body .carousel {
 .topbbs-list li.item_ji {
 	padding-top: 5px;
 	height: 25px;
-	background-image: url('/init_data/images/topbbs/item_ji.png'); 
+	/*background-image: url('/init_data/images/topbbs/item_ji.png'); */
 }
 
 .topbbs-list li.item_ou {
 	padding-top: 5px;
 	height: 25px;
-	background-image: url('/init_data/images/topbbs/item_ou.png'); 
+	/*background-image: url('/init_data/images/topbbs/item_ou.png'); */
 }
 
 
@@ -280,6 +290,10 @@ body .carousel {
 	padding: 5px 10px;
 	background-image: url('/init_data/images/panels/servertimes_header.png');
 	height: 31px;
+}
+
+.servertimes .panel-body {
+	background-image: url('/init_data/images/panels/servertimes_body.png');
 }
 
 
