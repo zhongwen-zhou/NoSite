@@ -450,6 +450,7 @@ class User
                   :personal_experience => 100,
                   :personal_coins => 100,
                   :receiver => self)    
+    self.league.add_experience(5) if self.league
     self.signed = Date.current.to_s
   end
 

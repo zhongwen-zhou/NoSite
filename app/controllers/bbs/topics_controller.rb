@@ -117,6 +117,8 @@ class Bbs::TopicsController < Bbs::BaseController
     current_user.add_coins('TOPIC_CREATE')
     current_user.add_scores('TOPIC_CREATE')
 
+    current_user.league.add_experience(3) if current_user.league
+
     if @topic.save
       redirect_to(bbs_topic_path(@topic.id), :notice => t("topics.create_topic_success"))
     else

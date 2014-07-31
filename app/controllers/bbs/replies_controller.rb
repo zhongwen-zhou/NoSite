@@ -13,6 +13,8 @@ class Bbs::RepliesController < ApplicationController
     current_user.add_coins('REPLY_TOPIC')
     current_user.add_scores('REPLY_TOPIC')
 
+    current_user.league.add_experience(1) if current_user.league
+
     if @reply.save
       current_user.read_topic(@topic)
       @msg = t("topics.reply_success")

@@ -10,7 +10,7 @@ class League::League
   field :name
   field :declaration
   field :members_count, :type => Integer, :default => 0
-  field :level, :type => Integer, :default => 1
+  field :level, :type => Integer, :default => 0
   field :experience, :type => Integer, :default => 0
   field :coins, :type => Integer, :default => 0
   field :activity, :type => Integer, :default => 1
@@ -26,6 +26,14 @@ class League::League
   validates_uniqueness_of :name, :case_sensitive => false
 
   index :name => 1
+
+  Level_Experience = {
+    1 => 1000,
+    2 => 2000,
+    3 => 3000,
+    4 => 5000,
+    5 => 8000
+  }
 
 
   def add_member(user, is_admin = false)
@@ -52,4 +60,18 @@ class League::League
   def proclaim_war(league)
     League::ProclaimWar.create(:challenger => self, :defender => league)
   end
+
+  def add_experience(experience)
+    inc(experience: experience)
+    if self.experience > Level_Experience[self.level + 1]
+      inc(level: 1)
+      case level
+      when 1
+        p 'hello 1'
+      when 2
+        p 'hello 2'
+      end
+    end
+  end
+
 end
