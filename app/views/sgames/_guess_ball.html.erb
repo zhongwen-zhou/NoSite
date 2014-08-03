@@ -7,6 +7,8 @@
       <img src="init_data/images/guess_balls/fball.png" , width ='100%;', height = '100%;'/>
     </div>
 
+    <% if false %>
+
     <%= form_tag(game_guess_path, :method => 'post', :remote => true, :id => 'guess_balls_form') do |f| %>
     <div class="first-game">
         <p class="game-name" style="">  
@@ -42,6 +44,61 @@
     <% end %>
     </div>
     <% end %>
+    <% end %>
+
+
+
+<!-- (Freda -->
+    <div class="row">
+    <form accept-charset="UTF-8" action="http://www.101fun.com/game/guess" data-remote="true" id="guess_balls_form" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"></div>
+
+    <div class="first-game">
+        <p class="game-name" style="">  
+        赫 根 VS 佐加顿斯
+        </p>
+        <p style="height: 20px; text-align: left;" class="result-choice">
+        <span>
+          胜<input type="radio" name="group_1" value="0" checked="checked">
+        </span>
+        <span>
+          平<input type="radio" name="group_1" value="1" class="margin-right-50">
+        </span>
+        <span class="last-radio">
+          负<input type="radio" name="group_1" value="2" >
+        </span>
+        </p>  
+    </div>
+
+    <div class="second-game">
+        <p class="game-name" style="">  
+        赫 根 VS 佐加顿斯
+        </p>
+        <p style="height: 20px; text-align: left;" class="result-choice">
+        <span>
+          胜<input type="radio" name="group_2" value="0" checked="checked">
+        </span>
+        <span>
+          平<input type="radio" name="group_2" value="1" class="margin-right-50">
+        </span>
+        <span class="last-radio">
+          负<input type="radio" name="group_2" value="2" >
+        </span>
+        </p>  
+    </div>
+
+    <div style="height:24px;">
+      <div class="row">
+        <div class="col-md-4 col-md-offset-3">
+          <!-- <input type="submit" class="detain-btn" id="guess_ball_submit_btn" value=""/> -->
+          <%= image_tag('/init_data/images/guess_balls/xiazhu_1.png', :'data-role' => 'detain-btn') %>
+        </div>
+      </div>
+    </div>
+</form> 
+</div> 
+<!-- Freda) -->
+
+
   </div>
 </div>
 <script>

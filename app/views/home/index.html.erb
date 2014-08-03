@@ -101,6 +101,7 @@
                 <%= image_tag '/init_data/images/panels/gh.png' %>
                 </a>
               </div>
+              <% if false %>
               <div class="" style="float: right;">
                 <form action="<%= search_league_leagues_path %>" class="navbar-form navbar-left" role="search" method="get" style="margin: 0px; padding: 0px; float: right;">
                   <div class="form-group">
@@ -110,6 +111,27 @@
                   <%= link_to '所有工会', league_leagues_path, :class => "btn btn-success" %>
                 </form>
               </div>
+              <% end %>
+
+
+<!-- freda -->
+
+              <div class="" style="float: right; line-height:35px;">
+                <form action="http://www.101fun.com/league/leagues/search" class="navbar-form navbar-left" role="search" method="get" style="margin: 0px; padding: 0px; float: right;">
+                  <a class="btn btn-all-league" href="http://www.101fun.com/league/leagues">
+                    所有工会
+                  </a>
+                  <div class="form-group">
+                    <input name="keyword" type="text" class="form-control" placeholder="">
+                  </div>
+                  <button type="submit" class="btn btn-search"></button>
+                </form>
+              </div>
+
+
+<!-- freda -->
+
+
             </div>
           </div>
           <div class="panel-body">

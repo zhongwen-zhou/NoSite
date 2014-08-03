@@ -110,6 +110,7 @@ body .carousel {
 
 .articles-list .article-item {
 	background-image: url('/init_data/images/articles/article_item.png'); 
+	margin: 0px;
 }
 
 .topbbs-list {
@@ -147,6 +148,10 @@ body .carousel {
 	/*background-image: url('/init_data/images/topbbs/item_ou.png'); */
 }
 
+.topbbs-list li a {
+	color: #000;
+}
+
 
 /* 第二个顶部条 */
 .top-b-container {
@@ -167,7 +172,7 @@ body .carousel {
 }
 
 .leagues-list .panel-body {
-	background-image: url('/init_data/images/leagues/leagues_list_bg.png');
+	background-image: url('/init_data/images/panels/leagues_body.png');
 	padding: 0px;
 	padding-bottom: 25px;
 	padding-left: 25px;
@@ -183,7 +188,7 @@ body .carousel {
 .league-item {
 	width: 195px;
 	height: 98px;
-	background-image: url('/init_data/images/leagues/league_item_bg.png');
+	/*background-image: url('/init_data/images/leagues/league_item_bg.png');*/
 	float: left;
 	margin-right: 23px;
 	margin-top: 20px;
@@ -196,6 +201,39 @@ body .carousel {
 	background-image: url('/init_data/images/leagues/join_league_1.png');
 	float: right;
 }
+
+.btn-all-league {
+	width: 68px;
+	height: 24px;
+	/*background-image: url(../images/souso_anniu.png);*/
+	border-radius: 0px;
+	border:none;
+	background-color: blue;
+	margin-right: 18px;
+}
+
+.btn-search {
+	width: 68px;
+	height: 24px;
+	background-image: url('/init_data/images/leagues/souso_anniu.png');
+	border-radius: 0px;
+	border:none;
+	margin-right: 10px;
+	margin-left: 13px;
+}
+.btn-search:hover {
+	background-image: url('/init_data/images/leagues/souso_anniu_1.png');
+}
+
+.leagues-list input.form-control{
+	height: 26px;
+}
+
+.league-item strong {
+	float: right;
+}
+
+/* 竞猜足球 */
 
 
 
@@ -214,20 +252,21 @@ body .carousel {
 }
 
 .guessball .panel-body {
+	height: 290px;
 	background-image: url('/init_data/images/panels/guessball_body.png');
 	padding: 0px 25px;
 }
 
 .guessball .first-game {
 	text-align: center;
-	margin-top: 5px;
-	height: 50px;
+	margin-top: 1px;
+	height: 45px;
 }
 
 .guessball .second-game {
 	text-align: center;
-	margin-top: 5px;
-	height: 50px;
+	margin-top: 1px;
+	height: 45px;
 }
 
 .guessball .first-game .game-name {
@@ -242,6 +281,28 @@ body .carousel {
 	background-image: url('/init_data/images/guess_balls/xiazhu_1.png');
 	width: 68px;
 	height: 25px;
+}
+
+.guessball .game-name {
+	height: 25px;
+}
+
+.guessball p {
+	margin-bottom: 0px;
+}
+
+.guessball .game-name {
+	font-size: 14px;
+	color: #fff;
+}
+
+.result-choice span{
+  float: left;
+  margin-right: 62px;
+}
+
+.result-choice .last-radio {
+	margin-right: 0px;
 }
 
 
@@ -279,7 +340,7 @@ body .carousel {
 /* 第四个顶部条 */
 .top-d-container {
 	height: 240px;
-	overflow: hidden;
+	/*overflow: hidden;*/
 }
 
 .servertimes {
@@ -294,6 +355,20 @@ body .carousel {
 
 .servertimes .panel-body {
 	background-image: url('/init_data/images/panels/servertimes_body.png');
+	padding-bottom: 0px;
+}
+
+.servertimes-table thead {
+	font-size: 20px;
+}
+.servertimes-table, 
+.servertimes-table td
+{
+	border: 2px solid #da7e89;
+}
+
+.servertimes-table tr {
+	height: 50px;
 }
 
 
@@ -371,7 +446,7 @@ body .carousel {
 }
 
 .come-fighting{
-	background-image: url(/init_data/images/panels/tiaozhan_bg.png);
+	/*background-image: url(/init_data/images/panels/tiaozhan_bg.png);*/
 	width: 194px;
 	height: 100px;
 	background-repeat: no-repeat;
@@ -398,17 +473,17 @@ body .carousel {
 }
 
 .fighting-live .item a {
-	color: red;
+	color: #000;
 }
 
 .fighting-live .item_ji {
 	padding-top: 5px;
-	background-image: url(/init_data/images/topbbs/item_ji.png);
+	/*background-image: url(/init_data/images/topbbs/item_ji.png);*/
 }
 
 .fighting-live .item_ou {
 	padding-top: 5px;
-	background-image: url(/init_data/images/topbbs/item_ou.png);
+	/*background-image: url(/init_data/images/topbbs/item_ou.png);*/
 }
 
 
