@@ -3,7 +3,7 @@
       <img src="<%= league.logo_url %>" width="60" height="60" class="img-circle" />
     </div>
     <div style="float: right; height: 70px; padding-top: 8px;">
-      <strong><%= link_to league.name[0..8], league_league_path(league) %></strong>
+      <strong><%= link_to league.name[0..6], league_league_path(league) %></strong>
       <%= button_to '', ask_for_join_league_league_path(league), :method => :put, :remote => true, :class => 'join_league_btn' if current_user && current_user.can_join_league?(league) %>
     </div>
     <div class="clearfix"></div>
