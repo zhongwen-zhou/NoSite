@@ -157,6 +157,7 @@ body .carousel {
 .topbbs-list .panel-body {
 	padding: 0px;
 	background-image: url('/init_data/images/panels/top_bbs_body.png'); 
+	background-position-y: -42px;
 	/*padding-top: 10px;*/
 }
 
@@ -367,7 +368,7 @@ body .carousel {
 	height: 390px;
 	background-image: url('/init_data/images/panels/sys_game_body.png');
 	padding: 8px;
-	background-position-y: -33px;
+	background-position-y: -34px;
 }
 
 .sys-game .start-game-btn {
@@ -524,7 +525,7 @@ body .carousel {
 	background-image: url(/init_data/images/panels/xuanzhanba_body.png);
 	height: 236px;
 	width: 728px;
-	background-position-y: -38px;
+	background-position-y: -71px;
 }
 
 .fighting .title {
@@ -552,7 +553,7 @@ body .carousel {
 	height: 244px;
 	width: 240px;
 	padding: 0px;
-	background-position-y: -27px;
+	background-position-y: -60px;
 }
 
 .fighting-live .item {
