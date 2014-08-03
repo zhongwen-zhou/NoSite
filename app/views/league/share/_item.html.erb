@@ -7,7 +7,7 @@
       <%= button_to '', ask_for_join_league_league_path(league), :method => :put, :remote => true, :class => 'join_league_btn' if current_user && current_user.can_join_league?(league) %>
     </div>
     <div class="clearfix"></div>
-    <div style="font-size: 10px; line-height: 15px;">
+    <div class="font-14" style="font-size: 10px; line-height: 15px;">
       帮主：<%= league.president_name %><br/>
       等级：<%= league.level %>
       &nbsp;&nbsp;人数：<span><%= league.members.official.count %></span>

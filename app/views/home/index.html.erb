@@ -3,7 +3,6 @@
 <![endif]-->
 
 <%#= render('ads/ad_hf_01') %>
-<br/>
 <%= image_tag('/init_data/images/ads/ad_02.png', :class => 'ads_image') %>
 <div class="section top-a-container">
   <div class="">
@@ -70,7 +69,7 @@
         <div class="panel-body" style="font-size: 12px;">
           <ul style="margin: 0px; padding: 0px; padding-left: 8px;">
           <% ::Bbs::Topic.where(:node_id.in => [1,3]).excellent.desc(:created_at).limit(12).each_with_index do |topic, index| %>
-              <li class="item <%= (index % 2) == 1 ? 'item_ji' : 'item_ou' %>">
+              <li class="font-14 item <%= (index % 2) == 1 ? 'item_ji' : 'item_ou' %>">
                 [<%= link_to topic.node_name, bbs_node_topics_path(topic.node_id), :target => '_blank', :class => 'topbbs-type-item' %>]
                 <%= link_to topic.title[0..8], bbs_topic_path(topic), :target => '_blank' %>
               </li>
@@ -85,7 +84,6 @@
 </div><!-- /.section -->
 <%#= render('ads/ad_hf_01') %>
 <%#= image_tag('/init_data/images/ads/ad_03.png', :class => 'ads_image') %>
-<div style="clear: both"/>
 <div class="section top-b-container">
     <!-- <div class=""> -->
     <div class="" style="">
@@ -119,7 +117,7 @@
               <div class="" style="float: right; line-height:35px;">
                 <form action="http://www.101fun.com/league/leagues/search" class="navbar-form navbar-left" role="search" method="get" style="margin: 0px; padding: 0px; float: right;">
                   <a class="btn btn-all-league" href="http://www.101fun.com/league/leagues">
-                    所有工会
+                  <%= image_tag('/init_data/images/leagues/all_leagues_btn.png') %>
                   </a>
                   <div class="form-group">
                     <input name="keyword" type="text" class="form-control" placeholder="">
