@@ -480,6 +480,7 @@ body .carousel {
 .picture-wall .panel-body {
 	background-image: url(/init_data/images/panels/meinvtu_body.png);
 	background-position-y: -31px;
+	padding-bottom: 0px;
 }
 
 .picture-wall .title {
