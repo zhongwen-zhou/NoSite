@@ -3,7 +3,7 @@
 <![endif]-->
 
 <%#= render('ads/ad_hf_01') %>
-<%= image_tag('/init_data/images/ads/ad_02.png', :class => 'ads_image') %>
+<%= image_tag('/init_data/images/ads/ad_02.png', :class => 'ads_image', 'style' => 'margin-top: -3px;') %>
 <div class="section top-a-container">
   <div class="">
     <div class="articles-list">
@@ -94,7 +94,7 @@
         <div class="panel panel-orange">
           <div class="panel-heading">
             <div class="">
-              <div class="" style="float: left; padding: 5px 10px;">
+              <div class="" style="float: left; padding: 8px 20px;">
                 <a href="<%= league_leagues_path %>">
                 <%= image_tag '/init_data/images/panels/gh.png' %>
                 </a>
@@ -148,7 +148,8 @@
     </div><!-- /.row -->
 </div><!-- /.section -->
 <%#= render('ads/ad_hf_01') %>
-<div style="clear: both"/>
+<div style="clear: both">
+</div>
 <%= image_tag('/init_data/images/ads/ad_02.png', :class => 'ads_image') %>
 <div class="section top-c-container" >
   <div class="sys-game">
@@ -179,24 +180,22 @@
 <%#= render('ads/ad_hf_01') %>
 <%= image_tag('/init_data/images/ads/ad_02.png', :class => 'ads_image') %>
 
-<div class="section" >
-<div class="">
-  <div class="fighting float-left">
-    <%= render('share/declaration_fighting') %>
-  </div>
+<div class="section top-e-container" >
+    <div class="fighting float-left">
+      <%= render('share/declaration_fighting') %>
+    </div>
 
-  <!-- <div class="col-md-3"> -->
-  <div class="fighting-live float-left margin-left-10">
-    <%= render('share/fighting_live') %> 
-  </div>
-</div>
+    <!-- <div class="col-md-3"> -->
+    <div class="fighting-live float-left margin-left-10">
+      <%= render('share/fighting_live') %> 
+    </div>
 </div>
 
 <%#= render('share/declaration_fighting') %>
 
 <%#= render('ads/ad_hf_01') %>
 <%= image_tag('/init_data/images/ads/ad_03.png', :class => 'ads_image') %>
-<div class="section">
+<div class="section top-f-container">
 <div class="picture-wall">
 <%= render('share/pictrue_wall') %>
 </div>

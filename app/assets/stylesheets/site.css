@@ -21,6 +21,10 @@ body .carousel {
 }
 
 
+.ads_image {
+	/*margin-bottom: 12px;*/
+}
+
  /*styles for 300 and up @ 16px!*/
 /* The max-width declaration below blocks this from ever working */
 @media only screen and (min-width: 480px){
@@ -197,6 +201,9 @@ body .carousel {
 	padding: 0px;
 }
 
+.leagues-list .title {
+	/*margin: 0px 0px 0px 20px;*/
+}
 .leagues-list .panel-body {
 	background-image: url('/init_data/images/panels/leagues_body.png');
 	padding: 0px;
@@ -332,7 +339,7 @@ body .carousel {
 
 .result-choice span{
   float: left;
-  margin-right: 62px;
+  margin-right: 30px;
 }
 
 .result-choice .last-radio {
@@ -360,7 +367,7 @@ body .carousel {
 	height: 390px;
 	background-image: url('/init_data/images/panels/sys_game_body.png');
 	padding: 8px;
-	background-position-y: -32px;
+	background-position-y: -33px;
 }
 
 .sys-game .start-game-btn {
@@ -372,11 +379,14 @@ body .carousel {
 	margin-left: -45px;
 }
 
+.sys-game .title {
+	margin: 3px 0px 0px 20px;
+}
 /* 第四个顶部条 */
 .top-d-container {
 	height: 240px;
 	padding-top: 0px;
-	/*overflow: hidden;*/
+	overflow: hidden;
 }
 
 .servertimes {
@@ -394,7 +404,7 @@ body .carousel {
 	padding-bottom: 0px;
 	height: 202px;
 	padding: 12px 20px 12px 20px;
-	background-position-y: -39px;
+	background-position-y: -38px;
 }
 
 .servertimes-table thead {
@@ -420,6 +430,14 @@ body .carousel {
 }
 
 
+/* 第五个顶部条 */
+.top-e-container {
+	margin-top: 12px;
+	height: 240px;
+	padding-top: 0px;
+	overflow: hidden;
+}
+
 /* Freda */
 
 .float-left{
@@ -441,6 +459,16 @@ body .carousel {
 .padding-top-14{
 	padding-top: 14px;
 }
+
+/* 第五个顶部条 */
+.top-f-container {
+	margin-top: 2px;
+	/*height: 240px;*/
+	/*padding-top: 0px;*/
+	/*overflow: hidden;*/
+}
+
+
 /*美女图片墙*/
 .picture-wall .panel-heading{
 	background-image: url(/init_data/images/panels/longest_header.png);
@@ -452,6 +480,10 @@ body .carousel {
 .picture-wall .panel-body {
 	background-image: url(/init_data/images/panels/meinvtu_body.png);
 	background-position-y: -31px;
+}
+
+.picture-wall .title {
+	margin: -3px 0px 0px 20px;
 }
 
 .picture-wall .left-big-item {
@@ -494,6 +526,10 @@ body .carousel {
 	background-position-y: -38px;
 }
 
+.fighting .title {
+	margin-top: -3px;
+}
+
 .come-fighting{
 	/*background-image: url(/init_data/images/panels/tiaozhan_bg.png);*/
 	width: 194px;
@@ -515,7 +551,7 @@ body .carousel {
 	height: 244px;
 	width: 240px;
 	padding: 0px;
-	background-position-y: -28px;
+	background-position-y: -27px;
 }
 
 .fighting-live .item {
