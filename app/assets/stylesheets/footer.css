@@ -1,0 +1,39 @@
+.my-footer {
+	background-color: #24201d;
+	margin: 0px;
+	padding: 18px 0px 0px;
+	text-align: center;
+	width: 100%;
+	color: #908681;
+}
+
+.my-footer a {
+	text-decoration: none;
+	color: #fff;
+}
+
+.gray-bar {
+	background-color: #5d4f46;
+	width: 100%;
+	height: 35px;
+}
+
+
+.font-blue{
+	font-size: 20px;
+	color: #025eb5;
+	font-weight: bold;
+	line-height: 42px;
+}
+
+.font-12 {
+	font-size: 12px;
+}
+
+.light-green {
+ color: #bdeb16;
+}
+
+.light-blue {
+	color:#cbc3fe;
+}
