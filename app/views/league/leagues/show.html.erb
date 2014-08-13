@@ -12,7 +12,10 @@
 <!-- Nav tabs -->
 <% if current_user && current_user.league %>
   <div class="row">
-    <%= link_to '向他们宣战！', proclaim_war_league_league_path(@league), :remote => true, :class => 'btn btn-danger', :style => 'margin-left: 70%;' if ((@league != current_user.league) && (current_user.league.president_id == current_user.id)) %>
+    <% if ((@league != current_user.league) && (current_user.league.president_id == current_user.id)) %>
+    <a href="javascript: void(0);" data-role='proclaim-war-btn' class="btn btn-danger" style="margin-left: 70%">向他们宣战！</a>
+    <% end %>
+    <%= link_to '向他们宣战！', proclaim_war_league_league_path(@league), :remote => true, :style => 'display: none;', :id => 'real_proclaim_btn' %>
   </div>
 <% end %>
 <div class="row">
@@ -57,6 +60,19 @@
 <% content_for :scripts do %>
   <script type="text/javascript">
     $(document).ready(function(){
+      $('[data-role=proclaim-war-btn]').click(function(){
+        var my_level = <%= current_user.league.level %>;
+        var your_level = <%= @league.level %>;
+        if(my_level < 4){
+          bootbox.alert('您的工会没有达到4级，不能宣战！');
+        }else{
+          if(your_level < 3){
+            bootbox.alert('该工会没有达到3级，不能对其宣战！');
+          }else{
+            $('#real_proclaim_btn').click();
+          }
+        }
+      });
       $('#leagueTab').tab();
     });
   </script>
