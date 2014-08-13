@@ -60,7 +60,7 @@
 <% content_for :scripts do %>
   <script type="text/javascript">
     $(document).ready(function(){
-      <% if ((@league != current_user.league) && (current_user.league.president_id == current_user.id)) %>
+      <% if (current_user.league && (@league != current_user.league) && (current_user.league.president_id == current_user.id)) %>
 
       $('[data-role=proclaim-war-btn]').click(function(){
         var my_level = <%= current_user.league.level %>;
