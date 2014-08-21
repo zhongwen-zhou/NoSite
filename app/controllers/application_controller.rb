@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
   helper_method :unread_notify_count
 
   before_filter do
+    @device = 'web'
+    if /Android/.match request.user_agent.to_s
+      @device = 'mobile'
+    end
     @share_content = {}
   end
 

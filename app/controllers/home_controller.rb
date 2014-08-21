@@ -5,6 +5,11 @@ class HomeController < ApplicationController
     @leagues = League::League.all.limit(6)
     @share_content = {:web_spread => true}
     @guess_groups = [['中国队', '日本队'], ['皇马', '巴萨']]
+    Rails.logger.info('!!!!====')
+    Rails.logger.info(@device)
+    if @device == 'mobile'
+      return render :layout => 'mobile'
+    end
   end
 
   def notice
