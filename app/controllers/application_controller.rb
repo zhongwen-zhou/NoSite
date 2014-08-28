@@ -5,7 +5,9 @@ class ApplicationController < ActionController::Base
 
   before_filter do
     @device = 'web'
-    if /Android/.match request.user_agent.to_s
+    Rails.logger.info('!!!!')
+    Rails.logger.info(request.user_agent.to_s)
+    if (/Android/.match request.user_agent.to_s) || (/iPhone/.match request.user_agent.to_s)
       @device = 'mobile'
     end
     @share_content = {}
