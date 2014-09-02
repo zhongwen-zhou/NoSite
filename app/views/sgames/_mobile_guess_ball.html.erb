@@ -1,0 +1,68 @@
+<div class="panel panel-orange">
+  <div class="panel-heading">
+  <%= image_tag '/init_data/images/panels/jczq.png' %>
+  </div>
+  <div class="panel-body" style="">
+    <div class="row">
+      <img src="init_data/images/guess_balls/fball.png" , width ='100%;', height = '100%;'/>
+    </div>
+
+      <%= form_tag(game_guess_path, :method => 'post', :remote => true, :id => 'guess_balls_form') do |f| %>
+      <div class="first-game">
+        <p class="game-name" style="">  
+          <%= render_groups_name('g1') %>
+        </p>
+        <p style="height: 20px; padding-left: 37px; text-align: left;" class="result-choice">
+        <span>
+          胜<input type="radio" name="group_1" value="0" checked="checked">
+        </span>
+        <span>
+          平<input type="radio" name="group_1" value="1" class="margin-right-50">
+        </span>
+        <span class="last-radio">
+          负<input type="radio" name="group_1" value="2" >
+        </span>
+        </p>  
+      </div>
+
+      <div class="second-game">
+        <p class="game-name" style="">  
+          <%= render_groups_name('g2') %>
+        </p>
+        <p style="height: 20px; padding-left: 37px; text-align: left;" class="result-choice">
+        <span>
+          胜<input type="radio" name="group_2" value="0" checked="checked">
+        </span>
+        <span>
+          平<input type="radio" name="group_2" value="1" class="margin-right-50">
+        </span>
+        <span class="last-radio">
+          负<input type="radio" name="group_2" value="2" >
+        </span>
+        </p>  
+
+
+
+      </div>
+
+      <div style="height:24px;">
+        <% if current_user && can_guess_ball? %>
+          <div class="row">
+            <div class="col-sm-4 col-sm-offset-4" style="margin-left: 30%;">
+              <%= image_tag('/init_data/images/guess_balls/xiazhu_1.png', :'data-role' => 'detain-btn') %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+
+
+
+      <% end %>
+  </div>
+</div>
+<script>
+  $('[data-role=detain-btn]').click(function(){
+    $('#guess_balls_form').submit();
+  });
+</script>

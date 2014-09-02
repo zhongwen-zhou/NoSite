@@ -114,6 +114,7 @@
 
 <!-- freda -->
 
+            <% if @device == 'web' %>
               <div class="" style="float: right; line-height:35px;">
                 <form action="http://www.101fun.com/league/leagues/search" class="navbar-form navbar-left" role="search" method="get" style="margin: 0px; padding: 0px; float: right;">
                   <a class="btn btn-all-league" href="http://www.101fun.com/league/leagues">
@@ -125,6 +126,21 @@
                   <button type="submit" class="btn btn-search"></button>
                 </form>
               </div>
+
+            <% else %>
+              <div class="" style="float: right; line-height:35px; margin-top: 6px;">
+                <form action="http://www.101fun.com/league/leagues/search" class="navbar-form navbar-left" role="search" method="get" style="width: 400px; margin: 0px; padding: 0px; float: right;">
+                  <a class="btn btn-all-league" style="float: right;" href="http://www.101fun.com/league/leagues">
+                  <%= image_tag('/init_data/images/leagues/all_leagues_btn.png') %>
+                  </a>
+                  <div class="form-group" style="float: right;">
+                    <input name="keyword" type="text" class="form-control" placeholder="">
+                  </div>
+                  <button type="submit" class="btn btn-search" style="float: right;"></button>
+                </form>
+              </div>
+
+            <% end %>
 
 
 <!-- freda -->
@@ -143,7 +159,7 @@
       </div>
       <!-- <div class="col-lg-3"> -->
       <div class="guessball" style="">
-        <%= render('sgames/guess_ball') %>
+        <%= render('sgames/mobile_guess_ball') %>
       </div>
     </div><!-- /.row -->
 </div><!-- /.section -->
