@@ -18,8 +18,7 @@ class HomeController < ApplicationController
       results = current_user.guessed_value
       coins = 0
 
-      if results
-
+      if results && !current_user.guessed_out && current_user.guessed_at < guess_ball.last_updated_at
         right = false
 
         if results.split('-').first == guess_ball.g1_result
@@ -35,9 +34,7 @@ class HomeController < ApplicationController
         unless right
           coins = 10
           Reward.create!(:receiver => current_user, :classification => 0, :personal_coins => coins, :content => '您昨天的赌球一个都没有中哦，不过我们还是奖励你10金币，再接再厉哦！')
-        end
-
-        if coins > 0
+        else
           Reward.create!(:receiver => current_user, :classification => 0, :personal_coins => coins, :content => '您赌球中奖咯，请笑纳！')
         end
         current_user.set(:guessed_out => true)

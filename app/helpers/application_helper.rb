@@ -130,7 +130,7 @@ module ApplicationHelper
 
   def can_guess_ball?
     return true if current_user.guessed_at.nil?
-    current_user.guessed_at != Date.current
+    current_user.guessed_at.to_date != Date.current
   end
 
   def render_groups_name(group_no)

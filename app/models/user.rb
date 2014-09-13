@@ -63,7 +63,7 @@ class User
   field :level, :type => Integer, :default => 1
   field :join_league_status, :type => Integer, :default => 0
 
-  field :guessed_at, :type => Date
+  field :guessed_at, :type => Time
   field :guessed_value, :type => String
   field :guessed_out, :type => Boolean
 
@@ -455,7 +455,7 @@ class User
   end
 
   def guess_ball!(value)
-    set(:guessed_at => Date.current)
+    set(:guessed_at => Time.now)
     set(:guessed_value => value)
     set(:guessed_out => false)
   end

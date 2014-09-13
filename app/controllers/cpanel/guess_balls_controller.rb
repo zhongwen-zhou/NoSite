@@ -25,6 +25,7 @@ class Cpanel::GuessBallsController < Cpanel::ApplicationController
     guess_ball = GuessBall.instance
     guess_ball.g1_result = params[:g1_result]
     guess_ball.g2_result = params[:g2_result]
+    guess_ball.last_updated_at = Time.now
     redirect_to cpanel_guess_balls_path
   end
 
