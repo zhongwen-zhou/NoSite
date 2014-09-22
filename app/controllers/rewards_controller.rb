@@ -1,6 +1,4 @@
-# coding: utf-8
 class RewardsController < ApplicationController
-  # layout :false
   def index
     @type = params[:type] || 'game'
     @current_type = @type

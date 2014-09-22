@@ -92,6 +92,8 @@ gem 'thin', "1.5.0"
 
 gem 'rails_kindeditor'
 
+gem 'whenever'
+
 group :development, :test do
   gem 'pry-rails'
   gem 'capistrano', '2.9.0', require: false

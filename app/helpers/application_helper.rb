@@ -135,9 +135,37 @@ module ApplicationHelper
 
   def render_groups_name(group_no)
     if group_no == 'g1'
-      "#{GuessBall.instance.g1_team1} VS #{GuessBall.instance.g1_team2}"
+      "#{GuessBall.last.g1_team1} VS #{GuessBall.last.g1_team2}"
     else
-      "#{GuessBall.instance.g2_team1} VS #{GuessBall.instance.g2_team2}"
+      "#{GuessBall.last.g2_team1} VS #{GuessBall.last.g2_team2}"
+    end
+  end
+
+  def render_team_results(group_no)
+    if group_no == 'g1'
+      g1_result = GuessBall.last.g1_result
+      g1_result_s = if g1_result == 0
+        '胜'
+      elsif g1_result == 1
+        '平'
+      elsif g1_result == -1
+        '未设置'
+      else
+        '负'
+      end
+      "#{GuessBall.last.g1_team1} #{g1_result_s} #{GuessBall.last.g1_team2}"      
+    else
+      g2_result = GuessBall.last.g2_result
+      g2_result_s = if g2_result == 0
+        '胜'
+      elsif g2_result == 1
+        '平'
+      elsif g2_result == -1
+        '未设置'
+      else
+        '负'
+      end
+      "#{GuessBall.last.g2_team1} #{g2_result_s} #{GuessBall.last.g2_team2}"            
     end
   end
 

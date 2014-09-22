@@ -2,25 +2,25 @@
 <h2>基本信息</h2>
 <p>
 	竞猜组1:<br/>
-	队伍1:<%= GuessBall.instance.g1_team1 %><br/>
-	队伍2:<%= GuessBall.instance.g1_team2 %><br/>
+	队伍1:<%= GuessBall.last.try(:g1_team1) %><br/>
+	队伍2:<%= GuessBall.last.try(:g1_team2) %><br/>
 </p>
 <hr/>
 <p>
 	竞猜组2:<br/>
-	队伍1:<%= GuessBall.instance.g2_team1 %><br/>
-	队伍2:<%= GuessBall.instance.g2_team2 %><br/>
+	队伍1:<%= GuessBall.last.try(:g2_team1) %><br/>
+	队伍2:<%= GuessBall.last.try(:g2_team2) %><br/>
 </p>
 <hr/>
 <h2>比赛结果</h2>
 <p>
 	竞猜组1:<br/>
-	<%= GuessBall.instance.g1_team1 %> <%= GuessBall.instance.g1_result %> <%= GuessBall.instance.g1_team2 %>
+	<%= render_team_results('g1') %>
 </p>
 <hr/>
 <p>
 	竞猜组2:<br/>
-	<%= GuessBall.instance.g2_team1 %> <%= GuessBall.instance.g2_result %> <%= GuessBall.instance.g2_team2 %>
+	<%= render_team_results('g2') %>
 </p>
 
 <%= link_to '修改竞猜队伍', edit_teams_cpanel_guess_balls_path %>
