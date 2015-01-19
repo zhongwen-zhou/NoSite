@@ -79,6 +79,7 @@
                   <th class="width-70">编号</th>
                   <th>名称</th>
                   <th>奖励理由</th>
+                  <th style="width: 103px;">开奖时间</th>
                   <th class="width-70">金币</th>
                   <th class="width-70">经验</th>
                   <th></th>
@@ -88,11 +89,12 @@
 
 
               <tbody>
-                <% @rewards.each do |reward| %>
+                <% @rewards.each_with_index do |reward, index| %>
                 <tr>
-                  <td><%= reward.id %></td>
+                  <td><%= index + 1 %></td>
                   <td><%= reward.title %></td>
                   <td><%= reward.content %></td>
+                  <td style="font-size: 15px;"><%= reward.created_at.strftime('%Y-%m-%d') %></td>
                   <td><%= reward.personal_coins %></td>
                   <td><%= reward.personal_experience %></td>
                   <td>

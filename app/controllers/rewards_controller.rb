@@ -2,7 +2,7 @@ class RewardsController < ApplicationController
   def index
     @type = params[:type] || 'game'
     @current_type = @type
-    @rewards = Reward.where(:receiver => current_user, :classification => Reward::CLASSIFICATIONS[@type])
+    @rewards = Reward.where(:receiver => current_user, :classification => Reward::CLASSIFICATIONS[@type]).desc(:created_at)
   end
 
   def receive

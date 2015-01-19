@@ -4,6 +4,9 @@
 	width: 130px;
 	line-height: 33px;
 }
+.panel-body div.row {
+	min-height: 560px;
+}
 .myrewards{
 	width: 980px;
 }
