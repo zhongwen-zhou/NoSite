@@ -86,3 +86,11 @@ table th.width-70 {
 .getreward-btn:hover{
 	background-image: url(/assets/rewards/lingqu_2.png);
 }
+
+/* */
+.empty_reward {
+	text-align: center;
+	margin-top: 100px;
+	font-size: 24px;
+	color: #6C78F5;
+}

@@ -53,7 +53,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <div class="panel-title">
-          <img src="/assets/rewards/jlzhx.png">
+          <img src="/assets/rewards/jlzx.png">
         </div>
       </div>
       <div class="panel-body">
@@ -72,6 +72,10 @@
               </li>
             </ul>
             <img class="img-line" src="/assets/rewards/jiangli_kuang_3.png" width="100%">
+
+            <% if @rewards.empty? %>
+              <div class="empty_reward">您当前还没有任何奖励哦！</div>
+            <% else %>
 
             <table class="table table-hover reward-table">
               <thead>
@@ -105,6 +109,7 @@
                 <% end %>
               </tbody>
             </table>
+            <% end %>
           </div>
         </div>
 
