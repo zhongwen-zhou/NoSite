@@ -12,6 +12,8 @@
 
 <%= render('ads/ad_hf_01') %>
 
+<% if false %>
+
 <div class="container">
 
   <div class="row-fluid">
@@ -55,3 +57,63 @@
   });
 </script>
 <% end %>
+
+<% end %>
+
+<!-- (Freda -->
+<div class="mycommunication">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">
+        <img src="/assets/messages/wzjlx.png">
+      </div>
+    </div>
+    <div class="panel-body">
+      <div>
+          <span class="MYH-12-bold">与 <%= @communication.sender == current_user ? @communication.receiver.name : @communication.sender.name %> 的聊天</span>
+      </div>
+      <div class="well">
+        <div id="messages_div" class="container">
+        <% @messages.each do |message| %>
+          <%= render('message/messages/item', :message => message) %>
+        <% end %>        
+        </div>
+      </div>
+              
+        <%= form_for(@message, :remote => true) do |form| %>
+          <div class="enter-div">
+          <%= form.text_area :content, :size => '60x4' %>
+          <%= form.submit '发送' %>
+          </div>
+        <% end %>
+
+
+
+    </div>
+  </div>
+</div>
+
+<div class="communication-ad">
+  <img alt="Ad message 01" src="/assets/messages/ad_message_01.png">
+</div>
+<div class="clearfix"></div>
+
+<% content_for :scripts do %>
+<script type="text/javascript">
+  $(function(){
+    $("#new_message_message").validate({
+      rules: {
+        'message_message[content]': {
+          required: true
+        }
+      },
+      messages: {
+        'message_message[content]': {
+          required: "请输入内容"
+        }
+      }
+    });
+  });
+</script>
+<% end %>
+

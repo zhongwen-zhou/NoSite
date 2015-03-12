@@ -1,4 +1,9 @@
+
+
+
 <%= render('ads/ad_hf_01') %>
+
+<% if false %>
 <div class="container">
 	<div class="row-fluid">
 	  <div class="col-md-9">
@@ -51,3 +56,65 @@
 	  </div>
 	</div> 
 </div>
+<% end %>
+
+
+
+<!-- (Freda -->
+<div class="mymessage">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">
+        <img src="/assets/messages/wzjlx.png">
+      </div>
+    </div>
+    <div class="panel-body">
+      <ul class="nav nav-tabs mymessage-list">
+	        <li>
+		        <a href="<%= message_root_path %>">私信</a>
+	        </li>
+	        <li class="active">
+		        <a href="#">系统私信</a>
+	        </li>
+	        <li>
+		        <%= link_to '工会群聊天', league_league_messages_path(current_user.league) if current_user.league %>
+
+	        </li>
+      </ul> 
+
+      <table class="table mymessage-table">
+        <thead>
+          <tr>
+            <th class="span10">信息内容</th>
+            <th class="span2">发信时间</th>
+          </tr>
+        </thead>
+        <tbody>
+	        <% @messages.each do |message| %>
+            <tr class="message_list">
+	            <td>
+		        	<%= message.content %>
+	            </td>
+	            <td>
+	            	<%= message.created_at.strftime('%Y-%m-%d %H:%M:%S') %>
+	            </td>
+	          </tr>
+					<% end %>
+        </tbody>
+      </table>
+
+      <!-- <div class="page_nav"> -->
+	    <%= will_paginate @messages, :page_links => false, :container => false %>
+        <!-- 
+          <span>共17条数据</span> <span>共2页</span>&nbsp;<strong>1</strong>&nbsp;<a href="http://www.ycpai.com/active/message/2">2</a>&nbsp;<a href="http://www.ycpai.com/active/message/2">下一页</a>&nbsp;  
+        -->
+      <!-- </div> -->
+    </div>
+  </div>
+</div>
+  
+<div class="message-ad">
+  <img alt="Ad message 01" src="/assets/messages/ad_message_01.png">
+</div>
+<div class="clearfix"></div>
+<!-- Freda) -->

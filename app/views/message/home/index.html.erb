@@ -1,4 +1,6 @@
 <%= render('ads/ad_hf_01') %>
+
+<% if false %>
 <div class="container">
 	<div class="row-fluid">
 	  <div class="col-md-9">
@@ -8,7 +10,7 @@
 	      </h3>
 	      
  				<hr>
-	      <ul class="nav nav-tabs">
+ 				<ul class="nav nav-tabs mymessage-list">
 	        <li class="active">
 		        <a href="#">私信</a>
 	        </li>
@@ -20,7 +22,7 @@
 
 	        </li>
 	      </ul>  
-	      <table class="table">
+	      <table class="table mymessage-table">
 	        <thead>
 	          <tr>
 	            <th class="span2">发信人</th>
@@ -79,3 +81,94 @@
 	  </div>
 	</div> 
 </div>
+<% end %>
+
+
+
+<!-- (Freda -->
+<div class="mymessage">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">
+        <img src="/assets/messages/wzjlx.png">
+      </div>
+    </div>
+    <div class="panel-body">
+      <ul class="nav nav-tabs mymessage-list">
+        <li class="active">
+	        <a href="#">私信</a>
+        </li>
+        <li>
+	        <a href="<%= message_sys_messages_path %>">系统私信</a>
+        </li>
+        <li>
+	        <%= link_to '工会群聊天', league_league_messages_path(current_user.league) if current_user.league %>
+
+        </li>
+      </ul> 
+
+
+	      <table class="table mymessage-table">
+	        <thead>
+	          <tr>
+	            <th class="span2">发信人</th>
+	            <th class="span6">内容</th>
+	            <th class="span2">聊天时间</th>
+	            <th class="span2">操作</th>
+	          </tr>
+	        </thead>
+	        <tbody>
+	        	<% unless @communications.empty? %>
+		        <% @communications.each do |communication| %>
+	            <tr class="message_list">
+		            <td>
+			            <a href="#9">
+
+								    <%= user_avatar_tag(communication.sender) %>
+
+								    <br>
+										<%= communication.another_person(current_user).try(:login) %>
+		              </a>
+		            </td>
+		            <td>
+		            	<a href="javascript: void();">
+		            		<% if communication.last_message %>
+										<%= communication.last_message.content %>
+										<% end %>
+		            		<!-- <span class="badge badge-info">有新消息</span> -->
+		          		</a>
+		            </td>
+		            <td>
+			            <small>
+		            		<% if communication.last_message %>
+		              	<%= communication.last_message.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+		              	<% end %>
+		              </small>
+		            </td>
+		            <td>
+									<%= link_to '继续交流', message_messages_path(communication) %>
+			            <br>
+
+			            <%= link_to '<small>取消联系</small>'.html_safe, message_communication_path(communication), :confirm => '确定删除该会话么？', :method => :delete %>
+		            </td>
+		          </tr>
+						<% end %>
+						<% end %>
+	        </tbody>
+	      </table>
+	    <%= will_paginate @communications, :page_links => false, :container => false %>
+
+
+      <!-- <div class="page_nav"> -->
+       <!--   <span>共17条数据</span> <span>共2页</span>&nbsp;<strong>1</strong>&nbsp;<a href="http://www.ycpai.com/active/message/2">2</a>&nbsp;<a href="http://www.ycpai.com/active/message/2">下一页</a>&nbsp; -->
+      <!-- </div> -->
+
+    </div>
+  </div>
+</div>
+  
+<div class="message-ad">
+	<img alt="Ad message 01" src="/assets/messages/ad_message_01.png">
+</div>
+<div class="clearfix"></div>
+<!-- Freda) -->

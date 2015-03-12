@@ -1,0 +1,161 @@
+/***message panel style****/
+.mymessage{
+	width: 728px;
+	float: left;
+}
+.message-ad{
+	width: 240px;
+	height: 550px;
+	float: right;
+}
+.panel-title {
+	float: left;
+	width: 130px;
+	line-height: 33px;
+}
+.mymessage .panel-heading{
+	background-image: url(/assets/messages/message_header.png);
+	height: 54px;
+	width: 728px;
+	color: white;
+}
+.mymessage .panel-body{
+	background-image: url(/assets/messages/jiangli_bodybg.png);
+	/*background-color: #f5f5f5;*/
+	width: 728px;
+}
+
+/*****message ul style***/
+.mymessage-list li{
+	background-image: url(/assets/messages/jiangli_kuang_2.png);
+	background-repeat: no-repeat;
+	width: 161px;
+	height: 55px;
+	text-align: center;
+	font-size: 18px;
+	font-family:"Microsoft YaHei";
+	font-style: bold;
+}
+.mymessage-list > li.active{
+	background-image: url(/assets/messages/jiangli_kuang.png);
+	background-repeat: no-repeat;
+	width: 161px;
+	height: 55px;
+	text-align: center;
+	font-size: 18px;
+}
+.mymessage-list > li > a {color: #a133e6;}
+.mymessage-list > li > a:hover,
+.mymessage-list > li > a:focus 
+{ 
+	color: #f24364;
+	background-color: transparent;
+}
+.mymessage-list > li.active > a,
+.mymessage-list > li.active > a:hover,
+.mymessage-list > li.active > a:focus
+{
+	color: #f24364;
+	background-color: transparent;
+}
+
+/***message table style***/
+.mymessage-table {
+	/*border:2px solid #df9686; */
+	font-family:"Microsoft YaHei";
+}
+.mymessage-table thead > tr {
+	background-color: #fceced;
+	text-align: center;
+	font-size: 20px;
+	font-style: bold;
+}
+.mymessage-table tbody > tr {
+	height: 80px;
+}
+.mymessage-table tbody > tr > th, 
+.mymessage-table tfoot > tr > th, 
+.mymessage-table thead > tr > td, 
+.mymessage-table tbody > tr > td, 
+.mymessage-table tfoot > tr > td {
+	border-bottom: 1px solid #dddddd;
+	vertical-align: middle;
+}
+
+/***league message window style***/
+.well {
+  background-color: #feeeee;
+  border: 1px solid #97b4fa;
+  padding: 5px;
+}
+.enter-div-new{
+	background-color: #feeeee;
+	padding: 20px 20px 5px 5px;
+	width: 565px;
+	margin-bottom: 85px;
+	margin-left: 65px;
+}
+.enter-div-new textarea {
+	background-color: #feeeee;
+	border: 1px solid #97b4fa;
+}
+.enter-div-new input{
+	margin-top: 60px;
+}
+
+
+/*  Com  */
+/***communication panel style****/
+.mycommunication{
+	width: 728px;
+	float: left;
+}
+.communication-ad{
+	width: 240px;
+	height: 550px;
+	float: right;
+}
+.panel-title {
+	float: left;
+	width: 130px;
+	line-height: 33px;
+}
+.mycommunication .panel-heading{
+	background-image: url(/assets/messages/communication_header.png);
+	height: 54px;
+	width: 728px;
+	color: white;
+}
+.mycommunication .panel-body{
+	background-image: url(/assets/messages/jiangli_bodybg.png);
+	/*background-color: #f5f5f5;*/
+	width: 728px;
+	padding: 2px 34px;
+}
+
+/***communication window style***/
+.well {
+  background-color: #feeeee;
+  border: 1px solid #97b4fa;
+  padding: 5px;
+}
+.enter-div{
+	background-color: #feeeee;
+	padding: 20px 20px 5px 5px;
+	width: 580px;
+	margin-bottom: 85px;
+}
+.enter-div textarea {
+	background-color: #feeeee;
+	border: 1px solid #97b4fa;
+}
+.enter-div input{
+	margin-top: 60px;
+}
+
+/*** font style ***/
+.MYH-12-bold {
+	font-size: 12px;
+	font-family:"Microsoft YaHei";
+	font-style: bold;
+}

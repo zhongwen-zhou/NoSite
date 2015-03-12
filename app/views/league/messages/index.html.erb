@@ -1,4 +1,6 @@
 <%= render('ads/ad_hf_01') %>
+
+<% if false %>
 <div class="container">
 	<div class="row-fluid">
 	  
@@ -10,10 +12,14 @@
  				<hr>
 	      <ul class="nav nav-tabs">
 	        <li>
-	        <%= link_to '私信', message_root_path %>
+		        <a href="#">私信</a>
+	        </li>
+	        <li>
+		        <a href="<%= message_sys_messages_path %>">系统私信</a>
 	        </li>
 	        <li class="active">
-	        	<a href='#'>工会群聊天</a>
+		        <%= link_to '工会群聊天', league_league_messages_path(current_user.league) if current_user.league %>
+
 	        </li>
 	      </ul>  
 	      <table class="table">
@@ -77,3 +83,83 @@
   });
 </script>
 <% end %>
+<% end %>
+
+
+
+<!-- (Freda -->
+<div class="mymessage">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">
+        <img src="/assets/messages/wzjlx.png">
+      </div>
+    </div>
+    <div class="panel-body">
+      <ul class="nav nav-tabs mymessage-list">
+	        <li>
+		        <a href="<%= message_root_path %>">私信</a>
+	        </li>
+	        <li>
+		        <a href="<%= message_sys_messages_path %>">系统私信</a>
+	        </li>
+	        <li class="active">
+		        <%= link_to '工会群聊天', league_league_messages_path(current_user.league) if current_user.league %>
+
+	        </li>
+      </ul> 
+
+      <table class="table mymessage-table">
+	        <thead>
+	          <tr>
+	            <th class="span2">发信人</th>
+	            <th class="span6">内容</th>
+	            <th class="span2">聊天时间</th>
+	          </tr>
+	        </thead>
+	        <tbody id="messages_div">
+		        <% @messages.each do |message| %>
+		        	<%= render('league_message_item', :message => message) %>
+						<% end %>
+	        </tbody>
+	      </table>
+
+
+		    <%= will_paginate @messages, :page_links => false, :container => false %>
+
+      <!-- <div class="page_nav"> -->
+        <!-- 
+          <span>共17条数据</span> <span>共2页</span>&nbsp;<strong>1</strong>&nbsp;<a href="http://www.ycpai.com/active/message/2">2</a>&nbsp;<a href="http://www.ycpai.com/active/message/2">下一页</a>&nbsp;  
+        -->
+      <!-- </div> -->
+
+      <!--
+      <form accept-charset="UTF-8" action="./101FUN遊戏平台_files/101FUN遊戏平台.htm" class="new_league_message" data-remote="true" id="new_league_message" method="post" novalidate="novalidate">
+        <textarea cols="70" id="league_message_content" name="league_message[content]" rows="4">
+        </textarea>
+        <input name="commit" type="submit" value="发送">
+      </form>   
+      -->
+
+
+		  <%= form_for([:league, @message], :remote => true) do |form| %>
+        <div class="enter-div-new">
+			  	<%= form.text_area :content, :size => "60x4" %>
+			    <%= form.submit '发送' %>
+        </div>
+		  <% end %>
+
+			<% if can_publish_message?(@league) %>
+		  <% end %>
+
+
+
+    </div>
+  </div>
+</div>
+  
+<div class="message-ad">
+  <img alt="Ad message 01" src="/assets/messages/ad_message_01.png">
+</div>
+<div class="clearfix"></div>
+<!-- Freda) -->
