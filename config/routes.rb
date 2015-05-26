@@ -25,6 +25,7 @@ NoSite::Application.routes.draw do
   get "notice" => "home#notice"
   get 'about' => "home#about"
   get 'law' => "home#law"
+  get 'download_course' => "home#download_course"
 
   resources :users, :only => [:show] do
     collection do
