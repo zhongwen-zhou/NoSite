@@ -7,6 +7,6 @@ max_conns: 2048
 require: []
 
 max_persistent_conns: 2000
-environment: production
+environment: development
 servers: 1
 daemonize: true
