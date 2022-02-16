@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="WebRTC code samples">
+    <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1, maximum-scale=1">
+    <meta itemprop="description" content="Client-side WebRTC code samples">
+    <meta itemprop="name" content="WebRTC code samples">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta id="theme-color" name="theme-color" content="#ffffff">
+    <base target="_blank">
+    <title>Beautiful Demo4</title>
+</head>
+
+<body>
+    <input type="button" title="HTML5摄像头" value="开启摄像头" onclick="getMedia()" />
+    <video id="video" width="500px" height="500px" autoplay="autoplay"></video>
+    <canvas id="canvas" width="500px" height="500px"></canvas>
+    <button id="snap" onclick="takePhoto()">拍照</button>
+    <script>
+        function getMedia() {
+            let constraints = {
+                //参数
+                video: {width: 500, height: 500},
+                audio: false
+            };
+            //获得video摄像头区域
+            let video = document.getElementById("video");
+            //返回的Promise对象
+            let promise = navigator.mediaDevices.getUserMedia(constraints);
+           //then()异步，调用MediaStream对象作为参数
+            promise.then(function (MediaStream) {
+                video.srcObject = MediaStream;
+                video.play();
+            });
+        }
+
+        function takePhoto() {
+            //获得Canvas对象
+            let video = document.getElementById("video");
+            let canvas = document.getElementById("canvas");
+            let ctx = canvas.getContext('2d');
+            //绘图
+            ctx.drawImage(video, 0, 0, 300, 300);
+        }
+    </script>
+
+</body>
+</html>
